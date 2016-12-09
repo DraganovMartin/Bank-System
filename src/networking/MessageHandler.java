@@ -4,7 +4,7 @@ package networking;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public interface MessageProcessor {
+public interface MessageHandler {
 
     /**
      * Processes an incoming {@link Message} and returns a {@link Message} if a
@@ -14,5 +14,5 @@ public interface MessageProcessor {
      *
      * @return a response {@link Message} or NULL if no response is required.
      */
-    public Message process(Message message);
+    public Message handle(Message message);
 }
