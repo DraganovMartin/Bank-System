@@ -43,9 +43,7 @@ public class Connection extends Thread {
                 try {
                     Message inputMessage = (Message) this.inputStream.readObject();
                     Message outputMessage;
-                    synchronized (this.messageProcessor) {
-                        outputMessage = this.messageProcessor.process(inputMessage);
-                    }
+                    outputMessage = this.messageProcessor.process(inputMessage);
                     this.send(outputMessage);
                 } catch (IOException | ClassNotFoundException ex) {
                     keepRunning = false;
