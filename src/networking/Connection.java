@@ -14,7 +14,7 @@ public class Connection extends Thread {
     protected Socket socket;
     protected ObjectInputStream inputStream;
     protected ObjectOutputStream outputStream;
-    protected final MessageProcessor messageProcessor;
+    protected final MessageHandler messageHandler;
 
     public synchronized void send(Message message) throws IOException {
         if ((this.outputStream != null) && (message != null)) {
@@ -22,18 +22,18 @@ public class Connection extends Thread {
         }
     }
 
-    public Connection(Socket socket, MessageProcessor messageProcessor) {
+    public Connection(Socket socket, MessageHandler messageHandler) {
         this.socket = socket;
         this.inputStream = null;
         this.outputStream = null;
-        this.messageProcessor = messageProcessor;
+        this.messageHandler = messageHandler;
     }
 
     @Override
     public void run() {
         try {
             boolean keepRunning = true;
-            if (this.messageProcessor == null) {
+            if (this.messageHandler == null) {
                 keepRunning = false;
             } else {
                 this.inputStream = new ObjectInputStream(this.socket.getInputStream());
@@ -43,9 +43,7 @@ public class Connection extends Thread {
                 try {
                     Message inputMessage = (Message) this.inputStream.readObject();
                     Message outputMessage;
-                    synchronized (this.messageProcessor) {
-                        outputMessage = this.messageProcessor.process(inputMessage);
-                    }
+                    outputMessage = this.messageHandler.handle(inputMessage);
                     this.send(outputMessage);
                 } catch (IOException | ClassNotFoundException ex) {
                     keepRunning = false;
