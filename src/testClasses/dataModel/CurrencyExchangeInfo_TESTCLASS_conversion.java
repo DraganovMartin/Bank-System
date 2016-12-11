@@ -36,6 +36,7 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
 
         // TESTING:
         {
+            // TreeMap version:
             // CHANGE ONLY THESE FOR TESTING:
             String amount = "3.445046545";
             Currency currency = BGN;
@@ -43,7 +44,9 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
             // output the rates:
             Money base = Money.createMoney(currency, new BigDecimal(amount));
             {
-                TreeMap<Currency, BigDecimal> exchanged = info.getCurrencyExchangedValues(base.getCurrency(), base.getAmount());
+                TreeMap<Currency, BigDecimal> exchanged = info.getCurrencyExchangeMap(base.getCurrency(), base.getAmount());
+                System.out.println();
+                System.out.println("Using rounding mode: " + ROUNDINGMODE.toString() + ", scale: " + SCALE);
                 System.out.println("Value of " + base.getAmount() + " " + base.getCurrency().getPrimaryKeyValue() + ":");
                 for (Map.Entry<Currency, BigDecimal> entry : exchanged.entrySet()) {
                     System.out.println(entry.getKey().getPrimaryKeyValue() + ": " + entry.getValue().toPlainString());
@@ -52,6 +55,7 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
         }
 
         {
+            // TreeMap version:
             // CHANGE ONLY THESE FOR TESTING:
             String amount = "634.4545";
             Currency currency = USD;
@@ -59,9 +63,53 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
             // output the rates:
             Money base = Money.createMoney(currency, new BigDecimal(amount));
             {
-                TreeMap<Currency, BigDecimal> exchanged = info.getCurrencyExchangedValues(base.getCurrency(), base.getAmount());
+                TreeMap<Currency, BigDecimal> exchanged = info.getCurrencyExchangeMap(base.getCurrency(), base.getAmount());
+                System.out.println();
+                System.out.println("Using rounding mode: " + ROUNDINGMODE.toString() + ", scale: " + SCALE);
                 System.out.println("Value of " + base.getAmount() + " " + base.getCurrency().getPrimaryKeyValue() + ":");
                 for (Map.Entry<Currency, BigDecimal> entry : exchanged.entrySet()) {
+                    System.out.println(entry.getKey().getPrimaryKeyValue() + ": " + entry.getValue().toPlainString());
+                }
+            }
+        }
+
+        {
+            // CurrencyExchangeInfo version:
+            // CHANGE ONLY THESE FOR TESTING:
+            String amount = "135.45426";
+            Currency currency = CHF;
+            ROUNDINGMODE = RoundingMode.DOWN;
+            SCALE = 5;
+
+            // output the rates:
+            Money base = Money.createMoney(currency, new BigDecimal(amount));
+            {
+                CurrencyExchangeInfo exchanged = info.getCurrencyExchangeInfo(base.getCurrency(), base.getAmount(), ROUNDINGMODE, SCALE);
+                System.out.println();
+                System.out.println("Using rounding mode: " + ROUNDINGMODE.toString() + ", scale: " + SCALE);
+                System.out.println("Value of " + base.getAmount() + " " + base.getCurrency().getPrimaryKeyValue() + ":");
+                for (Map.Entry<Currency, BigDecimal> entry : exchanged.getCurrencyExchangeMap(currency, new BigDecimal(amount)).entrySet()) {
+                    System.out.println(entry.getKey().getPrimaryKeyValue() + ": " + entry.getValue().toPlainString());
+                }
+            }
+        }
+
+        {
+            // CurrencyExchangeInfo version:
+            // CHANGE ONLY THESE FOR TESTING:
+            String amount = "135.45426";
+            Currency currency = CHF;
+            ROUNDINGMODE = RoundingMode.HALF_UP;
+            SCALE = 1;
+
+            // output the rates:
+            Money base = Money.createMoney(currency, new BigDecimal(amount));
+            {
+                CurrencyExchangeInfo exchanged = info.getCurrencyExchangeInfo(base.getCurrency(), base.getAmount(), ROUNDINGMODE, SCALE);
+                System.out.println();
+                System.out.println("Using rounding mode: " + ROUNDINGMODE.toString() + ", scale: " + SCALE);
+                System.out.println("Value of " + base.getAmount() + " " + base.getCurrency().getPrimaryKeyValue() + ":");
+                for (Map.Entry<Currency, BigDecimal> entry : exchanged.getCurrencyExchangeMap(currency, new BigDecimal(amount)).entrySet()) {
                     System.out.println(entry.getKey().getPrimaryKeyValue() + ": " + entry.getValue().toPlainString());
                 }
             }
