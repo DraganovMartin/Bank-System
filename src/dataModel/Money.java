@@ -70,4 +70,9 @@ public class Money {
     public final BigDecimal getAmount() {
         return this.amount;
     }
+
+    @Override
+    public String toString() {
+        return this.amount.toPlainString() + " " + this.currency.getSymbol();
+    }
 }

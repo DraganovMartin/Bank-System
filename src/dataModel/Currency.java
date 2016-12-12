@@ -36,4 +36,9 @@ public final class Currency extends PrimaryKey implements Serializable {
     public final String getSymbol() {
         return this.symbol;
     }
+
+    @Override
+    public String toString() {
+        return this.symbol;
+    }
 }

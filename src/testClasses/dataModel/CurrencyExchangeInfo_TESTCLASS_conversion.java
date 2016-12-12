@@ -114,5 +114,53 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
                 }
             }
         }
+
+        {
+            // Money conversion:
+            // CHANGE ONLY THESE FOR TESTING:
+            String amount = "3.445046545";
+            Currency currencyFrom = BGN;
+            Currency currencyTo = CHF;
+
+            // output the result:
+            {
+                Money moneyFrom = Money.createMoney(currencyFrom, new BigDecimal(amount));
+                Money moneyTo = info.getConvertedMoney(moneyFrom, currencyTo);
+                System.out.print("Converting " + moneyFrom.toString() + " to " + currencyTo.toString() + ":");
+                System.out.println(" result: " + moneyTo.toString());
+            }
+        }
+
+        {
+            // Money conversion:
+            // CHANGE ONLY THESE FOR TESTING:
+            String amount = "0.0001";
+            Currency currencyFrom = USD;
+            Currency currencyTo = GBP;
+
+            // output the result:
+            {
+                Money moneyFrom = Money.createMoney(currencyFrom, new BigDecimal(amount));
+                Money moneyTo = info.getConvertedMoney(moneyFrom, currencyTo);
+                System.out.print("Converting " + moneyFrom.toString() + " to " + currencyTo.toString() + ":");
+                System.out.println(" result: " + moneyTo.toString());
+            }
+        }
+
+        {
+            // Money conversion:
+            // CHANGE ONLY THESE FOR TESTING:
+            String amount = "1.1";
+            Currency currencyFrom = CHF;
+            Currency currencyTo = GBP;
+
+            // output the result:
+            {
+                Money moneyFrom = Money.createMoney(currencyFrom, new BigDecimal(amount));
+                Money moneyTo = info.getConvertedMoney(moneyFrom, currencyTo);
+                System.out.print("Converting " + moneyFrom.toString() + " to " + currencyTo.toString() + ":");
+                System.out.println(" result: " + moneyTo.toString());
+            }
+        }
     }
 }
