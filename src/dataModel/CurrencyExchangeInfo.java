@@ -295,4 +295,27 @@ public class CurrencyExchangeInfo implements Serializable {
             return null;
         }
     }
+
+    /**
+     * Returns a {@link Money} object of the requested currency with value equal
+     * to the value of the amount of the provided currency, according to the
+     * current exchange rates. Uses the {@link RoundingMode} and scale as
+     * defined in the constructor.
+     *
+     * @param currencyFrom the provided currency.
+     *
+     * @param amountFrom the amount of the provided currency.
+     *
+     * @param currencyTo the requested currency to convert to.
+     *
+     * @return a {@link Money} object of the requested currency with value equal
+     * to the value of the provided {@link Money} object, according to the
+     * current exchange rates. Returns NULL if the conversion fails (i.e.
+     * requested currency not supported).
+     *
+     * @see {@link CurrencyExchangeInfo}
+     */
+    public Money convert(Currency currencyFrom, BigDecimal amountFrom, Currency currencyTo) {
+        return this.convert(Money.createMoney(currencyFrom, amountFrom), currencyTo);
+    }
 }
