@@ -73,6 +73,6 @@ public class Money {
 
     @Override
     public String toString() {
-        return this.amount.toPlainString() + " " + this.currency.getSymbol();
+        return this.amount.toPlainString() + " " + this.currency.toString();
     }
 }
