@@ -36,84 +36,64 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
 
         // TESTING:
         {
-            // TreeMap version:
+            // Readjusting rates:
             // CHANGE ONLY THESE FOR TESTING:
-            String amount = "3.445046545";
-            Currency currency = BGN;
+            Currency newCurrency = EUR;
+            BigDecimal newValue = new BigDecimal("1");
+            RoundingMode newRoundingMode = RoundingMode.CEILING;
+            int newScale = 6;
 
-            // output the rates:
-            Money base = Money.createMoney(currency, new BigDecimal(amount));
+            // output the result:
+            TreeMap<Currency, BigDecimal> values;
+            System.out.println("Readjusting rates example:");
+            System.out.println("Old rates: ");
             {
-                TreeMap<Currency, BigDecimal> exchanged = info.getCurrencyExchangeMap(base.getCurrency(), base.getAmount());
-                System.out.println();
-                System.out.println("Using rounding mode: " + ROUNDINGMODE.toString() + ", scale: " + SCALE);
-                System.out.println("Value of " + base.getAmount() + " " + base.getCurrency().getPrimaryKeyValue() + ":");
-                for (Map.Entry<Currency, BigDecimal> entry : exchanged.entrySet()) {
-                    System.out.println(entry.getKey().getPrimaryKeyValue() + ": " + entry.getValue().toPlainString());
+                values = info.getCurrencyValues();
+                for (Map.Entry<Currency, BigDecimal> entry : values.entrySet()) {
+                    System.out.println("\t" + (entry.getKey() + " " + entry.getValue()));
+                }
+            }
+            CurrencyExchangeInfo newInfo = info.getCurrencyExchangeInfo(newCurrency, newValue, newRoundingMode, newScale);
+            System.out.println("New rates (recalculalted for: " + newCurrency + " value: " + newValue);
+            {
+                values = newInfo.getCurrencyValues();
+                for (Map.Entry<Currency, BigDecimal> entry : values.entrySet()) {
+                    System.out.println("\t" + (entry.getKey() + " " + entry.getValue()));
                 }
             }
         }
+
+        System.out.println();
 
         {
-            // TreeMap version:
+            // Readjusting rates:
             // CHANGE ONLY THESE FOR TESTING:
-            String amount = "634.4545";
-            Currency currency = USD;
+            Currency newCurrency = USD;
+            BigDecimal newValue = new BigDecimal("10");
+            RoundingMode newRoundingMode = RoundingMode.CEILING;
+            int newScale = 6;
 
-            // output the rates:
-            Money base = Money.createMoney(currency, new BigDecimal(amount));
+            // output the result:
+            TreeMap<Currency, BigDecimal> values;
+            System.out.println("Readjusting rates example:");
+            System.out.println("Old rates: ");
             {
-                TreeMap<Currency, BigDecimal> exchanged = info.getCurrencyExchangeMap(base.getCurrency(), base.getAmount());
-                System.out.println();
-                System.out.println("Using rounding mode: " + ROUNDINGMODE.toString() + ", scale: " + SCALE);
-                System.out.println("Value of " + base.getAmount() + " " + base.getCurrency().getPrimaryKeyValue() + ":");
-                for (Map.Entry<Currency, BigDecimal> entry : exchanged.entrySet()) {
-                    System.out.println(entry.getKey().getPrimaryKeyValue() + ": " + entry.getValue().toPlainString());
+                values = info.getCurrencyValues();
+                for (Map.Entry<Currency, BigDecimal> entry : values.entrySet()) {
+                    System.out.println("\t" + (entry.getKey() + " " + entry.getValue()));
+                }
+            }
+            CurrencyExchangeInfo newInfo = info.getCurrencyExchangeInfo(newCurrency, newValue, newRoundingMode, newScale);
+            System.out.println("New rates (recalculalted for: " + newCurrency + " value: " + newValue);
+            {
+                values = newInfo.getCurrencyValues();
+                for (Map.Entry<Currency, BigDecimal> entry : values.entrySet()) {
+                    System.out.println("\t" + (entry.getKey() + " " + entry.getValue()));
                 }
             }
         }
 
-        {
-            // CurrencyExchangeInfo version:
-            // CHANGE ONLY THESE FOR TESTING:
-            String amount = "135.45426";
-            Currency currency = CHF;
-            ROUNDINGMODE = RoundingMode.DOWN;
-            SCALE = 5;
-
-            // output the rates:
-            Money base = Money.createMoney(currency, new BigDecimal(amount));
-            {
-                CurrencyExchangeInfo exchanged = info.getCurrencyExchangeInfo(base.getCurrency(), base.getAmount(), ROUNDINGMODE, SCALE);
-                System.out.println();
-                System.out.println("Using rounding mode: " + ROUNDINGMODE.toString() + ", scale: " + SCALE);
-                System.out.println("Value of " + base.getAmount() + " " + base.getCurrency().getPrimaryKeyValue() + ":");
-                for (Map.Entry<Currency, BigDecimal> entry : exchanged.getCurrencyExchangeMap(currency, new BigDecimal(amount)).entrySet()) {
-                    System.out.println(entry.getKey().getPrimaryKeyValue() + ": " + entry.getValue().toPlainString());
-                }
-            }
-        }
-
-        {
-            // CurrencyExchangeInfo version:
-            // CHANGE ONLY THESE FOR TESTING:
-            String amount = "135.45426";
-            Currency currency = CHF;
-            ROUNDINGMODE = RoundingMode.HALF_UP;
-            SCALE = 1;
-
-            // output the rates:
-            Money base = Money.createMoney(currency, new BigDecimal(amount));
-            {
-                CurrencyExchangeInfo exchanged = info.getCurrencyExchangeInfo(base.getCurrency(), base.getAmount(), ROUNDINGMODE, SCALE);
-                System.out.println();
-                System.out.println("Using rounding mode: " + ROUNDINGMODE.toString() + ", scale: " + SCALE);
-                System.out.println("Value of " + base.getAmount() + " " + base.getCurrency().getPrimaryKeyValue() + ":");
-                for (Map.Entry<Currency, BigDecimal> entry : exchanged.getCurrencyExchangeMap(currency, new BigDecimal(amount)).entrySet()) {
-                    System.out.println(entry.getKey().getPrimaryKeyValue() + ": " + entry.getValue().toPlainString());
-                }
-            }
-        }
+        System.out.println();
 
         {
             // Money conversion:
@@ -162,5 +142,82 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
                 System.out.println(" result: " + moneyTo.toString());
             }
         }
+
+        System.out.println();
+
+        {
+            // Money exhange rates:
+            // CHANGE ONLY THESE FOR TESTING:
+            Currency currencyFrom = BGN;
+            Currency currencyTo = GBP;
+
+            // output the result:
+            {
+                System.out.print("Converting " + currencyFrom.toString() + " to " + currencyTo.toString() + ":");
+                System.out.println(" exchange rate: " + info.getExchangeRate(currencyFrom, currencyTo));
+            }
+        }
+
+        {
+            // Money exhange rates:
+            // CHANGE ONLY THESE FOR TESTING:
+            Currency currencyFrom = USD;
+            Currency currencyTo = CHF;
+
+            // output the result:
+            {
+                System.out.print("Converting " + currencyFrom.toString() + " to " + currencyTo.toString() + ":");
+                System.out.println(" exchange rate: " + info.getExchangeRate(currencyFrom, currencyTo));
+            }
+        }
+
+        {
+            // Money exhange rates:
+            // CHANGE ONLY THESE FOR TESTING:
+            Currency currencyFrom = GBP;
+            Currency currencyTo = EUR;
+
+            // output the result:
+            {
+                System.out.print("Converting " + currencyFrom.toString() + " to " + currencyTo.toString() + ":");
+                System.out.println(" exchange rate: " + info.getExchangeRate(currencyFrom, currencyTo));
+            }
+        }
+
+        System.out.println();
+
+        {
+            // All supported currency exhange rates:
+            // CHANGE ONLY THESE FOR TESTING:
+            Currency currencyFrom = GBP;
+
+            // output the result:
+            {
+                System.out.println("All supported exchange rates for currency: " + currencyFrom.toString() + ":");
+                TreeMap<Currency, BigDecimal> rates = info.getExchangeRates(currencyFrom);
+                for (Map.Entry<Currency, BigDecimal> entry : rates.entrySet()) {
+                    System.out.println(currencyFrom + " to " + entry.getKey() + ": " + entry.getValue());
+                }
+            }
+        }
+
+        System.out.println();
+
+        {
+            // All supported currency exhange rates:
+            // CHANGE ONLY THESE FOR TESTING:
+            Currency currencyFrom = EUR;
+
+            // output the result:
+            {
+                System.out.println("All supported exchange rates for currency: " + currencyFrom.toString() + ":");
+                TreeMap<Currency, BigDecimal> rates = info.getExchangeRates(currencyFrom);
+                for (Map.Entry<Currency, BigDecimal> entry : rates.entrySet()) {
+                    System.out.println(currencyFrom + " to " + entry.getKey() + ": " + entry.getValue());
+                }
+            }
+        }
+
+        System.out.println();
     }
 }
