@@ -278,7 +278,7 @@ public class CurrencyExchangeInfo implements Serializable {
      *
      * @see {@link CurrencyExchangeInfo}
      */
-    public Money getConvertedMoney(Money moneyFrom, Currency currencyTo) {
+    public Money convert(Money moneyFrom, Currency currencyTo) {
         BigDecimal amountFrom = moneyFrom.getAmount();
         BigDecimal amountTo;
         Currency currencyFrom = moneyFrom.getCurrency();

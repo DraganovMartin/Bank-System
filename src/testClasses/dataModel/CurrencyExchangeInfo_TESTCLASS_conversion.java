@@ -125,7 +125,7 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
             // output the result:
             {
                 Money moneyFrom = Money.createMoney(currencyFrom, new BigDecimal(amount));
-                Money moneyTo = info.getConvertedMoney(moneyFrom, currencyTo);
+                Money moneyTo = info.convert(moneyFrom, currencyTo);
                 System.out.print("Converting " + moneyFrom.toString() + " to " + currencyTo.toString() + ":");
                 System.out.println(" result: " + moneyTo.toString());
             }
@@ -141,7 +141,7 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
             // output the result:
             {
                 Money moneyFrom = Money.createMoney(currencyFrom, new BigDecimal(amount));
-                Money moneyTo = info.getConvertedMoney(moneyFrom, currencyTo);
+                Money moneyTo = info.convert(moneyFrom, currencyTo);
                 System.out.print("Converting " + moneyFrom.toString() + " to " + currencyTo.toString() + ":");
                 System.out.println(" result: " + moneyTo.toString());
             }
@@ -157,7 +157,7 @@ public class CurrencyExchangeInfo_TESTCLASS_conversion {
             // output the result:
             {
                 Money moneyFrom = Money.createMoney(currencyFrom, new BigDecimal(amount));
-                Money moneyTo = info.getConvertedMoney(moneyFrom, currencyTo);
+                Money moneyTo = info.convert(moneyFrom, currencyTo);
                 System.out.print("Converting " + moneyFrom.toString() + " to " + currencyTo.toString() + ":");
                 System.out.println(" result: " + moneyTo.toString());
             }
