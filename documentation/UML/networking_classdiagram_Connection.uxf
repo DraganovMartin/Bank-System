@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>171</y>
+      <w>378</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+*Connection*
+--
+   -socket :Socket
+   -messageHandler :MessageHandler
+   -inputStream :ObjectInputStream
+   -outputStream :ObjectOutputStream
+--
+   +send(Message) :void
+   </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>18</y>
+      <w>369</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+*java.lang.Thread*
+--
+   +run():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>90</y>
+      <w>81</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>144</x>
+      <y>387</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+*java.lang.Socket*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>306</y>
+      <w>108</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[socket]
+m1=1
+m2=1
+&lt;&lt;contains&gt;&gt;</panel_attributes>
+    <additional_attributes>100.0;10.0;100.0;60.0;30.0;60.0;30.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>387</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+*MessageHandler*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>477</x>
+      <y>306</y>
+      <w>117</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[messageHandler]
+m1=1
+m2=1
+&lt;&lt;contains&gt;&gt;</panel_attributes>
+    <additional_attributes>50.0;10.0;50.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>603</x>
+      <y>387</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+*ObjectOutputStream*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>333</x>
+      <y>306</y>
+      <w>108</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[inputStream]
+m1=1
+m2=1
+&lt;&lt;contains&gt;&gt;</panel_attributes>
+    <additional_attributes>40.0;10.0;40.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>387</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+*ObjectInputStream*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>306</y>
+      <w>135</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[outputStream]
+m1=1
+m2=1
+&lt;&lt;contains&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;90.0;60.0;90.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>549</y>
+      <w>144</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;instance&gt;&gt;
+_request :Message_
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>603</x>
+      <y>549</y>
+      <w>144</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;instance&gt;&gt;
+_response :Message_
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>351</x>
+      <y>450</y>
+      <w>90</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;is sent to&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>369</x>
+      <y>450</y>
+      <w>117</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;redirected to&gt;&gt;</panel_attributes>
+    <additional_attributes>110.0;10.0;110.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>567</x>
+      <y>450</y>
+      <w>117</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;redirected to&gt;&gt;</panel_attributes>
+    <additional_attributes>110.0;10.0;110.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>450</y>
+      <w>81</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;returns&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>477</x>
+      <y>450</y>
+      <w>99</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;handles&gt;&gt;</panel_attributes>
+    <additional_attributes>90.0;10.0;90.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
