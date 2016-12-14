@@ -1,6 +1,8 @@
-package networking;
+package networking.serverside;
 
 import java.net.Socket;
+import networking.Connection;
+import networking.MessageHandler;
 
 /**
  * Uses an additional {@link MessageAuthenticator} handler to keep track of
