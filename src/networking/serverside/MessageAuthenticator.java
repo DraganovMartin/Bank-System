@@ -1,4 +1,7 @@
-package networking;
+package networking.serverside;
+
+import networking.Message;
+import networking.MessageHandler;
 
 /**
  * A {@link MessageAuthenticator} object acts as a {@link MessageHandler}. It
