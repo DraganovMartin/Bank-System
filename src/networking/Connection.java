@@ -19,6 +19,7 @@ public class Connection extends Thread {
     public synchronized void send(Message message) throws IOException {
         if ((this.outputStream != null) && (message != null)) {
             this.outputStream.writeObject(message);
+            this.outputStream.flush();
         }
     }
 
