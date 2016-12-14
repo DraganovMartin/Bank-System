@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
+ * @deprecated use {@link #CurrencyConverter} instead.
+ *
  * A class that provides information necessary for supporting the exchange from
  * one type of currency to another. Objects of this class are
  * {@link Serializable} so they can be sent over a network connection on demand.
@@ -32,9 +34,12 @@ import java.util.TreeMap;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
+@Deprecated
 public class CurrencyExchangeInfo implements Serializable {
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * A {@link TreeMap} that stores information about the current relative
      * values of different currencies. {@link Currency} types are recognized by
      * using their {@link Currency#getPrimaryKeyValue()} method (used as keys
@@ -47,45 +52,60 @@ public class CurrencyExchangeInfo implements Serializable {
      * <p>
      * Operations that access or modify this object should synchronize to it.
      */
+    @Deprecated
     private final TreeMap<Currency, BigDecimal> currencyValues;
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * The {@link RoundingMode} to be used.
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     private final RoundingMode roundingMode;
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * The scale to be used.
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     private final int scale;
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Returns the {@link RoundingMode} to be used.
      *
      * @return the {@link RoundingMode} to be used.
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     public final RoundingMode getRoundingMode() {
         return this.roundingMode;
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Returns the scale to be used.
      *
      * @return the scale to be used.
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     public final int getScale() {
         return this.scale;
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Constructor.
      *
      * @param roundingMode the {@link RoundingMode} to be used.
@@ -94,6 +114,7 @@ public class CurrencyExchangeInfo implements Serializable {
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     public CurrencyExchangeInfo(RoundingMode roundingMode, int scale) {
         this.currencyValues = new TreeMap<>();
         this.roundingMode = roundingMode;
@@ -101,6 +122,8 @@ public class CurrencyExchangeInfo implements Serializable {
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Sets the current relative value of a currency.
      *
      * @param currency the currency which relative value is to be set.
@@ -111,6 +134,7 @@ public class CurrencyExchangeInfo implements Serializable {
      *
      * @return true if successful, otherwise false.
      */
+    @Deprecated
     public final boolean setCurrencyValue(Currency currency, BigDecimal value) {
         if (value.compareTo(BigDecimal.ZERO) > 0) {
             synchronized (this.currencyValues) {
@@ -123,6 +147,8 @@ public class CurrencyExchangeInfo implements Serializable {
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Returns the current relative value of a supported currency.
      *
      * @param currency the currency which relative value is requested.
@@ -132,6 +158,7 @@ public class CurrencyExchangeInfo implements Serializable {
      * @return the current relative value of the currency if successful,
      * otherwise NULL (i.e. the currency is not supported).
      */
+    @Deprecated
     public final BigDecimal getCurrencyValue(Currency currency) {
         BigDecimal value;
         synchronized (this.currencyValues) {
@@ -145,12 +172,15 @@ public class CurrencyExchangeInfo implements Serializable {
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Returns a {@link TreeMap} containing information about the current
      * relative values of all supported currencies.
      *
      * @return a {@link TreeMap} containing information about the current
      * relative values of all supported currencies.
      */
+    @Deprecated
     public final TreeMap<Currency, BigDecimal> getCurrencyValues() {
         TreeMap<Currency, BigDecimal> result = new TreeMap<>();
         synchronized (this.currencyValues) {
@@ -162,6 +192,8 @@ public class CurrencyExchangeInfo implements Serializable {
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Sets the current relative values of multiple currencies at the same time.
      * Requires an array of currencies and an array of relative values of
      * matching sizes.
@@ -172,6 +204,7 @@ public class CurrencyExchangeInfo implements Serializable {
      *
      * @param valueArr an array of the relative values to set.
      */
+    @Deprecated
     public final void setCurrencyValuesMultiple(Currency[] currencyArr, BigDecimal[] valueArr) {
         if (currencyArr.length == valueArr.length) {
             int l = currencyArr.length;
@@ -188,6 +221,8 @@ public class CurrencyExchangeInfo implements Serializable {
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Returns the current exchange rate for currency A to currency B - the
      * ratio of their relative values - the relative value of A divided by the
      * relative value of B. Uses the predefined {@link RoundingMode} and scale.
@@ -205,6 +240,7 @@ public class CurrencyExchangeInfo implements Serializable {
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     public final BigDecimal getExchangeRate(Currency currencyFrom, Currency currencyTo) {
         BigDecimal valueFrom;
         BigDecimal valueTo;
@@ -220,6 +256,8 @@ public class CurrencyExchangeInfo implements Serializable {
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Returns the current exchange rates for currency A to all supported
      * currencies B - the ratio of their relative values - the relative value of
      * A divided by the relative value of B. Uses the predefined
@@ -236,6 +274,7 @@ public class CurrencyExchangeInfo implements Serializable {
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     public final TreeMap<Currency, BigDecimal> getExchangeRates(Currency currencyFrom) {
         TreeMap<Currency, BigDecimal> result = new TreeMap<>();
         synchronized (this.currencyValues) {
@@ -249,6 +288,8 @@ public class CurrencyExchangeInfo implements Serializable {
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Returns a {@link CurrencyExchangeInfo} object with information drawn from
      * the current key-value mapping. The new values are recalculated according
      * to a new value provided for a specific currency. Useful when converting
@@ -279,6 +320,7 @@ public class CurrencyExchangeInfo implements Serializable {
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     public final CurrencyExchangeInfo getCurrencyExchangeInfo(Currency baseCurrency, BigDecimal newBaseValue, RoundingMode roundingMode, int scale) {
         if ((baseCurrency != null) && (newBaseValue != null)) {
             synchronized (this.currencyValues) {
@@ -299,6 +341,8 @@ public class CurrencyExchangeInfo implements Serializable {
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Returns a {@link Money} object of the requested currency with value equal
      * to the value of the provided {@link Money} object, according to the
      * current exchange rates. Uses the {@link RoundingMode} and scale as
@@ -315,6 +359,7 @@ public class CurrencyExchangeInfo implements Serializable {
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     public Money convert(Money moneyFrom, Currency currencyTo) {
         BigDecimal amountFrom = moneyFrom.getAmount();
         BigDecimal amountTo;
@@ -334,6 +379,8 @@ public class CurrencyExchangeInfo implements Serializable {
     }
 
     /**
+     * @deprecated use {@link #CurrencyConverter} instead.
+     *
      * Returns a {@link Money} object of the requested currency with value equal
      * to the value of the amount of the provided currency, according to the
      * current exchange rates. Uses the {@link RoundingMode} and scale as
@@ -352,6 +399,7 @@ public class CurrencyExchangeInfo implements Serializable {
      *
      * @see {@link CurrencyExchangeInfo}
      */
+    @Deprecated
     public Money convert(Currency currencyFrom, BigDecimal amountFrom, Currency currencyTo) {
         return this.convert(Money.createMoney(currencyFrom, amountFrom), currencyTo);
     }
