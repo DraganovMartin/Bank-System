@@ -21,9 +21,9 @@ public class SSLServerThread extends Thread {
 
     /**
      * The server {@link MessageHandler} for client messages. Incoming client
-     * request messages are sent to this handler for response.
+     * messages are sent to this handler for response.
      */
-    private final MessageHandler clientMessageHandler;
+    private final MessageHandler messageHandler;
 
     /**
      * A {@link ConnectionManager} for the server to use.
@@ -60,22 +60,22 @@ public class SSLServerThread extends Thread {
      *
      * @param port the port that the server will operate on.
      *
-     * @param clientMessageHandler the server {@link MessageHandler} for client
-     * messages. Incoming client request messages are sent to this handler for
-     * response.
+     * @param messageHandler the server {@link MessageHandler} for client
+     * messages. Incoming client messages are sent to this handler for response.
      */
-    public SSLServerThread(SSLContext sslContext, int port, MessageHandler clientMessageHandler) {
+    public SSLServerThread(SSLContext sslContext, int port, MessageHandler messageHandler) {
         this.sslContext = sslContext;
         this.port = port;
-        this.clientMessageHandler = clientMessageHandler;
+        this.messageHandler = messageHandler;
         this.sslServerSocketFactory = sslContext.getServerSocketFactory();
         this.connectionManager = new ConnectionManager();
+        this.serverSocket = null;
     }
 
     @Override
     public void run() {
         // if server is porperly initialized:
-        if ((this.clientMessageHandler != null) && (this.connectionManager != null) && (this.sslContext != null) && (this.sslServerSocketFactory != null)) {
+        if ((this.messageHandler != null) && (this.connectionManager != null) && (this.sslContext != null) && (this.sslServerSocketFactory != null)) {
             boolean keepRunning = true;
             this.connectionManager.enableAccepting();
             while (keepRunning && !(this.isInterrupted())) {
@@ -116,7 +116,7 @@ public class SSLServerThread extends Thread {
                         if (istream != null && ostream != null) {
                             try {
                                 request = (ClientAuthenticationRequest) istream.readObject();
-                                response = (ClientAuthenticationResponse) this.clientMessageHandler.handle(request);
+                                response = (ClientAuthenticationResponse) this.messageHandler.handle(request);
                             } catch (Exception ex) {
                                 response = null;
                             }
@@ -136,7 +136,7 @@ public class SSLServerThread extends Thread {
                         if (incoming != null && response != null && response.isSuccessful()) {
                             // create connection and add it to the connection manager:
                             String clientPrimaryKeyValue = response.getAuthenticatedClientID();
-                            Connection connection = new AuthenticatedClientConnection(incoming, clientPrimaryKeyValue, this.clientMessageHandler);
+                            Connection connection = new AuthenticatedClientConnection(incoming, clientPrimaryKeyValue, this.messageHandler);
                             this.connectionManager.connect(clientPrimaryKeyValue, connection);
                             connection.start();
                         } else {
