@@ -30,6 +30,13 @@ public class Connection extends Thread {
         this.messageHandler = messageHandler;
     }
 
+    /**
+     * A method that is executed just before the thread {@link #run()} method
+     * finishes. Intended for overriding in derived classes.
+     */
+    protected void cleanUp() {
+    }
+
     @Override
     public void run() {
         try {
@@ -60,5 +67,6 @@ public class Connection extends Thread {
             this.inputStream = null;
             this.outputStream = null;
         }
+        cleanUp();
     }
 }

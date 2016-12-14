@@ -14,6 +14,9 @@ import networking.MessageHandler;
  */
 public class AuthenticatedClientConnection extends Connection {
 
+    private final ConnectionManager connectionManager;
+    private final String clientPrimaryKeyValue;
+
     /**
      * Constructor.
      *
@@ -25,9 +28,26 @@ public class AuthenticatedClientConnection extends Connection {
      * @param messageHandler the handler to redirect the message to after
      * setting the client ID.
      *
+     * @param connectionManager the {@link ConnectionManager} that the server
+     * uses. The thread notifies the manager in case of thread termination, or
+     * when it finished its work. Implemented in the {@link #cleanUp()} method.
+     *
      * @see {@link Connection}
      */
-    public AuthenticatedClientConnection(Socket socket, String clientPrimaryKeyValue, MessageHandler messageHandler) {
+    public AuthenticatedClientConnection(Socket socket, String clientPrimaryKeyValue, MessageHandler messageHandler, ConnectionManager connectionManager) {
         super(socket, new MessageAuthenticator(clientPrimaryKeyValue, messageHandler));
+        this.connectionManager = connectionManager;
+        this.clientPrimaryKeyValue = clientPrimaryKeyValue;
+    }
+
+    /**
+     * A method that is executed just before the thread {@link #run()} method
+     * finishes. Overridden. The thread notifies the manager in case of thread
+     * termination, or when it finished its work. Implemented in the
+     * {@link #cleanUp()} method.
+     */
+    @Override
+    public void cleanUp() {
+        this.connectionManager.disconnect(this.clientPrimaryKeyValue);
     }
 }
