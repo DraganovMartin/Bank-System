@@ -136,7 +136,7 @@ public class SSLServerThread extends Thread {
                         if (incoming != null && response != null && response.isSuccessful()) {
                             // create connection and add it to the connection manager:
                             String clientPrimaryKeyValue = response.getAuthenticatedClientID();
-                            Connection connection = new AuthenticatedClientConnection(incoming, clientPrimaryKeyValue, this.messageHandler, this.connectionManager);
+                            Connection connection = new AuthenticatedClientConnection(incoming, clientPrimaryKeyValue, this.messageHandler);
                             this.connectionManager.connect(clientPrimaryKeyValue, connection);
                             connection.start();
                         } else {
