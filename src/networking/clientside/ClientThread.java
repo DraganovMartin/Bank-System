@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import javax.net.SocketFactory;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocketFactory;
 import networking.ClientAuthenticationRequest;
 import networking.ClientAuthenticationResponse;
 import networking.Connection;
@@ -16,7 +16,7 @@ import networking.MessageHandler;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class SSLClientThread extends Thread {
+public class ClientThread extends Thread {
 
     /**
      * The username that the client provides to login.
@@ -35,15 +35,9 @@ public class SSLClientThread extends Thread {
     private final MessageHandler messageHandler;
 
     /**
-     * A {@link SSLSocketFactory} used to provide communication security
-     * (encryption).
+     * The {@link SocketFactory} used to create client sockets.
      */
-    private final SSLSocketFactory sslSocketFactory;
-
-    /**
-     * Secure socket protocol implementation for the client to use.
-     */
-    private final SSLContext sslContext;
+    private final SocketFactory socketFactory;
 
     /**
      * The server host name to which to connect.
@@ -68,8 +62,8 @@ public class SSLClientThread extends Thread {
     /**
      * Constructor.
      *
-     * @param sslContext secure socket protocol implementation for the client to
-     * use.
+     * @param socketFactry the {@link SocketFactory} used to create client
+     * sockets.
      *
      * @param host the server host name to which to connect.
      *
@@ -82,12 +76,11 @@ public class SSLClientThread extends Thread {
      *
      * @param password the password that the client provides to login.
      */
-    public SSLClientThread(SSLContext sslContext, String host, int port, MessageHandler messageHandler, String username, String password) {
-        this.sslContext = sslContext;
+    public ClientThread(SocketFactory socketFactry, String host, int port, MessageHandler messageHandler, String username, String password) {
         this.host = host;
         this.port = port;
         this.messageHandler = messageHandler;
-        this.sslSocketFactory = sslContext.getSocketFactory();
+        this.socketFactory = socketFactry;
         this.socket = null;
         this.username = username;
         this.password = password;
@@ -97,12 +90,12 @@ public class SSLClientThread extends Thread {
     @Override
     public void run() {
         // if client is porperly initialized:
-        if ((this.sslContext != null) && (this.host != null) && (this.messageHandler != null)) {
+        if ((this.socketFactory != null) && (this.host != null) && (this.messageHandler != null)) {
             boolean keepRunning = true;
             while (keepRunning && !(this.isInterrupted())) {
                 this.socket = null;
                 try {
-                    this.socket = this.sslSocketFactory.createSocket(this.host, this.port);
+                    this.socket = this.socketFactory.createSocket(this.host, this.port);
                 } catch (Exception ex) {
                     keepRunning = false;
                 }
