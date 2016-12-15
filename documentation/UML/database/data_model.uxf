@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>140</y>
+      <w>154</w>
+      <h>308</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*Clients*
+--
+*String ClientID &lt;&lt;primary key&gt;&gt;*
+String FirstName
+String LastName</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>434</x>
+      <y>140</y>
+      <w>154</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*BankAccounts*
+--
+*String BankAccID &lt;&lt;primary key&gt;&gt;*
+String Type
+String CurrencyID &lt;&lt;foreign key&gt;&gt;
+String Amount</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>203</x>
+      <y>140</y>
+      <w>196</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*BankAccOwners*
+--
+*&lt;&lt;primary key&gt;&gt;*
+{innerclass
+*String ClientID &lt;&lt;foreign key&gt;&gt;*
+*String BankAccID &lt;&lt;foreign key&gt;&gt;*
+innerclass}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>161</x>
+      <y>231</y>
+      <w>287</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt; is owned by
+owns &gt;
+m1=      1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;20.0;390.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>147</x>
+      <y>203</y>
+      <w>154</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=[ClientID]&lt;-</panel_attributes>
+    <additional_attributes>30.0;30.0;200.0;30.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>308</x>
+      <y>203</y>
+      <w>161</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=[BankAccID]&lt;-</panel_attributes>
+    <additional_attributes>180.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>609</x>
+      <y>140</y>
+      <w>154</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Банкова сметка*
+ID - клиентски номер
+Type - вид (депозит, кредит, ...)
+Currency - валута
+Amount - количество</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>581</x>
+      <y>175</y>
+      <w>42</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>434</x>
+      <y>322</y>
+      <w>154</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*SystemAccounts*
+--
+*String Username &lt;&lt;primary key&gt;&gt;*
+String Password
+String Type</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>616</x>
+      <y>322</y>
+      <w>154</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Профил в системата*
+Username - потр. име
+Password - парола
+Type - вид акаунт</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>581</x>
+      <y>357</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>161</x>
+      <y>413</y>
+      <w>287</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt; is owned by
+owns &gt;
+m1=      1
+m2=1..*</panel_attributes>
+    <additional_attributes>10.0;20.0;390.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>322</y>
+      <w>196</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*SystemAccOwners*
+--
+*&lt;&lt;primary key&gt;&gt;*
+{innerclass
+*String ClientID &lt;&lt;foreign key&gt;&gt;*
+*String Username &lt;&lt;foreign key&gt;&gt;*
+innerclass}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>147</x>
+      <y>385</y>
+      <w>154</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=[ClientID]&lt;-</panel_attributes>
+    <additional_attributes>30.0;30.0;200.0;30.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>308</x>
+      <y>385</y>
+      <w>161</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=[Username]&lt;-</panel_attributes>
+    <additional_attributes>180.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>805</x>
+      <y>140</y>
+      <w>154</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*Currencies*
+--
+*String CurrencyID &lt;&lt;primary key&gt;&gt;*
+String Value</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>581</x>
+      <y>245</y>
+      <w>259</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=[CurrencyID]&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>320.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>805</x>
+      <y>322</y>
+      <w>154</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Валута*
+ID - име на валутата
+Value - текущ курс</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>868</x>
+      <y>294</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+</diagram>
