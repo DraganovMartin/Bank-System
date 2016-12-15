@@ -5,8 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLServerSocketFactory;
+import javax.net.ServerSocketFactory;
 import networking.ClientAuthenticationRequest;
 import networking.ClientAuthenticationResponse;
 import networking.Connection;
@@ -17,7 +16,7 @@ import networking.MessageHandler;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class SSLServerThread extends Thread {
+public class ServerThread extends Thread {
 
     /**
      * The server {@link MessageHandler} for client messages. Incoming client
@@ -26,20 +25,14 @@ public class SSLServerThread extends Thread {
     private final MessageHandler messageHandler;
 
     /**
-     * A {@link ConnectionManager} for the server to use.
+     * The {@link ConnectionManager} for the server to use.
      */
     private final ConnectionManager connectionManager;
 
     /**
-     * A {@link SSLServerSocketFactory} used to provide communication security
-     * (encryption).
+     * The {@link ServerSocketFactory} used to create server sockets.
      */
-    private final SSLServerSocketFactory sslServerSocketFactory;
-
-    /**
-     * Secure socket protocol implementation for the server to use.
-     */
-    private final SSLContext sslContext;
+    private final ServerSocketFactory serverSocketFactory;
 
     /**
      * The port that the server will operate on.
@@ -55,19 +48,18 @@ public class SSLServerThread extends Thread {
     /**
      * Constructor.
      *
-     * @param sslContext secure socket protocol implementation for the server to
-     * use.
+     * @param serverSocketFactory the {@link ServerSocketFactory} used to create
+     * server sockets.
      *
      * @param port the port that the server will operate on.
      *
      * @param messageHandler the server {@link MessageHandler} for client
      * messages. Incoming client messages are sent to this handler for response.
      */
-    public SSLServerThread(SSLContext sslContext, int port, MessageHandler messageHandler) {
-        this.sslContext = sslContext;
+    public ServerThread(ServerSocketFactory serverSocketFactory, int port, MessageHandler messageHandler) {
+        this.serverSocketFactory = serverSocketFactory;
         this.port = port;
         this.messageHandler = messageHandler;
-        this.sslServerSocketFactory = sslContext.getServerSocketFactory();
         this.connectionManager = new ConnectionManager();
         this.serverSocket = null;
     }
@@ -75,12 +67,12 @@ public class SSLServerThread extends Thread {
     @Override
     public void run() {
         // if server is porperly initialized:
-        if ((this.messageHandler != null) && (this.connectionManager != null) && (this.sslContext != null) && (this.sslServerSocketFactory != null)) {
+        if ((this.messageHandler != null) && (this.connectionManager != null) && (this.serverSocketFactory != null)) {
             boolean keepRunning = true;
             this.connectionManager.enableAccepting();
             while (keepRunning && !(this.isInterrupted())) {
                 try {
-                    this.serverSocket = this.sslServerSocketFactory.createServerSocket(this.port);
+                    this.serverSocket = this.serverSocketFactory.createServerSocket(this.port);
                 } catch (Exception ex) {
                     keepRunning = false;
                 }
@@ -91,7 +83,7 @@ public class SSLServerThread extends Thread {
                     } catch (IOException ex) {
                         // recreate the server socket:
                         try {
-                            this.serverSocket = this.sslServerSocketFactory.createServerSocket(this.port);
+                            this.serverSocket = this.serverSocketFactory.createServerSocket(this.port);
                         } catch (Exception ex1) {
                             keepRunning = false;
                         }
