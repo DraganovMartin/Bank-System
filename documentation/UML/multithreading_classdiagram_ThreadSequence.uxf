@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>329</x>
+      <y>42</y>
+      <w>252</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+*java.lang.Thread*
+--
+   +run() :void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>329</x>
+      <y>161</y>
+      <w>252</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+*ThreadSequence*
+--
+   -canAddSequenced :boolean
+   -finalizer :Thread
+   -initializer: Thread
+   -sequence :LinkedList&lt;Thread&gt;
+--
+   +ThreadSequence(Thread, Thread) :&lt;&lt;constructor&gt;&gt;
+   +add(Thread) :boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>98</y>
+      <w>63</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>385</x>
+      <y>336</y>
+      <w>140</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+&lt;&lt;interruptible&gt;&gt;
+*java.util.LinkedList&lt;Thread&gt;*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>427</x>
+      <y>266</y>
+      <w>91</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[sequence]
+&lt;&lt;contains&gt;&gt;
+&lt;executes&gt;&gt;
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>40.0;10.0;40.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>385</y>
+      <w>63</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+&lt;&lt;contains&gt;&gt;
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>385</x>
+      <y>448</y>
+      <w>140</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+&lt;&lt;interruptible&gt;&gt;
+*java.lang.Thread*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>119</x>
+      <y>448</y>
+      <w>140</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+&lt;&lt;not interruptible&gt;&gt;
+*java.lang.Thread*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>266</y>
+      <w>210</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[initializer]
+&lt;&lt;contains&gt;&gt;
+&lt;&lt;executes&gt;&gt;
+m1=1
+m2=0..1</panel_attributes>
+    <additional_attributes>280.0;10.0;280.0;60.0;30.0;60.0;30.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>644</x>
+      <y>448</y>
+      <w>140</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+
+&lt;&lt;not interruptible&gt;&gt;
+*java.lang.Thread*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>539</x>
+      <y>266</y>
+      <w>203</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[finalizer]
+&lt;&lt;contains&gt;&gt;
+&lt;&lt;executes&gt;&gt;
+m1=1
+m2=0..1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;250.0;60.0;250.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>252</x>
+      <y>448</y>
+      <w>147</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;executed before&gt;&gt;</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>518</x>
+      <y>448</y>
+      <w>140</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;executed before&gt;&gt;</panel_attributes>
+    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>119</x>
+      <y>161</y>
+      <w>175</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+   Provides sequential (synchronous) execution of a series of threads. Each subsequent thread is executed only after the previous has finished in a first-in, first-out (FIFO) order.
+   New sequenced threads cannot be added once all sequenced treads have been executed.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>287</x>
+      <y>175</y>
+      <w>56</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>119</x>
+      <y>532</y>
+      <w>140</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+   
+   A thread that is executed first and cannot be interrupted.
+   Useful for initial setup.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>182</x>
+      <y>497</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>644</x>
+      <y>532</y>
+      <w>140</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+   
+   A thread that is executed last and cannot be interrupted.
+   Useful for final cleanup.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>707</x>
+      <y>497</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>385</x>
+      <y>532</y>
+      <w>140</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+   
+   A thread that is executed in the order it was added to the sequence.
+   Can be interrupted.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>497</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+</diagram>
