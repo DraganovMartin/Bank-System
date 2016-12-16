@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>9</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>252</x>
-      <y>171</y>
-      <w>378</w>
-      <h>144</h>
+      <x>270</x>
+      <y>170</y>
+      <w>420</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -25,10 +25,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>252</x>
-      <y>18</y>
-      <w>369</w>
-      <h>81</h>
+      <x>270</x>
+      <y>0</y>
+      <w>410</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -40,22 +40,22 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>432</x>
-      <y>90</y>
-      <w>81</w>
-      <h>99</h>
+      <x>470</x>
+      <y>80</y>
+      <w>90</w>
+      <h>110</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
+    <panel_attributes>lt=&lt;&lt;&lt;-
 &lt;&lt;extends&gt;&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>144</x>
-      <y>387</y>
-      <w>144</w>
-      <h>72</h>
+      <x>150</x>
+      <y>410</y>
+      <w>160</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -66,10 +66,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
-      <y>306</y>
-      <w>108</w>
-      <h>99</h>
+      <x>200</x>
+      <y>320</y>
+      <w>120</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[socket]
 m1=1
@@ -80,10 +80,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>387</y>
-      <w>144</w>
-      <h>72</h>
+      <x>490</x>
+      <y>410</y>
+      <w>160</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -94,10 +94,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>306</y>
-      <w>117</w>
-      <h>99</h>
+      <x>520</x>
+      <y>320</y>
+      <w>130</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[messageHandler]
 m1=1
@@ -108,10 +108,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>603</x>
-      <y>387</y>
-      <w>144</w>
-      <h>72</h>
+      <x>660</x>
+      <y>410</y>
+      <w>160</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -122,10 +122,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>333</x>
-      <y>306</y>
-      <w>108</w>
-      <h>99</h>
+      <x>360</x>
+      <y>320</y>
+      <w>120</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[inputStream]
 m1=1
@@ -136,10 +136,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>297</x>
-      <y>387</y>
-      <w>144</w>
-      <h>72</h>
+      <x>320</x>
+      <y>410</y>
+      <w>160</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -150,10 +150,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>594</x>
-      <y>306</y>
-      <w>135</w>
-      <h>99</h>
+      <x>650</x>
+      <y>320</y>
+      <w>150</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[outputStream]
 m1=1
@@ -164,10 +164,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>297</x>
-      <y>549</y>
-      <w>144</w>
-      <h>54</h>
+      <x>320</x>
+      <y>590</y>
+      <w>160</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 &lt;&lt;instance&gt;&gt;
@@ -178,10 +178,10 @@ _request :Message_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>603</x>
-      <y>549</y>
-      <w>144</w>
-      <h>54</h>
+      <x>660</x>
+      <y>590</y>
+      <w>160</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 &lt;&lt;instance&gt;&gt;
@@ -192,10 +192,10 @@ _response :Message_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>351</x>
-      <y>450</y>
-      <w>90</w>
-      <h>117</h>
+      <x>380</x>
+      <y>480</y>
+      <w>100</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;is sent to&gt;&gt;</panel_attributes>
@@ -204,10 +204,10 @@ _response :Message_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>369</x>
-      <y>450</y>
-      <w>117</w>
-      <h>54</h>
+      <x>400</x>
+      <y>480</y>
+      <w>130</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;redirected to&gt;&gt;</panel_attributes>
@@ -216,10 +216,10 @@ _response :Message_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>567</x>
-      <y>450</y>
-      <w>117</w>
-      <h>54</h>
+      <x>620</x>
+      <y>480</y>
+      <w>130</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;redirected to&gt;&gt;</panel_attributes>
@@ -228,10 +228,10 @@ _response :Message_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>675</x>
-      <y>450</y>
-      <w>81</w>
-      <h>117</h>
+      <x>740</x>
+      <y>480</y>
+      <w>90</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;returns&gt;&gt;</panel_attributes>
@@ -240,13 +240,30 @@ _response :Message_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>450</y>
-      <w>99</w>
-      <h>54</h>
+      <x>520</x>
+      <y>480</y>
+      <w>110</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;handles&gt;&gt;</panel_attributes>
     <additional_attributes>90.0;10.0;90.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>150</x>
+      <y>540</y>
+      <w>150</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+   visibility legend:
+
+   + &lt;&lt;public&gt;&gt;
+   # &lt;&lt;protected&gt;&gt;
+   ~ &lt;&lt;package&gt;&gt;
+   - &lt;&lt;private&gt;&gt;</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

@@ -24,35 +24,35 @@
 
 
 // This text will be stored with each diagram;  use it for notes.</help_text>
-  <zoom_level>8</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>152</x>
-      <y>8</y>
-      <w>224</w>
-      <h>120</h>
+      <x>60</x>
+      <y>0</y>
+      <w>280</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 &lt;&lt;abstract&gt;&gt;
 *Message*
 --
    -type :String
-   -clientPrimaryKeyValue :String
+   -clientID :String
 --
    +getType() :String
-   +getClientPrimaryKeyValue :String
-   +setClientPrimaryKeyValue(String) :void
+   +getClientID :String
+   +setClientID(String) :void
    +Message(String) :&lt;&lt;constructor&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>152</x>
-      <y>376</y>
-      <w>224</w>
-      <h>48</h>
+      <x>60</x>
+      <y>460</y>
+      <w>280</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>style=wordwrap
    A mapping (collection of key-value pairs) for specific message types to their respective message handlers.</panel_attributes>
@@ -61,10 +61,10 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>152</x>
-      <y>192</y>
-      <w>224</w>
-      <h>128</h>
+      <x>60</x>
+      <y>230</y>
+      <w>280</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>style=wordwrap
    A message handler that executes a predefined handler according to the type of the message argument.
@@ -75,10 +75,10 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>152</x>
-      <y>528</y>
-      <w>224</w>
-      <h>88</h>
+      <x>60</x>
+      <y>710</y>
+      <w>280</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>style=wordwrap
    visibility legend:
@@ -92,10 +92,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>472</x>
-      <y>8</y>
-      <w>312</w>
-      <h>120</h>
+      <x>460</x>
+      <y>0</y>
+      <w>390</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>style=wordwrap
    &lt;&lt;interface&gt;&gt;
@@ -108,10 +108,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>368</x>
-      <y>8</y>
-      <w>120</w>
-      <h>32</h>
+      <x>330</x>
+      <y>0</y>
+      <w>150</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 handle()</panel_attributes>
@@ -120,10 +120,10 @@ handle()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>472</x>
-      <y>192</y>
-      <w>312</w>
-      <h>120</h>
+      <x>460</x>
+      <y>230</y>
+      <w>390</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -139,10 +139,10 @@ handle()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>592</x>
-      <y>120</y>
-      <w>88</w>
-      <h>88</h>
+      <x>610</x>
+      <y>140</y>
+      <w>110</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
 &lt;&lt;implements&gt;&gt;</panel_attributes>
@@ -151,10 +151,10 @@ handle()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>472</x>
-      <y>376</y>
-      <w>312</w>
-      <h>120</h>
+      <x>460</x>
+      <y>460</y>
+      <w>390</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -168,10 +168,10 @@ handle()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>568</x>
-      <y>304</y>
-      <w>96</w>
-      <h>88</h>
+      <x>580</x>
+      <y>370</y>
+      <w>120</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[handlerMap]
 &lt;&lt;contains&gt;&gt;
@@ -182,10 +182,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>368</x>
-      <y>48</y>
-      <w>120</w>
-      <h>168</h>
+      <x>330</x>
+      <y>50</y>
+      <w>150</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 handle()</panel_attributes>
@@ -194,10 +194,10 @@ handle()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>368</x>
-      <y>208</y>
-      <w>120</w>
-      <h>24</h>
+      <x>330</x>
+      <y>250</y>
+      <w>150</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
@@ -205,10 +205,10 @@ handle()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>368</x>
-      <y>392</y>
-      <w>120</w>
-      <h>24</h>
+      <x>330</x>
+      <y>480</y>
+      <w>150</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
@@ -216,10 +216,10 @@ handle()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>472</x>
-      <y>560</y>
-      <w>80</w>
-      <h>56</h>
+      <x>460</x>
+      <y>690</y>
+      <w>100</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -230,10 +230,10 @@ _key :String_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>496</x>
-      <y>488</y>
-      <w>80</w>
-      <h>88</h>
+      <x>490</x>
+      <y>600</y>
+      <w>100</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[key]
 &lt;&lt;contains&gt;&gt;
@@ -244,10 +244,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>648</x>
-      <y>560</y>
-      <w>136</w>
-      <h>56</h>
+      <x>680</x>
+      <y>690</y>
+      <w>170</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 
@@ -258,10 +258,10 @@ _value :MessageHandler_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>696</x>
-      <y>488</y>
-      <w>80</w>
-      <h>88</h>
+      <x>740</x>
+      <y>600</y>
+      <w>100</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[value]
 &lt;&lt;contains&gt;&gt;
@@ -272,15 +272,15 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>544</x>
-      <y>568</y>
-      <w>120</w>
-      <h>40</h>
+      <x>480</x>
+      <y>760</y>
+      <w>330</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;
+    <panel_attributes>lt=[clientID]-&gt;[connection]
 points to
 m1=1..*
 m2=0..1</panel_attributes>
-    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+    <additional_attributes>30.0;10.0;30.0;60.0;280.0;60.0;280.0;10.0</additional_attributes>
   </element>
 </diagram>
