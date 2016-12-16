@@ -7,22 +7,31 @@ import networking.MessageHandler;
 /**
  * Uses an additional {@link MessageAuthenticator} handler to keep track of
  * whether the remote client has been authenticated that sets the
- * {@link Message#clientPrimaryKeyValue} field to the assigned client ID for
- * each incoming message before redirecting it for processing.
+ * {@link Message#clientID} field to the assigned client ID for each incoming
+ * message before redirecting it for further processing.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
 public class AuthenticatedClientConnection extends Connection {
 
+    /**
+     * The {@link ConnectionManager} that the server uses. The thread notifies
+     * the manager in case of thread termination, or when it finished its work.
+     * Implemented in the {@link #cleanUp()} method.
+     */
     private final ConnectionManager connectionManager;
-    private final String clientPrimaryKeyValue;
+
+    /**
+     * the client ID as specified (obtained by the authentication procedure).
+     */
+    private final String clientID;
 
     /**
      * Constructor.
      *
      * @param socket the socket that is used by the connection.
      *
-     * @param clientPrimaryKeyValue the client ID as specified (obtained by the
+     * @param clientID the client ID as specified (obtained by the
      * authentication procedure).
      *
      * @param messageHandler the handler to redirect the message to after
@@ -32,12 +41,12 @@ public class AuthenticatedClientConnection extends Connection {
      * uses. The thread notifies the manager in case of thread termination, or
      * when it finished its work. Implemented in the {@link #cleanUp()} method.
      *
-     * @see {@link Connection}
+     * @see Connection
      */
-    public AuthenticatedClientConnection(Socket socket, String clientPrimaryKeyValue, MessageHandler messageHandler, ConnectionManager connectionManager) {
-        super(socket, new MessageAuthenticator(clientPrimaryKeyValue, messageHandler));
+    public AuthenticatedClientConnection(Socket socket, String clientID, MessageHandler messageHandler, ConnectionManager connectionManager) {
+        super(socket, new MessageAuthenticator(clientID, messageHandler));
         this.connectionManager = connectionManager;
-        this.clientPrimaryKeyValue = clientPrimaryKeyValue;
+        this.clientID = clientID;
     }
 
     /**
@@ -48,6 +57,6 @@ public class AuthenticatedClientConnection extends Connection {
      */
     @Override
     public void cleanUp() {
-        this.connectionManager.disconnect(this.clientPrimaryKeyValue);
+        this.connectionManager.disconnect(this.clientID);
     }
 }
