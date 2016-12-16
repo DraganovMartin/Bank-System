@@ -6,8 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import javax.net.ServerSocketFactory;
-import networking.ClientAuthenticationRequest;
-import networking.ClientAuthenticationResponse;
+import networking.messages.ClientAuthenticationRequest;
+import networking.messages.ClientAuthenticationResponse;
 import networking.Connection;
 import networking.MessageHandler;
 

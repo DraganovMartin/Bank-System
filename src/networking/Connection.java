@@ -1,5 +1,6 @@
 package networking;
 
+import networking.messages.Message;
 import java.io.IOException;
 import java.net.Socket;
 import java.io.ObjectInputStream;

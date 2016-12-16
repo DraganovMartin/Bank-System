@@ -1,4 +1,4 @@
-package networking;
+package networking.messages;
 
 import java.io.Serializable;
 

@@ -1,5 +1,6 @@
 package networking;
 
+import networking.messages.Message;
 import java.util.TreeMap;
 
 /**
