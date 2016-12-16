@@ -67,17 +67,17 @@ public class ConnectionManager {
      * Adds a client-connection mapping. When adding a new connection for a
      * client all existing active connections to that client are closed.
      *
-     * @param clientPrimaryKey the client ID.
+     * @param clientID the client ID.
      *
-     * @param connection the current active connection to the client.
+     * @param connection the current active connection to use for the client.
      *
      * @return true if successful, otherwise false.
      */
-    public boolean connect(String clientPrimaryKey, Connection connection) {
-        if (this.isAccepting && (clientPrimaryKey != null) && (connection != null)) {
+    public boolean connect(String clientID, Connection connection) {
+        if (this.isAccepting && (clientID != null) && (connection != null)) {
             synchronized (this.activeConnections) {
                 // closes any already active connection to the same client:
-                Connection alreadyActive = this.activeConnections.get(clientPrimaryKey);
+                Connection alreadyActive = this.activeConnections.get(clientID);
                 if (alreadyActive != null) {
                     alreadyActive.interrupt();
                     while (alreadyActive.isAlive()) {
@@ -86,10 +86,10 @@ public class ConnectionManager {
                         } catch (Exception ex) {
                         }
                     }
-                    this.activeConnections.remove(clientPrimaryKey);
+                    this.activeConnections.remove(clientID);
                 }
                 // adds the connection to the mapping:
-                this.activeConnections.put(clientPrimaryKey, connection);
+                this.activeConnections.put(clientID, connection);
             }
             return true;
         } else {
@@ -100,14 +100,14 @@ public class ConnectionManager {
     /**
      * Closes the active connection to the specified client.
      *
-     * @param clientPrimaryKey the client ID.
+     * @param clientID the client ID.
      *
      * @return true if successful, otherwise false.
      */
-    public boolean disconnect(String clientPrimaryKey) {
-        if (clientPrimaryKey != null) {
+    public boolean disconnect(String clientID) {
+        if (clientID != null) {
             synchronized (this.activeConnections) {
-                Connection alreadyActive = this.activeConnections.get(clientPrimaryKey);
+                Connection alreadyActive = this.activeConnections.get(clientID);
                 if (alreadyActive != null) {
                     alreadyActive.interrupt();
                     while (alreadyActive.isAlive()) {
@@ -116,7 +116,7 @@ public class ConnectionManager {
                         } catch (Exception ex) {
                         }
                     }
-                    this.activeConnections.remove(clientPrimaryKey);
+                    this.activeConnections.remove(clientID);
                 }
             }
             return true;
