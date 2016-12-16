@@ -1,0 +1,956 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>0</y>
+      <w>220</w>
+      <h>630</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*Clients*
+--
+*String ClientID &lt;&lt;primary key&gt;&gt;*
+String FirstName
+String LastName</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1060</x>
+      <y>0</y>
+      <w>260</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*BankAccounts*
+--
+*String BankAccountID &lt;&lt;primary key&gt;&gt;*
+String Type
+String CurrencyID &lt;&lt;foreign key&gt;&gt;
+String Amount
+String ClientID &lt;&lt;foreign key&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>200</y>
+      <w>420</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=[ClientID]&lt;-
+&lt; is owned by
+owns &gt;
+m1=      1
+m2=0..*</panel_attributes>
+    <additional_attributes>30.0;20.0;400.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>780</x>
+      <y>0</y>
+      <w>250</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Банкова сметка*
+ID - клиентски номер
+Type - вид (депозит, кредит, ...)
+CurrencyID - валута
+Amount - количество
+
+Всеки клиент може няма никаква или да има неограничен брой сметки, и всяка сметка принадлежи на точно един клиент
+ВРЪЗКА 1 &lt;--- 0..много</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>20</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1060</x>
+      <y>370</y>
+      <w>260</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*SystemProfiles*
+--
+*String Username &lt;&lt;primary key&gt;&gt;*
+String Password
+String Type
+String ClientID &lt;&lt;foreign key&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>780</x>
+      <y>370</y>
+      <w>250</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Профил в системата*
+Username - потр. име
+Password - парола
+Type - вид акаунт
+
+Всеки клиент може да има неограничен брой профили в системата, но поне един, а всеки профил принадлежи на точно един клиент
+ВРЪЗКА 1 &lt;--- 1..много</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>390</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>580</y>
+      <w>410</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=[ClientID]&lt;-
+&lt; is owned by
+owns &gt;
+m1=      1
+m2=1..*</panel_attributes>
+    <additional_attributes>30.0;20.0;390.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1690</x>
+      <y>0</y>
+      <w>250</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*Currencies*
+--
+*String CurrencyID &lt;&lt;primary key&gt;&gt;*
+String Value</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1310</x>
+      <y>200</y>
+      <w>430</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=[CurrencyID]&lt;-
+m1=1
+m2=0..*
+uses &gt;
+&lt; is used by</panel_attributes>
+    <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1410</x>
+      <y>0</y>
+      <w>250</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Валута*
+CurrencyID - име на валутата
+Value - текущ курс
+
+Всяка сметка ползва точно и само една валута, а може да има валути, които не се ползват в нито една сметка
+ВРЪЗКА 0..много ---&gt; 1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1650</x>
+      <y>20</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1670</x>
+      <y>730</y>
+      <w>90</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>group=1
+*ClientID*
+--
+client1
+-.
+client2
+-.
+client3
+-.
+client4
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1670</x>
+      <y>700</y>
+      <w>310</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>group=1
+*Clients*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1870</x>
+      <y>730</y>
+      <w>110</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>group=1
+*LastName*
+--
+Penchov
+-.
+Genchov
+-.
+Ivanchov
+-.
+Nenchov
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1760</x>
+      <y>730</y>
+      <w>110</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>group=1
+*FirstName*
+--
+Pencho
+-.
+Gencho
+-.
+Ivancho
+-.
+Nencho
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>730</y>
+      <w>110</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>group=2
+*BankAccountID*
+--
+bankacc1
+-.
+bankacc2
+-.
+bankacc3
+-.
+bankacc4
+-.
+bankacc5
+-.
+bankacc6
+-.
+bankacc7
+-.
+bankacc8
+-.
+bankacc9
+-.
+bankacc10
+-.
+bankacc11
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1190</x>
+      <y>730</y>
+      <w>110</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>group=2
+*Type*
+--
+deposit
+-.
+deposit
+-.
+deposit
+-.
+deposit
+-.
+credit
+-.
+deposit
+-.
+credit
+-.
+credit
+-.
+deposit
+-.
+deposit
+-.
+deposit
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1300</x>
+      <y>730</y>
+      <w>110</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>group=2
+*CurrencyID*
+--
+BGN
+-.
+EUR
+-.
+EUR
+-.
+BGN
+-.
+USD
+-.
+BGN
+-.
+EUR
+-.
+BGN
+-.
+BGN
+-.
+USD
+-.
+BGN
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1410</x>
+      <y>730</y>
+      <w>110</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>group=2
+*Amount*
+--
+1500
+-.
+2500
+-.
+3500
+-.
+450000
+-.
+3500
+-.
+1500
+-.
+550000
+-.
+1500
+-.
+2500
+-.
+3500
+-.
+4500
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1520</x>
+      <y>730</y>
+      <w>110</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>group=2
+*ClientID*
+--
+client1
+-.
+client2
+-.
+client4
+-.
+client2
+-.
+client2
+-.
+client4
+-.
+client4
+-.
+client1
+-.
+client4
+-.
+client2
+-.
+client1
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>700</y>
+      <w>550</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>group=2
+*BankAccounts*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>730</y>
+      <w>110</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>group=3
+*CurrencyID*
+--
+BGN
+-.
+EUR
+-.
+USD
+-.
+CHF
+-.
+GBP
+-.
+JPY
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>730</y>
+      <w>110</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>group=3
+*Value*
+--
+1.00000
+-.
+1.95583
+-.
+1.83750
+-.
+1.81988
+-.
+2.32940
+-.
+0.0159803
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>700</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>group=3
+*Currencies*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2290</x>
+      <y>730</y>
+      <w>90</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>group=4
+*ClientID*
+--
+client1
+-.
+client2
+-.
+client3
+-.
+client4
+-.
+client4
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2020</x>
+      <y>730</y>
+      <w>90</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>group=4
+*Username*
+--
+penchoacc
+-.
+genchoacc
+-.
+ivanchoacc
+-.
+nenchoacc1
+-.
+nenchoacc2
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2110</x>
+      <y>730</y>
+      <w>90</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>group=4
+*Password*
+--
+penchopass
+-.
+genchopass
+-.
+inavchopass
+-.
+nenchopass1
+-.
+nenchopass2
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2200</x>
+      <y>730</y>
+      <w>90</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>group=4
+*Type*
+--
+read only
+-.
+deposit only
+-.
+full
+-.
+read only
+-.
+full
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2020</x>
+      <y>700</y>
+      <w>360</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>group=4
+*SystemProfiles*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1540</x>
+      <y>920</y>
+      <w>170</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>150.0;10.0;150.0;140.0;10.0;140.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1730</x>
+      <y>920</y>
+      <w>650</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;610.0;50.0;610.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>20</x>
+      <y>920</y>
+      <w>1400</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;300.0;1360.0;310.0;1360.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1410</x>
+      <y>370</y>
+      <w>280</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*Transfers*
+--
+*String TransferID &lt;&lt;primary key&gt;&gt;*
+String FromBankAccountID &lt;&lt;foreign key&gt;&gt;
+String ToBankAccountID &lt;&lt;foreign key&gt;&gt;
+String CurrencyID &lt;&lt;foreign key&gt;&gt;
+String Amount
+String Date</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1680</x>
+      <y>240</y>
+      <w>180</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=[CurrencyID]&lt;-
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>130.0;10.0;130.0;190.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1190</x>
+      <y>240</y>
+      <w>440</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=[FromBankAccountID]&lt;-
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>60.0;10.0;60.0;60.0;400.0;60.0;400.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1060</x>
+      <y>240</y>
+      <w>490</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=[ToBankAccountID]&lt;-
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>60.0;10.0;60.0;80.0;450.0;80.0;450.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>730</y>
+      <w>160</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>group=5
+*FromBankAccountID*
+--
+bankacc3
+-.
+bankacc3
+-.
+bankacc6
+-.
+bankacc9
+-.
+bankacc9
+-.
+bankacc6
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>730</y>
+      <w>160</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>group=5
+*ToBankAccountID*
+--
+bankacc6
+-.
+bankacc4
+-.
+bankacc8
+-.
+bankacc7
+-.
+bankacc1
+-.
+bankacc1
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>730</y>
+      <w>110</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>group=5
+*TransferID*
+--
+transfer1
+-.
+transfer2
+-.
+transfer3
+-.
+transfer4
+-.
+transfer5
+-.
+transfer6
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>690</x>
+      <y>730</y>
+      <w>110</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>group=5
+*CurrencyID*
+--
+BGN
+-.
+EUR
+-.
+USD
+-.
+CHF
+-.
+GBP
+-.
+JPY
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>730</y>
+      <w>110</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>group=5
+*Amount*
+--
+500
+-.
+10
+-.
+20
+-.
+1000
+-.
+50
+-.
+100
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>730</y>
+      <w>130</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>group=5
+*Date*
+--
+2016-01-01 10:00
+-.
+2016-01-05 10:15
+-.
+2016-03-04 12:00
+-.
+2016-03-04 13:10
+-.
+2016-03-08 08:05
+-.
+2016-05-02 09:00
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>700</y>
+      <w>780</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>group=5
+*Transfers*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>1010</y>
+      <w>540</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>520.0;10.0;520.0;130.0;10.0;130.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>1010</y>
+      <w>740</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>720.0;10.0;720.0;170.0;10.0;170.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>70</x>
+      <y>920</y>
+      <w>1290</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0;1250.0;190.0;1250.0;100.0</additional_attributes>
+  </element>
+</diagram>

@@ -1,5 +1,6 @@
 package networking;
 
+import networking.messages.Message;
 import java.io.IOException;
 import java.net.Socket;
 import java.io.ObjectInputStream;
@@ -19,6 +20,7 @@ public class Connection extends Thread {
     public synchronized void send(Message message) throws IOException {
         if ((this.outputStream != null) && (message != null)) {
             this.outputStream.writeObject(message);
+            this.outputStream.flush();
         }
     }
 
@@ -27,6 +29,13 @@ public class Connection extends Thread {
         this.inputStream = null;
         this.outputStream = null;
         this.messageHandler = messageHandler;
+    }
+
+    /**
+     * A method that is executed just before the thread {@link #run()} method
+     * finishes. Intended for overriding in derived classes.
+     */
+    protected void cleanUp() {
     }
 
     @Override
@@ -59,5 +68,6 @@ public class Connection extends Thread {
             this.inputStream = null;
             this.outputStream = null;
         }
+        cleanUp();
     }
 }
