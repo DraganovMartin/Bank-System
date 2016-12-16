@@ -1,5 +1,7 @@
 package networking;
 
+import networking.messages.Message;
+
 /**
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
