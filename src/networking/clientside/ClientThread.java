@@ -5,7 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import javax.net.SocketFactory;
-import javax.net.ssl.SSLContext;
 import networking.messages.ClientAuthenticationRequest;
 import networking.messages.ClientAuthenticationResponse;
 import networking.Connection;
