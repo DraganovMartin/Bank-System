@@ -1,6 +1,6 @@
 package networking.serverside;
 
-import networking.Message;
+import networking.messages.Message;
 import networking.MessageHandler;
 
 /**

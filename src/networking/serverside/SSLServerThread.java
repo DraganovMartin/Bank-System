@@ -7,8 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
-import networking.ClientAuthenticationRequest;
-import networking.ClientAuthenticationResponse;
+import networking.messages.ClientAuthenticationRequest;
+import networking.messages.ClientAuthenticationResponse;
 import networking.Connection;
 import networking.MessageHandler;
 
