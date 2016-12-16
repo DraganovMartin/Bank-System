@@ -2,8 +2,13 @@ package networking.messages;
 
 /**
  * A class that represents an authentication request issued by a user of the
- * system. The user specifies a pair of a username and a password. The intended
- * response class is {@link ClientAuthenticationResponse}.
+ * system. The user specifies a pair of:
+ * <p>
+ * - username
+ * <p>
+ * - password.
+ * <p>
+ * The intended response class is {@link ClientAuthenticationResponse}.
  *
  * @see Message
  * @see ClientAuthenticationResponse
