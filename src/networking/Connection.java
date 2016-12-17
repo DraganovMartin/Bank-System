@@ -12,6 +12,29 @@ import java.io.ObjectOutputStream;
  */
 public class Connection extends Thread {
 
+    /**
+     * Defines the side of the connection - server-side or client-side. The side
+     * determines the order of opening input/output streams from the socket:
+     * <p>
+     * - the server opens in the order: OUTPUT, INPUT
+     * <p>
+     * - the client opens in the order: INPUT, OUTPUT
+     */
+    public static enum SIDE {
+        SERVER,
+        CLIENT
+    }
+
+    /**
+     * Defines the side of the connection - server-side or client-side. The side
+     * determines the order of opening input/output streams from the socket:
+     * <p>
+     * - the server opens in the order: OUTPUT, INPUT
+     * <p>
+     * - the client opens in the order: INPUT, OUTPUT
+     */
+    private final SIDE side;
+
     protected Socket socket;
     protected ObjectInputStream inputStream;
     protected ObjectOutputStream outputStream;
@@ -24,11 +47,12 @@ public class Connection extends Thread {
         }
     }
 
-    public Connection(Socket socket, MessageHandler messageHandler) {
+    public Connection(Socket socket, MessageHandler messageHandler, Connection.SIDE side) {
         this.socket = socket;
         this.inputStream = null;
         this.outputStream = null;
         this.messageHandler = messageHandler;
+        this.side = side;
     }
 
     /**
@@ -45,8 +69,18 @@ public class Connection extends Thread {
             if (this.messageHandler == null) {
                 keepRunning = false;
             } else {
-                this.inputStream = new ObjectInputStream(this.socket.getInputStream());
-                this.outputStream = new ObjectOutputStream(this.socket.getOutputStream());
+                switch (this.side) {
+                    case CLIENT: {
+                        this.inputStream = new ObjectInputStream(this.socket.getInputStream());
+                        this.outputStream = new ObjectOutputStream(this.socket.getOutputStream());
+                    }
+                    break;
+                    case SERVER: {
+                        this.outputStream = new ObjectOutputStream(this.socket.getOutputStream());
+                        this.inputStream = new ObjectInputStream(this.socket.getInputStream());
+                    }
+                    break;
+                }
             }
             while (!(this.isInterrupted()) && keepRunning) {
                 try {
