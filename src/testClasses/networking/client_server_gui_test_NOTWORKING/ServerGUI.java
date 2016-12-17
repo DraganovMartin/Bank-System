@@ -1,4 +1,4 @@
-package networking.serverside;
+package testClasses.networking.client_server_gui_test_NOTWORKING;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import networking.MessageHandler;
 import networking.messages.Message;
+import networking.serverside.ServerThread;
 
 /**
  * The graphical user interface for a {@link ServerThread}. Synchronously
