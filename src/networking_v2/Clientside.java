@@ -94,7 +94,7 @@ public class Clientside extends Thread implements MessageHandler {
         this.canSend_synch_lock = false;
     }
 
-    private synchronized boolean canSend() {
+    public synchronized boolean canSend() {
         return this.canSend_synch_lock;
     }
 }
