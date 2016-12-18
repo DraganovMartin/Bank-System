@@ -1,4 +1,4 @@
-package networking_v2;
+package networking_v2.messages;
 
 import java.io.Serializable;
 
