@@ -3,6 +3,9 @@ package networking_v2;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
@@ -21,12 +24,14 @@ public class Server extends Thread implements MessageHandler {
     public int port;
     public ServerSocket serverSocket;
     public MessageHandler messageHandler;
+    public ExecutorService executor;
 
     public Server(ServerSocketFactory serverSocketFactory, int port, MessageHandler messageHandler) {
         this.serverSocketFactory = serverSocketFactory;
         this.port = port;
         this.serverSocket = null;
         this.messageHandler = messageHandler;
+        this.executor = Executors.newCachedThreadPool();
     }
 
     @Override
@@ -39,8 +44,7 @@ public class Server extends Thread implements MessageHandler {
                     // listen for a connection request:
                     Socket socket = this.serverSocket.accept();
                     // create and start a server-side connection:
-                    Serverside serverside = new Serverside(socket, this);
-                    serverside.start();
+                    this.executor.execute(new Serverside(socket, this));
                 } catch (IOException ex) {
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                     // exception thrown when accepting a connection request;
@@ -62,9 +66,20 @@ public class Server extends Thread implements MessageHandler {
         } finally {
             // close the server socket:
             if (this.serverSocket != null) {
+                while (!this.serverSocket.isClosed()) {
+                    try {
+                        this.serverSocket.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            // terminate all server-side connections to clients:
+            this.executor.shutdownNow();
+            while (!this.executor.isTerminated()) {
                 try {
-                    this.serverSocket.close();
-                } catch (IOException ex) {
+                    this.executor.awaitTermination(10, TimeUnit.SECONDS);
+                } catch (InterruptedException ex) {
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
