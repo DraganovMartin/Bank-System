@@ -9,11 +9,11 @@ import java.net.Socket;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class ConnectionServerside extends Thread {
+public class Serverside extends Thread {
 
     public Socket socket;
 
-    public ConnectionServerside(Socket socket) {
+    public Serverside(Socket socket) {
         this.socket = socket;
     }
 
