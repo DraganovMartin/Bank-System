@@ -13,13 +13,13 @@ public abstract class Message implements Serializable {
      * The type of the message. Used to recognize objects of different derived
      * classes when reading them from input streams as serialized objects.
      */
-    public final String type;
+    private final String type;
 
     /**
      * The username (that sent or requested the message) - within the system is
      * verified and controlled by the server!!!
      */
-    public String username;
+    private String username;
 
     /**
      * Returns the value of {@link #type}.
@@ -28,6 +28,15 @@ public abstract class Message implements Serializable {
      */
     public final String getType() {
         return this.type;
+    }
+
+    /**
+     * Sets the value for {@link #username}.
+     *
+     * @param username the value for {@link #username}.
+     */
+    public final void setUsername(String username) {
+        this.username = username;
     }
 
     /**

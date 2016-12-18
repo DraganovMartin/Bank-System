@@ -23,7 +23,7 @@ public class Clientside extends Thread implements MessageHandler {
     public static boolean DEBUG = true;
 
     public final Client client;
-    public final Socket socket;
+    public Socket socket;
     public ObjectInputStream istream;
     public ObjectOutputStream ostream;
     private boolean canSend_synch_lock;
@@ -127,10 +127,13 @@ public class Clientside extends Thread implements MessageHandler {
             this.interrupt();
         }
         if (this.socket != null) {
-            try {
-                this.socket.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Clientside.class.getName()).log(Level.SEVERE, null, ex);
+            while (!this.socket.isClosed()) {
+                try {
+                    this.socket.close();
+                    this.socket = null;
+                } catch (IOException ex) {
+                    Logger.getLogger(Clientside.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }

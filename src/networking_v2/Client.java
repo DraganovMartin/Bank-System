@@ -75,6 +75,7 @@ public class Client implements MessageHandler {
                     this.clientside.join();
                     this.clientside = null;
                 } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
                     Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

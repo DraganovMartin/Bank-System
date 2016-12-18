@@ -3,6 +3,7 @@ package networking_v2;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.math.BigInteger;
 import networking_v2.messages.Message;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -27,13 +28,17 @@ public class Serverside extends Thread implements MessageHandler {
     public ObjectInputStream istream;
     public ObjectOutputStream ostream;
     private boolean canSend_synch_lock;
+    private final BigInteger logNumber; // used by the server to identify connections
+    private String verifiedUsername;
 
-    public Serverside(Socket socket, Server server) {
+    public Serverside(Socket socket, Server server, BigInteger logNumber) {
         this.socket = socket;
         this.server = server;
         this.istream = null;
         this.ostream = null;
         this.canSend_synch_lock = false;
+        this.verifiedUsername = null;
+        this.logNumber = logNumber;
     }
 
     @Override
@@ -58,6 +63,12 @@ public class Serverside extends Thread implements MessageHandler {
                         }
                         Message response = this.handle(incoming);
                         if (response != null) {
+                            // initial verification;
+                            // either the connection is verified or not;
+                            // if not verified, it is closed by the server:
+                            {
+
+                            }
                             try {
                                 this.send(response);
                             } catch (IOException ex) {
@@ -126,12 +137,26 @@ public class Serverside extends Thread implements MessageHandler {
         if (this.isAlive() && !this.isInterrupted()) {
             this.interrupt();
         }
-        while (this.socket != null) {
-            try {
-                this.socket.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
+        if (this.socket != null) {
+            while (!this.socket.isClosed()) {
+                try {
+                    this.socket.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
+    }
+
+    public BigInteger getLogNumber() {
+        return this.logNumber;
+    }
+
+    public String getVerifiedUsername() {
+        return this.verifiedUsername;
+    }
+
+    public void setVerifiedUsername(String verifiedUsername) {
+        this.verifiedUsername = verifiedUsername;
     }
 }
