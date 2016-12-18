@@ -15,16 +15,18 @@ import javax.net.ServerSocketFactory;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class Server extends Thread {
+public class Server extends Thread implements MessageHandler {
 
     public ServerSocketFactory serverSocketFactory;
     public int port;
     public ServerSocket serverSocket;
+    public MessageHandler messageHandler;
 
-    public Server(ServerSocketFactory serverSocketFactory, int port) {
+    public Server(ServerSocketFactory serverSocketFactory, int port, MessageHandler messageHandler) {
         this.serverSocketFactory = serverSocketFactory;
         this.port = port;
         this.serverSocket = null;
+        this.messageHandler = messageHandler;
     }
 
     @Override
@@ -67,5 +69,10 @@ public class Server extends Thread {
                 }
             }
         }
+    }
+
+    @Override
+    public synchronized Message handle(Message message) {
+        return this.messageHandler.handle(message);
     }
 }
