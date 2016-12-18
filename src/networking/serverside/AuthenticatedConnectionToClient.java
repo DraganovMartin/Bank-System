@@ -12,7 +12,7 @@ import networking.MessageHandler;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class AuthenticatedClientConnection extends Connection {
+public class AuthenticatedConnectionToClient extends Connection {
 
     /**
      * The {@link ConnectionManager} that the server uses. The thread notifies
@@ -43,8 +43,8 @@ public class AuthenticatedClientConnection extends Connection {
      *
      * @see Connection
      */
-    public AuthenticatedClientConnection(Socket socket, String clientID, MessageHandler messageHandler, ConnectionManager connectionManager) {
-        super(socket, new MessageAuthenticator(clientID, messageHandler));
+    public AuthenticatedConnectionToClient(Socket socket, String clientID, MessageHandler messageHandler, ConnectionManager connectionManager) {
+        super(socket, new MessageAuthenticator(clientID, messageHandler), Connection.SIDE.SERVER);
         this.connectionManager = connectionManager;
         this.clientID = clientID;
     }

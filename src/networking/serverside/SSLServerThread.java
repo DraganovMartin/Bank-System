@@ -101,8 +101,8 @@ public class SSLServerThread extends Thread {
                         ObjectInputStream istream = null;
                         ObjectOutputStream ostream = null;
                         try {
-                            istream = new ObjectInputStream(incoming.getInputStream());
                             ostream = new ObjectOutputStream(incoming.getOutputStream());
+                            istream = new ObjectInputStream(incoming.getInputStream());
                         } catch (Exception ex) {
                             // terminate the connection if any exception is thrown:
                             try {
@@ -136,7 +136,7 @@ public class SSLServerThread extends Thread {
                         if (incoming != null && response != null && response.isSuccessful()) {
                             // create connection and add it to the connection manager:
                             String clientPrimaryKeyValue = response.getAuthenticatedClientID();
-                            Connection connection = new AuthenticatedClientConnection(incoming, clientPrimaryKeyValue, this.messageHandler, this.connectionManager);
+                            Connection connection = new AuthenticatedConnectionToClient(incoming, clientPrimaryKeyValue, this.messageHandler, this.connectionManager);
                             this.connectionManager.connect(clientPrimaryKeyValue, connection);
                             connection.start();
                         } else if (incoming != null) {

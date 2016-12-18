@@ -134,7 +134,7 @@ public class SSLClientThread extends Thread {
                         }
                     }
                     if (keepRunning && (response != null)) {
-                        this.connection = new Connection(socket, messageHandler);
+                        this.connection = new Connection(socket, messageHandler, Connection.SIDE.CLIENT);
                         this.connection.start();
                     }
                 }
