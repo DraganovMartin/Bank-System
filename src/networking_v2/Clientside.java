@@ -9,16 +9,23 @@ import java.net.Socket;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class Clientside extends Thread {
+public class Clientside extends Thread implements MessageHandler {
 
-    public Socket socket;
+    public final Client client;
+    public final Socket socket;
 
-    public Clientside(Socket socket) {
+    public Clientside(Client client, Socket socket) {
+        this.client = client;
         this.socket = socket;
     }
 
     @Override
     public void run() {
 
+    }
+
+    @Override
+    public Message handle(Message message) {
+        return this.client.handle(message);
     }
 }

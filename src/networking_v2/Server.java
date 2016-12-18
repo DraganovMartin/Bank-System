@@ -20,11 +20,11 @@ import javax.net.ServerSocketFactory;
  */
 public class Server extends Thread implements MessageHandler {
 
-    public ServerSocketFactory serverSocketFactory;
+    public final ServerSocketFactory serverSocketFactory;
     public int port;
     public ServerSocket serverSocket;
-    public MessageHandler messageHandler;
-    public ExecutorService executor;
+    public final MessageHandler messageHandler;
+    public final ExecutorService executor;
 
     public Server(ServerSocketFactory serverSocketFactory, int port, MessageHandler messageHandler) {
         this.serverSocketFactory = serverSocketFactory;

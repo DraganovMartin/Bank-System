@@ -2,6 +2,8 @@ package networking_v2;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.SocketFactory;
@@ -14,25 +16,35 @@ import javax.net.SocketFactory;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class Client {
+public class Client implements MessageHandler {
 
-    public SocketFactory socketFactory;
+    public final SocketFactory socketFactory;
     public String hostName;
     public int port;
+    public final MessageHandler messageHandler;
+    public final ExecutorService executor;
 
-    public Client(SocketFactory socketFactory, String hostName, int port) {
+    public Client(SocketFactory socketFactory, String hostName, int port, MessageHandler messageHandler) {
         this.socketFactory = socketFactory;
         this.hostName = hostName;
         this.port = port;
+        this.messageHandler = messageHandler;
+        this.executor = Executors.newCachedThreadPool();
     }
 
-    public Clientside connect() {
+    public boolean connect() {
         try {
             Socket socket = this.socketFactory.createSocket(this.hostName, this.port);
-            return new Clientside(socket);
+            this.executor.execute(new Clientside(this, socket));
+            return true;
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            return false;
         }
+    }
+
+    @Override
+    public synchronized Message handle(Message message) {
+        return this.messageHandler.handle(message);
     }
 }
