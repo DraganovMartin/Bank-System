@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
 import networking_v2.messages.LoginResponse;
+import networking_v2.messages.RegisterRequest;
+import networking_v2.messages.RegisterResponse;
 
 /**
  * Server class. Executed as a thread. Accepts incoming connection requests and
@@ -182,12 +184,43 @@ public class Server extends Thread implements MessageHandler {
         BigInteger logNumber = connection.getLogNumber();
         // if not already verified:
         if (connection.getVerifiedUsername() != null) {
-            // if a valid login respones object was provided:
             if (message.getType().compareTo(LoginResponse.TYPE) == 0) {
+                // if a valid login respones object was provided:
                 LoginResponse loginResponse = (LoginResponse) message;
                 String verifiedUsername = loginResponse.getVerifiedUsername();
                 // if login was successful:
                 if (loginResponse.isSuccessful && (verifiedUsername != null)) {
+                    // close already existing connection to the same verified username:
+                    Serverside alreadyExisting = this.verifiedConnections.get(verifiedUsername);
+                    if (alreadyExisting != null) {
+                        // terminate the existing connection:
+                        alreadyExisting.stopThread();
+                        while (alreadyExisting.isAlive()) {
+                            try {
+                                alreadyExisting.join();
+                            } catch (InterruptedException ex) {
+                                Thread.currentThread().interrupt();
+                                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                        // remove the existing connection from the list of verified connections:
+                        this.verifiedConnections.remove(verifiedUsername);
+                    }
+                    // verify the connection:
+                    connection.setVerifiedUsername(verifiedUsername);
+                    // add to the list of verified connections:
+                    this.verifiedConnections.put(verifiedUsername, connection);
+                    // remove from the list of unverified connections:
+                    this.unverifiedConnections.remove(logNumber);
+                } else {
+                    terminate = true;
+                }
+            } else if (message.getType().compareTo(RegisterResponse.TYPE) == 0) {
+                // if a valid login respones object was provided:
+                RegisterResponse registerResponse = (RegisterResponse) message;
+                String verifiedUsername = registerResponse.getLoginUsername();
+                // if login was successful:
+                if (registerResponse.isSuccessful && (verifiedUsername != null)) {
                     // close already existing connection to the same verified username:
                     Serverside alreadyExisting = this.verifiedConnections.get(verifiedUsername);
                     if (alreadyExisting != null) {
