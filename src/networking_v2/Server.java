@@ -233,6 +233,52 @@ public class Server extends Thread implements MessageHandler {
         }
     }
 
+    public synchronized void stopConnection(Serverside connection) {
+        if (connection.getVerifiedUsername() == null) {
+            // connection is unverified;
+            BigInteger logNumber = connection.getLogNumber();
+            if (Server.DEBUG) {
+                System.out.println("SERVER closing unverified connection: " + logNumber + "...");
+            }
+            while (connection.isAlive()) {
+                try {
+                    connection.join();
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            Serverside listed = this.unverifiedConnections.get(logNumber);
+            if (listed != null) {
+                this.unverifiedConnections.remove(logNumber);
+            }
+            if (Server.DEBUG) {
+                System.out.println("SERVER closed unverified connection: " + logNumber + " !");
+            }
+        } else {
+            // connection is verified;
+            String verifiedUsername = connection.getVerifiedUsername();
+            if (Server.DEBUG) {
+                System.out.println("SERVER closing verified connection: " + verifiedUsername + "...");
+            }
+            while (connection.isAlive()) {
+                try {
+                    connection.join();
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            Serverside listed = this.verifiedConnections.get(verifiedUsername);
+            if (listed != null) {
+                this.verifiedConnections.remove(verifiedUsername);
+            }
+            if (Server.DEBUG) {
+                System.out.println("SERVER closed verified connection: " + verifiedUsername + " !");
+            }
+        }
+    }
+
     private synchronized void stopAllConnections() {
         if (Server.DEBUG) {
             System.out.println("SERVER stopping all connections...");
