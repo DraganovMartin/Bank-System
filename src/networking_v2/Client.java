@@ -19,6 +19,11 @@ import javax.net.SocketFactory;
  */
 public class Client implements MessageHandler {
 
+    /**
+     * Debug mode.
+     */
+    public static boolean DEBUG = true;
+
     public final SocketFactory socketFactory;
     public String hostName;
     public int port;
@@ -46,6 +51,34 @@ public class Client implements MessageHandler {
                 Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
             }
+        } else if (this.clientside != null && !this.clientside.isAlive()) {
+            this.clientside.stopThread();
+            try {
+                Socket socket = this.socketFactory.createSocket(this.hostName, this.port);
+                this.clientside = new Clientside(this, socket);
+                this.clientside.start();
+                return true;
+            } catch (IOException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public synchronized boolean disconnect() {
+        if (this.clientside != null) {
+            this.clientside.stopThread();
+            while (this.clientside.isAlive()) {
+                try {
+                    this.clientside.join();
+                    this.clientside = null;
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            return true;
         } else {
             return false;
         }

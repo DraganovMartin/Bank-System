@@ -17,6 +17,11 @@ import java.util.logging.Logger;
  */
 public class Clientside extends Thread implements MessageHandler {
 
+    /**
+     * Debug mode.
+     */
+    public static boolean DEBUG = true;
+
     public final Client client;
     public final Socket socket;
     public ObjectInputStream istream;
@@ -33,15 +38,24 @@ public class Clientside extends Thread implements MessageHandler {
 
     @Override
     public void run() {
+        if (Clientside.DEBUG) {
+            System.out.println("CLIENTSIDE run() started!");
+        }
         boolean keepRunning = true;
         if (this.socket != null) {
             try {
                 this.istream = new ObjectInputStream(this.socket.getInputStream());
                 this.ostream = new ObjectOutputStream(this.socket.getOutputStream());
                 this.sendEnable();
+                if (Clientside.DEBUG) {
+                    System.out.println("CLIENTSIDE streams opened successfully!");
+                }
                 while (!this.isInterrupted() && keepRunning) {
                     try {
                         Message incoming = (Message) this.istream.readObject();
+                        if (Clientside.DEBUG) {
+                            System.out.println("CLIENTSIDE received a message!");
+                        }
                         Message response = this.handle(incoming);
                         if (response != null) {
                             try {
@@ -60,6 +74,9 @@ public class Clientside extends Thread implements MessageHandler {
                 Logger.getLogger(Clientside.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 this.sendDisable();
+                if (Clientside.DEBUG) {
+                    System.out.println("CLIENTSIDE closing socket and streams...");
+                }
                 while (!this.socket.isClosed()) {
                     try {
                         this.socket.close();
@@ -67,7 +84,13 @@ public class Clientside extends Thread implements MessageHandler {
                         Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+                if (Clientside.DEBUG) {
+                    System.out.println("CLIENTSIDE streams closed successfully!");
+                }
             }
+        }
+        if (Clientside.DEBUG) {
+            System.out.println("CLIENTSIDE run() finished!");
         }
     }
 
@@ -96,5 +119,19 @@ public class Clientside extends Thread implements MessageHandler {
 
     public synchronized boolean canSend() {
         return this.canSend_synch_lock;
+    }
+
+    public synchronized void stopThread() {
+        this.sendDisable();
+        if (this.isAlive() && !this.isInterrupted()) {
+            this.interrupt();
+        }
+        if (this.socket != null) {
+            try {
+                this.socket.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Clientside.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
