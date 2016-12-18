@@ -12,9 +12,11 @@ import java.net.Socket;
 public class Serverside extends Thread {
 
     public Socket socket;
+    public Server server;
 
-    public Serverside(Socket socket) {
+    public Serverside(Socket socket, Server server) {
         this.socket = socket;
+        this.server = server;
     }
 
     @Override

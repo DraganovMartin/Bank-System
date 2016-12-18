@@ -37,7 +37,7 @@ public class Server extends Thread {
                     // listen for a connection request:
                     Socket socket = this.serverSocket.accept();
                     // create and start a server-side connection:
-                    Serverside serverside = new Serverside(socket);
+                    Serverside serverside = new Serverside(socket, this);
                     serverside.start();
                 } catch (IOException ex) {
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
