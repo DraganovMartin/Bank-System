@@ -20,7 +20,7 @@ public class DatabaseController {
     public static final String DB_URL = "jdbc:mysql://db4free.net:3306/banksystem";
 
     public static final String user = "banksystem_root";
-    public static final String password = "banksystemroot";
+    public static final String password = "";
 
     private Connection connDatabase;
 
