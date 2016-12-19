@@ -66,8 +66,8 @@ public class Serverside extends Thread implements MessageHandler {
                             // initial verification;
                             // either the connection is verified or not;
                             // if not verified, it is closed by the server:
-                            {
-
+                            if (this.getVerifiedUsername() == null) {
+                                this.server.verifyConnection(this, response);
                             }
                             try {
                                 this.send(response);
@@ -98,6 +98,7 @@ public class Serverside extends Thread implements MessageHandler {
                 if (Serverside.DEBUG) {
                     System.out.println("SERVERSIDE streams closed successfully!");
                 }
+                this.server.stopConnection(this);
             }
         }
         if (Serverside.DEBUG) {

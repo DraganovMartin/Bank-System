@@ -61,12 +61,12 @@ public class Clientside extends Thread implements MessageHandler {
                             try {
                                 this.send(response);
                             } catch (IOException ex) {
-                                Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(Clientside.class.getName()).log(Level.SEVERE, null, ex);
                                 keepRunning = false;
                             }
                         }
                     } catch (IOException | ClassNotFoundException ex) {
-                        Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Clientside.class.getName()).log(Level.SEVERE, null, ex);
                         keepRunning = false;
                     }
                 }
@@ -81,7 +81,7 @@ public class Clientside extends Thread implements MessageHandler {
                     try {
                         this.socket.close();
                     } catch (IOException ex) {
-                        Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Clientside.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 if (Clientside.DEBUG) {
