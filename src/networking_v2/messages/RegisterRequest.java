@@ -10,10 +10,10 @@ public final class RegisterRequest extends Message implements Serializable {
 
     public static final String TYPE = "REGISTERREQUEST";
 
-    public final String loginUsername;
-    public final String loginPassword;
-    public final String firstName;
-    public final String lastName;
+    private final String loginUsername;
+    private final String loginPassword;
+    private final String firstName;
+    private final String lastName;
 
     public final String getLoginUsername() {
         return this.loginUsername;
