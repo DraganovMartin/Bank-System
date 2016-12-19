@@ -7,8 +7,9 @@ import java.io.Serializable;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class Client extends PrimaryKey implements Serializable {
+public class Client implements Serializable {
 
+    protected int id;
     /**
      * The client first name.
      */
@@ -22,14 +23,13 @@ public class Client extends PrimaryKey implements Serializable {
     /**
      * Constructor.
      *
-     * @param primaryKey the unique identifier value.
+     * @param id the unique identifier value.
      *
      * @param firstName the client first name.
      *
      * @param lastName the client last name.
      */
-    public Client(String primaryKey, String firstName, String lastName) {
-        super(primaryKey);
+    public Client(int id, String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
