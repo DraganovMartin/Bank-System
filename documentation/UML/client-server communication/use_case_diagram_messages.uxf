@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>20</zoom_level>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>0</x>
+      <y>980</y>
+      <w>120</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>User</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>240</x>
+      <y>540</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Login</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>240</x>
+      <y>340</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Register</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>660</x>
+      <y>700</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>CreateBankAccount</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>660</x>
+      <y>900</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Deposit</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>660</x>
+      <y>1100</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Withdraw</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>660</x>
+      <y>1300</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Transfer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>400</y>
+      <w>160</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;extend&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>240</x>
+      <y>1000</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Operate</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>720</y>
+      <w>300</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;extend&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;140.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>1060</y>
+      <w>300</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;extend&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>920</y>
+      <w>260</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;extend&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;50.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>1040</y>
+      <w>260</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;extend&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>600</y>
+      <w>180</w>
+      <h>440</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>1020</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>1080</x>
+      <y>1000</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Specify Money</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>880</x>
+      <y>720</y>
+      <w>280</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>120.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>880</x>
+      <y>920</y>
+      <w>240</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>100.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>880</x>
+      <y>1040</y>
+      <w>240</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>880</x>
+      <y>1060</y>
+      <w>280</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>1400</x>
+      <y>880</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Specify Currency</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>1400</x>
+      <y>1120</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Specify Amount</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1280</x>
+      <y>900</y>
+      <w>160</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1280</x>
+      <y>1040</y>
+      <w>220</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>60.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2420</x>
+      <y>0</y>
+      <w>440</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;abstract&gt;&gt;
+*Message*
+--
+-type: String
+-username: String
+--
++getType(): String
++getUsername(): String
++setUsername(String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2900</x>
+      <y>360</y>
+      <w>460</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*CreateBankAccountRequest*
+--
+_+TYPE: String &lt;&lt;static&gt;&gt;_
+-initialDeposit: Money
+--
++getInitialDeposit(): Money</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2900</x>
+      <y>600</y>
+      <w>460</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*DepositRequest*
+--
+_+TYPE: String &lt;&lt;static&gt;&gt;_
+-money: Money
+-toBankAccountID: String
+--
++getMoney(): Money
++getToBankAccountID(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2900</x>
+      <y>920</y>
+      <w>460</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*WithdrawRequest*
+--
+_+TYPE: String &lt;&lt;static&gt;&gt;_
+-money: Money
+-fromBankAccountID: String
+--
++getMoney(): Money
++getFromBankAccountID(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2900</x>
+      <y>1240</y>
+      <w>460</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*TransferRequest*
+--
+_+TYPE: String &lt;&lt;static&gt;&gt;_
+-money: Money
+-fromBankAccountID: String
+-toBankAccountID: String
+--
++getMoney(): Money
++getFromBankAccountID(): String
++getToBankAccountID(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1920</x>
+      <y>800</y>
+      <w>460</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*LoginRequest*
+--
+_+TYPE: String &lt;&lt;static&gt;&gt;_
+-loginUsername: String
+-loginPpassword: String
+--
++getLoginUsername(): String
++getLoginPassword(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1920</x>
+      <y>360</y>
+      <w>460</w>
+      <h>400</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*RegisterRequest*
+--
+_+TYPE: String &lt;&lt;static&gt;&gt;_
+-loginUsername: String
+-loginPpassword: String
+-firstName: String
+-lastName: String
+--
++getLoginUsername(): String
++getLoginPassword(): String
++getFirsName(): String
++getLastName(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2600</x>
+      <y>260</y>
+      <w>340</w>
+      <h>1100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m2=&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;520.0;150.0;520.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2640</x>
+      <y>260</y>
+      <w>300</w>
+      <h>740</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m2=&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;340.0;130.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2680</x>
+      <y>260</y>
+      <w>260</w>
+      <h>460</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m2=&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0;110.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2720</x>
+      <y>260</y>
+      <w>220</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m2=&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;90.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2360</x>
+      <y>260</y>
+      <w>260</w>
+      <h>660</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m2=&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>110.0;10.0;110.0;300.0;10.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2360</x>
+      <y>260</y>
+      <w>220</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m2=&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>90.0;10.0;90.0;80.0;10.0;80.0</additional_attributes>
+  </element>
+</diagram>
