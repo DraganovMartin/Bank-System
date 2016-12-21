@@ -1,6 +1,7 @@
 package networking_final.messages;
 
 import dataModel.Money;
+import java.io.Serializable;
 
 /**
  * A {@link Message} used by the client to request the transfer of a specified
@@ -21,7 +22,7 @@ import dataModel.Money;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public final class TransferRequest extends Message {
+public final class TransferRequest extends Message implements Serializable {
 
     /**
      * Reference to the value of {@link Message#type} used by this class.

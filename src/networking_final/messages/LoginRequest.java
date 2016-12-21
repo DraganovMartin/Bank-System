@@ -1,5 +1,7 @@
 package networking_final.messages;
 
+import java.io.Serializable;
+
 /**
  * A {@link Message} used by the client to request access to the system by using
  * an already registered system profile. The user provides the pair of username
@@ -7,7 +9,7 @@ package networking_final.messages;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public final class LoginRequest extends Message {
+public final class LoginRequest extends Message implements Serializable {
 
     /**
      * Reference to the value of {@link Message#type} used by this class.
