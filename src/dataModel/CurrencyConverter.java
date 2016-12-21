@@ -12,7 +12,7 @@ import java.util.TreeMap;
  * A class that supports currency conversion. A "currency value" is a relative
  * value of a currency. The exchange rate between a pair of currency types is
  * based on the relative value of each currency. The class uses a
- * {@link TreeMap< Currency , BigDecimal>} as internal representation. All class
+ * {@link TreeMap<Currency, BigDecimal>} as internal representation. All class
  * methods are synchronized (towards {@link CurrencyConverter#currencyValues} as
  * necessary to support concurrent calls. All {@link CurrencyConverter} objects:
  * <p>

@@ -10,11 +10,11 @@ public final class RegisterResponse extends Message implements Serializable {
 
     public static final String TYPE = "REGISTERRESPONSE";
 
-    public final String loginUsername;
-    public final String loginPassword;
-    public final String firstName;
-    public final String lastName;
-    public final boolean isSuccessful;
+    private final String loginUsername;
+    private final String loginPassword;
+    private final String firstName;
+    private final String lastName;
+    private final boolean isSuccessful;
 
     public final String getLoginUsername() {
         return this.loginUsername;
