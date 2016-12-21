@@ -209,7 +209,7 @@ group=6</panel_attributes>
   +getToRequest(): Request
   +isSuccessful(): boolean
   +getDescription(): String
-  +Response(String, Request, String): &lt;&lt;constructor&gt;&gt;</panel_attributes>
+  +Response(String, Request, boolean, String): &lt;&lt;constructor&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
