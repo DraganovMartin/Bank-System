@@ -20,12 +20,6 @@ public class ClientTest {
             System.out.println(client.getFirstName() + "     " + client.getLastName());
             client = dc.getClient(++index);
         }
-        index = 1;
-        SystemProfileType type = dc.getSystemProfileType(index);
-        while(type != null){
-            System.out.println(type.getName());
-            type = dc.getSystemProfileType(++index);
-        }
 
         dc.close();
     }

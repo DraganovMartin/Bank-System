@@ -31,7 +31,7 @@ public class DatabaseController {
      и това е
      */
 
-    private PreparedStatement registretion;
+    private PreparedStatement registration;
     private PreparedStatement login;
     private PreparedStatement getSystemProfileType;
     private PreparedStatement getClient;
@@ -51,7 +51,7 @@ public class DatabaseController {
     }
 
     private void initDatabase() throws SQLException {
-        this.registretion = connDatabase.
+        this.registration = connDatabase.
                 prepareStatement("INSERT INTO systemProfiles(userName,password,type_id,client_id) VALUES(?,?,?,?)");
         this.login = connDatabase.prepareStatement("SELECT * FROM systemProfiles WHERE userName = ?");
         this.getSystemProfileType = connDatabase.prepareStatement("SELECT * FROM systemProfileType WHERE id = ?");
@@ -115,8 +115,7 @@ public class DatabaseController {
         try {
             this.login.setString(1,userName);
             resultSet = this.login.executeQuery();
-            resultSet.first();
-            if(this.login.getResultSetConcurrency() == 1) {
+            if(resultSet.first()) {
                 if (PasswordConver.isEqualPasswords(resultSet.getBytes("password"), PasswordConver.convertPssword(password))) {
                     SystemProfileType type = this.getSystemProfileType(resultSet.getInt("type_id"));
                     Client client = this.getClient(resultSet.getInt("client_id"));
@@ -135,6 +134,21 @@ public class DatabaseController {
         return null;
     }
 
+    public boolean registrate(String userName,String password,int type_id, int client_id){
+        try{
+            this.registration.setString(1,userName);
+            this.registration.setBytes(2,PasswordConver.convertPssword(password));
+            this.registration.setInt(3,type_id);
+            this.registration.setInt(4,client_id);
+            this.registration.executeUpdate();
+            if(this.registration.getUpdateCount() == 1){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 
     public Transfer getTrnasfer(){
@@ -146,7 +160,7 @@ public class DatabaseController {
             this.connDatabase.close();
             this.getClient.close();
             this.login.close();
-            this.registretion.close();
+            this.registration.close();
             this.getSystemProfileType.close();
         } catch (SQLException e) {
             e.printStackTrace();
