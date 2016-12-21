@@ -1,5 +1,7 @@
 package dataModel;
 
+import dataModel.models.Currency;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
