@@ -15,19 +15,6 @@
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>260</y>
-      <w>480</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;abstract&gt;&gt;
-*Response*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>360</x>
@@ -53,7 +40,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>1380</y>
+      <y>1200</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -66,7 +53,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>1500</y>
+      <y>1320</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -79,8 +66,8 @@
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>1320</y>
-      <w>1200</w>
+      <y>1140</y>
+      <w>480</w>
       <h>420</h>
     </coordinates>
     <panel_attributes>lt=.
@@ -94,10 +81,10 @@ Use case: "Supervise"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>1120</h>
+      <h>940</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;540.0;80.0;540.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;450.0;80.0;450.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -105,29 +92,29 @@ Use case: "Supervise"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>1240</h>
+      <h>1060</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;600.0;80.0;600.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;510.0;80.0;510.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
+      <x>540</x>
       <y>260</y>
-      <w>340</w>
+      <w>360</w>
       <h>100</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[request]
 &lt;&lt;responds to&gt;&gt;
-m2=1</panel_attributes>
-    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+m2=   1</panel_attributes>
+    <additional_attributes>160.0;20.0;30.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>1880</y>
+      <y>1700</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -140,7 +127,7 @@ m2=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>2000</y>
+      <y>1820</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -153,7 +140,7 @@ m2=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>2120</y>
+      <y>1940</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -166,8 +153,8 @@ m2=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>1820</y>
-      <w>1200</w>
+      <y>1640</y>
+      <w>480</w>
       <h>540</h>
     </coordinates>
     <panel_attributes>lt=.
@@ -181,10 +168,10 @@ Use case: "Order Transactions"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>1620</h>
+      <h>1440</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;790.0;80.0;790.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;700.0;80.0;700.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -192,10 +179,10 @@ Use case: "Order Transactions"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>1740</h>
+      <h>1560</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;850.0;80.0;850.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;760.0;80.0;760.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -203,10 +190,10 @@ Use case: "Order Transactions"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>1860</h>
+      <h>1680</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;910.0;80.0;910.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;820.0;80.0;820.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -214,16 +201,16 @@ Use case: "Order Transactions"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>1980</h>
+      <h>1800</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;970.0;80.0;970.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;880.0;80.0;880.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>2240</y>
+      <y>2060</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -236,7 +223,7 @@ Use case: "Order Transactions"
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>880</y>
+      <y>700</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -249,7 +236,7 @@ Use case: "Order Transactions"
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>1000</y>
+      <y>820</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -262,7 +249,7 @@ Use case: "Order Transactions"
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>1120</y>
+      <y>940</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -277,10 +264,10 @@ Use case: "Order Transactions"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>500</h>
+      <h>320</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;230.0;80.0;230.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;140.0;80.0;140.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -288,10 +275,10 @@ Use case: "Order Transactions"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>760</h>
+      <h>580</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;360.0;80.0;360.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;270.0;80.0;270.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -299,10 +286,10 @@ Use case: "Order Transactions"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>860</h>
+      <h>680</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;410.0;80.0;410.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;320.0;80.0;320.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -310,17 +297,17 @@ Use case: "Order Transactions"
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>620</h>
+      <h>440</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;290.0;80.0;290.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;200.0;80.0;200.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>700</y>
-      <w>1200</w>
+      <y>520</y>
+      <w>480</w>
       <h>540</h>
     </coordinates>
     <panel_attributes>lt=.
@@ -332,7 +319,7 @@ Use case: "Authenticate"
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>760</y>
+      <y>580</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -357,346 +344,8 @@ Use case: "Authenticate"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>760</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*RegisterResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>880</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*LoginResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>1000</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*LogoutResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>1120</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*ChangePasswordResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>1380</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*BalanceResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>1500</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*TransactionHistoryResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>1880</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*CreateBankAccountResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>2000</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*DepositResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>2120</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*WithdrawResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>2240</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*TransferResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>420</w>
-      <h>500</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;190.0;140.0;190.0;230.0;120.0;230.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>420</w>
-      <h>620</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;190.0;140.0;190.0;290.0;120.0;290.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>420</w>
-      <h>1120</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;190.0;140.0;190.0;540.0;120.0;540.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>420</w>
-      <h>1860</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;190.0;140.0;190.0;910.0;120.0;910.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>420</w>
-      <h>1240</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;190.0;140.0;190.0;600.0;120.0;600.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>420</w>
-      <h>1620</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;190.0;140.0;190.0;790.0;120.0;790.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>420</w>
-      <h>1980</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;190.0;140.0;190.0;970.0;120.0;970.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>420</w>
-      <h>1740</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;190.0;140.0;190.0;850.0;120.0;850.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>760</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>880</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>1000</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>1120</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>1380</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>1500</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>1880</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>2000</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>2120</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>2240</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
       <x>160</x>
-      <y>1620</y>
+      <y>1440</y>
       <w>440</w>
       <h>100</h>
     </coordinates>
@@ -706,76 +355,79 @@ Use case: "Authenticate"
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>880</x>
-      <y>1620</y>
-      <w>440</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*CurrencyRatesResponse*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>580</x>
-      <y>1620</y>
-      <w>340</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-&lt;&lt;responds to&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>0</x>
       <y>340</y>
       <w>420</w>
-      <h>1360</h>
+      <h>1180</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;140.0;10.0;140.0;10.0;660.0;80.0;660.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;570.0;80.0;570.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>420</w>
-      <h>1360</h>
+      <x>1020</x>
+      <y>760</y>
+      <w>180</w>
+      <h>200</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;190.0;140.0;190.0;660.0;120.0;660.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[profileData]
+m2=1</panel_attributes>
+    <additional_attributes>40.0;10.0;40.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1140</x>
-      <y>460</y>
-      <w>220</w>
-      <h>120</h>
+      <x>860</x>
+      <y>260</y>
+      <w>480</w>
+      <h>520</h>
     </coordinates>
     <panel_attributes>style=wordwrap
-ProfileData
+&lt;&lt;abstract&gt;&gt;
+*Response*
+--
+  -request: Request
+  -isSuccessful: boolean
+  -profileData: ProflieData
+  -description: String
+--
+  +getRequest(): Request
+  +isSuccessful(): boolean
+  +getProfileData(): ProfileData
+  +getDescription(): String
+  +Response(String, Request, boolean, String): &lt;&lt;constructor&gt;&gt;
+
 -.
-NOTE: NULL if not successful</panel_attributes>
+NOTE: profileData = NULL if not successful</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLClass</id>
     <coordinates>
-      <x>1220</x>
-      <y>340</y>
-      <w>60</w>
-      <h>160</h>
+      <x>860</x>
+      <y>920</y>
+      <w>480</w>
+      <h>640</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
-m2=1</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <panel_attributes>style=wordwrap
+
+*ProfileData*
+--
+  -balance: Balance
+  -transferHistory: TransferHistory
+  -currencyConverter: CurrencyConverter
+--
+  +getBalance(): Balance
+  +getTransferHistory(): TransferHistory
+  +getCurrencyConverter(): CurrencyConverter
+  +ProfileData(Balance, TransferHistory, CurrencyConverter): &lt;&lt;constructor&gt;&gt;
+
+
+-.
+NOTE: profileData = NULL if not successful</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

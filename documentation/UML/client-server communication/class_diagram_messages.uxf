@@ -464,9 +464,9 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1360</x>
+      <x>1460</x>
       <y>480</y>
-      <w>600</w>
+      <w>520</w>
       <h>520</h>
     </coordinates>
     <panel_attributes>style=wordwrap
@@ -483,8 +483,6 @@ group=1
   +getCurrencyConverter(): CurrencyConverter
   +ProfileData(Balance, TransferHistory, CurrencyConverter): &lt;&lt;constructor&gt;&gt;
 
-
-  
 -.
 NOTE: profileData = NULL if not successful</panel_attributes>
     <additional_attributes/>
@@ -511,13 +509,13 @@ group=1
     <coordinates>
       <x>1240</x>
       <y>500</y>
-      <w>160</w>
+      <w>320</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[profileData]
 group=1
-m2=  1</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
