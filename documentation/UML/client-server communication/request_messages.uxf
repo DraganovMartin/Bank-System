@@ -385,22 +385,18 @@ group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>1340</y>
-      <w>460</w>
-      <h>220</h>
+      <x>1220</x>
+      <y>480</y>
+      <w>360</w>
+      <h>100</h>
     </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*TransactionHistoryRequest*
---
-_  +TYPE: String &lt;&lt;static&gt;&gt;_
---
-  +TransactionHistoryRequest(): &lt;&lt;constructor&gt;&gt;
-group=5</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[toRequest]
+responds to
+m1=1
+m2=     1</panel_attributes>
+    <additional_attributes>160.0;20.0;40.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -408,7 +404,7 @@ group=5</panel_attributes>
       <x>820</x>
       <y>960</y>
       <w>500</w>
-      <h>640</h>
+      <h>920</h>
     </coordinates>
     <panel_attributes>lt=.
 Use case: "Supervise"
@@ -459,17 +455,39 @@ group=5</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLClass</id>
     <coordinates>
-      <x>1220</x>
-      <y>480</y>
-      <w>360</w>
-      <h>100</h>
+      <x>840</x>
+      <y>1340</y>
+      <w>460</w>
+      <h>220</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[toRequest]
-responds to
-m1=1
-m2=     1</panel_attributes>
-    <additional_attributes>160.0;20.0;40.0;20.0</additional_attributes>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*TransactionHistoryRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+--
+  +TransactionHistoryRequest(): &lt;&lt;constructor&gt;&gt;
+group=5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>1620</y>
+      <w>460</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+group=5
+&lt;&lt;final&gt;&gt;
+*CurrencyRatesRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+--
+  +CurrencyRatesRequest(): &lt;&lt;constructor&gt;&gt;</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

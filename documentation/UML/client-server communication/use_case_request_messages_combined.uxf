@@ -156,7 +156,7 @@ Amount</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>740</x>
-      <y>1560</y>
+      <y>1480</y>
       <w>240</w>
       <h>120</h>
     </coordinates>
@@ -216,13 +216,13 @@ Profile</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>240</x>
-      <y>1080</y>
+      <y>920</y>
       <w>580</w>
-      <h>820</h>
+      <h>980</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;include&gt;&gt;</panel_attributes>
-    <additional_attributes>270.0;10.0;10.0;390.0</additional_attributes>
+    <additional_attributes>270.0;10.0;10.0;470.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -296,31 +296,31 @@ Profile</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>580</x>
-      <y>1660</y>
+      <y>1580</y>
       <w>260</w>
-      <h>360</h>
+      <h>440</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;extend&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;160.0;110.0;10.0</additional_attributes>
+    <additional_attributes>10.0;200.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>560</x>
-      <y>1660</y>
-      <w>240</w>
-      <h>180</h>
+      <y>1560</y>
+      <w>260</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;extend&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;70.0;100.0;10.0</additional_attributes>
+    <additional_attributes>10.0;120.0;100.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
       <x>1200</x>
-      <y>760</y>
+      <y>600</y>
       <w>240</w>
       <h>120</h>
     </coordinates>
@@ -331,7 +331,7 @@ Profile</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>1200</x>
-      <y>1240</y>
+      <y>1080</y>
       <w>240</w>
       <h>120</h>
     </coordinates>
@@ -343,7 +343,7 @@ PASSWORD</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>1200</x>
-      <y>920</y>
+      <y>760</y>
       <w>240</w>
       <h>120</h>
     </coordinates>
@@ -354,7 +354,7 @@ PASSWORD</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>1200</x>
-      <y>1080</y>
+      <y>920</y>
       <w>240</w>
       <h>120</h>
     </coordinates>
@@ -365,7 +365,7 @@ PASSWORD</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>740</x>
-      <y>1000</y>
+      <y>840</y>
       <w>240</w>
       <h>120</h>
     </coordinates>
@@ -376,7 +376,7 @@ PASSWORD</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1300</x>
-      <y>860</y>
+      <y>700</y>
       <w>60</w>
       <h>100</h>
     </coordinates>
@@ -387,7 +387,7 @@ PASSWORD</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>960</x>
-      <y>960</y>
+      <y>800</y>
       <w>280</w>
       <h>120</h>
     </coordinates>
@@ -399,7 +399,7 @@ PASSWORD</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>960</x>
-      <y>1040</y>
+      <y>880</y>
       <w>280</w>
       <h>140</h>
     </coordinates>
@@ -411,7 +411,7 @@ PASSWORD</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>960</x>
-      <y>1060</y>
+      <y>900</y>
       <w>280</w>
       <h>280</h>
     </coordinates>
@@ -423,25 +423,25 @@ PASSWORD</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>960</x>
-      <y>1520</y>
+      <y>1500</y>
       <w>280</w>
-      <h>120</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;extend&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;40.0;120.0;10.0</additional_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>960</x>
-      <y>1600</y>
-      <w>280</w>
-      <h>140</h>
+      <x>940</x>
+      <y>1540</y>
+      <w>300</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;extend&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;16.0;120.0;50.0</additional_attributes>
+    <additional_attributes>10.0;16.0;130.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLUseCase</id>
@@ -851,22 +851,42 @@ group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Relation</id>
     <coordinates>
-      <x>2480</x>
-      <y>1340</y>
-      <w>460</w>
-      <h>220</h>
+      <x>2860</x>
+      <y>480</y>
+      <w>360</w>
+      <h>100</h>
     </coordinates>
-    <panel_attributes>style=wordwrap
-&lt;&lt;final&gt;&gt;
-*TransactionHistoryRequest*
---
-_  +TYPE: String &lt;&lt;static&gt;&gt;_
---
-  +TransactionHistoryRequest(): &lt;&lt;constructor&gt;&gt;
-group=5</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[toRequest]
+responds to
+m1=1
+m2=     1</panel_attributes>
+    <additional_attributes>160.0;20.0;40.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>1200</x>
+      <y>1320</y>
+      <w>240</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>CURRENCY
+RATES</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>940</x>
+      <y>1360</y>
+      <w>300</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;extend&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;76.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -874,7 +894,7 @@ group=5</panel_attributes>
       <x>2460</x>
       <y>960</y>
       <w>500</w>
-      <h>640</h>
+      <h>920</h>
     </coordinates>
     <panel_attributes>lt=.
 Use case: "Supervise"
@@ -925,17 +945,39 @@ group=5</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLClass</id>
     <coordinates>
-      <x>2860</x>
-      <y>480</y>
-      <w>360</w>
-      <h>100</h>
+      <x>2480</x>
+      <y>1340</y>
+      <w>460</w>
+      <h>220</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[toRequest]
-responds to
-m1=1
-m2=     1</panel_attributes>
-    <additional_attributes>160.0;20.0;40.0;20.0</additional_attributes>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*TransactionHistoryRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+--
+  +TransactionHistoryRequest(): &lt;&lt;constructor&gt;&gt;
+group=5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2480</x>
+      <y>1620</y>
+      <w>460</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+group=5
+&lt;&lt;final&gt;&gt;
+*CurrencyRatesRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+--
+  +CurrencyRatesRequest(): &lt;&lt;constructor&gt;&gt;</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
