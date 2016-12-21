@@ -3,13 +3,13 @@ package networking_final.messages;
 import java.io.Serializable;
 
 /**
- * A {@link Message} used by the client to request a change of the password of
+ * A {@link Request} used by the client to request a change of the password of
  * the profile currently logged in the system. The user provides a pair of the
  * old and the newly requested password.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public final class ChangePasswordRequest extends Message implements Serializable {
+public final class ChangePasswordRequest extends Request implements Serializable {
 
     /**
      * Reference to the value of {@link Message#type} used by this class.

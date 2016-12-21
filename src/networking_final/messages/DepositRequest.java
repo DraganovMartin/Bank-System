@@ -4,7 +4,7 @@ import dataModel.Money;
 import java.io.Serializable;
 
 /**
- * A {@link Message} used by the client to request the deposit of a specified
+ * A {@link Request} used by the client to request the deposit of a specified
  * amount of money to a specified bank account. The user provides the ID of the
  * bank account and the {@link dataModel.Money} to deposit.
  * <p>
@@ -17,7 +17,7 @@ import java.io.Serializable;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public final class DepositRequest extends Message implements Serializable {
+public final class DepositRequest extends Request implements Serializable {
 
     /**
      * Reference to the value of {@link Message#type} used by this class.
