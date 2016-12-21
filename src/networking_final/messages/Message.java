@@ -11,10 +11,16 @@ import java.io.Serializable;
  * {@link Message#type} is implemented as {@link String} so that the class is
  * extensible and forward-compatible. It is expected that within the same system
  * all different derived classes use different values for the
- * {@link Message#type} field. The field {@link Message#username} can be used
- * for setting or accessing either the sender or the receiver for the message.
- * The {@link Message#username} for a specific {@link Message} is intended to be
- * set and controlled by the server through authentication procedures once the
+ * {@link Message#type} field.
+ * <p>
+ * Each derived final class may use a static public final String named "TYPE" to
+ * provide a reference to the specific value of {@link Message#type} used by
+ * that class.
+ * <p>
+ * The field {@link Message#username} can be used for setting or accessing
+ * either the sender or the receiver for the message. The
+ * {@link Message#username} for a specific {@link Message} is intended to be set
+ * and controlled by the server through authentication procedures once the
  * message enters the system's boundary. The value of the field corresponds to
  * the value of a specific record in the database (SystemProfiles.Username).
  *
