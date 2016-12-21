@@ -1,9 +1,10 @@
 package networking_final.messages;
 
 /**
- * A {@link Message} used by the client to request registering a profile in the
- * system. The user requests the creation of a specific pair of username and
- * password by providing first and last name.
+ * A {@link Message} used by the client to request access to the system by
+ * registering a new profile. The user requests the creation of a specific pair
+ * of username and password for the new profile by providing first and last
+ * name.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
@@ -37,13 +38,13 @@ public final class RegisterRequest extends Message {
     /**
      * Constructor.
      *
-     * @param registerUsername value for {@link #registerUsername}.
+     * @param registerUsername the value for {@link #registerUsername}.
      *
-     * @param registerPassword value for {@link #registerPassword}.
+     * @param registerPassword the value for {@link #registerPassword}.
      *
-     * @param firstName value for {@link #firstName}.
+     * @param firstName the value for {@link #firstName}.
      *
-     * @param lastName value for {@link #lastName}.
+     * @param lastName the value for {@link #lastName}.
      */
     public RegisterRequest(String registerUsername, String registerPassword, String firstName, String lastName) {
         super(RegisterRequest.TYPE);
