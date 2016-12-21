@@ -3,15 +3,16 @@ package networking_final.messages;
 import dataModel.Money;
 
 /**
- * A {@link Message} used by the client to request a deposit to a specific bank
- * account. The user provides the ID of the bank account and the
- * {@link dataModel.Money} to deposit.
+ * A {@link Message} used by the client to request the deposit of a specified
+ * amount of money to a specified bank account. The user provides the ID of the
+ * bank account and the {@link dataModel.Money} to deposit.
  * <p>
  * The provided {@link dataModel.Money} has to be converted to an equal amount
- * of {@link dataModel.Money} of currency matching the bank account currency
- * before being deposited!
+ * of {@link dataModel.Money} matching the currency of the source bank account
+ * before being withdrawn!
  *
  * @see dataModel.Money
+ * @see dataModel.CurrencyConverter
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */

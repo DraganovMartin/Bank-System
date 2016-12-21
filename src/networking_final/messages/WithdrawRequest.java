@@ -12,6 +12,7 @@ import dataModel.Money;
  * before being withdrawn!
  *
  * @see dataModel.Money
+ * @see dataModel.CurrencyConverter
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
