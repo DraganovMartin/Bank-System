@@ -1,5 +1,7 @@
 package testClasses.password_test;
 
+import database.PasswordConver;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -12,12 +14,15 @@ public class test1 {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update("12345".getBytes());
             byte byteData[] = md.digest();
-
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < byteData.length; i++)
-                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-
-            System.out.println("Digest(in hex format):: " + sb.toString());
+            md.update("1234533242342342344234234".getBytes());
+            byte[] byteData2 = md.digest();
+            for(int i = 0;i < byteData.length;i++){
+                System.out.print(byteData[i] + " ");
+            }
+            System.out.println(PasswordConver.isEqualPasswords(byteData,byteData2));
+            for(int i = 0;i < byteData2.length;i++){
+                System.out.print(byteData2[i] + " ");
+            }
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
