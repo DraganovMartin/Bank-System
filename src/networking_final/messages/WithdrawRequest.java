@@ -1,6 +1,7 @@
 package networking_final.messages;
 
 import dataModel.Money;
+import java.io.Serializable;
 
 /**
  * A {@link Message} used by the client to request the withdrawal of a specified
@@ -16,7 +17,7 @@ import dataModel.Money;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public final class WithdrawRequest extends Message {
+public final class WithdrawRequest extends Message implements Serializable {
 
     /**
      * Reference to the value of {@link Message#type} used by this class.
