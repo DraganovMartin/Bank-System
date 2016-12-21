@@ -4,9 +4,9 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
-      <y>480</y>
-      <w>440</w>
+      <x>840</x>
+      <y>660</y>
+      <w>460</w>
       <h>180</h>
     </coordinates>
     <panel_attributes>style=wordwrap
@@ -21,7 +21,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1540</x>
-      <y>1080</y>
+      <y>1260</y>
       <w>460</w>
       <h>360</h>
     </coordinates>
@@ -43,7 +43,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>UMLClass</id>
     <coordinates>
       <x>1540</x>
-      <y>1500</y>
+      <y>1680</y>
       <w>460</w>
       <h>360</h>
     </coordinates>
@@ -65,7 +65,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>UMLClass</id>
     <coordinates>
       <x>1540</x>
-      <y>1920</y>
+      <y>2100</y>
       <w>460</w>
       <h>360</h>
     </coordinates>
@@ -87,7 +87,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>UMLClass</id>
     <coordinates>
       <x>1540</x>
-      <y>2340</y>
+      <y>2520</y>
       <w>460</w>
       <h>420</h>
     </coordinates>
@@ -111,7 +111,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>UMLClass</id>
     <coordinates>
       <x>1520</x>
-      <y>960</y>
+      <y>1140</y>
       <w>500</w>
       <h>1840</h>
     </coordinates>
@@ -125,7 +125,7 @@ Use case: "Order Transactions"
     <id>Relation</id>
     <coordinates>
       <x>1140</x>
-      <y>640</y>
+      <y>820</y>
       <w>440</w>
       <h>520</h>
     </coordinates>
@@ -137,7 +137,7 @@ group=3</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1120</x>
-      <y>640</y>
+      <y>820</y>
       <w>460</w>
       <h>940</h>
     </coordinates>
@@ -149,7 +149,7 @@ group=3</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1100</x>
-      <y>640</y>
+      <y>820</y>
       <w>480</w>
       <h>1360</h>
     </coordinates>
@@ -161,7 +161,7 @@ group=3</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1080</x>
-      <y>640</y>
+      <y>820</y>
       <w>500</w>
       <h>1780</h>
     </coordinates>
@@ -172,9 +172,9 @@ group=3</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1220</x>
-      <y>0</y>
-      <w>440</w>
+      <x>1200</x>
+      <y>180</y>
+      <w>460</w>
       <h>320</h>
     </coordinates>
     <panel_attributes>style=wordwrap
@@ -193,9 +193,9 @@ group=3</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1580</x>
-      <y>480</y>
-      <w>440</w>
+      <x>1540</x>
+      <y>660</y>
+      <w>460</w>
       <h>300</h>
     </coordinates>
     <panel_attributes>style=wordwrap
@@ -214,29 +214,29 @@ group=3</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1060</x>
-      <y>300</y>
-      <w>380</w>
+      <y>480</y>
+      <w>360</w>
       <h>220</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>170.0;10.0;170.0;50.0;10.0;50.0;10.0;90.0</additional_attributes>
+    <additional_attributes>160.0;10.0;160.0;50.0;10.0;50.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1460</x>
-      <y>300</y>
-      <w>380</w>
+      <x>1440</x>
+      <y>480</y>
+      <w>360</w>
       <h>220</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0;170.0;50.0;170.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;160.0;50.0;160.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>1080</y>
+      <y>1260</y>
       <w>460</w>
       <h>480</h>
     </coordinates>
@@ -262,7 +262,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>1620</y>
+      <y>1800</y>
       <w>460</w>
       <h>360</h>
     </coordinates>
@@ -284,7 +284,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>2040</y>
+      <y>2220</y>
       <w>460</w>
       <h>200</h>
     </coordinates>
@@ -302,7 +302,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>2300</y>
+      <y>2480</y>
       <w>460</w>
       <h>360</h>
     </coordinates>
@@ -324,7 +324,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>Relation</id>
     <coordinates>
       <x>60</x>
-      <y>640</y>
+      <y>820</y>
       <w>1020</w>
       <h>520</h>
     </coordinates>
@@ -336,7 +336,7 @@ group=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>20</x>
-      <y>640</y>
+      <y>820</y>
       <w>1020</w>
       <h>1500</h>
     </coordinates>
@@ -348,7 +348,7 @@ group=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>0</x>
-      <y>640</y>
+      <y>820</y>
       <w>1020</w>
       <h>1740</h>
     </coordinates>
@@ -360,7 +360,7 @@ group=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>40</x>
-      <y>640</y>
+      <y>820</y>
       <w>1020</w>
       <h>1060</h>
     </coordinates>
@@ -372,7 +372,7 @@ group=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>120</x>
-      <y>960</y>
+      <y>1140</y>
       <w>500</w>
       <h>1740</h>
     </coordinates>
@@ -386,7 +386,7 @@ Use case: "Authenticate"
     <id>UMLClass</id>
     <coordinates>
       <x>840</x>
-      <y>1080</y>
+      <y>1260</y>
       <w>460</w>
       <h>200</h>
     </coordinates>
@@ -404,7 +404,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>UMLClass</id>
     <coordinates>
       <x>840</x>
-      <y>1340</y>
+      <y>1520</y>
       <w>460</w>
       <h>220</h>
     </coordinates>
@@ -422,7 +422,7 @@ _  +TYPE: String &lt;&lt;static&gt;&gt;_
     <id>UMLClass</id>
     <coordinates>
       <x>820</x>
-      <y>960</y>
+      <y>1140</y>
       <w>500</w>
       <h>640</h>
     </coordinates>
@@ -436,7 +436,7 @@ Use case: "Supervise"
     <id>Relation</id>
     <coordinates>
       <x>760</x>
-      <y>640</y>
+      <y>820</y>
       <w>360</w>
       <h>520</h>
     </coordinates>
@@ -448,7 +448,7 @@ group=2</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>740</x>
-      <y>640</y>
+      <y>820</y>
       <w>360</w>
       <h>780</h>
     </coordinates>
@@ -460,14 +460,14 @@ group=2</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1220</x>
-      <y>480</y>
-      <w>400</w>
+      <y>660</y>
+      <w>360</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[toRequest]
 responds to
 m1=1
 m2=     1</panel_attributes>
-    <additional_attributes>180.0;20.0;40.0;20.0</additional_attributes>
+    <additional_attributes>160.0;20.0;40.0;20.0</additional_attributes>
   </element>
 </diagram>
