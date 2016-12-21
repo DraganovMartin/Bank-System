@@ -6,6 +6,10 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by Nikolay on 12/21/2016.
  */
+
+/**
+ * PasswordConver use static functions for convert and compare passwords.
+ */
 public class PasswordConver {
 
     private static MessageDigest md;
@@ -22,6 +26,18 @@ public class PasswordConver {
         md.update("12345".getBytes());
         byte byteData[] = md.digest();
         return byteData;
+    }
+
+    public static boolean isEqualPasswords(byte[] pass1,byte[] pass2){
+        if(pass1.length == pass2.length){
+            for(int i = 0;i < pass1.length;i++){
+                if(pass1[i] != pass2[i]){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
 }
