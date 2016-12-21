@@ -4,7 +4,7 @@ import dataModel.Money;
 import java.io.Serializable;
 
 /**
- * A {@link Message} used by the client to request creating a new bank account
+ * A {@link Request} used by the client to request creating a new bank account
  * under the ownership of the profile currently logged in the system. The user
  * provides the requested type of bank account and the initial
  * {@link dataModel.Money} to deposit.
@@ -16,7 +16,7 @@ import java.io.Serializable;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public final class CreateBankAccountRequest extends Message implements Serializable {
+public final class CreateBankAccountRequest extends Request implements Serializable {
 
     /**
      * Reference to the value of {@link Message#type} used by this class.

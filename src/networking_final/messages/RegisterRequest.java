@@ -3,14 +3,14 @@ package networking_final.messages;
 import java.io.Serializable;
 
 /**
- * A {@link Message} used by the client to request access to the system by
+ * A {@link Request} used by the client to request access to the system by
  * registering a new profile. The user requests the creation of a specific pair
  * of username and password for the new profile by providing first and last
  * name.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public final class RegisterRequest extends Message implements Serializable {
+public final class RegisterRequest extends Request implements Serializable {
 
     /**
      * Reference to the value of {@link Message#type} used by this class.

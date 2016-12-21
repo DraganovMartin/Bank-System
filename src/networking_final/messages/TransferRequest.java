@@ -4,7 +4,7 @@ import dataModel.Money;
 import java.io.Serializable;
 
 /**
- * A {@link Message} used by the client to request the transfer of a specified
+ * A {@link Request} used by the client to request the transfer of a specified
  * amount of money from a specified bank account to a specified bank account.
  * The user provides the IDs of the bank accounts and the
  * {@link dataModel.Money} to withdraw. The operation consists of two steps:
@@ -22,7 +22,7 @@ import java.io.Serializable;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public final class TransferRequest extends Message implements Serializable {
+public final class TransferRequest extends Request implements Serializable {
 
     /**
      * Reference to the value of {@link Message#type} used by this class.

@@ -4,21 +4,21 @@ import java.io.Serializable;
 
 /**
  * A {@link Request} used by the client to request information about the
- * transaction history of the bank accounts owned by the user.
+ * up-to-date currency rates.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public final class TransactionHistoryRequest extends Request implements Serializable {
+public final class CurrencyRatesRequest extends Request implements Serializable {
 
     /**
      * Reference to the value of {@link Message#type} used by this class.
      */
-    public static final String TYPE = "TRANSACTIONHISTORYREQUEST";
+    public static final String TYPE = "CURRENCYRATESREQUEST";
 
     /**
      * Constructor.
      */
-    public TransactionHistoryRequest() {
-        super(TransactionHistoryRequest.TYPE);
+    public CurrencyRatesRequest() {
+        super(CurrencyRatesRequest.TYPE);
     }
 }
