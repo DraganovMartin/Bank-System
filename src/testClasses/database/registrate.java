@@ -8,6 +8,6 @@ import database.DatabaseController;
 public class registrate {
     public static void main(String[] args){
         DatabaseController db = new DatabaseController();
-         System.out.println(db.registrate("miksan","1234",1,1));
+         //System.out.println(db.registrate("miksan","1234",1,1));
     }
 }
