@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>20</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1480</x>
+      <y>1720</y>
+      <w>480</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*DepositRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+  -toBankAccount: String
+  -money: Money
+--
+  +getToBankAccount: String
+  +getMoney: Money
+  +DepositRequest(String, Money): &lt;&lt;constructor&gt;&gt;
+group=6</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1480</x>
+      <y>2140</y>
+      <w>480</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*WithdrawRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+  -fromBankAccount: String
+  -money: Money
+--
+  +getFromBankAccount: String
+  +getMoney: Money
+  +WithdrawRequest(String, Money): &lt;&lt;constructor&gt;&gt;
+group=6</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1480</x>
+      <y>2560</y>
+      <w>480</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*TransferRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+  -fromBankAccount: String
+  -toBankAccount: String
+  -money: Money
+--
+  +getFromBankAccount: String
+  +getToBankAccount: String
+  +getMoney: Money
+  +WithdrawRequest(String, String, Money): &lt;&lt;constructor&gt;&gt;
+group=6</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1460</x>
+      <y>1180</y>
+      <w>520</w>
+      <h>1840</h>
+    </coordinates>
+    <panel_attributes>lt=.
+Use case: "Order Transactions"
+-
+group=6</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>640</y>
+      <w>1220</w>
+      <h>740</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0;560.0;200.0;560.0;350.0;590.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>640</y>
+      <w>1220</w>
+      <h>1160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0;560.0;200.0;560.0;560.0;590.0;560.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>640</y>
+      <w>1220</w>
+      <h>1580</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0;560.0;200.0;560.0;770.0;590.0;770.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>640</y>
+      <w>1220</w>
+      <h>2000</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0;560.0;200.0;560.0;980.0;590.0;980.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1480</x>
+      <y>1300</y>
+      <w>480</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*CreateBankAccountRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+  -bankAccountType: String
+  -initialMoney: Money  
+--
+  +getBankAccountType: String
+  +getInitialMoney: Money
+  +CreateBankAccountRequest(String, Money): &lt;&lt;constructor&gt;&gt;
+group=6</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>480</y>
+      <w>480</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+group=1
+&lt;&lt;abstract&gt;&gt;
+*Response*
+--
+  -request: Request
+  -isSuccessful: boolean
+  -profileData: ProflieData
+  -description: String
+--
+  +getRequest(): Request
+  +isSuccessful(): boolean
+  +getProfileData(): ProfileData
+  +getDescription(): String
+  +Response(String, Request, boolean, String): &lt;&lt;constructor&gt;&gt;
+
+-.
+NOTE: profileData = NULL if not successful</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>300</y>
+      <w>360</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+group=1</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;50.0;10.0;50.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>300</y>
+      <w>380</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+group=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;170.0;50.0;170.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>1840</y>
+      <w>480</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*LoginRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+  -loginUsername: String
+  -loginPassword: String
+--
+  +getLoginUsername(): String
+  +getLoginPassword(): String
+  +LoginRequest(String, String): &lt;&lt;constructor&gt;&gt;
+group=4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>2260</y>
+      <w>480</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*LogoutRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+--
+  +LogoutRequest(): &lt;&lt;constructor&gt;&gt;
+group=4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>2520</y>
+      <w>480</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*ChangePasswordRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+  -oldPassword: String
+  -newPasword: String
+--
+  +getOldPassword(): String
+  +getNewPassword(): String
+  +ChangePasswordRequest(String, String): &lt;&lt;constructor&gt;&gt;
+group=4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>640</y>
+      <w>360</w>
+      <h>740</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;200.0;10.0;200.0;10.0;350.0;40.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>640</y>
+      <w>360</w>
+      <h>1720</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;200.0;10.0;200.0;10.0;840.0;40.0;840.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>640</y>
+      <w>360</w>
+      <h>1960</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;200.0;10.0;200.0;10.0;960.0;40.0;960.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>640</y>
+      <w>360</w>
+      <h>1280</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;200.0;10.0;200.0;10.0;620.0;40.0;620.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>60</x>
+      <y>1180</y>
+      <w>520</w>
+      <h>1740</h>
+    </coordinates>
+    <panel_attributes>lt=.
+Use case: "Authenticate"
+-
+group=4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>1300</y>
+      <w>480</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*RegisterRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+  -registerUsername: String
+  -registerPpassword: String
+  -firstName: String
+  -lastName: String
+--
+  +getRegisterUsername(): String
+  +getRegisterPassword(): String
+  +getFirsName(): String
+  +getLastName(): String
+  +RegisterRequest(String, String, String, String): &lt;&lt;constructor&gt;&gt;
+group=4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>500</y>
+      <w>320</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[request]
+group=1
+m2=   1</panel_attributes>
+    <additional_attributes>140.0;10.0;30.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>760</x>
+      <y>1180</y>
+      <w>520</w>
+      <h>920</h>
+    </coordinates>
+    <panel_attributes>lt=.
+Use case: "Supervise"
+-
+group=5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>640</y>
+      <w>520</w>
+      <h>740</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0;210.0;200.0;210.0;350.0;240.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>640</y>
+      <w>520</w>
+      <h>1000</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0;210.0;200.0;210.0;480.0;240.0;480.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>1300</y>
+      <w>480</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*BalanceRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+--
+  +BalanceRequest(): &lt;&lt;constructor&gt;&gt;
+group=5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>1560</y>
+      <w>480</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;final&gt;&gt;
+*TransactionHistoryRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+--
+  +TransactionHistoryRequest(): &lt;&lt;constructor&gt;&gt;
+group=5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>1840</y>
+      <w>480</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+group=5
+&lt;&lt;final&gt;&gt;
+*CurrencyRatesRequest*
+--
+_  +TYPE: String &lt;&lt;static&gt;&gt;_
+--
+  +CurrencyRatesRequest(): &lt;&lt;constructor&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>640</y>
+      <w>520</w>
+      <h>1280</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0;210.0;200.0;210.0;620.0;240.0;620.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1460</x>
+      <y>480</y>
+      <w>520</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+group=1
+
+*ProfileData*
+--
+  -balance: Balance
+  -transferHistory: TransferHistory
+  -currencyConverter: CurrencyConverter
+--
+  +getBalance(): Balance
+  +getTransferHistory(): TransferHistory
+  +getCurrencyConverter(): CurrencyConverter
+  +ProfileData(Balance, TransferHistory, CurrencyConverter): &lt;&lt;constructor&gt;&gt;
+
+-.
+NOTE: profileData = NULL if not successful</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>480</y>
+      <w>480</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+group=1
+&lt;&lt;abstract&gt;&gt;
+*Request*
+--
+--
+  +Request(String): &lt;&lt;constructor&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1240</x>
+      <y>500</y>
+      <w>320</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-[profileData]
+group=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>0</y>
+      <w>480</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+group=1
+&lt;&lt;abstract&gt;&gt; &lt;&lt;Serializable&gt;&gt;
+*Message*
+--
+  -type: String
+  -username: String
+--
+  +getType(): String
+  +getUsername(): String
+  +setUsername(String): void
+  +Message(String): &lt;&lt;constructor&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
