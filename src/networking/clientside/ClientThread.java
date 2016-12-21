@@ -61,7 +61,7 @@ public class ClientThread extends Thread {
     /**
      * Constructor.
      *
-     * @param socketFactry the {@link SocketFactory} used to create client
+     * @param socketFactory the {@link SocketFactory} used to create client
      * sockets.
      *
      * @param host the server host name to which to connect.
@@ -75,11 +75,11 @@ public class ClientThread extends Thread {
      *
      * @param password the password that the client provides to login.
      */
-    public ClientThread(SocketFactory socketFactry, String host, int port, MessageHandler messageHandler, String username, String password) {
+    public ClientThread(SocketFactory socketFactory, String host, int port, MessageHandler messageHandler, String username, String password) {
         this.host = host;
         this.port = port;
         this.messageHandler = messageHandler;
-        this.socketFactory = socketFactry;
+        this.socketFactory = socketFactory;
         this.socket = null;
         this.username = username;
         this.password = password;
@@ -126,7 +126,7 @@ public class ClientThread extends Thread {
                         }
                     }
                     if (keepRunning && (response != null)) {
-                        this.connection = new Connection(socket, messageHandler);
+                        this.connection = new Connection(socket, messageHandler, Connection.SIDE.CLIENT);
                         this.connection.start();
                     }
                 }
