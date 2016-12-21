@@ -2,6 +2,7 @@ package database;
 
 import dataModel.models.BankAccount;
 import dataModel.models.Client;
+import dataModel.models.SystemProfile;
 import dataModel.models.Transfer;
 
 import java.sql.*;
@@ -20,7 +21,7 @@ public class DatabaseController {
     public static final String DB_URL = "jdbc:mysql://db4free.net:3306/banksystem";
 
     public static final String user = "banksystem_root";
-    public static final String password = "";
+    public static final String password = "banksystemroot";
 
     private Connection connDatabase;
 
@@ -58,6 +59,61 @@ public class DatabaseController {
             
         }
         return new Client(id,firstName,lastName);
+    }
+
+    public SystemProfile logIn(String userName, String password) {
+        int clientId = -1;
+        int type = -1;
+        PreparedStatement stmt = null;
+        ResultSet set = null;
+        try{
+            System.out.println("Clreate statment for geting a system profile!");
+            String sql = "SELECT * FROM systemProfiles WHARE userName =?";
+            stmt = connDatabase.prepareStatement(sql);
+            stmt.setString(1,userName);
+            set = stmt.executeQuery();
+            set.first();
+            if(password.equals(set.getString("password"))){
+                return new SystemProfile(userName,null,null);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                set.close();
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public boolean registrate(String userName,String password,int clientId,int typeid){
+        PreparedStatement stmt = null;
+        try{
+            System.out.println("Clreate statment for geting a system profile!");
+            String sql = "INSERT INTO systemProfiles(userName,password,type_id,client_id) VALUES(?,?,?,?)";
+            stmt = connDatabase.prepareStatement(sql);
+            stmt.setString(1,userName);
+            stmt.setBytes(2,PasswordConver.convertPssword(password));
+            stmt.setInt(3,1);
+            stmt.setInt(4,2);
+            stmt.executeUpdate();
+            if(stmt.getUpdateCount() == 1){
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
     public Transfer getTrnasfer(){
