@@ -11,7 +11,7 @@ import dataModel.Money;
  * The currency of the initial money determines the currency of the bank
  * account!
  *
- * @see Money
+ * @see dataModel.Money
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
