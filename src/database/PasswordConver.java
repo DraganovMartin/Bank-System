@@ -29,15 +29,12 @@ public class PasswordConver {
     }
 
     public static boolean isEqualPasswords(byte[] pass1,byte[] pass2){
-        if(pass1.length == pass2.length){
-            for(int i = 0;i < pass1.length;i++){
-                if(pass1[i] != pass2[i]){
-                    return false;
-                }
+        for(int i = 0;i < pass1.length;i++){
+            if(pass1[i] != pass2[i]){
+                return false;
             }
-            return true;
         }
-        return false;
+        return true;
     }
 
 }
