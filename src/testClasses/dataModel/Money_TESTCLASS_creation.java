@@ -1,8 +1,7 @@
 package testClasses.dataModel;
 
-import dataModel.Currency;
+import dataModel.models.Currency;
 import dataModel.Money;
-import java.math.BigDecimal;
 
 /**
  *
