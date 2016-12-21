@@ -29,7 +29,7 @@ import java.io.Serializable;
 public abstract class Message implements Serializable {
 
     /**
-     * The username.
+     * The username. CONTROLLED BY THE SERVER.
      */
     private String username;
 
@@ -39,7 +39,8 @@ public abstract class Message implements Serializable {
     private final String type;
 
     /**
-     * Constructor. The value of {@link Message#username} is set to null.
+     * Constructor. The value of {@link Message#username} is set to null and is
+     * CONTROLLED BY THE SERVER.
      *
      * @param type the {@link Message} type.
      */
@@ -58,9 +59,9 @@ public abstract class Message implements Serializable {
     }
 
     /**
-     * Returns the username.
+     * Returns the username. CONTROLLED BY THE SERVER.
      *
-     * @return the username.
+     * @return the username. CONTROLLED BY THE SERVER.
      */
     public final String getUsername() {
         return this.username;
