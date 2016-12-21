@@ -8,8 +8,8 @@ import dataModel.Money;
  * bank account and the {@link dataModel.Money} to deposit.
  * <p>
  * The provided {@link dataModel.Money} has to be converted to an equal amount
- * of {@link dataModel.Money} matching the currency of the source bank account
- * before being withdrawn!
+ * of {@link dataModel.Money} matching the currency of the target bank account
+ * before being deposited!
  *
  * @see dataModel.Money
  * @see dataModel.CurrencyConverter

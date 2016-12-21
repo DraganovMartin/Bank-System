@@ -8,7 +8,7 @@ import dataModel.Money;
  * the bank account and the {@link dataModel.Money} to withdraw.
  * <p>
  * The provided {@link dataModel.Money} has to be converted to an equal amount
- * of {@link dataModel.Money} matching the currency of the target bank account
+ * of {@link dataModel.Money} matching the currency of the source bank account
  * before being withdrawn!
  *
  * @see dataModel.Money
