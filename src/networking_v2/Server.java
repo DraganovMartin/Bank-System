@@ -189,7 +189,7 @@ public class Server extends Thread implements MessageHandler {
                 LoginResponse loginResponse = (LoginResponse) message;
                 String verifiedUsername = loginResponse.getVerifiedUsername();
                 // if login was successful:
-                if (loginResponse.isSuccessful && (verifiedUsername != null)) {
+                if (loginResponse.isSuccessful() && (verifiedUsername != null)) {
                     // close already existing connection to the same verified username:
                     Serverside alreadyExisting = this.verifiedConnections.get(verifiedUsername);
                     if (alreadyExisting != null) {
@@ -220,7 +220,7 @@ public class Server extends Thread implements MessageHandler {
                 RegisterResponse registerResponse = (RegisterResponse) message;
                 String verifiedUsername = registerResponse.getLoginUsername();
                 // if login was successful:
-                if (registerResponse.isSuccessful && (verifiedUsername != null)) {
+                if (registerResponse.isSuccessful() && (verifiedUsername != null)) {
                     // close already existing connection to the same verified username:
                     Serverside alreadyExisting = this.verifiedConnections.get(verifiedUsername);
                     if (alreadyExisting != null) {
