@@ -1,6 +1,6 @@
 package testClasses.dataModel;
 
-import dataModel.Currency;
+import dataModel.models.Currency;
 import dataModel.CurrencyConverter;
 import dataModel.Money;
 import java.math.BigDecimal;

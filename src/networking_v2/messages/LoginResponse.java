@@ -10,8 +10,8 @@ public final class LoginResponse extends Message implements Serializable {
 
     public static final String TYPE = "LOGINRESPONSE";
 
-    public final boolean isSuccessful;
-    public final String verifiedUsername;
+    private final boolean isSuccessful;
+    private final String verifiedUsername;
 
     public final boolean isSuccessful() {
         return this.isSuccessful;
