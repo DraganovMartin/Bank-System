@@ -1,12 +1,15 @@
 package dataModel;
 
 import dataModel.models.Currency;
+import java.awt.GridLayout;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * A class that supports currency conversion. A "currency value" is a relative
@@ -245,5 +248,393 @@ public class CurrencyConverter implements Serializable {
             }
         }
         return result;
+    }
+
+    /**
+     * Returns a list of all supported currencies.
+     *
+     * @return a list of all supported currencies, NULL if no currency is
+     * supported.
+     */
+    public Currency[] getSupportedCurrencies() {
+        Currency[] result;
+        synchronized (this.currencyValues) {
+            int size = this.currencyValues.entrySet().size();
+            if (size > 0) {
+                result = new Currency[size];
+                int i = 0;
+                for (Map.Entry<Currency, BigDecimal> entry : this.currencyValues.entrySet()) {
+                    result[i] = entry.getKey();
+                    i++;
+                }
+            } else {
+                result = null;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns the exchange rates of all supported currencies towards the
+     * specified base currency in the format of a 2D array (as a table):
+     * <p>
+     * <table border=1>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>Currency1
+     * </td>
+     * <td>=
+     * </td>
+     * <td>Amount1
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>Currency2
+     * </td>
+     * <td>=
+     * </td>
+     * <td>Amount2
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>...
+     * </td>
+     * <td>...
+     * </td>
+     * <td>=
+     * </td>
+     * <td>...
+     * </td>
+     * <td>...
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>CurrencyN
+     * </td>
+     * <td>=
+     * </td>
+     * <td>AmountN
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * </table>
+     *
+     * <p>
+     * When necessary, multiplies the left side by a power of 10.
+     *
+     * @param currencyTo the currency to convert to.
+     *
+     * @param minResult the minimal result to accept for the right side and , if
+     * necessary, multiply both sides by a power of 10 (i.e. 10, 100, 1000 et.).
+     * Used to avoid results with zero value. If NULL is provided, returns any
+     * results greater that 0.00, otherwise multiplies them.
+     *
+     * @return a table with the exchange rates, NULL if no currency is
+     * supported.
+     */
+    public String[][] getSupportedExchangeRates(Currency currencyTo, BigDecimal minResult) {
+        BigDecimal min = minResult;
+        if (min == null) {
+            min = BigDecimal.ZERO;
+        } else if (min.compareTo(BigDecimal.ZERO) < 0) {
+            min = BigDecimal.ZERO;
+        }
+        synchronized (this.currencyValues) {
+            BigDecimal value = this.currencyValues.get(currencyTo);
+            if (value != null) {
+                int size = this.currencyValues.size();
+                String[][] result = new String[size][5];
+                int i = 0;
+                for (Map.Entry<Currency, BigDecimal> entry : this.currencyValues.entrySet()) {
+                    Currency currencyFrom = entry.getKey();
+                    BigDecimal amountFrom = BigDecimal.ONE;
+                    Money moneyFrom;
+                    Money moneyTo;
+                    do {
+                        moneyFrom = Money.createMoney(currencyFrom, amountFrom);
+                        moneyTo = this.convert(moneyFrom, currencyTo);
+                        amountFrom = amountFrom.multiply(BigDecimal.TEN);
+                    } while (moneyTo.getAmount().compareTo(min) < 0);
+                    result[i][0] = moneyFrom.getAmount().toPlainString();
+                    result[i][1] = moneyFrom.getCurrency().getSymbol();
+                    result[i][2] = "=";
+                    result[i][3] = moneyTo.getAmount().toPlainString();
+                    result[i][4] = moneyTo.getCurrency().getSymbol();
+                    i++;
+                }
+                return result;
+            } else {
+                return null;
+            }
+        }
+    }
+
+    /**
+     * Returns the exchange rates of all supported currencies towards the
+     * specified base currency in the format of a 2D array (as a table):
+     * <p>
+     * <table border=1>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>Currency1
+     * </td>
+     * <td>=
+     * </td>
+     * <td>Amount1
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>Currency2
+     * </td>
+     * <td>=
+     * </td>
+     * <td>Amount2
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>...
+     * </td>
+     * <td>...
+     * </td>
+     * <td>=
+     * </td>
+     * <td>...
+     * </td>
+     * <td>...
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>CurrencyN
+     * </td>
+     * <td>=
+     * </td>
+     * <td>AmountN
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * </table>
+     *
+     * <p>
+     * When necessary, multiplies the left side by a power of 10.
+     *
+     * @param currencyTo the currency to convert to.
+     *
+     * @param minResult the minimal result to accept for the right side and , if
+     * necessary, multiply both sides by a power of 10 (i.e. 10, 100, 1000 et.).
+     * Used to avoid results with zero value. If NULL is provided, returns any
+     * results greater that 0.00, otherwise multiplies them.
+     *
+     * @return a table with the exchange rates, NULL if no currency is
+     * supported.
+     */
+    public String[][] getSupportedExchangeRates(Currency currencyTo, String minResult) {
+        BigDecimal min;
+        try {
+            min = new BigDecimal(minResult);
+        } catch (Exception ex) {
+            min = null;
+        }
+        return this.getSupportedExchangeRates(currencyTo, min);
+    }
+
+    /**
+     * Returns the exchange rates of all supported currencies towards the
+     * specified base currency in the format of a JPanel formatted as a table:
+     * <p>
+     * <table border=1>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>Currency1
+     * </td>
+     * <td>=
+     * </td>
+     * <td>Amount1
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>Currency2
+     * </td>
+     * <td>=
+     * </td>
+     * <td>Amount2
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>...
+     * </td>
+     * <td>...
+     * </td>
+     * <td>=
+     * </td>
+     * <td>...
+     * </td>
+     * <td>...
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>CurrencyN
+     * </td>
+     * <td>=
+     * </td>
+     * <td>AmountN
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * </table>
+     *
+     * <p>
+     * When necessary, multiplies the left side by a power of 10.
+     *
+     * @param currencyTo the currency to convert to.
+     *
+     * @param minResult the minimal result to accept for the right side and , if
+     * necessary, multiply both sides by a power of 10 (i.e. 10, 100, 1000 et.).
+     * Used to avoid results with zero value. If NULL is provided, returns any
+     * results greater that 0.00, otherwise multiplies them.
+     *
+     * @return a JPanel formatted as a table with the exchange rates, NULL if no
+     * currency is supported.
+     */
+    public JPanel getSupportedExchangeRatesAsJPanel(Currency currencyTo, BigDecimal minResult) {
+        String[][] rates = this.getSupportedExchangeRates(currencyTo, minResult);
+        if (rates != null) {
+            JPanel result = new JPanel(new GridLayout(rates.length, rates[0].length));
+            for (int i = 0; i < rates.length; i++) {
+                for (int j = 0; j < rates[i].length; j++) {
+                    result.add(new JLabel(rates[i][j]));
+                }
+            }
+            return result;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Returns the exchange rates of all supported currencies towards the
+     * specified base currency in the format of a JPanel formatted as a table:
+     * <p>
+     * <table border=1>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>Currency1
+     * </td>
+     * <td>=
+     * </td>
+     * <td>Amount1
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>Currency2
+     * </td>
+     * <td>=
+     * </td>
+     * <td>Amount2
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>...
+     * </td>
+     * <td>...
+     * </td>
+     * <td>=
+     * </td>
+     * <td>...
+     * </td>
+     * <td>...
+     * </td>
+     * </tr>
+     *
+     * <tr>
+     * <td>1
+     * </td>
+     * <td>CurrencyN
+     * </td>
+     * <td>=
+     * </td>
+     * <td>AmountN
+     * </td>
+     * <td>BaseCurrency
+     * </td>
+     * </tr>
+     *
+     * </table>
+     *
+     * <p>
+     * When necessary, multiplies the left side by a power of 10.
+     *
+     * @param currencyTo the currency to convert to.
+     *
+     * @param minResult the minimal result to accept for the right side and , if
+     * necessary, multiply both sides by a power of 10 (i.e. 10, 100, 1000 et.).
+     * Used to avoid results with zero value. If NULL is provided, returns any
+     * results greater that 0.00, otherwise multiplies them.
+     *
+     * @return a JPanel formatted as a table with the exchange rates, NULL if no
+     * currency is supported.
+     */
+    public JPanel getSupportedExchangeRatesAsJPanel(Currency currencyTo, String minResult) {
+        BigDecimal min;
+        try {
+            min = new BigDecimal(minResult);
+        } catch (Exception ex) {
+            min = null;
+        }
+        return this.getSupportedExchangeRatesAsJPanel(currencyTo, min);
     }
 }
