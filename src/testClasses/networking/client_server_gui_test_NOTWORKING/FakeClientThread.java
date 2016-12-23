@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import networking.MessageHandler;
-import networking.clientside.ClientThread;
+import networking_DEPRECATED.MessageHandler;
+import networking_DEPRECATED.clientside.ClientThread;
 
 /**
  *
