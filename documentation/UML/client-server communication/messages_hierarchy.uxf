@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>520</x>
+      <x>620</x>
       <y>0</y>
       <w>440</w>
       <h>100</h>
@@ -17,7 +17,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
+      <x>460</x>
       <y>80</y>
       <w>380</w>
       <h>220</h>
@@ -28,7 +28,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
+      <x>860</x>
       <y>80</y>
       <w>380</w>
       <h>220</h>
@@ -39,7 +39,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>1200</y>
       <w>440</w>
       <h>100</h>
@@ -52,7 +52,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>1320</y>
       <w>440</w>
       <h>100</h>
@@ -65,7 +65,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
+      <x>240</x>
       <y>1140</y>
       <w>480</w>
       <h>420</h>
@@ -78,7 +78,7 @@ Use case: "Supervise"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>940</h>
@@ -89,7 +89,7 @@ Use case: "Supervise"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>1060</h>
@@ -100,7 +100,7 @@ Use case: "Supervise"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
+      <x>640</x>
       <y>260</y>
       <w>360</w>
       <h>100</h>
@@ -113,7 +113,7 @@ m2=   1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>1700</y>
       <w>440</w>
       <h>100</h>
@@ -126,7 +126,7 @@ m2=   1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>1820</y>
       <w>440</w>
       <h>100</h>
@@ -139,7 +139,7 @@ m2=   1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>1940</y>
       <w>440</w>
       <h>100</h>
@@ -152,7 +152,7 @@ m2=   1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
+      <x>240</x>
       <y>1640</y>
       <w>480</w>
       <h>540</h>
@@ -165,7 +165,7 @@ Use case: "Order Transactions"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>1440</h>
@@ -176,7 +176,7 @@ Use case: "Order Transactions"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>1560</h>
@@ -187,7 +187,7 @@ Use case: "Order Transactions"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>1680</h>
@@ -198,7 +198,7 @@ Use case: "Order Transactions"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>1800</h>
@@ -209,7 +209,7 @@ Use case: "Order Transactions"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>2060</y>
       <w>440</w>
       <h>100</h>
@@ -222,7 +222,7 @@ Use case: "Order Transactions"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>700</y>
       <w>440</w>
       <h>100</h>
@@ -235,7 +235,7 @@ Use case: "Order Transactions"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>820</y>
       <w>440</w>
       <h>100</h>
@@ -248,7 +248,7 @@ Use case: "Order Transactions"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>940</y>
       <w>440</w>
       <h>100</h>
@@ -261,7 +261,7 @@ Use case: "Order Transactions"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>320</h>
@@ -272,7 +272,7 @@ Use case: "Order Transactions"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>580</h>
@@ -283,7 +283,7 @@ Use case: "Order Transactions"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>680</h>
@@ -294,7 +294,7 @@ Use case: "Order Transactions"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>440</h>
@@ -305,7 +305,7 @@ Use case: "Order Transactions"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
+      <x>240</x>
       <y>520</y>
       <w>480</w>
       <h>540</h>
@@ -318,7 +318,7 @@ Use case: "Authenticate"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>580</y>
       <w>440</w>
       <h>100</h>
@@ -331,7 +331,7 @@ Use case: "Authenticate"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
+      <x>220</x>
       <y>260</y>
       <w>480</w>
       <h>100</h>
@@ -344,7 +344,7 @@ Use case: "Authenticate"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
+      <x>260</x>
       <y>1440</y>
       <w>440</w>
       <h>100</h>
@@ -357,7 +357,7 @@ Use case: "Authenticate"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
+      <x>100</x>
       <y>340</y>
       <w>420</w>
       <h>1180</h>
@@ -368,7 +368,7 @@ Use case: "Authenticate"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1020</x>
+      <x>1120</x>
       <y>760</y>
       <w>180</w>
       <h>200</h>
@@ -380,7 +380,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
+      <x>960</x>
       <y>260</y>
       <w>480</w>
       <h>520</h>
@@ -407,7 +407,7 @@ NOTE: profileData = NULL if not successful</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
+      <x>960</x>
       <y>920</y>
       <w>480</w>
       <h>640</h>
