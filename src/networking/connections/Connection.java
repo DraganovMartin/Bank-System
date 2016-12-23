@@ -1,26 +1,43 @@
 package networking.connections;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import networking.messages.Message;
+import networking.MessageHandler;
 
 /**
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public abstract class Connection extends Thread {
+abstract class Connection extends Thread {
 
-    protected Socket socket;
+    final Socket socket;
+    final MessageHandler messageHandler;
     protected ObjectInputStream istream;
     protected ObjectOutputStream ostream;
 
-    public Connection(Socket socket) {
+    Connection(Socket socket, MessageHandler messageHandler) {
         this.socket = socket;
+        this.messageHandler = messageHandler;
+        this.istream = null;
+        this.ostream = null;
     }
 
-    public synchronized void send(Message message) {
+    final synchronized void send(Message message) throws IOException {
+        if (message != null) {
+            this.ostream.writeObject(message);
+            this.ostream.flush();
+        }
+    }
 
+    final synchronized void closeSocket() throws IOException {
+        if (this.socket != null) {
+            while (!this.socket.isClosed()) {
+                this.socket.close();
+            }
+        }
     }
 
     @Override
