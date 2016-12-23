@@ -5,10 +5,10 @@
  */
 package testClasses.networking.client_server_gui_test_NOTWORKING;
 
-import networking.MessageHandler;
-import networking.messages.ClientAuthenticationRequest;
-import networking.messages.ClientAuthenticationResponse;
-import networking.messages.Message;
+import networking_DEPRECATED.MessageHandler;
+import networking_DEPRECATED.messages.ClientAuthenticationRequest;
+import networking_DEPRECATED.messages.ClientAuthenticationResponse;
+import networking_DEPRECATED.messages.Message;
 
 /**
  *
