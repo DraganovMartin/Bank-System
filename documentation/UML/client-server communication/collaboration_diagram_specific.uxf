@@ -599,11 +599,11 @@ handle(Message)</panel_attributes>
     <coordinates>
       <x>885</x>
       <y>780</y>
-      <w>135</w>
+      <w>90</w>
       <h>165</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-connect()</panel_attributes>
+run()</panel_attributes>
     <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
