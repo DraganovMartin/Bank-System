@@ -343,7 +343,7 @@ Serverside
     <coordinates>
       <x>135</x>
       <y>990</y>
-      <w>150</w>
+      <w>165</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -690,7 +690,7 @@ Server</panel_attributes>
     <coordinates>
       <x>135</x>
       <y>780</y>
-      <w>180</w>
+      <w>195</w>
       <h>165</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -702,11 +702,11 @@ send(Message)</panel_attributes>
     <coordinates>
       <x>360</x>
       <y>780</y>
-      <w>90</w>
+      <w>195</w>
       <h>165</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-return</panel_attributes>
+send(Message)</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
