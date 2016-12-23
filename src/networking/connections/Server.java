@@ -39,7 +39,7 @@ class Server {
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            this.connectionManager = null;
         }
-        this.connectionManager = null;
     }
 }
