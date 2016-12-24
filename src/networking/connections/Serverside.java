@@ -68,10 +68,9 @@ class Serverside extends Connection {
                         // determine if additional processing is required for any authentication-related request:
                         switch (requestType) {
                             case LogoutRequest.TYPE: {
-                                if (response.isSuccessful()) {
-                                    // terminate on receiving a successful logout response;
-                                    keepRunning = false;
-                                }
+                                response = new Response((Request) request, true, null, null);
+                                // terminate on receiving a logout request;
+                                keepRunning = false;
                             }
                             break;
                             case LoginRequest.TYPE: {
