@@ -159,7 +159,7 @@ group=6</panel_attributes>
     </coordinates>
     <panel_attributes>style=wordwrap
 group=1
-&lt;&lt;abstract&gt;&gt;
+
 *Response*
 --
   -request: Request
@@ -171,7 +171,7 @@ group=1
   +isSuccessful(): boolean
   +getProfileData(): ProfileData
   +getDescription(): String
-  +Response(String, Request, boolean, String): &lt;&lt;constructor&gt;&gt;
+  +Response(Request, boolean, String): &lt;&lt;constructor&gt;&gt;
 
 -.
 NOTE: profileData = NULL if not successful</panel_attributes>

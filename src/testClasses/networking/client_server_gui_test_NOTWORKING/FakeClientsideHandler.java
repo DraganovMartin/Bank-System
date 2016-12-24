@@ -1,8 +1,8 @@
 package testClasses.networking.client_server_gui_test_NOTWORKING;
 
 import javax.swing.JOptionPane;
-import networking.MessageHandler;
-import networking.messages.Message;
+import networking_DEPRECATED.MessageHandler;
+import networking_DEPRECATED.messages.Message;
 
 /**
  *

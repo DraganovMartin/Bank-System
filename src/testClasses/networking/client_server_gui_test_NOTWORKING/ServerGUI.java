@@ -14,9 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import networking.MessageHandler;
-import networking.messages.Message;
-import networking.serverside.ServerThread;
+import networking_DEPRECATED.MessageHandler;
+import networking_DEPRECATED.messages.Message;
+import networking_DEPRECATED.serverside.ServerThread;
 
 /**
  * The graphical user interface for a {@link ServerThread}. Synchronously

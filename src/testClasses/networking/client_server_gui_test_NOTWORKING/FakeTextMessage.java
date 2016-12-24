@@ -1,6 +1,6 @@
 package testClasses.networking.client_server_gui_test_NOTWORKING;
 
-import networking.messages.Message;
+import networking_DEPRECATED.messages.Message;
 
 /**
  *

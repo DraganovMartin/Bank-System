@@ -386,7 +386,7 @@ m2=1</panel_attributes>
       <h>520</h>
     </coordinates>
     <panel_attributes>style=wordwrap
-&lt;&lt;abstract&gt;&gt;
+
 *Response*
 --
   -request: Request
@@ -398,7 +398,7 @@ m2=1</panel_attributes>
   +isSuccessful(): boolean
   +getProfileData(): ProfileData
   +getDescription(): String
-  +Response(String, Request, boolean, String): &lt;&lt;constructor&gt;&gt;
+  +Response(Request, boolean, String): &lt;&lt;constructor&gt;&gt;
 
 -.
 NOTE: profileData = NULL if not successful</panel_attributes>
