@@ -37,13 +37,13 @@
 &lt;&lt;abstract&gt;&gt;
 *Message*
 --
-   -type :String
-   -clientID :String
+   -type: String
+   -username: String
 --
-   +getType() :String
-   +getClientID :String
-   +setClientID(String) :void
-   +Message(String) :&lt;&lt;constructor&gt;&gt;</panel_attributes>
+   +getType(): String
+   +getUsername: String
+   +setUsername(String): void
+   +Message(String): &lt;&lt;constructor&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -102,7 +102,7 @@
 *MessageHandler*
 --
 --
-   +handle(Message) :Message</panel_attributes>
+   +handle(Message): Message</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -129,11 +129,11 @@ handle()</panel_attributes>
 
 *MappedMessageHandler*
 --
-   -handlerMap :TreeMap&lt;String, MessageHandler&gt;
+   -handlerMap: TreeMap&lt;String, MessageHandler&gt;
 --
-   +MappedMessageHandler() :&lt;&lt;constructor&gt;&gt;
-   +set(String, MessageHandler) :void
-   #get(String) :MessageHandler</panel_attributes>
+   +MappedMessageHandler(): &lt;&lt;constructor&gt;&gt;
+   +set(String, MessageHandler): void
+   #get(String): MessageHandler</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -161,8 +161,8 @@ handle()</panel_attributes>
 *java.util.TreeMap&lt;String, MessageHandler&gt;*
 --
 --
-   +get(String) :MessageHandler
-   +put(String, MessageHandler) :MessageHandler</panel_attributes>
+   +get(String): MessageHandler
+   +put(String, MessageHandler): MessageHandler</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -224,7 +224,7 @@ handle()</panel_attributes>
     <panel_attributes>style=wordwrap
 
 &lt;&lt;instance&gt;&gt;
-_key :String_</panel_attributes>
+_key: String_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -252,7 +252,7 @@ m2=0..*</panel_attributes>
     <panel_attributes>style=wordwrap
 
 &lt;&lt;instance&gt;&gt;
-_value :MessageHandler_</panel_attributes>
+_value: MessageHandler_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -272,15 +272,15 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>490</x>
       <y>760</y>
-      <w>330</w>
+      <w>310</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>lt=[clientID]-&gt;[connection]
+    <panel_attributes>lt=[type]-&gt;[handler]
 points to
 m1=1..*
 m2=0..1</panel_attributes>
-    <additional_attributes>30.0;10.0;30.0;60.0;280.0;60.0;280.0;10.0</additional_attributes>
+    <additional_attributes>20.0;10.0;20.0;60.0;270.0;60.0;270.0;10.0</additional_attributes>
   </element>
 </diagram>
