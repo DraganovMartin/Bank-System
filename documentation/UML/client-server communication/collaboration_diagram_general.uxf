@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>20</zoom_level>
+  <zoom_level>11</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>1000</x>
-      <y>2060</y>
-      <w>120</w>
-      <h>240</h>
+      <x>660</x>
+      <y>1133</y>
+      <w>66</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>клиент
 (client)</panel_attributes>
@@ -16,10 +16,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>1980</y>
-      <w>640</w>
-      <h>760</h>
+      <x>517</x>
+      <y>1089</y>
+      <w>352</w>
+      <h>418</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -30,10 +30,10 @@ Three-Tiered Architecture</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>760</x>
-      <y>2340</y>
-      <w>600</w>
-      <h>80</h>
+      <x>528</x>
+      <y>1287</y>
+      <w>330</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -44,10 +44,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>760</x>
-      <y>2480</y>
-      <w>600</w>
-      <h>80</h>
+      <x>528</x>
+      <y>1364</y>
+      <w>330</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -58,10 +58,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>760</x>
-      <y>2620</y>
-      <w>600</w>
-      <h>80</h>
+      <x>528</x>
+      <y>1441</y>
+      <w>330</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -72,10 +72,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>2400</y>
-      <w>60</w>
-      <h>120</h>
+      <x>605</x>
+      <y>1320</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -83,10 +83,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>2540</y>
-      <w>60</w>
-      <h>120</h>
+      <x>605</x>
+      <y>1397</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -94,10 +94,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
-      <y>2540</y>
-      <w>60</w>
-      <h>120</h>
+      <x>759</x>
+      <y>1397</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
@@ -105,10 +105,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
-      <y>2400</y>
-      <w>60</w>
-      <h>120</h>
+      <x>759</x>
+      <y>1320</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
@@ -116,10 +116,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1040</x>
-      <y>2260</y>
-      <w>60</w>
-      <h>120</h>
+      <x>682</x>
+      <y>1243</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -127,10 +127,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>300</y>
-      <w>1200</w>
-      <h>120</h>
+      <x>154</x>
+      <y>165</y>
+      <w>660</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -140,10 +140,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>760</y>
-      <w>240</w>
-      <h>80</h>
+      <x>154</x>
+      <y>418</y>
+      <w>132</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -153,10 +153,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>640</y>
-      <w>180</w>
-      <h>160</h>
+      <x>209</x>
+      <y>352</y>
+      <w>99</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 генерира</panel_attributes>
@@ -165,10 +165,10 @@ halign=center
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>280</x>
+      <x>264</x>
       <y>0</y>
-      <w>120</w>
-      <h>220</h>
+      <w>66</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>клиент</panel_attributes>
     <additional_attributes/>
@@ -176,10 +176,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>940</y>
-      <w>1200</w>
-      <h>120</h>
+      <x>154</x>
+      <y>517</y>
+      <w>660</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -189,10 +189,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>820</y>
-      <w>240</w>
-      <h>160</h>
+      <x>209</x>
+      <y>451</y>
+      <w>132</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 се предава на</panel_attributes>
@@ -201,10 +201,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>760</y>
-      <w>240</w>
-      <h>80</h>
+      <x>308</x>
+      <y>418</y>
+      <w>154</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -214,10 +214,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>640</y>
-      <w>240</w>
-      <h>160</h>
+      <x>374</x>
+      <y>352</y>
+      <w>132</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 се предава на</panel_attributes>
@@ -226,10 +226,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>520</y>
-      <w>240</w>
-      <h>140</h>
+      <x>308</x>
+      <y>286</y>
+      <w>154</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -241,10 +241,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>400</y>
-      <w>180</w>
-      <h>160</h>
+      <x>374</x>
+      <y>220</y>
+      <w>99</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 обновява</panel_attributes>
@@ -253,10 +253,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>520</y>
-      <w>240</w>
-      <h>140</h>
+      <x>154</x>
+      <y>286</y>
+      <w>132</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -268,23 +268,23 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>520</y>
-      <w>300</w>
-      <h>140</h>
+      <x>451</x>
+      <y>286</y>
+      <w>143</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-интерпретира
+обработва
 съобщения</panel_attributes>
     <additional_attributes>10.0;10.0;40.0;10.0;40.0;50.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>400</y>
-      <w>200</w>
-      <h>160</h>
+      <x>209</x>
+      <y>220</y>
+      <w>110</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 предоставя</panel_attributes>
@@ -293,10 +293,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>820</y>
-      <w>140</w>
-      <h>160</h>
+      <x>374</x>
+      <y>451</y>
+      <w>77</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 връща</panel_attributes>
@@ -305,10 +305,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
-      <y>340</y>
-      <w>120</w>
-      <h>700</h>
+      <x>110</x>
+      <y>187</y>
+      <w>66</w>
+      <h>385</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>40.0;330.0;10.0;330.0;10.0;10.0;40.0;10.0</additional_attributes>
@@ -316,10 +316,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1260</x>
-      <y>340</y>
-      <w>160</w>
-      <h>700</h>
+      <x>803</x>
+      <y>187</y>
+      <w>88</w>
+      <h>385</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;330.0;60.0;330.0;60.0;10.0;10.0;10.0</additional_attributes>
@@ -327,10 +327,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>1220</y>
-      <w>880</w>
-      <h>120</h>
+      <x>154</x>
+      <y>671</y>
+      <w>484</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -340,10 +340,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>1320</y>
-      <w>180</w>
-      <h>160</h>
+      <x>209</x>
+      <y>726</y>
+      <w>99</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 получава</panel_attributes>
@@ -352,10 +352,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>1500</y>
-      <w>240</w>
-      <h>160</h>
+      <x>209</x>
+      <y>825</y>
+      <w>132</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 се предава на</panel_attributes>
@@ -364,10 +364,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1040</x>
-      <y>1620</y>
-      <w>240</w>
-      <h>140</h>
+      <x>682</x>
+      <y>891</y>
+      <w>132</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -377,10 +377,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
-      <y>1320</y>
-      <w>340</w>
-      <h>340</h>
+      <x>561</x>
+      <y>726</y>
+      <w>187</w>
+      <h>187</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
 m1=1
@@ -391,10 +391,10 @@ m2=много
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>1620</y>
-      <w>520</w>
-      <h>140</h>
+      <x>154</x>
+      <y>891</y>
+      <w>308</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -406,10 +406,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>1440</y>
-      <w>240</w>
-      <h>80</h>
+      <x>154</x>
+      <y>792</y>
+      <w>132</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -419,10 +419,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>1860</y>
-      <w>520</w>
-      <h>120</h>
+      <x>154</x>
+      <y>1023</y>
+      <w>308</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -434,10 +434,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1040</x>
-      <y>1220</y>
-      <w>240</w>
-      <h>120</h>
+      <x>682</x>
+      <y>671</y>
+      <w>132</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -449,10 +449,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
-      <y>1320</y>
-      <w>200</w>
-      <h>340</h>
+      <x>759</x>
+      <y>726</y>
+      <w>110</w>
+      <h>187</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
 m1=1
@@ -463,10 +463,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
-      <y>1140</y>
-      <w>340</w>
-      <h>120</h>
+      <x>561</x>
+      <y>627</y>
+      <w>187</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 създава</panel_attributes>
@@ -475,10 +475,10 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>2140</y>
-      <w>520</w>
-      <h>120</h>
+      <x>154</x>
+      <y>1177</y>
+      <w>308</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -488,10 +488,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>1960</y>
-      <w>260</w>
-      <h>220</h>
+      <x>297</x>
+      <y>1078</y>
+      <w>143</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 предава данни
@@ -501,10 +501,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>2460</y>
-      <w>220</w>
-      <h>160</h>
+      <x>297</x>
+      <y>1353</y>
+      <w>121</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 съхранява
@@ -514,10 +514,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>2360</y>
-      <w>520</w>
-      <h>120</h>
+      <x>154</x>
+      <y>1298</y>
+      <w>308</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -527,10 +527,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>2240</y>
-      <w>280</w>
-      <h>160</h>
+      <x>297</x>
+      <y>1232</y>
+      <w>154</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 взаимодейства с</panel_attributes>
@@ -539,21 +539,21 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
-      <y>2180</y>
-      <w>700</w>
-      <h>600</h>
+      <x>110</x>
+      <y>1199</y>
+      <w>407</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>300.0;10.0;330.0;10.0;330.0;280.0;10.0;280.0;10.0;10.0;40.0;10.0</additional_attributes>
+    <additional_attributes>320.0;10.0;350.0;10.0;350.0;280.0;10.0;280.0;10.0;10.0;40.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>1740</y>
-      <w>280</w>
-      <h>160</h>
+      <x>297</x>
+      <y>957</y>
+      <w>154</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 взаимодейства с</panel_attributes>
@@ -562,10 +562,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>1440</y>
-      <w>240</w>
-      <h>80</h>
+      <x>308</x>
+      <y>792</y>
+      <w>154</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -575,10 +575,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>1500</y>
-      <w>140</w>
-      <h>160</h>
+      <x>374</x>
+      <y>825</y>
+      <w>77</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 връща</panel_attributes>
@@ -587,10 +587,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>1320</y>
-      <w>240</w>
-      <h>160</h>
+      <x>374</x>
+      <y>726</y>
+      <w>132</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 се предава на</panel_attributes>
@@ -599,10 +599,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
-      <y>1040</y>
-      <w>160</w>
-      <h>220</h>
+      <x>759</x>
+      <y>572</y>
+      <w>88</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 заявява</panel_attributes>
@@ -611,10 +611,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
-      <y>1260</y>
-      <w>120</w>
-      <h>700</h>
+      <x>110</x>
+      <y>693</y>
+      <w>66</w>
+      <h>385</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>40.0;330.0;10.0;330.0;10.0;10.0;40.0;10.0</additional_attributes>
@@ -622,10 +622,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>2580</y>
-      <w>520</w>
-      <h>120</h>
+      <x>154</x>
+      <y>1419</y>
+      <w>308</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>Данни</panel_attributes>
     <additional_attributes/>
@@ -633,21 +633,21 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>1260</y>
-      <w>840</w>
-      <h>700</h>
+      <x>451</x>
+      <y>693</y>
+      <w>440</w>
+      <h>385</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>350.0;10.0;400.0;10.0;400.0;330.0;10.0;330.0</additional_attributes>
+    <additional_attributes>330.0;10.0;380.0;10.0;380.0;330.0;10.0;330.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
-      <y>1260</y>
-      <w>140</w>
-      <h>60</h>
+      <x>627</x>
+      <y>693</y>
+      <w>77</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
@@ -655,10 +655,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>700</x>
-      <y>1640</y>
-      <w>240</w>
-      <h>80</h>
+      <x>506</x>
+      <y>902</y>
+      <w>132</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -668,32 +668,32 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>1660</y>
-      <w>160</w>
-      <h>60</h>
+      <x>451</x>
+      <y>913</y>
+      <w>77</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>1660</y>
-      <w>160</w>
-      <h>60</h>
+      <x>627</x>
+      <y>913</y>
+      <w>77</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>1040</y>
-      <w>160</w>
-      <h>220</h>
+      <x>209</x>
+      <y>572</y>
+      <w>88</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 изпраща
@@ -703,10 +703,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>1040</y>
-      <w>180</w>
-      <h>220</h>
+      <x>374</x>
+      <y>572</y>
+      <w>99</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 връща
@@ -716,10 +716,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
-      <y>400</y>
-      <w>160</w>
-      <h>580</h>
+      <x>759</x>
+      <y>220</y>
+      <w>88</w>
+      <h>319</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 създава</panel_attributes>
@@ -728,13 +728,27 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>180</y>
-      <w>280</w>
-      <h>160</h>
+      <x>286</x>
+      <y>99</y>
+      <w>154</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 взаимодейства с</panel_attributes>
     <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>957</y>
+      <w>110</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+
+обработва
+съобщения</panel_attributes>
+    <additional_attributes>70.0;10.0;70.0;30.0;20.0;30.0;20.0;10.0</additional_attributes>
   </element>
 </diagram>

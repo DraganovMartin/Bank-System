@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>15</zoom_level>
+  <zoom_level>11</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>750</x>
-      <y>1545</y>
-      <w>90</w>
-      <h>180</h>
+      <x>660</x>
+      <y>1133</y>
+      <w>66</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>клиент
 (client)</panel_attributes>
@@ -16,10 +16,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>555</x>
-      <y>1485</y>
-      <w>480</w>
-      <h>570</h>
+      <x>517</x>
+      <y>1089</y>
+      <w>352</w>
+      <h>418</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -30,10 +30,10 @@ Three-Tiered Architecture</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>1755</y>
-      <w>450</w>
-      <h>60</h>
+      <x>528</x>
+      <y>1287</y>
+      <w>330</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -44,10 +44,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>1860</y>
-      <w>450</w>
-      <h>60</h>
+      <x>528</x>
+      <y>1364</y>
+      <w>330</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -58,10 +58,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>1965</y>
-      <w>450</w>
-      <h>60</h>
+      <x>528</x>
+      <y>1441</y>
+      <w>330</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -72,10 +72,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>675</x>
-      <y>1800</y>
-      <w>45</w>
-      <h>90</h>
+      <x>605</x>
+      <y>1320</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -83,10 +83,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>675</x>
-      <y>1905</y>
-      <w>45</w>
-      <h>90</h>
+      <x>605</x>
+      <y>1397</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -94,10 +94,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>885</x>
-      <y>1905</y>
-      <w>45</w>
-      <h>90</h>
+      <x>759</x>
+      <y>1397</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
@@ -105,10 +105,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>885</x>
-      <y>1800</y>
-      <w>45</w>
-      <h>90</h>
+      <x>759</x>
+      <y>1320</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
@@ -116,10 +116,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>1695</y>
-      <w>45</w>
-      <h>90</h>
+      <x>682</x>
+      <y>1243</y>
+      <w>33</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -127,10 +127,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>225</y>
-      <w>900</w>
-      <h>90</h>
+      <x>154</x>
+      <y>165</y>
+      <w>660</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -140,10 +140,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>570</y>
-      <w>180</w>
-      <h>60</h>
+      <x>154</x>
+      <y>418</y>
+      <w>132</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -154,22 +154,22 @@ Request
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>135</x>
-      <y>480</y>
-      <w>180</w>
-      <h>120</h>
+      <x>209</x>
+      <y>352</y>
+      <w>99</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-new Message()</panel_attributes>
+генерира</panel_attributes>
     <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>210</x>
+      <x>264</x>
       <y>0</y>
-      <w>90</w>
-      <h>165</h>
+      <w>66</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>клиент</panel_attributes>
     <additional_attributes/>
@@ -177,24 +177,24 @@ new Message()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>705</y>
-      <w>900</w>
-      <h>90</h>
+      <x>154</x>
+      <y>517</y>
+      <w>660</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
 Clientside
-&lt;&lt;Thread&gt;&gt; &lt;&lt;Connection&gt;&gt; &lt;&lt;MessageHandler&gt;&gt;</panel_attributes>
+&lt;&lt;Connection&gt;&gt; &lt;&lt;Thread&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>135</x>
-      <y>615</y>
-      <w>180</w>
-      <h>120</h>
+      <x>209</x>
+      <y>451</y>
+      <w>132</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 се предава на</panel_attributes>
@@ -203,10 +203,10 @@ Clientside
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>570</y>
-      <w>210</w>
-      <h>60</h>
+      <x>308</x>
+      <y>418</y>
+      <w>154</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -217,10 +217,10 @@ Response
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>480</y>
-      <w>180</w>
-      <h>120</h>
+      <x>374</x>
+      <y>352</y>
+      <w>132</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 се предава на</panel_attributes>
@@ -229,10 +229,10 @@ Response
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>390</y>
-      <w>210</w>
-      <h>105</h>
+      <x>308</x>
+      <y>286</y>
+      <w>154</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -242,10 +242,10 @@ MessageHandler</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>300</y>
-      <w>135</w>
-      <h>120</h>
+      <x>374</x>
+      <y>220</y>
+      <w>99</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 обновява</panel_attributes>
@@ -254,10 +254,10 @@ MessageHandler</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>390</y>
-      <w>180</w>
-      <h>105</h>
+      <x>154</x>
+      <y>286</y>
+      <w>132</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -269,10 +269,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>465</x>
-      <y>390</y>
-      <w>255</w>
-      <h>105</h>
+      <x>451</x>
+      <y>286</y>
+      <w>187</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 handle(Message)</panel_attributes>
@@ -281,10 +281,10 @@ handle(Message)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>135</x>
-      <y>300</y>
-      <w>150</w>
-      <h>120</h>
+      <x>209</x>
+      <y>220</y>
+      <w>110</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 предоставя</panel_attributes>
@@ -293,22 +293,22 @@ handle(Message)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>615</y>
-      <w>240</w>
-      <h>120</h>
+      <x>374</x>
+      <y>451</y>
+      <w>110</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-readObject(Message)</panel_attributes>
+readObject()</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
-      <y>255</y>
-      <w>90</w>
-      <h>525</h>
+      <x>110</x>
+      <y>187</y>
+      <w>66</w>
+      <h>385</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>40.0;330.0;10.0;330.0;10.0;10.0;40.0;10.0</additional_attributes>
@@ -316,10 +316,10 @@ readObject(Message)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>945</x>
-      <y>255</y>
-      <w>120</w>
-      <h>525</h>
+      <x>803</x>
+      <y>187</y>
+      <w>88</w>
+      <h>385</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;330.0;60.0;330.0;60.0;10.0;10.0;10.0</additional_attributes>
@@ -327,24 +327,24 @@ readObject(Message)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>915</y>
-      <w>660</w>
-      <h>90</h>
+      <x>154</x>
+      <y>671</y>
+      <w>484</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
 Serverside
-&lt;&lt;Thread&gt;&gt; &lt;&lt;Connection&gt;&gt; &lt;&lt;MessageHandler&gt;&gt;</panel_attributes>
+&lt;&lt;Connection&gt;&gt; &lt;&lt;Thread&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>135</x>
-      <y>990</y>
-      <w>165</w>
-      <h>120</h>
+      <x>209</x>
+      <y>726</y>
+      <w>110</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 readObject()</panel_attributes>
@@ -353,10 +353,10 @@ readObject()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>135</x>
-      <y>1125</y>
-      <w>180</w>
-      <h>120</h>
+      <x>209</x>
+      <y>825</y>
+      <w>132</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 се предава на</panel_attributes>
@@ -365,38 +365,39 @@ readObject()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>780</x>
-      <y>1215</y>
-      <w>180</w>
-      <h>105</h>
+      <x>682</x>
+      <y>891</y>
+      <w>132</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
-ConnectionManager
-&lt;&lt;Thread&gt;&gt;</panel_attributes>
+Connection
+Manager</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>615</x>
-      <y>990</y>
-      <w>255</w>
-      <h>255</h>
+      <x>561</x>
+      <y>726</y>
+      <w>187</w>
+      <h>187</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
 m1=1
-m2=many
-register()</panel_attributes>
+m2=0..*
+register()
+deregister()</panel_attributes>
     <additional_attributes>150.0;150.0;150.0;90.0;10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>1215</y>
-      <w>420</w>
-      <h>105</h>
+      <x>154</x>
+      <y>891</y>
+      <w>308</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -406,10 +407,10 @@ MessageHandler</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>1080</y>
-      <w>180</w>
-      <h>60</h>
+      <x>154</x>
+      <y>792</y>
+      <w>132</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -420,23 +421,24 @@ Request
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>1395</y>
-      <w>420</w>
-      <h>90</h>
+      <x>154</x>
+      <y>1023</y>
+      <w>308</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
-DatabaseController</panel_attributes>
+DatabaseController
+JDBC Driver</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>780</x>
-      <y>915</y>
-      <w>180</w>
-      <h>90</h>
+      <x>682</x>
+      <y>671</y>
+      <w>132</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -446,10 +448,10 @@ ServerSocket</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>885</x>
-      <y>990</y>
-      <w>90</w>
-      <h>255</h>
+      <x>759</x>
+      <y>726</y>
+      <w>66</w>
+      <h>187</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
 m1=1
@@ -460,10 +462,10 @@ run()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>615</x>
-      <y>855</y>
-      <w>255</w>
-      <h>90</h>
+      <x>561</x>
+      <y>627</y>
+      <w>187</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 accept()</panel_attributes>
@@ -472,23 +474,23 @@ accept()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>1605</y>
-      <w>420</w>
-      <h>90</h>
+      <x>154</x>
+      <y>1177</y>
+      <w>308</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
-JDBC Driver</panel_attributes>
+MySQL driver</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>1470</y>
-      <w>195</w>
-      <h>165</h>
+      <x>297</x>
+      <y>1078</y>
+      <w>143</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 предава данни
@@ -498,10 +500,10 @@ JDBC Driver</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>1845</y>
-      <w>165</w>
-      <h>120</h>
+      <x>297</x>
+      <y>1353</y>
+      <w>121</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 съхранява
@@ -511,10 +513,10 @@ JDBC Driver</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>1770</y>
-      <w>420</w>
-      <h>90</h>
+      <x>154</x>
+      <y>1298</y>
+      <w>308</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -524,10 +526,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>1680</y>
-      <w>210</w>
-      <h>120</h>
+      <x>297</x>
+      <y>1232</y>
+      <w>154</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 взаимодейства с</panel_attributes>
@@ -536,10 +538,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
-      <y>1635</y>
-      <w>555</w>
-      <h>450</h>
+      <x>110</x>
+      <y>1199</y>
+      <w>407</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>320.0;10.0;350.0;10.0;350.0;280.0;10.0;280.0;10.0;10.0;40.0;10.0</additional_attributes>
@@ -547,10 +549,10 @@ halign=center
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>1305</y>
-      <w>210</w>
-      <h>120</h>
+      <x>297</x>
+      <y>957</y>
+      <w>154</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 взаимодейства с</panel_attributes>
@@ -559,10 +561,10 @@ halign=center
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>1080</y>
-      <w>210</w>
-      <h>60</h>
+      <x>308</x>
+      <y>792</y>
+      <w>154</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -573,22 +575,22 @@ Response
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>1125</y>
-      <w>210</w>
-      <h>120</h>
+      <x>374</x>
+      <y>825</y>
+      <w>77</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-handle(Message)</panel_attributes>
+връща</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>990</y>
-      <w>180</w>
-      <h>120</h>
+      <x>374</x>
+      <y>726</y>
+      <w>132</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 се предава на</panel_attributes>
@@ -597,10 +599,10 @@ handle(Message)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>885</x>
-      <y>780</y>
-      <w>90</w>
-      <h>165</h>
+      <x>759</x>
+      <y>572</y>
+      <w>66</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 run()</panel_attributes>
@@ -609,10 +611,10 @@ run()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
-      <y>945</y>
-      <w>90</w>
-      <h>525</h>
+      <x>110</x>
+      <y>693</y>
+      <w>66</w>
+      <h>385</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>40.0;330.0;10.0;330.0;10.0;10.0;40.0;10.0</additional_attributes>
@@ -620,10 +622,10 @@ run()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>1935</y>
-      <w>420</w>
-      <h>90</h>
+      <x>154</x>
+      <y>1419</y>
+      <w>308</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>Данни</panel_attributes>
     <additional_attributes/>
@@ -631,10 +633,10 @@ run()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>465</x>
-      <y>945</y>
-      <w>600</w>
-      <h>525</h>
+      <x>451</x>
+      <y>693</y>
+      <w>440</w>
+      <h>385</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>330.0;10.0;380.0;10.0;380.0;330.0;10.0;330.0</additional_attributes>
@@ -642,10 +644,10 @@ run()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>705</x>
-      <y>945</y>
-      <w>105</w>
-      <h>45</h>
+      <x>627</x>
+      <y>693</y>
+      <w>77</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
@@ -653,10 +655,10 @@ run()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>1230</y>
-      <w>180</w>
-      <h>60</h>
+      <x>506</x>
+      <y>902</y>
+      <w>132</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 halign=center
@@ -666,10 +668,10 @@ Server</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>465</x>
-      <y>1245</y>
-      <w>105</w>
-      <h>45</h>
+      <x>451</x>
+      <y>913</y>
+      <w>77</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -677,10 +679,10 @@ Server</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>705</x>
-      <y>1245</y>
-      <w>105</w>
-      <h>45</h>
+      <x>627</x>
+      <y>913</y>
+      <w>77</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -688,10 +690,10 @@ Server</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>135</x>
-      <y>780</y>
-      <w>195</w>
-      <h>165</h>
+      <x>209</x>
+      <y>572</y>
+      <w>132</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 send(Message)</panel_attributes>
@@ -700,10 +702,10 @@ send(Message)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>780</y>
-      <w>195</w>
-      <h>165</h>
+      <x>374</x>
+      <y>572</y>
+      <w>132</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 send(Message)</panel_attributes>
@@ -712,25 +714,38 @@ send(Message)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>885</x>
-      <y>300</y>
-      <w>165</w>
-      <h>435</h>
+      <x>759</x>
+      <y>220</y>
+      <w>99</w>
+      <h>319</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-&lt;&lt;constructor&gt;&gt;</panel_attributes>
+connect()</panel_attributes>
     <additional_attributes>10.0;270.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>135</y>
-      <w>210</w>
-      <h>120</h>
+      <x>286</x>
+      <y>99</y>
+      <w>154</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 взаимодейства с</panel_attributes>
     <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>187</x>
+      <y>957</y>
+      <w>132</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+
+handle(Message)</panel_attributes>
+    <additional_attributes>80.0;10.0;80.0;30.0;30.0;30.0;30.0;10.0</additional_attributes>
   </element>
 </diagram>
