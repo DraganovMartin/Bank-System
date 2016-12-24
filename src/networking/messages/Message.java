@@ -75,4 +75,7 @@ public abstract class Message implements Serializable {
     public final void setUsername(String username) {
         this.username = username;
     }
+
+    @Override
+    public abstract String toString();
 }

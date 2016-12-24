@@ -424,7 +424,7 @@ NOTE: profileData = NULL if not successful</panel_attributes>
   +getTransferHistory(): TransferHistory
   +getCurrencyConverter(): CurrencyConverter
   +ProfileData(Balance, TransferHistory, CurrencyConverter): &lt;&lt;constructor&gt;&gt;
-
+  +toString(): String
 
 -.
 NOTE: profileData = NULL if not successful</panel_attributes>

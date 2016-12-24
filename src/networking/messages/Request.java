@@ -17,4 +17,7 @@ public abstract class Request extends Message implements Serializable {
     public Request(String type) {
         super(type);
     }
+
+    @Override
+    public abstract String toString();
 }
