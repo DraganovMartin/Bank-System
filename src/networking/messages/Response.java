@@ -91,4 +91,17 @@ public class Response extends Message implements Serializable {
     public final String getDescription() {
         return this.description;
     }
+
+    @Override
+    public String toString() {
+        return ("Response message:/n"
+                + "-----------------/n"
+                + ((this.request == null) ? "null" : this.request.toString())
+                + "-----------------/n"
+                + "isSuccessful: " + this.isSuccessful + "/n"
+                + "-----------------/n"
+                + ((this.profileData == null) ? "null" : this.profileData.toString())
+                + "-----------------/n"
+                + "description: " + ((this.description == null) ? "null" : this.description) + "/n");
+    }
 }

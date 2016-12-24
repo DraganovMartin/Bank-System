@@ -56,4 +56,14 @@ public final class LoginRequest extends Request implements Serializable {
     public final String getLoginPassword() {
         return this.loginPassword;
     }
+
+    @Override
+    public String toString() {
+        return (LoginRequest.TYPE + ":/n"
+                + "-----------------/n"
+                + "username: " + this.getUsername() + "/n"
+                + "loginUsername: " + this.getLoginUsername() + "/n"
+                + "loginPassword: " + this.getLoginPassword() + "/n"
+                + "-----------------/n");
+    }
 }

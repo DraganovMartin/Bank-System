@@ -21,4 +21,12 @@ public final class TransactionHistoryRequest extends Request implements Serializ
     public TransactionHistoryRequest() {
         super(TransactionHistoryRequest.TYPE);
     }
+
+    @Override
+    public String toString() {
+        return (TransactionHistoryRequest.TYPE + ":/n"
+                + "-----------------/n"
+                + "username: " + this.getUsername() + "/n"
+                + "-----------------/n");
+    }
 }

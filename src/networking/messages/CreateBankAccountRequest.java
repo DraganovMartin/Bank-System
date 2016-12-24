@@ -64,4 +64,14 @@ public final class CreateBankAccountRequest extends Request implements Serializa
     public final Money getInitialMoney() {
         return this.initialMoney;
     }
+
+    @Override
+    public String toString() {
+        return (CreateBankAccountRequest.TYPE + ":/n"
+                + "-----------------/n"
+                + "username: " + this.getUsername() + "/n"
+                + "bankAccountType: " + this.getBankAccountType() + "/n"
+                + "initialMoney: " + this.getInitialMoney().toString() + "/n"
+                + "-----------------/n");
+    }
 }

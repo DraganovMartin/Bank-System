@@ -64,4 +64,14 @@ public final class WithdrawRequest extends Request implements Serializable {
     public final Money getMoney() {
         return this.money;
     }
+
+    @Override
+    public String toString() {
+        return (WithdrawRequest.TYPE + ":/n"
+                + "-----------------/n"
+                + "username: " + this.getUsername() + "/n"
+                + "fromBankAcccount: " + this.getFromBankAccount() + "/n"
+                + "money: " + this.getMoney() + "/n"
+                + "-----------------/n");
+    }
 }

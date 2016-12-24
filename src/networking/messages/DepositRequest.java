@@ -64,4 +64,14 @@ public final class DepositRequest extends Request implements Serializable {
     public final Money getMoney() {
         return this.money;
     }
+
+    @Override
+    public String toString() {
+        return (DepositRequest.TYPE + ":/n"
+                + "-----------------/n"
+                + "username: " + this.getUsername() + "/n"
+                + "toBankAccount: " + this.getToBankAccount() + "/n"
+                + "money: " + this.getMoney().toString() + "/n"
+                + "-----------------/n");
+    }
 }

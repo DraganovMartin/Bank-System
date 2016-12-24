@@ -21,4 +21,12 @@ public final class LogoutRequest extends Request implements Serializable {
     public LogoutRequest() {
         super(LogoutRequest.TYPE);
     }
+
+    @Override
+    public String toString() {
+        return (LogoutRequest.TYPE + ":/n"
+                + "-----------------/n"
+                + "username: " + this.getUsername() + "/n"
+                + "-----------------/n");
+    }
 }

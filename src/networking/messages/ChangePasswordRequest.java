@@ -56,4 +56,14 @@ public final class ChangePasswordRequest extends Request implements Serializable
     public final String getNewPassword() {
         return this.newPassword;
     }
+
+    @Override
+    public String toString() {
+        return (ChangePasswordRequest.TYPE + ":/n"
+                + "-----------------/n"
+                + "username: " + this.getUsername() + "/n"
+                + "old password: " + this.getOldPassword() + "/n"
+                + "new password: " + this.getNewPassword() + "/n"
+                + "-----------------/n");
+    }
 }
