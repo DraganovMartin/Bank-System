@@ -11,7 +11,10 @@ import java.sql.SQLException;
  * Created by Nikolay on 12/19/2016.
  */
 public class ClientTest {
+
     public static void main(String[] args) {
+        throw new UnsupportedOperationException("Missing DatabaseController.getClient(...) method!");
+        /*{
         DatabaseController dc = new DatabaseController();
         int index = 1;
 
@@ -22,5 +25,6 @@ public class ClientTest {
         }
 
         dc.close();
+        }*/
     }
 }
