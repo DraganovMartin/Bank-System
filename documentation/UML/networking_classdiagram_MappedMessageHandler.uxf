@@ -28,8 +28,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>0</y>
+      <x>50</x>
+      <y>10</y>
       <w>280</w>
       <h>150</h>
     </coordinates>
@@ -49,34 +49,22 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>60</x>
-      <y>460</y>
-      <w>280</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-   A mapping (collection of key-value pairs) for specific message types to their respective message handlers.</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>60</x>
-      <y>230</y>
+      <x>50</x>
+      <y>240</y>
       <w>280</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>style=wordwrap
-   A message handler that executes a predefined handler according to the type of the message argument.
-   Either one or no handler is allowed for a specific message type (can be a handler that includes multiple nested handlers).
-   Synchronization is not provided by the class and has to be done by the specific handlers that require it.</panel_attributes>
+  Изпълнява определена обработка за постъпващото съобщение в зависимост от вида на съобщението.
+  За всеки вид съобщение може да бъде определена най-много една процедура за обработка (или никакава).
+  Класът не предлага синхронизацият на обработките - тя трябва да бъде извършена извън обекта.</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>60</x>
-      <y>710</y>
+      <x>50</x>
+      <y>720</y>
       <w>280</w>
       <h>110</h>
     </coordinates>
@@ -92,8 +80,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>460</x>
-      <y>0</y>
+      <x>450</x>
+      <y>10</y>
       <w>390</w>
       <h>150</h>
     </coordinates>
@@ -108,8 +96,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>0</y>
+      <x>320</x>
+      <y>10</y>
       <w>150</w>
       <h>40</h>
     </coordinates>
@@ -120,8 +108,8 @@ handle()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>460</x>
-      <y>230</y>
+      <x>450</x>
+      <y>240</y>
       <w>390</w>
       <h>150</h>
     </coordinates>
@@ -139,8 +127,8 @@ handle()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
-      <y>140</y>
+      <x>600</x>
+      <y>150</y>
       <w>110</w>
       <h>110</h>
     </coordinates>
@@ -151,8 +139,8 @@ handle()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>460</x>
-      <y>460</y>
+      <x>450</x>
+      <y>470</y>
       <w>390</w>
       <h>150</h>
     </coordinates>
@@ -168,8 +156,8 @@ handle()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>370</y>
+      <x>570</x>
+      <y>380</y>
       <w>120</w>
       <h>110</h>
     </coordinates>
@@ -182,8 +170,8 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>50</y>
+      <x>320</x>
+      <y>60</y>
       <w>150</w>
       <h>210</h>
     </coordinates>
@@ -194,8 +182,8 @@ handle()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>250</y>
+      <x>320</x>
+      <y>260</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -205,8 +193,8 @@ handle()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>480</y>
+      <x>320</x>
+      <y>490</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -216,8 +204,8 @@ handle()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>460</x>
-      <y>690</y>
+      <x>450</x>
+      <y>700</y>
       <w>100</w>
       <h>80</h>
     </coordinates>
@@ -230,8 +218,8 @@ _key: String_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>490</x>
-      <y>600</y>
+      <x>480</x>
+      <y>610</y>
       <w>100</w>
       <h>110</h>
     </coordinates>
@@ -244,8 +232,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>680</x>
-      <y>690</y>
+      <x>670</x>
+      <y>700</y>
       <w>170</w>
       <h>80</h>
     </coordinates>
@@ -258,8 +246,8 @@ _value: MessageHandler_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
-      <y>600</y>
+      <x>730</x>
+      <y>610</y>
       <w>100</w>
       <h>110</h>
     </coordinates>
@@ -272,8 +260,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>490</x>
-      <y>760</y>
+      <x>480</x>
+      <y>770</y>
       <w>310</w>
       <h>80</h>
     </coordinates>
@@ -282,5 +270,17 @@ points to
 m1=1..*
 m2=0..1</panel_attributes>
     <additional_attributes>20.0;10.0;20.0;60.0;270.0;60.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>50</x>
+      <y>470</y>
+      <w>280</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+  Съответствие (ключ-стойност) между тип на съобщение и съответнa обработкa (MessageHandler).</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
