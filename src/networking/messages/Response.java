@@ -7,11 +7,13 @@ import java.io.Serializable;
  * A response {@link Message}. The field {@link #profileData} contains
  * information that will be provided to the user upon successful login or upon a
  * synchronization request (i.e. balance check, transfer history check, etc.),
- * NULL if the response is not successful.
+ * NULL if the response is not successful. The value of the {@link Message#type}
+ * field of the response is set to the value of the
+ * {@link Request} {@link Message#type} field.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public abstract class Response extends Message implements Serializable {
+public class Response extends Message implements Serializable {
 
     /**
      * The {@link Request} that is being responded to.
@@ -38,8 +40,6 @@ public abstract class Response extends Message implements Serializable {
     /**
      * Constructor.
      *
-     * @param type the value for {@link Message#type}.
-     *
      * @param request the value for {@link #request}.
      *
      * @param isSuccessful the value for {@link #isSuccessful}.
@@ -48,8 +48,8 @@ public abstract class Response extends Message implements Serializable {
      *
      * @param description the value for {@link #description}.
      */
-    public Response(String type, Request request, boolean isSuccessful, ProfileData profileData, String description) {
-        super(type);
+    public Response(Request request, boolean isSuccessful, ProfileData profileData, String description) {
+        super(request.getType());
         this.request = request;
         this.isSuccessful = isSuccessful;
         this.profileData = profileData;
