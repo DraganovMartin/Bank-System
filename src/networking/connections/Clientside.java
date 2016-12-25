@@ -17,7 +17,7 @@ import networking.messages.RegisterRequest;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class Clientside extends Connection {
+class Clientside extends Connection {
 
     final Client client;
 

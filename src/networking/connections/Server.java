@@ -9,7 +9,7 @@ import networking.MessageHandler;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-class Server {
+public class Server {
 
     final ServerSocketFactory serverSocketFactory;
     final MessageHandler messageHandler;
