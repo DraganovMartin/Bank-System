@@ -13,7 +13,12 @@ import java.io.Serializable;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class Response extends Message implements Serializable {
+public final class Response extends Message implements Serializable {
+
+    /**
+     * Reference to the value of {@link Message#type} used by this class.
+     */
+    public static final String TYPE = "RESPONSE";
 
     /**
      * The {@link Request} that is being responded to.
@@ -49,7 +54,7 @@ public class Response extends Message implements Serializable {
      * @param description the value for {@link #description}.
      */
     public Response(Request request, boolean isSuccessful, ProfileData profileData, String description) {
-        super(request.getType());
+        super(Response.TYPE);
         this.request = request;
         this.isSuccessful = isSuccessful;
         this.profileData = profileData;
