@@ -42,50 +42,38 @@ class ConnectionManager extends Thread {
             } else {
                 // register verified connection:
                 // check if username is connected:
-                {
-                    Serverside existing = this.verified.get(serverside.username);
-                    if (existing != null) {
-                        // disconnect user already connected using the same username:
-                        try {
-                            existing.closeSocket();
-                        } catch (IOException ex) {
-                            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        while (existing.isAlive()) {
-                            try {
-                                existing.join();
-                            } catch (InterruptedException ex) {
-                                Thread.currentThread().interrupt();
-                                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }
+                Serverside existing = this.verified.get(serverside.username);
+                if (existing != null) {
+                    // disconnect both connections that use the same username:
+                    existing.closeSocket();
+                    serverside.closeSocket();
+                    // DO NOT .join() THREADS !!! DEADLOCK !!! USE deregister() INSTEAD !!!
+                    this.server.connectionManager.deregister(existing);
+                    this.server.connectionManager.deregister(serverside);
+                } else {
+                    // add to verified connections list:
+                    this.verified.put(serverside.username, serverside);
+                    // remove from unverified connections list:
+                    this.unverified.remove(serverside.logNumber);
                 }
-                // add to verified connections list:
-                this.verified.put(serverside.username, serverside);
-                // remove from unverified connections list:
-                this.unverified.remove(serverside.logNumber);
             }
         }
     }
 
     synchronized void deregister(Serverside serverside) {
+        // remove from the verified connections list:
         if (serverside.username != null) {
             this.verified.remove(serverside.username);
-        } else {
-            this.unverified.remove(serverside.logNumber);
         }
+        // remove from the unverified connections list:
+        this.unverified.remove(serverside.logNumber);
     }
 
     synchronized void stopAllUnverified() {
         // stop all unverified connections:
         for (Map.Entry<BigInteger, Serverside> entry : this.unverified.entrySet()) {
             Serverside connection = entry.getValue();
-            try {
-                connection.closeSocket();
-            } catch (IOException ex) {
-                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            connection.closeSocket();
             while (connection.isAlive()) {
                 try {
                     connection.join();
@@ -103,11 +91,7 @@ class ConnectionManager extends Thread {
         // stop all verified connections:
         for (Map.Entry<String, Serverside> entry : this.verified.entrySet()) {
             Serverside connection = entry.getValue();
-            try {
-                connection.closeSocket();
-            } catch (IOException ex) {
-                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            connection.closeSocket();
             while (connection.isAlive()) {
                 try {
                     connection.join();

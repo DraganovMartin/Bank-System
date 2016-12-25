@@ -77,6 +77,10 @@ class Serverside extends Connection {
                                 if (!response.isSuccessful()) {
                                     // terminate on receiving a failed login response;
                                     keepRunning = false;
+                                } else {
+                                    // register newly verified connection:
+                                    this.username = ((LoginRequest) (response.getRequest())).getLoginUsername();
+                                    this.server.connectionManager.register(this);
                                 }
                             }
                             break;
@@ -84,6 +88,10 @@ class Serverside extends Connection {
                                 if (!response.isSuccessful()) {
                                     // terminate on receiving a failed register response;
                                     keepRunning = false;
+                                } else {
+                                    // register newly verified connection:
+                                    this.username = ((RegisterRequest) (response.getRequest())).getRegisterUsername();
+                                    this.server.connectionManager.register(this);
                                 }
                             }
                             break;
@@ -109,11 +117,7 @@ class Serverside extends Connection {
         } catch (IOException ex) {
             Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            try {
-                this.closeSocket();
-            } catch (IOException ex) {
-                Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.closeSocket();
             this.server.connectionManager.deregister(this);
         }
     }

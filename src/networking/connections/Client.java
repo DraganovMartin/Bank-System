@@ -37,11 +37,7 @@ public class Client {
 
     public synchronized void stop() {
         if (this.clientside != null) {
-            try {
-                this.clientside.closeSocket();
-            } catch (IOException ex) {
-                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.clientside.closeSocket();
             while (this.clientside.isAlive()) {
                 try {
                     this.clientside.join();
