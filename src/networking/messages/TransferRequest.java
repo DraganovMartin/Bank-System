@@ -89,12 +89,12 @@ public final class TransferRequest extends Request implements Serializable {
 
     @Override
     public String toString() {
-        return (TransferRequest.TYPE + ":/n"
-                + "-----------------/n"
-                + "username: " + this.getUsername() + "/n"
-                + "frombankAccount: " + this.getFromBankAccount() + "/n"
-                + "toBankAccount: " + this.getToBankAccount() + "/n"
-                + "money: " + this.getMoney().toString() + "/n"
-                + "-----------------/n");
+        return (TransferRequest.TYPE + ":\n"
+                + "-----------------\n"
+                + "username: " + this.getUsername() + "\n"
+                + "frombankAccount: " + this.getFromBankAccount() + "\n"
+                + "toBankAccount: " + this.getToBankAccount() + "\n"
+                + "money: " + this.getMoney().toString() + "\n"
+                + "-----------------\n");
     }
 }

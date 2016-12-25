@@ -1,5 +1,6 @@
 package testClasses.communication_client_server;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,9 +28,11 @@ public class ExampleLoginRequestHandler extends networking.messageHandlers.serve
                 // debugging part:
                 JFrame frame = new JFrame("SERVER");
                 JPanel panel = new JPanel();
-                JLabel label = new JLabel();
-                label.setText("SERVER received a message:/n" + message.toString());
-                panel.add(label);
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                String[] text = ("SERVER received a message:\n" + message.toString()).split("\n");
+                for (int i = 0; i < text.length; i++) {
+                    panel.add(new JLabel(text[i]));
+                }
                 frame.add(panel);
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.pack();

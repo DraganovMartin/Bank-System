@@ -15,7 +15,7 @@ import networking.messages.Response;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class Communication_Server {
+public class Communication_Example {
 
     public final static String HOSTNAME = "localhost";
     public final static int HOSTPORT = 15000;
@@ -45,7 +45,7 @@ public class Communication_Server {
             System.out.println(" DONE.");
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
-            Logger.getLogger(Communication_Server.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Communication_Example.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // CLIENT PART:
@@ -71,13 +71,13 @@ public class Communication_Server {
                 System.out.println(" DONE.");
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
-                Logger.getLogger(Communication_Server.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Communication_Example.class.getName()).log(Level.SEVERE, null, ex);
             }
             // send message from client:
             System.out.println("Sending a message from client...");
             client.send(new LoginRequest("user1", "pass1"));
         } catch (IOException ex) {
-            Logger.getLogger(Communication_Server.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Communication_Example.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // SLEEP:
@@ -90,7 +90,7 @@ public class Communication_Server {
             System.out.println(" DONE.");
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
-            Logger.getLogger(Communication_Server.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Communication_Example.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // stop server:

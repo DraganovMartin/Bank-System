@@ -99,14 +99,14 @@ public final class Response extends Message implements Serializable {
 
     @Override
     public String toString() {
-        return ("Response message:/n"
-                + "-----------------/n"
+        return ("Response message:\n"
+                + "-----------------\n"
                 + ((this.request == null) ? "null" : this.request.toString())
-                + "-----------------/n"
-                + "isSuccessful: " + this.isSuccessful + "/n"
-                + "-----------------/n"
+                + "-----------------\n"
+                + "isSuccessful: " + this.isSuccessful + "\n"
+                + "-----------------\n"
                 + ((this.profileData == null) ? "null" : this.profileData.toString())
-                + "-----------------/n"
-                + "description: " + ((this.description == null) ? "null" : this.description) + "/n");
+                + "-----------------\n"
+                + "description: " + ((this.description == null) ? "null" : this.description) + "\n");
     }
 }

@@ -24,9 +24,9 @@ public final class BalanceRequest extends Request implements Serializable {
 
     @Override
     public String toString() {
-        return (BalanceRequest.TYPE + ":/n"
-                + "-----------------/n"
-                + "username: " + this.getUsername() + "/n"
-                + "-----------------/n");
+        return (BalanceRequest.TYPE + ":\n"
+                + "-----------------\n"
+                + "username: " + this.getUsername() + "\n"
+                + "-----------------\n");
     }
 }

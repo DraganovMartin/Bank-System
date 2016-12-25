@@ -24,9 +24,9 @@ public final class CurrencyRatesRequest extends Request implements Serializable 
 
     @Override
     public String toString() {
-        return (CurrencyRatesRequest.TYPE + ":/n"
-                + "-----------------/n"
-                + "username: " + this.getUsername() + "/n"
-                + "-----------------/n");
+        return (CurrencyRatesRequest.TYPE + ":\n"
+                + "-----------------\n"
+                + "username: " + this.getUsername() + "\n"
+                + "-----------------\n");
     }
 }
