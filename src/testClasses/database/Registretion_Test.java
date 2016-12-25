@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class Registretion_Test {
 
     public static void main(String [] args) {
+        throw new UnsupportedOperationException("Missing DatabaseController.registrate(...) method!");
+        /*{
         Scanner sc = new Scanner(System.in);
         DatabaseController db = new DatabaseController();
         System.out.println("Place enter your data:");
@@ -22,6 +24,6 @@ public class Registretion_Test {
         System.out.println(profile.getUserName()+ " firs name: "+profile.getClient().getFirstName() + " last name: "+
             profile.getClient().getLastName() + " control: "+profile.getType().getName());
 
-
+        }*/
     }
 }

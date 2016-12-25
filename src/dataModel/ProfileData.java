@@ -9,4 +9,9 @@ package dataModel;
  */
 public class ProfileData {
 
+    @Override
+    public String toString() {
+        return null;
+    }
+;
 }
