@@ -66,6 +66,6 @@ public class Communication_Example_CLIENT {
         }
 
         // stop the client:
-        client.stop();
+        // client.stop();
     }
 }

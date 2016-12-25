@@ -79,11 +79,7 @@ class Clientside extends Connection {
         } catch (IOException ex) {
             Logger.getLogger(Clientside.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            try {
-                this.closeSocket();
-            } catch (IOException ex) {
-                Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.closeSocket();
             this.client.clientside = null;
         }
     }

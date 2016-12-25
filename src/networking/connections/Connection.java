@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import networking.messages.Message;
 import networking.messageHandlers.MessageHandler;
 
@@ -32,10 +34,28 @@ abstract class Connection extends Thread {
         }
     }
 
-    final synchronized void closeSocket() throws IOException {
+    final synchronized void closeSocket() {
         if (this.socket != null) {
             while (!this.socket.isClosed()) {
-                this.socket.close();
+                try {
+                    this.socket.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        if (this.ostream != null) {
+            try {
+                this.ostream.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (this.istream != null) {
+            try {
+                this.istream.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
