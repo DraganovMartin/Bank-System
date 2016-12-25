@@ -7,7 +7,7 @@ import java.math.BigInteger;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import networking.MessageHandler;
+import networking.messageHandlers.MessageHandler;
 import networking.messages.*;
 
 /**

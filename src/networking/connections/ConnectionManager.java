@@ -45,11 +45,19 @@ class ConnectionManager extends Thread {
                 {
                     Serverside existing = this.verified.get(serverside.username);
                     if (existing != null) {
+                        // disconnect user already connected using the same username:
                         try {
-                            // disconnect user already connected using the same username:
                             existing.closeSocket();
                         } catch (IOException ex) {
                             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        while (existing.isAlive()) {
+                            try {
+                                existing.join();
+                            } catch (InterruptedException ex) {
+                                Thread.currentThread().interrupt();
+                                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
                 }
@@ -70,8 +78,6 @@ class ConnectionManager extends Thread {
     }
 
     synchronized void stopAllUnverified() {
-        int size = this.unverified.size();
-        int i = size;
         // stop all unverified connections:
         for (Map.Entry<BigInteger, Serverside> entry : this.unverified.entrySet()) {
             Serverside connection = entry.getValue();
@@ -94,8 +100,6 @@ class ConnectionManager extends Thread {
     }
 
     synchronized void stopAllVerified() {
-        int size = this.verified.size();
-        int i = size;
         // stop all verified connections:
         for (Map.Entry<String, Serverside> entry : this.verified.entrySet()) {
             Serverside connection = entry.getValue();
@@ -119,7 +123,7 @@ class ConnectionManager extends Thread {
 
     synchronized void terminate() {
         if (this.serverSocket != null) {
-            while (this.serverSocket.isClosed()) {
+            while (!this.serverSocket.isClosed()) {
                 try {
                     this.serverSocket.close();
                 } catch (IOException ex) {
@@ -150,7 +154,7 @@ class ConnectionManager extends Thread {
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (this.serverSocket != null) {
-                while (this.serverSocket.isClosed()) {
+                while (!this.serverSocket.isClosed()) {
                     try {
                         this.serverSocket.close();
                     } catch (IOException ex) {

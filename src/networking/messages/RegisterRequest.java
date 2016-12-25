@@ -94,13 +94,13 @@ public final class RegisterRequest extends Request implements Serializable {
 
     @Override
     public String toString() {
-        return (RegisterRequest.TYPE + ":/n"
-                + "-----------------/n"
-                + "username: " + this.getUsername() + "/n"
-                + "registerUsername: " + this.getRegisterUsername() + "/n"
-                + "registerPassword: " + this.getRegisterPassword() + "/n"
-                + "firstName: " + this.getFirstName() + "/n"
-                + "lastName: " + this.getLastName() + "/n"
-                + "-----------------/n");
+        return (RegisterRequest.TYPE + ":\n"
+                + "-----------------\n"
+                + "username: " + this.getUsername() + "\n"
+                + "registerUsername: " + this.getRegisterUsername() + "\n"
+                + "registerPassword: " + this.getRegisterPassword() + "\n"
+                + "firstName: " + this.getFirstName() + "\n"
+                + "lastName: " + this.getLastName() + "\n"
+                + "-----------------\n");
     }
 }

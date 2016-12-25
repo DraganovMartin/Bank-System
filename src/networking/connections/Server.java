@@ -3,13 +3,13 @@ package networking.connections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
-import networking.MessageHandler;
+import networking.messageHandlers.MessageHandler;
 
 /**
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-class Server {
+public class Server {
 
     final ServerSocketFactory serverSocketFactory;
     final MessageHandler messageHandler;
@@ -22,7 +22,7 @@ class Server {
     }
 
     public synchronized void start(int port) {
-        if (this.connectionManager != null) {
+        if (this.connectionManager == null) {
             this.connectionManager = new ConnectionManager(this, port);
             this.connectionManager.start();
         }
