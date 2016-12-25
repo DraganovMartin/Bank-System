@@ -22,7 +22,7 @@ public class Server {
     }
 
     public synchronized void start(int port) {
-        if (this.connectionManager != null) {
+        if (this.connectionManager == null) {
             this.connectionManager = new ConnectionManager(this, port);
             this.connectionManager.start();
         }
