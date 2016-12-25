@@ -45,11 +45,19 @@ class ConnectionManager extends Thread {
                 {
                     Serverside existing = this.verified.get(serverside.username);
                     if (existing != null) {
+                        // disconnect user already connected using the same username:
                         try {
-                            // disconnect user already connected using the same username:
                             existing.closeSocket();
                         } catch (IOException ex) {
                             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        while (existing.isAlive()) {
+                            try {
+                                existing.join();
+                            } catch (InterruptedException ex) {
+                                Thread.currentThread().interrupt();
+                                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
                 }
