@@ -1,5 +1,6 @@
-package networking;
+package networking.messageHandlers;
 
+import networking.messageHandlers.MessageHandler;
 import networking.messages.Message;
 import java.util.TreeMap;
 

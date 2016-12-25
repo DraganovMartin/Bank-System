@@ -1,7 +1,7 @@
-package networking.serversideMessageHandlers;
+package networking.messageHandlers.serverside;
 
-import networking.MessageHandler;
 import networking.connections.Server;
+import networking.messageHandlers.MessageHandler;
 
 /**
  *

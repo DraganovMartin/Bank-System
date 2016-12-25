@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import networking.MessageHandler;
+import networking.messageHandlers.MessageHandler;
 import networking.messages.ChangePasswordRequest;
 import networking.messages.Response;
 import networking.messages.LoginRequest;

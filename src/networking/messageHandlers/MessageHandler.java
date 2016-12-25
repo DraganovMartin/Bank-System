@@ -1,4 +1,4 @@
-package networking;
+package networking.messageHandlers;
 
 import networking.messages.Message;
 

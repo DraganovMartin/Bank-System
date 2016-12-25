@@ -3,7 +3,7 @@ package networking.connections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
-import networking.MessageHandler;
+import networking.messageHandlers.MessageHandler;
 
 /**
  *
