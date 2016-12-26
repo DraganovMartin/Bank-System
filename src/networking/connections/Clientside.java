@@ -8,10 +8,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import networking.messageHandlers.MessageHandler;
 import networking.messages.ChangePasswordRequest;
-import networking.messages.Response;
+import networking.messages.DisconnectNotice;
+import networking.messages.Update;
 import networking.messages.LoginRequest;
 import networking.messages.LogoutRequest;
 import networking.messages.RegisterRequest;
+import networking.messages.Response;
 
 /**
  *
@@ -35,39 +37,45 @@ class Clientside extends Connection {
             while (keepRunning) {
                 try {
                     Response response = (Response) this.istream.readObject();
-                    String requestType = response.getRequest().getType();
-                    switch (requestType) {
-                        case LogoutRequest.TYPE: {
-                            if (response.isSuccessful()) {
-                                // terminate on receiving a successful logout response;
-                                keepRunning = false;
+                    if (response.getType().equals(DisconnectNotice.TYPE)) {
+                        // terminate on receiving a disconnect notice;
+                        keepRunning = false;
+                    } else {
+                        Update update = (Update) response;
+                        String requestType = update.getRequest().getType();
+                        switch (requestType) {
+                            case LogoutRequest.TYPE: {
+                                if (update.isSuccessful()) {
+                                    // terminate on receiving a successful logout response;
+                                    keepRunning = false;
+                                }
                             }
-                        }
-                        break;
-                        case LoginRequest.TYPE: {
-                            if (!response.isSuccessful()) {
-                                // terminate on receiving a failed login response;
-                                keepRunning = false;
-                            }
-                        }
-                        break;
-                        case RegisterRequest.TYPE: {
-                            if (!response.isSuccessful()) {
-                                // terminate on receiving a failed register response;
-                                keepRunning = false;
-                            }
-                        }
-                        break;
-                        case ChangePasswordRequest.TYPE: {
-                            if (!response.isSuccessful()) {
-                                // terminate on receiving a failed password change response;
-                                keepRunning = false;
-                            }
-                        }
-                        break;
-                        default: {
-                            // any special treatment of a general requestType of message:
                             break;
+                            case LoginRequest.TYPE: {
+                                if (!update.isSuccessful()) {
+                                    // terminate on receiving a failed login response;
+                                    keepRunning = false;
+                                }
+                            }
+                            break;
+                            case RegisterRequest.TYPE: {
+                                if (!update.isSuccessful()) {
+                                    // terminate on receiving a failed register response;
+                                    keepRunning = false;
+                                }
+                            }
+                            break;
+                            case ChangePasswordRequest.TYPE: {
+                                if (!update.isSuccessful()) {
+                                    // terminate on receiving a failed password change response;
+                                    keepRunning = false;
+                                }
+                            }
+                            break;
+                            default: {
+                                // any special treatment of a general requestType of message:
+                                break;
+                            }
                         }
                     }
                     this.messageHandler.handle(response);
