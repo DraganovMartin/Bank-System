@@ -34,7 +34,7 @@ abstract class Connection extends Thread {
         }
     }
 
-    final synchronized void closeSocket() {
+    synchronized void closeSocket() {
         if (this.socket != null) {
             while (!this.socket.isClosed()) {
                 try {

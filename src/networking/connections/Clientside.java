@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import networking.messageHandlers.MessageHandler;
 import networking.messages.ChangePasswordRequest;
-import networking.messages.Response;
+import networking.messages.Update;
 import networking.messages.LoginRequest;
 import networking.messages.LogoutRequest;
 import networking.messages.RegisterRequest;
@@ -34,7 +34,7 @@ class Clientside extends Connection {
             boolean keepRunning = true;
             while (keepRunning) {
                 try {
-                    Response response = (Response) this.istream.readObject();
+                    Update response = (Update) this.istream.readObject();
                     String requestType = response.getRequest().getType();
                     switch (requestType) {
                         case LogoutRequest.TYPE: {

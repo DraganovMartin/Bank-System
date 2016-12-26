@@ -50,6 +50,16 @@ class Serverside extends Connection {
     }
 
     @Override
+    synchronized void closeSocket() {
+        try {
+            this.send(new DisconnectNotice(DisconnectNotice.CLOSEDBYSERVER));
+        } catch (IOException ex) {
+            Logger.getLogger(Serverside.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        super.closeSocket();
+    }
+
+    @Override
     public void run() {
         try {
             this.ostream = new ObjectOutputStream(this.socket.getOutputStream());
@@ -68,35 +78,35 @@ class Serverside extends Connection {
                         // determine if additional processing is required for any authentication-related request:
                         switch (requestType) {
                             case LogoutRequest.TYPE: {
-                                response = new Response((Request) request, true, null, null);
+                                response = new Update(null, (Request) request, true, null);
                                 // terminate on receiving a logout request;
                                 keepRunning = false;
                             }
                             break;
                             case LoginRequest.TYPE: {
-                                if (!response.isSuccessful()) {
+                                if (!((Update) response).isSuccessful()) {
                                     // terminate on receiving a failed login response;
                                     keepRunning = false;
                                 } else {
                                     // register newly verified connection:
-                                    this.username = ((LoginRequest) (response.getRequest())).getLoginUsername();
+                                    this.username = ((LoginRequest) (((Update) response).getRequest())).getLoginUsername();
                                     this.server.connectionManager.register(this);
                                 }
                             }
                             break;
                             case RegisterRequest.TYPE: {
-                                if (!response.isSuccessful()) {
+                                if (!((Update) response).isSuccessful()) {
                                     // terminate on receiving a failed register response;
                                     keepRunning = false;
                                 } else {
                                     // register newly verified connection:
-                                    this.username = ((RegisterRequest) (response.getRequest())).getRegisterUsername();
+                                    this.username = ((RegisterRequest) (((Update) response).getRequest())).getRegisterUsername();
                                     this.server.connectionManager.register(this);
                                 }
                             }
                             break;
                             case ChangePasswordRequest.TYPE: {
-                                if (!response.isSuccessful()) {
+                                if (!((Update) response).isSuccessful()) {
                                     // terminate on receiving a failed password change response;
                                     keepRunning = false;
                                 }
