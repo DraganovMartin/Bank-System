@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import networking.connections.Server;
 import networking.messages.LoginRequest;
 import networking.messages.Message;
-import networking.messages.Response;
+import networking.messages.Update;
 
 /**
  *
@@ -79,7 +79,7 @@ public class ExampleLoginRequestHandler extends networking.messageHandlers.serve
                 } else {
                     description = "Wrong username or password!";
                 }
-                return new Response(request, successful, null, description);
+                return new Update(description, request, successful, null);
             }
         } catch (Exception ex) {
             return null;
