@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.net.SocketFactory;
 import networking.connections.Client;
 import networking.messageHandlers.MappedMessageHandler;
+import networking.messages.DisconnectNotice;
 import networking.messages.LoginRequest;
 import networking.messages.Update;
 
@@ -29,7 +30,9 @@ public class Communication_Example_CLIENT {
         //create a client object:
         Client client = new Client(socketFactory, clientsideHandler);
         // add specific handlers to the mapped handler:
-        clientsideHandler.set(Update.TYPE, new ExampleResponseHandler(client));
+        clientsideHandler.set(Update.TYPE, new ExampleUpdateHandler(client));
+        // add specific handlers to the mapped handler:
+        clientsideHandler.set(DisconnectNotice.TYPE, new ExampleDisconnectNoticeHandler(client));
         // run the client:
         try {
             client.connect(HOSTNAME, HOSTPORT);

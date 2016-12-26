@@ -91,7 +91,7 @@ public final class Update extends Response implements Serializable {
                 + "-----------------\n"
                 + "isSuccessful: " + this.isSuccessful + "\n"
                 + "-----------------\n"
-                + ((this.profileData == null) ? "null" : this.profileData.toString())
+                + ((this.profileData == null) ? "null" : this.profileData.toString()) + "\n"
                 + "-----------------\n"
                 + "description: " + ((this.getDescription() == null) ? "null" : this.getDescription()) + "\n");
     }

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import networking.messages.DisconnectNotice;
 
 /**
  *
@@ -44,18 +45,16 @@ class ConnectionManager extends Thread {
                 // check if username is connected:
                 Serverside existing = this.verified.get(serverside.username);
                 if (existing != null) {
-                    // disconnect both connections that use the same username:
+                    // disconnect the existing connections that uses the same username:
                     existing.closeSocket();
-                    serverside.closeSocket();
-                    // DO NOT .join() THREADS !!! DEADLOCK !!! USE deregister() INSTEAD !!!
-                    this.server.connectionManager.deregister(existing);
-                    this.server.connectionManager.deregister(serverside);
-                } else {
-                    // add to verified connections list:
-                    this.verified.put(serverside.username, serverside);
-                    // remove from unverified connections list:
-                    this.unverified.remove(serverside.logNumber);
+                    // DO NOT .join() THREAD !!! DEADLOCK !!! USE deregister() INSTEAD !!!
+                    // deregister the existing connections that uses the same username:
+                    this.deregister(existing);
                 }
+                // add to verified connections list:
+                this.verified.put(serverside.username, serverside);
+                // remove from unverified connections list:
+                this.unverified.remove(serverside.logNumber);
             }
         }
     }
@@ -63,7 +62,10 @@ class ConnectionManager extends Thread {
     synchronized void deregister(Serverside serverside) {
         // remove from the verified connections list:
         if (serverside.username != null) {
-            this.verified.remove(serverside.username);
+            // only remove the active mapping if both the logNumber and username fields match:
+            if ((this.verified.get(serverside.username)).logNumber.equals(serverside.logNumber)) {
+                this.verified.remove(serverside.username);
+            }
         }
         // remove from the unverified connections list:
         this.unverified.remove(serverside.logNumber);

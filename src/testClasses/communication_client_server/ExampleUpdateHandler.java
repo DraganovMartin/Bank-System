@@ -6,15 +6,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import networking.connections.Client;
 import networking.messages.Message;
-import networking.messages.Response;
+import networking.messages.Update;
 
 /**
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class ExampleResponseHandler extends networking.messageHandlers.clientside.ResponseHandler {
+public class ExampleUpdateHandler extends networking.messageHandlers.clientside.ResponseHandler {
 
-    public ExampleResponseHandler(Client client) {
+    public ExampleUpdateHandler(Client client) {
         super(client);
     }
 
@@ -22,7 +22,7 @@ public class ExampleResponseHandler extends networking.messageHandlers.clientsid
     public Message handle(Message message) {
         try {
             // typecast the message into the handler-specific type:
-            Response response = (Response) message;
+            Update response = (Update) message;
             {
                 // debugging part:
                 JFrame frame = new JFrame("CLIENT");
