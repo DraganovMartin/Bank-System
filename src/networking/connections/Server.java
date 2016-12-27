@@ -31,14 +31,16 @@ public class Server {
     public synchronized void stop() {
         if (this.connectionManager != null) {
             this.connectionManager.terminate();
-            while (this.connectionManager.isAlive()) {
+            while (this.connectionManager != null && this.connectionManager.isAlive()) {
                 try {
+                    System.out.println("Joining...");
                     this.connectionManager.join();
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            System.out.println("Joined successfully!");
             this.connectionManager = null;
         }
     }

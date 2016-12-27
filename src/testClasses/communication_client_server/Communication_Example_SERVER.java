@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
 import networking.connections.Server;
+import networking.connections.ServerGUI;
 import networking.messageHandlers.MappedMessageHandler;
 import networking.messages.LoginRequest;
 
@@ -25,9 +26,11 @@ public class Communication_Example_SERVER {
         // initialize a mapped message handler:
         MappedMessageHandler serversideHandler = new MappedMessageHandler();
         // create a server object:
-        Server server = new Server(serverSocketFactory, serversideHandler);
+        Server server = new ServerGUI(serverSocketFactory, serversideHandler, "Server");
         // add specific handlers to the mapped handler:
         serversideHandler.set(LoginRequest.TYPE, new ExampleLoginRequestHandler(server));
+
+        /*
         // run the server:
         server.start(HOSTPORT);
 
@@ -47,5 +50,6 @@ public class Communication_Example_SERVER {
         // stop server:
         System.out.println("Stopping server (respectively all clients)...");
         server.stop();
+         */
     }
 }
