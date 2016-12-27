@@ -31,7 +31,7 @@ public class Server {
     public synchronized void stop() {
         if (this.connectionManager != null) {
             this.connectionManager.terminate();
-            while (this.connectionManager.isAlive()) {
+            while (this.connectionManager != null && this.connectionManager.isAlive()) {
                 try {
                     this.connectionManager.join();
                 } catch (InterruptedException ex) {
