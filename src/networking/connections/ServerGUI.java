@@ -23,6 +23,7 @@ public class ServerGUI extends Server {
 
     static final String STARTSERVERBUTTONTEXT = "Start server";
     static final String STOPSERVERBUTTONTEXT = "Stop server";
+    static final String EXITBUTTONTEXT = "Exit";
     static final String PORTLABELTEXT = "Server port:";
 
     JFrame mainFrame;
@@ -32,7 +33,7 @@ public class ServerGUI extends Server {
     JPanel southPanel;
     JPanel eastPanel;
     JPanel westPanel;
-    GridLayout southPanelLayout;
+    GridLayout northPanelLayout;
     JLabel portLabel;
     JTextField portField;
     JButton startServerButton;
@@ -52,13 +53,16 @@ public class ServerGUI extends Server {
         this.eastPanel = new JPanel();
         this.westPanel = new JPanel();
 
-        southPanelLayout = new GridLayout(2, 2);
-        southPanel.setLayout(southPanelLayout);
+        northPanelLayout = new GridLayout(2, 2);
+        northPanel.setLayout(northPanelLayout);
         this.portLabel = new JLabel(ServerGUI.PORTLABELTEXT);
         this.portField = new JTextField();
         this.startServerButton = new JButton(ServerGUI.STARTSERVERBUTTONTEXT);
         this.stopServerButton = new JButton(ServerGUI.STOPSERVERBUTTONTEXT);
+        this.exitButton = new JButton(ServerGUI.EXITBUTTONTEXT);
+        this.startServerButton.setEnabled(true);
         this.stopServerButton.setEnabled(false);
+        this.exitButton.setEnabled(true);
         this.startServerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,10 +75,17 @@ public class ServerGUI extends Server {
                 onStopServerButton();
             }
         });
-        southPanel.add(this.portLabel);
-        southPanel.add(this.portField);
-        southPanel.add(this.startServerButton);
-        southPanel.add(this.stopServerButton);
+        this.exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onExitButton();
+            }
+        });
+        northPanel.add(this.portLabel);
+        northPanel.add(this.portField);
+        northPanel.add(this.startServerButton);
+        northPanel.add(this.stopServerButton);
+        southPanel.add(this.exitButton);
 
         this.mainFrame.add(this.centerPanel, BorderLayout.CENTER);
         this.mainFrame.add(this.northPanel, BorderLayout.NORTH);
@@ -93,6 +104,7 @@ public class ServerGUI extends Server {
             this.startServerButton.setEnabled(false);
             this.portField.setEnabled(false);
             this.stopServerButton.setEnabled(true);
+            this.exitButton.setEnabled(false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this.mainFrame, "Incorect port format!");
         }
@@ -107,6 +119,11 @@ public class ServerGUI extends Server {
             this.startServerButton.setEnabled(true);
             this.portField.setEnabled(true);
             this.stopServerButton.setEnabled(false);
+            this.exitButton.setEnabled(true);
         }
+    }
+
+    synchronized void onExitButton() {
+        this.mainFrame.dispose();
     }
 }

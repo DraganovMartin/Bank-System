@@ -93,6 +93,8 @@ class ConnectionManager extends Thread {
         for (Map.Entry<String, Serverside> entry : this.verified.entrySet()) {
             Serverside connection = entry.getValue();
             connection.closeSocket();
+            // DO NOT .JOIN() THREADS !!! DEADLOCK !!! THREADS TERMINATE IN THEIR finally{} BLOCK !!!
+            /*
             while (connection.isAlive()) {
                 try {
                     connection.join();
@@ -101,21 +103,24 @@ class ConnectionManager extends Thread {
                     Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+             */
         }
         // clear the list of verified connections:
         this.verified.clear();
     }
 
     synchronized void terminate() {
-        if (this.serverSocket != null) {
-            while (!this.serverSocket.isClosed()) {
-                try {
-                    this.serverSocket.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        while (this.serverSocket != null && !this.serverSocket.isClosed()) {
+            try {
+                this.serverSocket.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        stopAllUnverified();
+        stopAllVerified();
+        this.serverSocket = null;
+        this.server.connectionManager = null;
     }
 
     @Override
@@ -138,20 +143,8 @@ class ConnectionManager extends Thread {
         } catch (IOException ex) {
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (this.serverSocket != null) {
-                while (!this.serverSocket.isClosed()) {
-                    try {
-                        this.serverSocket.close();
-                    } catch (IOException ex) {
-                        Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                this.serverSocket = null;
-            }
             // clean up !!!
-            stopAllUnverified();
-            stopAllVerified();
-            this.server.connectionManager = null;
+            this.terminate();
         }
     }
 }
