@@ -132,6 +132,9 @@ class ConnectionManager extends Thread {
      * @see ServerSocketFactory
      * @see ServerSocketFactory#createServerSocket(int)
      *
+     * @throws NullPointerException if server socket factory is missing (not
+     * set)
+     *
      * @throws IOException for networking errors
      *
      * @throws SecurityException if a security manager exists and its
@@ -141,8 +144,10 @@ class ConnectionManager extends Thread {
      * specified range of valid port values, which is between 0 and 65535,
      * inclusive
      */
-    synchronized void initialize() throws IOException, SecurityException, IllegalArgumentException {
-        if (this.serverSocket == null) {
+    synchronized void initialize() throws NullPointerException, IOException, SecurityException, IllegalArgumentException {
+        if (this.server.serverSocketFactory == null) {
+            throw new NullPointerException("Server socket factory missing (not set)!");
+        } else if (this.serverSocket == null) {
             boolean keepRunning = true;
             try {
                 this.serverSocket = server.serverSocketFactory.createServerSocket(this.port);

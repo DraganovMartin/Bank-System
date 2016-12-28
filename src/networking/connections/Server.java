@@ -68,6 +68,9 @@ public class Server {
      * @see ServerSocketFactory
      * @see ServerSocketFactory#createServerSocket(int)
      *
+     * @throws NullPointerException if server socket factory is missing (not
+     * set)
+     *
      * @throws IOException for networking errors
      *
      * @throws SecurityException if a security manager exists and its
@@ -77,13 +80,17 @@ public class Server {
      * specified range of valid port values, which is between 0 and 65535,
      * inclusive
      */
-    public synchronized boolean start(int port) throws IOException, SecurityException, IllegalArgumentException {
+    public synchronized boolean start(int port) throws NullPointerException, IOException, SecurityException, IllegalArgumentException {
         if (!this.isRunning()) {
             boolean keepRunning = true;
             this.connectionManager = new ConnectionManager(this, port);
             try {
                 this.connectionManager.initialize();
                 this.connectionManager.start();
+            } catch (NullPointerException ex) {
+                keepRunning = false;
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                throw ex;
             } catch (Exception ex) {
                 keepRunning = false;
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
