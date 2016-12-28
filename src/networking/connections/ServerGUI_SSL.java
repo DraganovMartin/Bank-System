@@ -3,6 +3,8 @@ package networking.connections;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import javax.net.ssl.SSLContext;
 import javax.swing.JButton;
@@ -79,12 +81,47 @@ public class ServerGUI_SSL extends ServerGUI {
         this.keystoreFileText.setEnabled(false);
         this.truststoreFileText.setEnabled(false);
         this.keystoreChooseButton = new JButton(ServerGUI_SSL.KEYSTORECHOOSEBUTTONTEXT);
+        {
+            // set action listener for keystoreChooseButton:
+            this.keystoreChooseButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    keystoreFile = chooseFile(ServerGUI_SSL.KEYSTORECHOOSEBUTTONTEXT);
+                    if (keystoreFile != null) {
+                        keystoreFileText.setText(keystoreFile.getAbsolutePath());
+                        mainFrame.pack();
+                    }
+                }
+            });
+        }
         this.truststoreChooseButton = new JButton(ServerGUI_SSL.TRUSTSTORECHOOSEBUTTONTEXT);
+        {
+            // set action listener for truststoreChooseButton:
+            this.truststoreChooseButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    truststoreFile = chooseFile(ServerGUI_SSL.TRUSTSTORECHOOSEBUTTONTEXT);
+                    if (truststoreFile != null) {
+                        truststoreFileText.setText(truststoreFile.getAbsolutePath());
+                        mainFrame.pack();
+                    }
+                }
+            });
+        }
         this.keystorePasswordLabel = new JLabel(ServerGUI_SSL.KEYSTOREPASSWORDLABELTEXT);
         this.truststorePasswordLabel = new JLabel(ServerGUI_SSL.TRUSTSTOREPASSWORDLABELTEXT);
         this.keystorePasswordText = new JTextField();
         this.truststorePasswordText = new JTextField();
         this.createSSLContextButton = new JButton(ServerGUI_SSL.CREATESSLCONTEXTBUTTONTEXT);
+        {
+            // set action listener for createSSLContextButton:
+            this.createSSLContextButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    onCreateSSLContextButton();
+                }
+            });
+        }
         // lay out elements using grid bag layout:
         {
             GridBagConstraints c = new GridBagConstraints();
@@ -159,6 +196,7 @@ public class ServerGUI_SSL extends ServerGUI {
     File chooseFile(String title) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle(title);
+        fileChooser.showOpenDialog(this.mainFrame);
         File chosen = fileChooser.getSelectedFile();
         return chosen;
     }
@@ -202,8 +240,13 @@ public class ServerGUI_SSL extends ServerGUI {
             SSLContext sslContext = SSLContextFactory.getSSLContext(this.keystoreFile, keystorePassword, this.truststoreFile, truststorePassword);
             if (sslContext == null) {
                 // NOT CORRECTLY INTIALIZED !!!
+                JOptionPane.showMessageDialog(this.mainFrame, "SSL context creation was not successful!\nTry again!");
             } else {
                 // CORRECTLY INTIALIZED !!!
+                JOptionPane.showMessageDialog(this.mainFrame, "SSL context creation was successful!");
+                this.setServerSocketFactory(serverSocketFactory);
+                this.disableSSLcontrols();
+                this.enableServerControls();
             }
         }
     }
