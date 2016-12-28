@@ -8,6 +8,7 @@ import javax.net.ssl.SSLContext;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import networking.messageHandlers.MessageHandler;
@@ -30,12 +31,16 @@ public class ServerGUI_SSL extends ServerGUI {
     final static String TRUSTSTORENOTCHOSEN = "truststore not chosen!";
     final static String KEYSTORELABELTEXT = "Keystore:";
     final static String TRUSTSTORELABELTEXT = "Truststore:";
+    final static String KEYSTOREPASSWORDLABELTEXT = "Keystore password:";
+    final static String TRUSTSTOREPASSWORDLABELTEXT = "Truststore password:";
     final static String KEYSTORECHOOSEBUTTONTEXT = "Choose keystore...";
     final static String TRUSTSTORECHOOSEBUTTONTEXT = "Choose truststore...";
     final static String CREATESSLCONTEXTBUTTONTEXT = "Create SSL context";
 
     File keystoreFile;
     File truststoreFile;
+    String keystorePassword;
+    String truststorePassword;
 
     JPanel sslPanel;
     GridBagLayout sslPanelLayout;
@@ -43,6 +48,10 @@ public class ServerGUI_SSL extends ServerGUI {
     JLabel truststoreLabel;
     JTextField keystoreFileText;
     JTextField truststoreFileText;
+    JLabel keystorePasswordLabel;
+    JLabel truststorePasswordLabel;
+    JTextField keystorePasswordText;
+    JTextField truststorePasswordText;
     JButton keystoreChooseButton;
     JButton truststoreChooseButton;
     JButton createSSLContextButton;
@@ -51,6 +60,8 @@ public class ServerGUI_SSL extends ServerGUI {
         super(null, messageHandler, title);
         this.keystoreFile = null;
         this.truststoreFile = null;
+        this.keystorePassword = null;
+        this.truststorePassword = null;
 
         // hide the server start/stop controls until a valid SSL context is created:
         this.disableServerControls();
@@ -67,7 +78,11 @@ public class ServerGUI_SSL extends ServerGUI {
         this.truststoreFileText.setEnabled(false);
         this.keystoreChooseButton = new JButton(ServerGUI_SSL.KEYSTORECHOOSEBUTTONTEXT);
         this.truststoreChooseButton = new JButton(ServerGUI_SSL.TRUSTSTORECHOOSEBUTTONTEXT);
-        this.createSSLContextButton = new JButton(CREATESSLCONTEXTBUTTONTEXT);
+        this.keystorePasswordLabel = new JLabel(ServerGUI_SSL.KEYSTOREPASSWORDLABELTEXT);
+        this.truststorePasswordLabel = new JLabel(ServerGUI_SSL.TRUSTSTOREPASSWORDLABELTEXT);
+        this.keystorePasswordText = new JTextField();
+        this.truststorePasswordText = new JTextField();
+        this.createSSLContextButton = new JButton(ServerGUI_SSL.CREATESSLCONTEXTBUTTONTEXT);
         // lay out elements using grid bag layout:
         {
             GridBagConstraints c = new GridBagConstraints();
@@ -107,6 +122,30 @@ public class ServerGUI_SSL extends ServerGUI {
             {
                 c.gridx = 0;
                 c.gridy = 2;
+                c.gridwidth = 1;
+                this.sslPanel.add(this.keystorePasswordLabel, c);
+            }
+            {
+                c.gridx = 1;
+                c.gridy = 2;
+                c.gridwidth = 2;
+                this.sslPanel.add(this.keystorePasswordText, c);
+            }
+            {
+                c.gridx = 0;
+                c.gridy = 3;
+                c.gridwidth = 1;
+                this.sslPanel.add(this.truststorePasswordLabel, c);
+            }
+            {
+                c.gridx = 1;
+                c.gridy = 3;
+                c.gridwidth = 2;
+                this.sslPanel.add(this.truststorePasswordText, c);
+            }
+            {
+                c.gridx = 0;
+                c.gridy = 4;
                 c.gridwidth = 3;
                 this.sslPanel.add(this.createSSLContextButton, c);
             }
@@ -120,5 +159,28 @@ public class ServerGUI_SSL extends ServerGUI {
         fileChooser.setDialogTitle(title);
         File chosen = fileChooser.getSelectedFile();
         return chosen;
+    }
+
+    void onCreateSSLContextButton() {
+        if (this.keystoreFile == null) {
+            JOptionPane.showMessageDialog(this.mainFrame, "Keystore file not selected!");
+        } else if (this.truststoreFile == null) {
+            JOptionPane.showMessageDialog(this.mainFrame, "Truststore file not selected!");
+        } else {
+            this.keystorePassword = this.keystorePasswordText.getText();
+            if (this.keystorePassword == null) {
+                this.keystorePassword = "";
+            }
+            this.truststorePassword = this.truststorePasswordText.getText();
+            if (this.truststorePassword == null) {
+                this.truststorePassword = "";
+            }
+            SSLContext sslContext = SSLContextFactory.getSSLContext(this.keystoreFile, keystorePassword, this.truststoreFile, truststorePassword);
+            if (sslContext == null) {
+                // NOT CORRETLY INTIALIZED !!!
+            } else {
+                // CORRETLY INTIALIZED !!!
+            }
+        }
     }
 }
