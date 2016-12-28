@@ -1,5 +1,6 @@
 package networking.connections;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
@@ -21,10 +22,44 @@ public class Server {
         this.connectionManager = null;
     }
 
-    public synchronized void start(int port) {
+    /**
+     * Starts the server using the specified port number. Propagates exceptions
+     * thrown by {@link ConnectionManager#initialize()}, which in turn
+     * propagates exceptions thrown by
+     * {@link ServerSocketFactory#createServerSocket(int)}.
+     *
+     * @param port the number of the port to be used by the server.
+     *
+     * @see ConnectionManager
+     * @see ConnectionManager#initialize()
+     * @see ServerSocketFactory
+     * @see ServerSocketFactory#createServerSocket(int)
+     *
+     * @throws IOException for networking errors
+     *
+     * @throws SecurityException if a security manager exists and its
+     * checkListen method doesn't allow the operation
+     *
+     * @throws IllegalArgumentException if the port parameter is outside the
+     * specified range of valid port values, which is between 0 and 65535,
+     * inclusive
+     */
+    public synchronized void start(int port) throws IOException, SecurityException, IllegalArgumentException {
         if (this.connectionManager == null) {
+            boolean keepRunning = true;
             this.connectionManager = new ConnectionManager(this, port);
-            this.connectionManager.start();
+            try {
+                this.connectionManager.initialize();
+                this.connectionManager.start();
+            } catch (Exception ex) {
+                keepRunning = false;
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                throw ex;
+            } finally {
+                if (!keepRunning) {
+                    this.connectionManager = null;
+                }
+            }
         }
     }
 

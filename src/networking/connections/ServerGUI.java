@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
@@ -100,11 +101,29 @@ public class ServerGUI extends Server {
     synchronized void onStartServerButton() {
         try {
             int port = Integer.parseInt(this.portField.getText());
-            super.start(port);
-            this.startServerButton.setEnabled(false);
-            this.portField.setEnabled(false);
-            this.stopServerButton.setEnabled(true);
-            this.exitButton.setEnabled(false);
+            boolean keepRunning = true;
+            try {
+                super.start(port);
+            } catch (IOException ex) {
+                keepRunning = false;
+                Logger.getLogger(ServerGUI.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this.mainFrame, "Cannot start server!\nNetworking error!\n\n" + ex.getMessage());
+            } catch (SecurityException ex) {
+                keepRunning = false;
+                Logger.getLogger(ServerGUI.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this.mainFrame, "Cannot start server!\nSecurity exception!\n\n" + ex.getMessage());
+            } catch (IllegalArgumentException ex) {
+                keepRunning = false;
+                Logger.getLogger(ServerGUI.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this.mainFrame, "Cannot start server!\nThe port parameter is outside\nthe specified range of valid port values,\nwhich is between 0 and 65535!\n\n" + ex.getMessage());
+            }
+            if (keepRunning) {
+                this.startServerButton.setEnabled(false);
+                this.portField.setEnabled(false);
+                this.stopServerButton.setEnabled(true);
+                this.exitButton.setEnabled(false);
+                JOptionPane.showMessageDialog(this.mainFrame, "Server started at port: " + port);
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this.mainFrame, "Incorect port format!");
         }

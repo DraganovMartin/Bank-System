@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.net.ServerSocketFactory;
 
 /**
  *
@@ -123,10 +124,59 @@ class ConnectionManager extends Thread {
         this.server.connectionManager = null;
     }
 
+    /**
+     * Initializes the connection manager (creates a server socket using the
+     * provided server socket factory). Propagates exceptions thrown by
+     * {@link ServerSocketFactory#createServerSocket(int)}.
+     *
+     * @see ServerSocketFactory
+     * @see ServerSocketFactory#createServerSocket(int)
+     *
+     * @throws IOException for networking errors
+     *
+     * @throws SecurityException if a security manager exists and its
+     * checkListen method doesn't allow the operation
+     *
+     * @throws IllegalArgumentException if the port parameter is outside the
+     * specified range of valid port values, which is between 0 and 65535,
+     * inclusive
+     */
+    synchronized void initialize() throws IOException, SecurityException, IllegalArgumentException {
+        if (this.serverSocket == null) {
+            boolean keepRunning = true;
+            try {
+                this.serverSocket = server.serverSocketFactory.createServerSocket(this.port);
+            } catch (IOException ex) {
+                // for networking errors:
+                keepRunning = false;
+                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+                throw ex;
+            } catch (SecurityException ex) {
+                // if a security manager exists and its checkListen method doesn't allow the operation:
+                keepRunning = false;
+                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+                throw ex;
+            } catch (IllegalArgumentException ex) {
+                // if the port parameter is outside the specified range of valid
+                // port values, which is between 0 and 65535, inclusive:
+                keepRunning = false;
+                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+                throw ex;
+            } finally {
+                if (!keepRunning) {
+                    this.serverSocket = null;
+                }
+            }
+        }
+    }
+
+    /**
+     * Starts the connection manager operation. The connection manager has to
+     * have been successfully initialized in order to run the thread.
+     */
     @Override
     public void run() {
-        try {
-            this.serverSocket = server.serverSocketFactory.createServerSocket(this.port);
+        if (this.serverSocket != null) {
             boolean keepRunning = true;
             while (keepRunning) {
                 try {
@@ -140,9 +190,6 @@ class ConnectionManager extends Thread {
                     keepRunning = false;
                 }
             }
-        } catch (IOException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
             // clean up !!!
             this.terminate();
         }
