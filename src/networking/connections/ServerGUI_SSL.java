@@ -19,7 +19,9 @@ import networking.security.SSLContextFactory;
  * create and use a {@link SSLContext} for data transmission protection as
  * specified in {@link SSLContextFactory}. The SSL controls are placed in a
  * JPanel ({@link #sslPanel}) which is inserted into {@link #mainFrame} in the
- * {@link BorderLayout#NORTH} position.
+ * {@link BorderLayout#NORTH} position. Provides methods to disable/enable the
+ * controls to setup the SSL context
+ * ({@link #disableSSLcontrols()}, {@link #enableSSLcontrols()}).
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
@@ -161,6 +163,28 @@ public class ServerGUI_SSL extends ServerGUI {
         return chosen;
     }
 
+    /**
+     * Disables the controls to setup the SSL context.
+     */
+    synchronized final void disableSSLcontrols() {
+        this.keystoreChooseButton.setEnabled(false);
+        this.truststoreChooseButton.setEnabled(false);
+        this.keystorePasswordText.setEnabled(false);
+        this.truststorePasswordText.setEnabled(false);
+        this.createSSLContextButton.setEnabled(false);
+    }
+
+    /**
+     * Enables the controls to setup the SSL context.
+     */
+    synchronized final void enableSSLcontrols() {
+        this.keystoreChooseButton.setEnabled(true);
+        this.truststoreChooseButton.setEnabled(true);
+        this.keystorePasswordText.setEnabled(true);
+        this.truststorePasswordText.setEnabled(true);
+        this.createSSLContextButton.setEnabled(true);
+    }
+
     void onCreateSSLContextButton() {
         if (this.keystoreFile == null) {
             JOptionPane.showMessageDialog(this.mainFrame, "Keystore file not selected!");
@@ -177,9 +201,9 @@ public class ServerGUI_SSL extends ServerGUI {
             }
             SSLContext sslContext = SSLContextFactory.getSSLContext(this.keystoreFile, keystorePassword, this.truststoreFile, truststorePassword);
             if (sslContext == null) {
-                // NOT CORRETLY INTIALIZED !!!
+                // NOT CORRECTLY INTIALIZED !!!
             } else {
-                // CORRETLY INTIALIZED !!!
+                // CORRECTLY INTIALIZED !!!
             }
         }
     }
