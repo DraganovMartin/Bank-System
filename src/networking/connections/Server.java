@@ -12,7 +12,7 @@ import networking.messageHandlers.MessageHandler;
  */
 public class Server {
 
-    final ServerSocketFactory serverSocketFactory;
+    ServerSocketFactory serverSocketFactory;
     final MessageHandler messageHandler;
     ConnectionManager connectionManager;
 
@@ -46,6 +46,7 @@ public class Server {
      */
     public synchronized boolean setServerSocketFactory(ServerSocketFactory serverSocketFactory) {
         if (!this.isRunning()) {
+            this.serverSocketFactory = serverSocketFactory;
             return true;
         } else {
             return false;
