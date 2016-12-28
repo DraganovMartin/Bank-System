@@ -23,12 +23,45 @@ public class Server {
     }
 
     /**
+     * Returns whether the server is running.
+     *
+     * @return whether the server is running.
+     */
+    public final synchronized boolean isRunning() {
+        if (this.connectionManager != null) {
+            return this.connectionManager.isAlive();
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Changes the server socket factory that is currently being used by the
+     * server. Only works if the server (the connection manager) is not running
+     * as defined in {@link #isRunning()}.
+     *
+     * @param serverSocketFactory the new server socket factory.
+     *
+     * @return
+     */
+    public synchronized boolean setServerSocketFactory(ServerSocketFactory serverSocketFactory) {
+        if (!this.isRunning()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Starts the server using the specified port number. Propagates exceptions
      * thrown by {@link ConnectionManager#initialize()}, which in turn
      * propagates exceptions thrown by
      * {@link ServerSocketFactory#createServerSocket(int)}.
      *
      * @param port the number of the port to be used by the server.
+     *
+     * @return true if the server has been successfully started, otherwise
+     * false.
      *
      * @see ConnectionManager
      * @see ConnectionManager#initialize()
@@ -44,8 +77,8 @@ public class Server {
      * specified range of valid port values, which is between 0 and 65535,
      * inclusive
      */
-    public synchronized void start(int port) throws IOException, SecurityException, IllegalArgumentException {
-        if (this.connectionManager == null) {
+    public synchronized boolean start(int port) throws IOException, SecurityException, IllegalArgumentException {
+        if (!this.isRunning()) {
             boolean keepRunning = true;
             this.connectionManager = new ConnectionManager(this, port);
             try {
@@ -60,22 +93,23 @@ public class Server {
                     this.connectionManager = null;
                 }
             }
+            return true;
+        } else {
+            return false;
         }
     }
 
     public synchronized void stop() {
         if (this.connectionManager != null) {
             this.connectionManager.terminate();
-            while (this.connectionManager != null && this.connectionManager.isAlive()) {
+            while (this.isRunning()) {
                 try {
-                    System.out.println("Joining...");
                     this.connectionManager.join();
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            System.out.println("Joined successfully!");
             this.connectionManager = null;
         }
     }
