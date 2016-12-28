@@ -3,6 +3,7 @@ package testClasses.communication_client_server;
 import javax.net.ServerSocketFactory;
 import networking.connections.Server;
 import networking.connections.ServerGUI;
+import networking.connections.ServerGUI_SSL;
 import networking.messageHandlers.MappedMessageHandler;
 import networking.messages.LoginRequest;
 
@@ -10,7 +11,7 @@ import networking.messages.LoginRequest;
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
-public class Communication_Example_SERVER {
+public class Communication_Example_SERVER_SSL {
 
     public final static String HOSTNAME = "localhost";
     public final static int HOSTPORT = 15000;
@@ -19,12 +20,10 @@ public class Communication_Example_SERVER {
     public static void main(String[] args) {
         // SERVER PART:
         System.out.println("Starting server...");
-        // retrieve ServerSocketFactory object;
-        ServerSocketFactory serverSocketFactory = ServerSocketFactory.getDefault();
         // initialize a mapped message handler:
         MappedMessageHandler serversideHandler = new MappedMessageHandler();
         // create a server object:
-        Server server = new ServerGUI(serverSocketFactory, serversideHandler, "Server");
+        Server server = new ServerGUI_SSL(serversideHandler, "Server");
         // add specific handlers to the mapped handler:
         serversideHandler.set(LoginRequest.TYPE, new ExampleLoginRequestHandler(server));
 
