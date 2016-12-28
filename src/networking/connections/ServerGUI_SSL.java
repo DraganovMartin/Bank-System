@@ -52,15 +52,8 @@ public class ServerGUI_SSL extends ServerGUI {
         this.keystoreFile = null;
         this.truststoreFile = null;
 
-        // hide the stop/start controls until a valid SSL context is created:
-        {
-            this.controlPanel.remove(this.controlPanelNorth);
-        }
-
-        // show the stop/start controls until a valid SSL context is created:
-        {
-            this.controlPanel.add(this.controlPanelNorth, BorderLayout.NORTH);
-        }
+        // hide the server start/stop controls until a valid SSL context is created:
+        this.disableServerControls();
 
         // create the additional SSL-related controls:
         this.sslPanel = new JPanel();

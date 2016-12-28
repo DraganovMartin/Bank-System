@@ -20,7 +20,9 @@ import networking.messageHandlers.MessageHandler;
  * Shows a graphical user interface to control a server. Uses a main frame
  * ({@link #mainFrame}) with a one-column {@link BorderLayout}. The controls
  * (components) are placed in a panel ({@link #controlPanel}) which is inserted
- * into {@link #mainFrame} in the {@link BorderLayout#SOUTH} position.
+ * into {@link #mainFrame} in the {@link BorderLayout#SOUTH} position. Provides
+ * methods to disable/enable the controls to start/stop the server
+ * ({@link #disableServerControls()}, {@link #enableServerControls()}).
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
@@ -158,5 +160,21 @@ public class ServerGUI extends Server {
 
     synchronized void onExitButton() {
         this.mainFrame.dispose();
+    }
+
+    /**
+     * Disables the controls to start/stop the server.
+     */
+    synchronized final void disableServerControls() {
+        this.startServerButton.setEnabled(false);
+        this.portField.setEnabled(false);
+    }
+
+    /**
+     * Enables the controls to start/stop the server.
+     */
+    synchronized final void enableServerControls() {
+        this.startServerButton.setEnabled(true);
+        this.portField.setEnabled(true);
     }
 }
