@@ -20,7 +20,7 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.SSLContext;
 
 /**
- * This class contains a public static method for creating a {@link SSLContext}
+ * This class contains public static methods for creating a {@link SSLContext}
  * object to be used in establishing a SSL encrypted network connection.
  *
  * @author iliyan-kostov
@@ -135,5 +135,26 @@ public class SSLContextFactory {
         }
 
         return sslcontext;
+    }
+
+    /**
+     * Creates and returns a {@link SSLContext} object to be used in
+     * establishing a SSL encrypted network connection, by using a keystore file
+     * with a specified password. The keystore also contains imported entries
+     * with trusted certificates.
+     *
+     * @param keyStoreFile a keystore file containing public and private key
+     * pairs. Has to be compatible with the default {@link KeyStore} type used
+     * by the JRE (in particular one that is created by the Java Keytool located
+     * in the "%JAVA_HOME%\bin" directory). The keystore also contains imported
+     * entries with trusted certificates.
+     *
+     * @param keyStorePassword the password for the keystore file.
+     *
+     * @return a {@link SSLContext} object to be used in establishing a SSL
+     * encrypted network connection, or NULL if the creation fails.
+     */
+    public static SSLContext getSSLContext(File keyStoreFile, String keyStorePassword) {
+        return SSLContextFactory.getSSLContext(keyStoreFile, keyStorePassword, keyStoreFile, keyStorePassword);
     }
 }
