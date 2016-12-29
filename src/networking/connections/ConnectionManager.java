@@ -21,8 +21,12 @@ import javax.net.ServerSocketFactory;
  * <p>
  * - maintains a list of all verified (authenticated) and unverified connections
  * to the server. A newly created connection is unverified until the client
- * provides a valid pair of username and password.
+ * provides a valid pair of username and password. Two simultaneous connections
+ * to the same username are not allowed. Verified connections are identified by
+ * the username, unverified - by the connection log number.
  *
+ * @see #register(networking.connections.Serverside)
+ * 
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
 class ConnectionManager extends Thread {
