@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import networking.messages.Message;
 import networking.messageHandlers.MessageHandler;
 import networking.messages.ChangePasswordRequest;
 import networking.messages.DisconnectNotice;
@@ -16,13 +17,42 @@ import networking.messages.RegisterRequest;
 import networking.messages.Response;
 
 /**
+ * A client-side version of the {@link Connection}. Sends messages to the server
+ * and handles incoming server messages. Implemented logic: the client side
+ * execution terminates if if receives:
+ * <p>
+ * - a successful response to a {@link LogoutRequest}.
+ * <p>
+ * - a unsuccessful response to a {@link LoginRequest}.
+ * <p>
+ * - a unsuccessful response to a {@link RegisterRequest}.
+ * <p>
+ * - a unsuccessful response to a {@link ChangePasswordRequest}.
+ * <p>
+ * - a {@link DisconnectNotice} (send exclusively by the server).
+ *
+ * @see Message
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
 class Clientside extends Connection {
 
+    /**
+     * The parent (creator) {@link Client} of this {@link Clientside} object.
+     */
     final Client client;
 
+    /**
+     * Constructor.
+     *
+     * @param client the parent (creator) {@link Client} of this
+     * {@link Clientside} object.
+     *
+     * @param socket the client side socket.
+     *
+     * @param messageHandler a {@link MessageHandler} to process the incoming
+     * messages.
+     */
     public Clientside(Client client, Socket socket, MessageHandler messageHandler) {
         super(socket, messageHandler);
         this.client = client;
