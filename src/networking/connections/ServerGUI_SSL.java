@@ -12,6 +12,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import networking.messageHandlers.MessageHandler;
@@ -47,7 +48,7 @@ public class ServerGUI_SSL extends ServerGUI {
     JLabel keystoreLabel;
     JTextField keystoreFileText;
     JLabel keystorePasswordLabel;
-    JTextField keystorePasswordText;
+    JPasswordField keystorePasswordText;
     JButton keystoreChooseButton;
     JButton createSSLContextButton;
 
@@ -82,7 +83,7 @@ public class ServerGUI_SSL extends ServerGUI {
             });
         }
         this.keystorePasswordLabel = new JLabel(ServerGUI_SSL.KEYSTOREPASSWORDLABELTEXT);
-        this.keystorePasswordText = new JTextField();
+        this.keystorePasswordText = new JPasswordField();
         this.createSSLContextButton = new JButton(ServerGUI_SSL.CREATESSLCONTEXTBUTTONTEXT);
         {
             // set action listener for createSSLContextButton:
