@@ -151,17 +151,8 @@ class ConnectionManager extends Thread {
 
     /**
      * Terminates the accepting of new connections to the server by closing the
-     * server socket.
-     * <p>
-     * Does NOT terminate the active connections!
-     * <p>
-     * To terminate the active connections:
-     * <p>
-     * - either close them one by one using the {@link #verified} and
-     * {@link #unverified} lists.
-     * <p>
-     * - or close them by calling {@link #stopAllUnverified()} and
-     * {@link #stopAllVerified()}.
+     * server socket. Terminates the active connections by calling
+     * {@link #stopAllUnverified()} and {@link #stopAllVerified()}.
      */
     synchronized void terminate() {
         while (this.serverSocket != null && !this.serverSocket.isClosed()) {

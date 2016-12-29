@@ -7,15 +7,35 @@ import javax.net.ServerSocketFactory;
 import networking.messageHandlers.MessageHandler;
 
 /**
+ * A class that executes the server-side activities.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
 public class Server {
 
+    /**
+     * A factory for creating server sockets.
+     */
     ServerSocketFactory serverSocketFactory;
+
+    /**
+     * A {@link MessageHandler} to process the incoming messages.
+     */
     final MessageHandler messageHandler;
+
+    /**
+     * The {@link ConnectionManager} for the server.
+     */
     ConnectionManager connectionManager;
 
+    /**
+     * Constructor.
+     *
+     * @param serverSocketFactory a factory for creating server sockets.
+     *
+     * @param messageHandler a {@link MessageHandler} to process the incoming
+     * messages.
+     */
     public Server(ServerSocketFactory serverSocketFactory, MessageHandler messageHandler) {
         this.serverSocketFactory = serverSocketFactory;
         this.messageHandler = messageHandler;
@@ -107,6 +127,9 @@ public class Server {
         }
     }
 
+    /**
+     * Stops the server and terminates the {@link ConnectionManager] and all active connections.
+     */
     public synchronized void stop() {
         if (this.connectionManager != null) {
             this.connectionManager.terminate();
