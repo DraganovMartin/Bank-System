@@ -23,7 +23,7 @@ import javax.net.ssl.SSLContext;
  * This class contains public static methods for creating a {@link SSLContext}
  * object to be used in establishing a SSL encrypted network connection.
  *
- * @author iliyan-kostov
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class SSLContextFactory {
 

@@ -11,7 +11,7 @@ import java.util.TreeMap;
  * Synchronization is not provided by the class and has to be done by specific
  * handlers that require it.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class MappedMessageHandler implements MessageHandler {
 

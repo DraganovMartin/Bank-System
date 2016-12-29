@@ -13,7 +13,7 @@ import networking.messageHandlers.MessageHandler;
  * An abstract class. Uses a pair of input and output streams. Derived classes
  * implement the networking protocol of choice for the system.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 abstract class Connection extends Thread {
 

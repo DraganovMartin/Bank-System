@@ -3,7 +3,7 @@ package networking.messages;
 /**
  * A base class that represents a response message.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public abstract class Response extends Message {
 

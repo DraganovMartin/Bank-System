@@ -31,7 +31,7 @@ import networking.messageHandlers.MessageHandler;
  * The server status is displayed in a JPanel ({@link #statusPanel}) which is
  * inserted into {@link #mainFrame} in the {@link BorderLayout#CENTER} position.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class ServerGUI extends Server {
 

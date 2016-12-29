@@ -27,7 +27,7 @@ import javax.net.ServerSocketFactory;
  *
  * @see #register(networking.connections.Serverside)
  * 
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 class ConnectionManager extends Thread {
 

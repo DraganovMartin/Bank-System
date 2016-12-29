@@ -7,7 +7,7 @@ import java.io.Serializable;
  * an already registered system profile. The user provides the pair of username
  * and password of the existing profile.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public final class LoginRequest extends Request implements Serializable {
 

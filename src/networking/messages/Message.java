@@ -24,7 +24,7 @@ import java.io.Serializable;
  * message enters the system's boundary. The value of the field corresponds to
  * the value of a specific record in the database (SystemProfiles.Username).
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public abstract class Message implements Serializable {
 

@@ -4,7 +4,7 @@ package networking.messages;
  * Sent exclusively by the server connection manager. Not intended to be
  * returned by the database as a result from transaction processing.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class DisconnectNotice extends Response {
 

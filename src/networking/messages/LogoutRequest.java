@@ -6,7 +6,7 @@ import java.io.Serializable;
  * A {@link Request} used by the client to request being logged out of the
  * system.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public final class LogoutRequest extends Request implements Serializable {
 

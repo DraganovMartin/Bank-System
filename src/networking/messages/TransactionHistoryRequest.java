@@ -6,7 +6,7 @@ import java.io.Serializable;
  * A {@link Request} used by the client to request information about the
  * transaction history of the bank accounts owned by the user.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public final class TransactionHistoryRequest extends Request implements Serializable {
 

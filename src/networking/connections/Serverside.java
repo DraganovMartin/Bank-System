@@ -25,7 +25,7 @@ import networking.messages.*;
  * @see Message
  * @see Server
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 class Serverside extends Connection {
 
