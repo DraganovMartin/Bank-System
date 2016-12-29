@@ -11,6 +11,17 @@ import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
 
 /**
+ * A server-side class that manages the connections to clients:
+ * <p>
+ * - creates and manages a {@link ServerSocket} that accepts incoming client
+ * connection requests.
+ * <p>
+ * - starts the processing of the client communication in a new thread
+ * ({@link Serverside}).
+ * <p>
+ * - maintains a list of all verified (authenticated) and unverified connections
+ * to the server. A newly created connection is unverified until the client
+ * provides a valid pair of username and password.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
@@ -23,6 +34,13 @@ class ConnectionManager extends Thread {
     final TreeMap<String, Serverside> verified;
     BigInteger currentLogNumber;
 
+    /**
+     * Constructor.
+     *
+     * @param server the parent {@link Server}.
+     *
+     * @param port the server port to operate on.
+     */
     ConnectionManager(Server server, int port) {
         this.server = server;
         this.port = port;
@@ -32,6 +50,16 @@ class ConnectionManager extends Thread {
         this.currentLogNumber = BigInteger.ONE;
     }
 
+    /**
+     * Adds a connection to the list of active connections.
+     * <p>
+     * If the connection is unverified, adds it to the unverified list.
+     * <p>
+     * If the connection is verified, removes it from the list of unverified and
+     * adds it to the verified list.
+     *
+     * @param serverside the connection to register.
+     */
     synchronized void register(Serverside serverside) {
         if (this.serverSocket != null) {
             // do work
@@ -59,6 +87,11 @@ class ConnectionManager extends Thread {
         }
     }
 
+    /**
+     * Removes a server-side connection from the lists.
+     *
+     * @param serverside the connection to deregister.
+     */
     synchronized void deregister(Serverside serverside) {
         // remove from the verified connections list:
         if (serverside.username != null) {
@@ -71,6 +104,9 @@ class ConnectionManager extends Thread {
         this.unverified.remove(serverside.logNumber);
     }
 
+    /**
+     * Stops all unverified connections to the server.
+     */
     synchronized void stopAllUnverified() {
         // stop all unverified connections:
         for (Map.Entry<BigInteger, Serverside> entry : this.unverified.entrySet()) {
@@ -89,6 +125,9 @@ class ConnectionManager extends Thread {
         this.unverified.clear();
     }
 
+    /**
+     * Stops all unverified connections to the server.
+     */
     synchronized void stopAllVerified() {
         // stop all verified connections:
         for (Map.Entry<String, Serverside> entry : this.verified.entrySet()) {
@@ -110,6 +149,20 @@ class ConnectionManager extends Thread {
         this.verified.clear();
     }
 
+    /**
+     * Terminates the accepting of new connections to the server by closing the
+     * server socket.
+     * <p>
+     * Does NOT terminate the active connections!
+     * <p>
+     * To terminate the active connections:
+     * <p>
+     * - either close them one by one using the {@link #verified} and
+     * {@link #unverified} lists.
+     * <p>
+     * - or close them by calling {@link #stopAllUnverified()} and
+     * {@link #stopAllVerified()}.
+     */
     synchronized void terminate() {
         while (this.serverSocket != null && !this.serverSocket.isClosed()) {
             try {
