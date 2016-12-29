@@ -10,16 +10,41 @@ import networking.messages.Message;
 import networking.messageHandlers.MessageHandler;
 
 /**
+ * An abstract class. Uses a pair of input and output streams. Derived classes
+ * implement the networking protocol of choice for the system.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
 abstract class Connection extends Thread {
 
+    /**
+     * The socket to operate on.
+     */
     final Socket socket;
+
+    /**
+     * A {@link MessageHandler} to process the incoming messages.
+     */
     final MessageHandler messageHandler;
+
+    /**
+     * The input stream for the connection.
+     */
     protected ObjectInputStream istream;
+
+    /**
+     * The output stream for the connection.
+     */
     protected ObjectOutputStream ostream;
 
+    /**
+     * Constructor.
+     *
+     * @param socket the socket to operate on.
+     *
+     * @param messageHandler a {@link MessageHandler} to process the incoming
+     * messages.
+     */
     Connection(Socket socket, MessageHandler messageHandler) {
         this.socket = socket;
         this.messageHandler = messageHandler;
@@ -27,6 +52,13 @@ abstract class Connection extends Thread {
         this.ostream = null;
     }
 
+    /**
+     * Sends a message to the other side.
+     *
+     * @param message the message to send.
+     *
+     * @throws IOException if not successful.
+     */
     final synchronized void send(Message message) throws IOException {
         if (message != null) {
             this.ostream.writeObject(message);
@@ -34,6 +66,9 @@ abstract class Connection extends Thread {
         }
     }
 
+    /**
+     * Closes the socket thus terminating the connection.
+     */
     synchronized void closeSocket() {
         if (this.socket != null) {
             while (!this.socket.isClosed()) {
