@@ -6,10 +6,12 @@ import dataModel.Money;
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class CurrencyConverter_TESTCLASS_conversion {
 
@@ -106,15 +108,15 @@ public class CurrencyConverter_TESTCLASS_conversion {
             // output result:
             Money moneyFrom = Money.createMoney(currencyFrom, amountFrom);
             System.out.println();
-            System.out.println("====== supported rates: ======");
+            System.out.println("====== convert to supported currencies ======");
             TreeMap<Currency, Money> rates = converter.convertToAllSupported(moneyFrom);
             System.out.println("Value of " + moneyFrom + " in all supported currencies:");
             for (Map.Entry<Currency, Money> entry : rates.entrySet()) {
                 System.out.println("\t" + entry.getValue());
             }
-            System.out.println("====== supported rates: ======");
+            System.out.println("====== convert to supported currencies ======");
         }
-        
+
         {
             // CHANGE HERE FOR TESTING:
             Currency currencyFrom = USD;
@@ -123,15 +125,15 @@ public class CurrencyConverter_TESTCLASS_conversion {
             // output result:
             Money moneyFrom = Money.createMoney(currencyFrom, amountFrom);
             System.out.println();
-            System.out.println("====== supported rates: ======");
+            System.out.println("====== convert to supported currencies ======");
             TreeMap<Currency, Money> rates = converter.convertToAllSupported(moneyFrom);
             System.out.println("Value of " + moneyFrom + " in all supported currencies:");
             for (Map.Entry<Currency, Money> entry : rates.entrySet()) {
                 System.out.println("\t" + entry.getValue());
             }
-            System.out.println("====== supported rates: ======");
+            System.out.println("====== convert to supported currencies ======");
         }
-        
+
         {
             // CHANGE HERE FOR TESTING:
             Currency currencyFrom = CHF;
@@ -140,13 +142,81 @@ public class CurrencyConverter_TESTCLASS_conversion {
             // output result:
             Money moneyFrom = Money.createMoney(currencyFrom, amountFrom);
             System.out.println();
-            System.out.println("====== supported rates: ======");
+            System.out.println("====== convert to supported currencies ======");
             TreeMap<Currency, Money> rates = converter.convertToAllSupported(moneyFrom);
             System.out.println("Value of " + moneyFrom + " in all supported currencies:");
             for (Map.Entry<Currency, Money> entry : rates.entrySet()) {
                 System.out.println("\t" + entry.getValue());
             }
-            System.out.println("====== supported rates: ======");
+            System.out.println("====== convert to supported currencies ======");
+        }
+
+        {
+            // exchange rates:
+            // CHANGE HERE FOR TESTING:
+            Currency currencyTo = BGN;
+            String minResult = "1.00";
+
+            // Exchange rates:
+            System.out.println();
+            System.out.println("====== exchange rates to " + currencyTo.getSymbol() + ", minResult = " + minResult + "======");
+            String[][] rates = converter.getSupportedExchangeRates(currencyTo, minResult);
+            for (int i = 0; i < rates.length; i++) {
+                for (int j = 0; j < rates[i].length; j++) {
+                    System.out.print(rates[i][j] + "\t");
+                }
+                System.out.println();
+            }
+            System.out.println("====== exchange rates to " + currencyTo.getSymbol() + ", minResult = " + minResult + "======");
+        }
+
+        {
+            // exchange rates:
+            // CHANGE HERE FOR TESTING:
+            Currency currencyTo = BGN;
+            String minResult = "0.01";
+
+            // Exchange rates:
+            System.out.println();
+            System.out.println("====== exchange rates to " + currencyTo.getSymbol() + ", minResult = " + minResult + "======");
+            String[][] rates = converter.getSupportedExchangeRates(currencyTo, minResult);
+            for (int i = 0; i < rates.length; i++) {
+                for (int j = 0; j < rates[i].length; j++) {
+                    System.out.print(rates[i][j] + "\t");
+                }
+                System.out.println();
+            }
+            System.out.println("====== exchange rates to " + currencyTo.getSymbol() + ", minResult = " + minResult + "======");
+        }
+
+        {
+            // exchange rates as JPanel:
+            // CHANGE HERE FOR TESTING:
+            Currency currencyTo = BGN;
+            String minResult = "0.01";
+
+            // Exchange rates:
+            JFrame frame = new JFrame();
+            JPanel panel = converter.getSupportedExchangeRatesAsJPanel(currencyTo, minResult);
+            frame.add(panel);
+            frame.pack();
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setVisible(true);
+        }
+
+        {
+            // exchange rates as JPanel:
+            // CHANGE HERE FOR TESTING:
+            Currency currencyTo = BGN;
+            String minResult = "1.00";
+
+            // Exchange rates:
+            JFrame frame = new JFrame();
+            JPanel panel = converter.getSupportedExchangeRatesAsJPanel(currencyTo, minResult);
+            frame.add(panel);
+            frame.pack();
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setVisible(true);
         }
     }
 }

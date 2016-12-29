@@ -1,11 +1,13 @@
 package database;
 
-import dataModel.models.BankAccount;
-import dataModel.models.Client;
-import dataModel.models.Transfer;
+import dataModel.CurrencyConverter;
+import dataModel.Money;
+import dataModel.models.*;
 
 import java.sql.*;
 import java.sql.Connection;
+import java.util.concurrent.ExecutionException;
+import java.util.zip.DataFormatException;
 /**
  * Database connection and controller between the database (MYSQL on db4free server) and the project.
  * Before any tests make sure that you added the data base drivers.
@@ -20,14 +22,37 @@ public class DatabaseController {
     public static final String DB_URL = "jdbc:mysql://db4free.net:3306/banksystem";
 
     public static final String user = "banksystem_root";
-    public static final String password = "";
+    public static final String password = "banksystemroot";
 
-    private Connection connDatabase;
+    /**
+     *  регистрация (име, парола)
+     2. логин (име, парола)
+     3. теглене (пари, сметка)
+     4. внасяне (пари, сметка)
+     5. трансфер (пари, сметка1, сметка2)
+     6. проверка наличност (сметка)
+     7. проверка история (сметка)
+     и това е
+     */
+
+
+    protected   PreparedStatement lastId;
+
+
+    protected static Connection connDatabase;
 
     public DatabaseController(){
         try {
-            Class.forName(this.JDBC_DRIVER);
-            this.connDatabase = DriverManager.getConnection(this.DB_URL,this.user,this.password);
+            lastId = connDatabase.prepareStatement("SELECT LAST_INSERT_ID() AS last_id");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void open(){
+        try {
+            Class.forName(JDBC_DRIVER);
+            connDatabase = DriverManager.getConnection(DB_URL,user,password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();// or do log
         } catch (SQLException e) {
@@ -35,38 +60,10 @@ public class DatabaseController {
         }
     }
 
-    public Client getClient(int id) throws SQLException {
-        String firstName;
-        String lastName;
-        Statement stmt = null;
-        ResultSet set = null;
-        try {
-            System.out.println("Creating statment for get a client...");
-            stmt = this.connDatabase.createStatement();
-            String sql = "SELECT * FROM clients WHERE id = "+id;
-            set = stmt.executeQuery(sql);
-            set.first();
-            firstName = set.getString("firstName");
-            lastName = set.getString("lastName");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        finally {
-            set.close();
-            stmt.close();
-            
-        }
-        return new Client(id,firstName,lastName);
-    }
 
-    public Transfer getTrnasfer(){
-        return null;
-    }
-
-    public void close(){
+    public static void close(){
         try{
-            this.connDatabase.close();
+            connDatabase.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

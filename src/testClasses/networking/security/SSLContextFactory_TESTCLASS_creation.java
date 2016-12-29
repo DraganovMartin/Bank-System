@@ -30,7 +30,7 @@ import networking.security.SSLContextFactory;
  * <p>
  * keytool -import -alias client -file client.crt -keystore server.keystore
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class SSLContextFactory_TESTCLASS_creation {
 

@@ -11,42 +11,42 @@ import java.io.Serializable;
  * {@link Message#type} is implemented as {@link String} so that the class is
  * extensible and forward-compatible. It is expected that within the same system
  * all different derived classes use different values for the
- * {@link Message#type} field. The field {@link Message#clientID} can be used
- * for setting or accessing either the sender or the receiver for the message.
- * The client ID for a specific {@link Message} is intended to be set and
- * controlled by the server through authentication procedures once the message
- * enters the system's boundary. The value of the field corresponds to a client
- * primary key in the database (Clients.ClientID).
+ * {@link Message#type} field.
+ * <p>
+ * Each derived final class may use a static public final String named "TYPE" to
+ * provide a reference to the specific value of {@link Message#type} used by
+ * that class.
+ * <p>
+ * The field {@link Message#username} can be used for setting or accessing
+ * either the sender or the receiver for the message. The
+ * {@link Message#username} for a specific {@link Message} is intended to be set
+ * and controlled by the server through authentication procedures once the
+ * message enters the system's boundary. The value of the field corresponds to
+ * the value of a specific record in the database (SystemProfiles.Username).
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public abstract class Message implements Serializable {
 
     /**
-     * The client ID. The field {@link Message#clientID} can be used for setting
-     * or accessing either the sender or the receiver for the message. The
-     * client ID for a specific {@link Message} is intended to be set and
-     * controlled by the server through authentication procedures once the
-     * message enters the system's boundary. The value of the field corresponds
-     * to a client primary key in the database (Clients.ClientID).
+     * The username. CONTROLLED BY THE SERVER.
      */
-    private String clientID;
+    private String username;
 
     /**
-     * The {@link Message} type. This field is used to recognize the specific
-     * derived class in order to be able to successfully typecast the base
-     * serialized {@link Message} reference to its actual intended type.
+     * The {@link Message} type.
      */
     private final String type;
 
     /**
-     * Constructor.
+     * Constructor. The value of {@link Message#username} is set to null and is
+     * CONTROLLED BY THE SERVER.
      *
      * @param type the {@link Message} type.
      */
     public Message(String type) {
         this.type = type;
-        this.clientID = null;
+        this.username = null;
     }
 
     /**
@@ -59,20 +59,23 @@ public abstract class Message implements Serializable {
     }
 
     /**
-     * Returns the client ID.
+     * Returns the username. CONTROLLED BY THE SERVER.
      *
-     * @return the client ID.
+     * @return the username. CONTROLLED BY THE SERVER.
      */
-    public final String getClientID() {
-        return this.clientID;
+    public final String getUsername() {
+        return this.username;
     }
 
     /**
-     * Sets the client ID.
+     * Sets the username.
      *
-     * @param clientID the client ID.
+     * @param username the client ID.
      */
-    public final void setClientID(String clientID) {
-        this.clientID = clientID;
+    public final void setUsername(String username) {
+        this.username = username;
     }
+
+    @Override
+    public abstract String toString();
 }
