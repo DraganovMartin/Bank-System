@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLServerSocketFactory;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -19,6 +20,12 @@ import networking.messageHandlers.MessageHandler;
 import networking.security.SSLContextFactory;
 
 /**
+ * Provides a graphical user interface for a {@link Server} that uses SSL to
+ * protect the data transmission. The client has to provide a valid keystore
+ * file and a valid password for the keystore in order to initialize and use a
+ * {@link SSLContext}. A specific factory class ({@link SSLContextFactory}) is
+ * created to simplify the proper {@link SSLContext} creation.
+ * <p>
  * In addition to the functionality of {@link ServerGUI}, provides controls to
  * create and use a {@link SSLContext} for data transmission protection as
  * specified in {@link SSLContextFactory}. The SSL controls are placed in a
@@ -26,6 +33,8 @@ import networking.security.SSLContextFactory;
  * {@link BorderLayout#NORTH} position. Provides methods to disable/enable the
  * controls to setup the SSL context
  * ({@link #disableSSLcontrols()}, {@link #enableSSLcontrols()}).
+ *
+ * @see SSLContextFactory
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
@@ -52,6 +61,17 @@ public class ServerGUI_SSL extends ServerGUI {
     JButton keystoreChooseButton;
     JButton createSSLContextButton;
 
+    /**
+     * Constructor. The server socket factory ({@link SSLServerSocketFactory})
+     * is created during the runtime, according to client input.
+     *
+     * @see SSLContextFactory
+     *
+     * @param messageHandler a {@link MessageHandler} to process the incoming
+     * messages.
+     *
+     * @param title a title for the server GUI window.
+     */
     public ServerGUI_SSL(MessageHandler messageHandler, String title) {
         super(null, messageHandler, title);
         this.keystoreFile = null;
@@ -138,6 +158,13 @@ public class ServerGUI_SSL extends ServerGUI {
         this.mainFrame.pack();
     }
 
+    /**
+     * File chooser.
+     *
+     * @param title file chooser window title.
+     *
+     * @return the file chosen.
+     */
     File chooseFile(String title) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle(title);
@@ -164,6 +191,9 @@ public class ServerGUI_SSL extends ServerGUI {
         this.createSSLContextButton.setEnabled(true);
     }
 
+    /**
+     * Executed when the {@link #createSSLContextButton} is pressed.
+     */
     void onCreateSSLContextButton() {
         if (this.keystoreFile == null) {
             JOptionPane.showMessageDialog(this.mainFrame, "Keystore file not selected!");

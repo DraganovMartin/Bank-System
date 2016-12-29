@@ -1,6 +1,7 @@
 package networking.messages;
 
 /**
+ * A base class that represents a response message.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
@@ -8,6 +9,13 @@ public abstract class Response extends Message {
 
     private final String description;
 
+    /**
+     * Constructor.
+     *
+     * @param type the type of response.
+     *
+     * @param description optional description.
+     */
     public Response(String type, String description) {
         super(type);
         this.description = description;

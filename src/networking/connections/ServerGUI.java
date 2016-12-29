@@ -61,6 +61,16 @@ public class ServerGUI extends Server {
     JButton stopServerButton;
     JButton exitButton;
 
+    /**
+     * Constructor. Provides a graphical user interface for a {@link Server}.
+     *
+     * @param serverSocketFactory a factory for creating server sockets.
+     *
+     * @param messageHandler a {@link MessageHandler} to process the incoming
+     * messages.
+     *
+     * @param title a title for the server GUI window.
+     */
     public ServerGUI(ServerSocketFactory serverSocketFactory, MessageHandler messageHandler, String title) {
         super(serverSocketFactory, messageHandler);
 
@@ -132,6 +142,9 @@ public class ServerGUI extends Server {
         this.mainFrame.setVisible(true);
     }
 
+    /**
+     * Executed when the {@link #startServerButton} is pressed.
+     */
     synchronized void onStartServerButton() {
         try {
             int port = Integer.parseInt(this.portField.getText());
@@ -168,6 +181,9 @@ public class ServerGUI extends Server {
         }
     }
 
+    /**
+     * Executed when the {@link #stopServerButton} is pressed.
+     */
     synchronized void onStopServerButton() {
         try {
             super.stop();
@@ -182,6 +198,9 @@ public class ServerGUI extends Server {
         }
     }
 
+    /**
+     * Executed when the {@link #exitButton} is pressed.
+     */
     synchronized void onExitButton() {
         this.mainFrame.dispose();
     }

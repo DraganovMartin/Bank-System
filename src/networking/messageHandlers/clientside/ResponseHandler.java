@@ -4,11 +4,17 @@ import networking.connections.Client;
 import networking.messages.Message;
 
 /**
+ * A abse client-side handler for server responses.
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
 public class ResponseHandler extends ClientsideMessageHandler {
 
+    /**
+     * Constructor.
+     *
+     * @param client reference to the client that uses this message handler.
+     */
     public ResponseHandler(Client client) {
         super(client);
     }

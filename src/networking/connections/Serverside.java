@@ -11,15 +11,58 @@ import networking.messageHandlers.MessageHandler;
 import networking.messages.*;
 
 /**
+ * A server-side version of the {@link Connection}. Receives and handles
+ * messages from the client and returns responses when necessary. Implemented
+ * logic: the server side execution terminates if if receives:
+ * <p>
+ * - any non-authenticating request (i.e. not {@link LoginRequest}, not
+ * {@link RegisterRequest}) from a non-authenticated connection.
+ * <p>
+ * - a {@link LogoutRequest}.
+ * <p>
+ * A {@link DisconnectNotice} is sent to the client upon closing the connection.
+ *
+ * @see Message
+ * @see Server
  *
  * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
  */
 class Serverside extends Connection {
 
+    /**
+     * The parent {@link Server}.
+     */
     Server server;
+
+    /**
+     * A log number for the current connection. Each new connection is assigned
+     * a unique log number (by the {@link ConnectionManager}) in ascending
+     * order.
+     */
     BigInteger logNumber;
+
+    /**
+     * The validated client username for the connection. NULL if the connection
+     * is not verified.
+     */
     String username;
 
+    /**
+     * Constructor.
+     *
+     * @param server the parent {@link Server}.
+     *
+     * @param socket the socket that the connection uses to communicate to the
+     * client.
+     *
+     * @param messageHandler a {@link MessageHandler} to process the incoming
+     * messages.
+     *
+     * @param logNumber the log number (assigned by the
+     * {@link ConnectionManager}.
+     *
+     * @see ConnectionManager
+     */
     Serverside(Server server, Socket socket, MessageHandler messageHandler, BigInteger logNumber) {
         super(socket, messageHandler);
         this.server = server;
@@ -27,6 +70,17 @@ class Serverside extends Connection {
         this.username = null;
     }
 
+    /**
+     * Verifies a message - sets the value of its {@link Message#username}
+     * field.
+     *
+     * @param message the message to verify.
+     *
+     * @return a verified message (with {@link Message#username} set to either
+     * NULL if unverified, or to the value of the verified username).
+     *
+     * @see Message
+     */
     synchronized Message verify(Message message) {
         // set the verified username for the connection:
         message.setUsername(this.username);
@@ -49,6 +103,10 @@ class Serverside extends Connection {
         }
     }
 
+    /**
+     * Closes the connection. Sends a {@link DisconnectNotice} to the opposite
+     * side (the client).
+     */
     @Override
     synchronized void closeSocket() {
         try {
