@@ -12,7 +12,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 import networking.messageHandlers.MessageHandler;
 import networking.security.SSLContextFactory;
 
@@ -36,6 +38,7 @@ public class ServerGUI_SSL extends ServerGUI {
     final static String KEYSTOREPASSWORDLABELTEXT = "Keystore password:";
     final static String KEYSTORECHOOSEBUTTONTEXT = "Choose keystore...";
     final static String CREATESSLCONTEXTBUTTONTEXT = "Create SSL context";
+    static final String SSLPANELTITLE = "Server SSL setup";
 
     File keystoreFile;
     String keystorePassword;
@@ -45,7 +48,7 @@ public class ServerGUI_SSL extends ServerGUI {
     JLabel keystoreLabel;
     JTextField keystoreFileText;
     JLabel keystorePasswordLabel;
-    JTextField keystorePasswordText;
+    JPasswordField keystorePasswordText;
     JButton keystoreChooseButton;
     JButton createSSLContextButton;
 
@@ -61,6 +64,7 @@ public class ServerGUI_SSL extends ServerGUI {
         this.sslPanel = new JPanel();
         this.sslPanelLayout = new GridBagLayout();
         this.sslPanel.setLayout(this.sslPanelLayout);
+        this.sslPanel.setBorder(new TitledBorder(ServerGUI_SSL.SSLPANELTITLE));
         this.keystoreLabel = new JLabel(ServerGUI_SSL.KEYSTORELABELTEXT);
         this.keystoreFileText = new JTextField(ServerGUI_SSL.KEYSTORENOTCHOSEN);
         this.keystoreFileText.setEnabled(false);
@@ -79,7 +83,7 @@ public class ServerGUI_SSL extends ServerGUI {
             });
         }
         this.keystorePasswordLabel = new JLabel(ServerGUI_SSL.KEYSTOREPASSWORDLABELTEXT);
-        this.keystorePasswordText = new JTextField();
+        this.keystorePasswordText = new JPasswordField();
         this.createSSLContextButton = new JButton(ServerGUI_SSL.CREATESSLCONTEXTBUTTONTEXT);
         {
             // set action listener for createSSLContextButton:
