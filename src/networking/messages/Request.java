@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * A request {@link Message}.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public abstract class Request extends Message implements Serializable {
 

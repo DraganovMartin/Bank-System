@@ -8,7 +8,7 @@ import java.io.Serializable;
  * of username and password for the new profile by providing first and last
  * name.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public final class RegisterRequest extends Request implements Serializable {
 

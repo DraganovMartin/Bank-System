@@ -12,7 +12,7 @@ import java.io.Serializable;
  * {@link Message#type} field of the response is set to the value of the
  * {@link Request} {@link Message#type} field.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public final class Update extends Response implements Serializable {
 

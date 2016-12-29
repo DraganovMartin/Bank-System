@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Represents a type of currency that has a {@link PrimaryKey} as unique
  * identifier. Final class - no extension intended.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public final class Currency extends PrimaryKey implements Serializable {
 

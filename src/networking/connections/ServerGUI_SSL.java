@@ -36,7 +36,7 @@ import networking.security.SSLContextFactory;
  *
  * @see SSLContextFactory
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class ServerGUI_SSL extends ServerGUI {
 

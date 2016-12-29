@@ -6,7 +6,7 @@ import networking.messageHandlers.MessageHandler;
 /**
  * A base {@link MessageHandler} for the client.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public abstract class ClientsideMessageHandler implements MessageHandler {
 

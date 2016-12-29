@@ -7,7 +7,7 @@ import java.io.Serializable;
  * the profile currently logged in the system. The user provides a pair of the
  * old and the newly requested password.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public final class ChangePasswordRequest extends Request implements Serializable {
 

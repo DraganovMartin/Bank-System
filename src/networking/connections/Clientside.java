@@ -33,7 +33,7 @@ import networking.messages.Response;
  *
  * @see Message
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 class Clientside extends Connection {
 

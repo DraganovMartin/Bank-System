@@ -9,7 +9,7 @@ import networking.messageHandlers.MessageHandler;
 /**
  * A class that executes the server-side activities.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class Server {
 

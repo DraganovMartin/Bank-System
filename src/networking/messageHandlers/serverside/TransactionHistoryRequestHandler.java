@@ -5,7 +5,7 @@ import networking.messages.Message;
 
 /**
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class TransactionHistoryRequestHandler extends ServersideMessageHandler {
 

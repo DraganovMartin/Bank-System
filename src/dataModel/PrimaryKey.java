@@ -7,7 +7,7 @@ import java.io.Serializable;
  * attribute or set of attributes in the case of a text-based storage -
  * {@link String}.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class PrimaryKey implements Serializable, Comparable<PrimaryKey> {
 

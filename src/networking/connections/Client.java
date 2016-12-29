@@ -14,7 +14,7 @@ import networking.messages.Message;
  * A base class for the client (user interface to the system). Uses a
  * {@link MessageHandler} to process the incoming messages.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class Client {
 

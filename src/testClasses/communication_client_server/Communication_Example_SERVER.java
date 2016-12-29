@@ -8,7 +8,7 @@ import networking.messages.LoginRequest;
 
 /**
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class Communication_Example_SERVER {
 
