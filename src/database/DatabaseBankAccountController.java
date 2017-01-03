@@ -182,10 +182,18 @@ public class DatabaseBankAccountController extends DatabaseController {
 
     public void closeBankAccountController(){
         try {
-            lastId.close();
-            getBankAccoutType.close();
-            getAmount.close();
-            addAmount.close();
+            if(this.lastId != null) {
+                this.lastId.close();
+            }
+            if(this.getBankAccoutType != null) {
+                this.getBankAccoutType.close();
+            }
+            if(this.getAmount != null) {
+                this.getAmount.close();
+            }
+            if(this.addAmount != null) {
+                this.addAmount.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

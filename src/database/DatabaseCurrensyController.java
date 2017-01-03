@@ -42,12 +42,12 @@ public class DatabaseCurrensyController extends DatabaseController {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally{
-            if(set != null){
-                try {
+            try {
+                if(set != null) {
                     set.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return converter;

@@ -52,8 +52,12 @@ public class DatabaseSystemProfileController extends DatabaseController {
 
     public void closeSystemProfileController(){
         try {
-            lastId.close();
-            getSystemProfileType.close();
+            if(this.lastId != null) {
+                this.lastId.close();
+            }
+            if(this.getSystemProfileType != null) {
+                this.getSystemProfileType.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

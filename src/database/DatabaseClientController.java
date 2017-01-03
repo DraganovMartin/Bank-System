@@ -77,9 +77,15 @@ public class DatabaseClientController extends DatabaseController {
 
     public void closeClientController(){
         try {
-            lastId.close();
-            this.getClient.close();
-            this.setClient.close();
+            if(this.lastId != null) {
+                this.lastId.close();
+            }
+            if(this.getClient != null) {
+                this.getClient.close();
+            }
+            if(this.setClient != null) {
+                this.setClient.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

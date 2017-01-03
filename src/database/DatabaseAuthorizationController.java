@@ -74,11 +74,21 @@ public class DatabaseAuthorizationController extends DatabaseController {
 
     public void closeAuthorizationController(){
         try {
-            lastId.close();
-            login.close();
-            registration.close();
-            client.close();
-            systemProfile.close();
+            if(this.lastId != null) {
+                this.lastId.close();
+            }
+            if(this.login != null) {
+                this.login.close();
+            }
+            if(this.registration != null) {
+                this.registration.close();
+            }
+            if(this.client != null) {
+                client.close();
+            }
+            if(this.systemProfile != null) {
+                systemProfile.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
