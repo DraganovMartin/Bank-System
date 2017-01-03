@@ -15,7 +15,7 @@ import java.math.RoundingMode;
  * <p>
  * - use a fixed {@link RoundingMode} - {@link RoundingMode#HALF_UP}
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class Money {
 

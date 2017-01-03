@@ -8,3 +8,6 @@ keytool -export -alias client -file client.crt -keystore client.keystore
 
 keytool -import -alias server -file server.crt -keystore client.keystore
 keytool -import -alias client -file client.crt -keystore server.keystore
+
+SERVER PASSWORD USED: "server"
+CLIENT PASSWORD USED: "client"

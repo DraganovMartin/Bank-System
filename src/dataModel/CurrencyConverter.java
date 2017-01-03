@@ -28,7 +28,7 @@ import javax.swing.JPanel;
  * Objects of this class are {@link Serializable} so they can be sent over a
  * network connection on demand.
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class CurrencyConverter implements Serializable {
 
