@@ -32,8 +32,6 @@ public class DatabaseAuthorizationController extends DatabaseController {
         }
     }
 
-
-
     public SystemProfile logIn(String userName, String password) {
         ResultSet resultSet = null;
         try {
@@ -64,8 +62,8 @@ public class DatabaseAuthorizationController extends DatabaseController {
             this.registration.setBytes(2,PasswordConver.convertPssword(password));
             this.registration.setInt(3,type_id);
             this.registration.setInt(4,client_id);
-            this.registration.executeUpdate();
-            if(this.registration.getUpdateCount() == 1){
+            int result = this.registration.executeUpdate();
+            if(result == 1){
                 return true;
             }
         } catch (SQLException e) {
