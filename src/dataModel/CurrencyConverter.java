@@ -745,4 +745,31 @@ public class CurrencyConverter implements Serializable {
         Currency currency = a.getCurrency();
         return this.calcDifference(a, b, currency);
     }
+
+    /**
+     * Compares the value of two {@link Money} objects according to the
+     * converter exchange rates.
+     *
+     * @param a the first argument.
+     *
+     * @param b the second argument.
+     *
+     * @return -1 / 0 / 1:
+     * <p>
+     * -1 if the value of a is less than the value of b
+     * <p>
+     * 0 if the values are equal
+     * <p>
+     * 1 if the value of a is greater than the value of b
+     *
+     * @throws IllegalArgumentException if either currency is not supported.
+     */
+    public int compare(Money a, Money b) throws IllegalArgumentException {
+        Money difference = this.calcDifference(a, b);
+        if (difference != null) {
+            return (difference.getAmount()).compareTo(BigDecimal.ZERO);
+        } else {
+            throw new IllegalArgumentException("Currency not supported!");
+        }
+    }
 }
