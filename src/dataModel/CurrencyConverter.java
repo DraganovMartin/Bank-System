@@ -639,9 +639,10 @@ public class CurrencyConverter implements Serializable {
     }
 
     /**
-     * Returns a {@link Money} object of the requested currency with value equal
-     * to the sum of the values of both arguments, according to converter the
-     * exchange rates. Returns NULL if either currency is not supported.
+     * Returns (a + b) a {@link Money} object of the requested currency with
+     * value equal to the sum of the values of both arguments, according to
+     * converter the exchange rates. Returns NULL if either currency is not
+     * supported.
      *
      * @param a the first argument.
      *
@@ -649,9 +650,10 @@ public class CurrencyConverter implements Serializable {
      *
      * @param currency the requested currency for the result.
      *
-     * @return a {@link Money} object of the requested currency with value equal
-     * to the sum of the values of both arguments, according to converter the
-     * exchange rates. Returns NULL if either currency is not supported.
+     * @return (a + b) a {@link Money} object of the requested currency with
+     * value equal to the sum of the values of both arguments, according to
+     * converter the exchange rates. Returns NULL if either currency is not
+     * supported.
      */
     public Money calcSum(Money a, Money b, Currency currency) {
         Money convertedA = this.convert(a, currency);
@@ -664,8 +666,8 @@ public class CurrencyConverter implements Serializable {
     }
 
     /**
-     * Returns a {@link Money} object with value equal to the sum of the values
-     * of both arguments, according to converter the exchange rates. The
+     * Returns (a + b) a {@link Money} object with value equal to the sum of the
+     * values of both arguments, according to converter the exchange rates. The
      * currency of the result is determined by the currency of the first
      * argument. Returns NULL if either currency is not supported. Calls
      * {@link #calcSum(dataModel.Money, dataModel.Money, dataModel.models.Currency)}
@@ -678,8 +680,8 @@ public class CurrencyConverter implements Serializable {
      *
      * @param b the second argument.
      *
-     * @return a {@link Money} object with value equal to the sum of the values
-     * of both arguments, according to converter the exchange rates. The
+     * @return (a + b) a {@link Money} object with value equal to the sum of the
+     * values of both arguments, according to converter the exchange rates. The
      * currency of the result is determined by the currency of the first
      * argument. Returns NULL if either currency is not supported. Calls
      * {@link #calcSum(dataModel.Money, dataModel.Money, dataModel.models.Currency)}
@@ -688,5 +690,59 @@ public class CurrencyConverter implements Serializable {
     public Money calcSum(Money a, Money b) {
         Currency currency = a.getCurrency();
         return this.calcSum(a, b, currency);
+    }
+
+    /**
+     * Returns (a - b) a {@link Money} object of the requested currency with
+     * value equal to the difference of the values of both arguments, according
+     * to converter the exchange rates. Returns NULL if either currency is not
+     * supported.
+     *
+     * @param a the first argument.
+     *
+     * @param b the second argument.
+     *
+     * @param currency the requested currency for the result.
+     *
+     * @return (a - b) a {@link Money} object of the requested currency with
+     * value equal to the difference of the values of both arguments, according
+     * to converter the exchange rates. Returns NULL if either currency is not
+     * supported.
+     */
+    public Money calcDifference(Money a, Money b, Currency currency) {
+        Money convertedA = this.convert(a, currency);
+        Money convertedB = this.convert(b, currency);
+        if ((convertedA != null) && (convertedB != null)) {
+            return Money.createMoney(currency, (convertedA.getAmount()).subtract(convertedB.getAmount()));
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Returns (a - b) a {@link Money} object with value equal to the difference
+     * of the values of both arguments, according to converter the exchange
+     * rates. The currency of the result is determined by the currency of the
+     * first argument. Returns NULL if either currency is not supported. Calls
+     * {@link #calcDifference(dataModel.Money, dataModel.Money, dataModel.models.Currency)}
+     * internally.
+     *
+     * @see #calcDifference(dataModel.Money, dataModel.Money,
+     * dataModel.models.Currency)
+     *
+     * @param a the first argument. Determines the currency of the result.
+     *
+     * @param b the second argument.
+     *
+     * @return (a - b) a {@link Money} object with value equal to the difference
+     * of the values of both arguments, according to converter the exchange
+     * rates. The currency of the result is determined by the currency of the
+     * first argument. Returns NULL if either currency is not supported. Calls
+     * {@link #calcSum(dataModel.Money, dataModel.Money, dataModel.models.Currency)}
+     * internally.
+     */
+    public Money calcDifference(Money a, Money b) {
+        Currency currency = a.getCurrency();
+        return this.calcDifference(a, b, currency);
     }
 }
