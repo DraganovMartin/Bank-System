@@ -38,7 +38,7 @@ public class Money {
     /**
      * The amount of the money.
      */
-    private final BigDecimal amount;
+    private BigDecimal amount;
 
     /**
      * Constructor.
@@ -48,9 +48,14 @@ public class Money {
      * @param amount the amount of the money. The amount is rounded according to
      * the value of {@link Money#SCALE} and {@link Money#ROUNDINGMODE} fields.
      */
+
+    private CurrencyConverter converter;
+
+
     private Money(Currency currency, BigDecimal amount) {
         this.currency = currency;
         this.amount = amount.divide(BigDecimal.ONE, SCALE, ROUNDINGMODE);
+        this.converter = new CurrencyConverter();
     }
 
     /**
@@ -117,6 +122,28 @@ public class Money {
      */
     public final BigDecimal getAmount() {
         return this.amount;
+    }
+
+    public final BigDecimal add(Money money){
+           this.amount = this.amount.add(money.amount);
+        return this.amount;
+    }
+
+    public final BigDecimal substract(Money money){
+            this.amount = this.amount.subtract(money.amount);
+        return this.amount;
+    }
+
+    public int compareTo(Money money){
+        int result = 0;
+        if(this.currency.equals(this.currency)){
+            result = this.amount.compareTo(money.amount);
+        }
+        else{
+            Money m = this.converter.convert(money,this.currency);
+            result = this.amount.compareTo(m.amount);
+        }
+        return result;
     }
 
     @Override

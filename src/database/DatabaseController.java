@@ -42,11 +42,6 @@ public class DatabaseController {
     protected static Connection connDatabase;
 
     public DatabaseController(){
-        try {
-            lastId = connDatabase.prepareStatement("SELECT LAST_INSERT_ID() AS last_id");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void open(){

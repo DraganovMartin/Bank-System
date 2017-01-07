@@ -1,6 +1,9 @@
 package dataModel.models;
 
+import dataModel.Money;
+
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 /**
  * Created by Nikolay on 12/19/2016.
@@ -8,11 +11,14 @@ import java.io.Serializable;
 public class BankAccountType implements Serializable {
 
     private String id;
-    private double overdraft;
-    private double intresteRate;
-    private double tax;
+    /**
+     * The currency is aways in BGN
+     */
+    private Money overdraft;
+    private Money intresteRate;
+    private Money tax;
 
-    public BankAccountType(String id, double overdraft) {
+    public BankAccountType(String id, Money overdraft) {
         this.id = id;
         this.overdraft = overdraft;
     }
@@ -21,15 +27,15 @@ public class BankAccountType implements Serializable {
         return id;
     }
 
-    public double getOverdraft() {
+    public Money getOverdraft() {
         return overdraft;
     }
 
-    public double getIntresteRate() {
+    public Money getIntresteRate() {
         return intresteRate;
     }
 
-    public double getTax() {
+    public Money getTax() {
         return tax;
     }
 
@@ -37,15 +43,15 @@ public class BankAccountType implements Serializable {
         this.id = id;
     }
 
-    public void setOverdraft(double overdraft) {
+    public void setOverdraft(Money overdraft) {
         this.overdraft = overdraft;
     }
 
-    public void setIntresteRate(double intresteRate) {
+    public void setIntresteRate(Money intresteRate) {
         this.intresteRate = intresteRate;
     }
 
-    public void setTax(double tax) {
+    public void setTax(Money tax) {
         this.tax = tax;
     }
 }
