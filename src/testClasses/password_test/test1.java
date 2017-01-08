@@ -1,6 +1,6 @@
 package testClasses.password_test;
 
-import database.PasswordConver;
+import dataModel.PasswordConver;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

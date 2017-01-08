@@ -7,7 +7,7 @@ import javax.net.SocketFactory;
 import networking.connections.Client;
 import networking.messageHandlers.MappedMessageHandler;
 import networking.messages.DisconnectNotice;
-import networking.messages.LoginRequest;
+import networking.messages.request.LoginRequest;
 import networking.messages.Update;
 
 /**

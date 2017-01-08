@@ -3,7 +3,7 @@ package testClasses.communication_client_server;
 import networking.connections.Server;
 import networking.connections.ServerGUI_SSL;
 import networking.messageHandlers.MappedMessageHandler;
-import networking.messages.LoginRequest;
+import networking.messages.request.LoginRequest;
 
 /**
  *

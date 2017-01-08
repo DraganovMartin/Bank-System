@@ -1,5 +1,7 @@
 package networking.messages;
 
+import networking.messages.response.Response;
+
 /**
  * Sent exclusively by the server connection manager. Not intended to be
  * returned by the database as a result from transaction processing.

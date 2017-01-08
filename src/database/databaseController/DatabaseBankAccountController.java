@@ -1,10 +1,9 @@
-package database;
+package database.databaseController;
 
+import dataModel.CurrencyConverter;
 import dataModel.Money;
-import dataModel.models.BankAccountType;
 import dataModel.models.Currency;
 
-import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +15,7 @@ public class DatabaseBankAccountController extends DatabaseController {
 
     private PreparedStatement getBankAccoutType;
     private PreparedStatement getAmount;
+    private PreparedStatement getAmountByUserName;
     private PreparedStatement addAmount;
 
     public DatabaseBankAccountController(){
@@ -23,13 +23,15 @@ public class DatabaseBankAccountController extends DatabaseController {
         try {
             this.getBankAccoutType = connDatabase.prepareStatement("SELECT * FROM bankAccountType WHERE id = ?");
             this.getAmount = connDatabase.prepareStatement("SELECT amount, currency_id FROM bankAccount WHERE id = ?");
+            this.getAmountByUserName = connDatabase.prepareStatement
+                    ("SELECT amount, currency_id FROM bankAccount, systemProfiles WHERE bankAccount.client_id = systemProfiles.client_id AND systemProfiles.userName = ?");
             this.addAmount = connDatabase.prepareStatement("UPDATE bankAccount SET amount = ? WHERE id = ?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public boolean draw(Money amount, int bankAccountId){
+    public boolean draw(Money amount, int bankAccountId,CurrencyConverter converter){
         try {
             connDatabase.setAutoCommit(false); // transaction starts
             this.getAmount.setInt(1,bankAccountId);
@@ -38,12 +40,12 @@ public class DatabaseBankAccountController extends DatabaseController {
             if(amountSet.first()){
                 String currencyId = amountSet.getString("currency_id");
                 String m = amountSet.getString("amount");
-                currnetAmount = Money.createMoney(new Currency(currencyId,currencyId),m);
+                currnetAmount = Money.createMoney(new Currency(currencyId),m);
                 amountSet.close();
             }
 
-            if(currnetAmount != null && currnetAmount.compareTo(amount) == 1){
-                currnetAmount.substract(amount);
+            if(currnetAmount != null && currnetAmount.compareTo(amount,converter) == 1){
+                currnetAmount.substract(amount,converter);
                 this.addAmount.setBigDecimal(1,currnetAmount.getAmount());
                 this.addAmount.setInt(2,bankAccountId);
                 int result = this.addAmount.executeUpdate();
@@ -65,7 +67,7 @@ public class DatabaseBankAccountController extends DatabaseController {
         return true;
     }
 
-    public boolean depositing(Money amount,int bankAccountId){
+    public boolean depositing(Money amount, int bankAccountId, CurrencyConverter converter){
         try {
             connDatabase.setAutoCommit(false);
 
@@ -75,12 +77,12 @@ public class DatabaseBankAccountController extends DatabaseController {
             if(amountSet.first()){
                 String m = amountSet.getString("amount");
                 String currencyId = amountSet.getString("currency_id");
-                currnetAmount = Money.createMoney(new Currency(currencyId,currencyId),m);
+                currnetAmount = Money.createMoney(new Currency(currencyId),m);
                 amountSet.close();
             } else{
                 return false;
             }
-            currnetAmount.add(amount);
+            currnetAmount.add(amount,converter);
             this.addAmount.setBigDecimal(1,currnetAmount.getAmount());
             this.addAmount.setInt(2,bankAccountId);
             int result = this.addAmount.executeUpdate();
@@ -98,7 +100,7 @@ public class DatabaseBankAccountController extends DatabaseController {
         }
         return true;
     }
-    public boolean transfer(Money amount,int bankAccountId1,int bankAccountId2){
+    public boolean transfer(Money amount,int bankAccountId1,int bankAccountId2,CurrencyConverter converter){
         try {
             connDatabase.setAutoCommit(false);
 
@@ -108,7 +110,7 @@ public class DatabaseBankAccountController extends DatabaseController {
             if(amountSet.first()){
                 String currencyId =  amountSet.getString("currency_id");
                 String m = amountSet.getString("amount");
-                currnetAmount1 = Money.createMoney(new Currency(currencyId,currencyId),m);
+                currnetAmount1 = Money.createMoney(new Currency(currencyId),m);
             } else{
                 return false;
             }
@@ -118,20 +120,20 @@ public class DatabaseBankAccountController extends DatabaseController {
             if(amountSet.first()){
                 String currencyId =  amountSet.getString("currency_id");
                 String m = amountSet.getString("amount");
-                currnetAmount2 = Money.createMoney(new Currency(currencyId,currencyId),m);
+                currnetAmount2 = Money.createMoney(new Currency(currencyId),m);
             } else{
                 return false;
             }
 
-            if(currnetAmount1.compareTo(amount) == 1){
-                currnetAmount1.substract(amount);
+            if(currnetAmount1.compareTo(amount,converter) == 1){
+                currnetAmount1.substract(amount,converter);
                 this.addAmount.setBigDecimal(1,currnetAmount1.getAmount());
                 this.addAmount.setInt(2,bankAccountId1);
                 int result = this.addAmount.executeUpdate();
                 if(result != 1){
                     throw new IllegalArgumentException("There is problem with the bank account id ="+bankAccountId1+".");
                 }
-                currnetAmount2.add(amount);
+                currnetAmount2.add(amount,converter);
                 this.addAmount.setBigDecimal(1,currnetAmount2.getAmount());
                 this.addAmount.setInt(2,bankAccountId2);
                 result = this.addAmount.executeUpdate();
@@ -164,7 +166,7 @@ public class DatabaseBankAccountController extends DatabaseController {
             if(set.first()){
                 String currency = set.getString("currency_id");
                 String money = set.getString("amount");
-                return Money.createMoney(new Currency(currency,currency),money);
+                return Money.createMoney(new Currency(currency),money);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -178,6 +180,36 @@ public class DatabaseBankAccountController extends DatabaseController {
             }
         }
         return null;
+    }
+
+    public Money getAmount(String username,CurrencyConverter converter){
+        ResultSet set = null;
+        Money m = null;
+        try {
+            this.getAmountByUserName.setString(1,username);
+            set = this.getAmountByUserName.executeQuery();
+            if(set.first()){
+                String currency = set.getString("currency_id");
+                String money = set.getString("amount");
+                m = Money.createMoney(new Currency(currency),money);
+            }
+            while(set.next()){
+                String currency = set.getString("currency_id");
+                String money = set.getString("amount");
+                m.add(Money.createMoney(new Currency(currency),money),converter);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(set != null) {
+                    set.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return m;
     }
 
     public void closeBankAccountController(){

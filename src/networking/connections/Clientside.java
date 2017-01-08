@@ -8,13 +8,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import networking.messages.Message;
 import networking.messageHandlers.MessageHandler;
-import networking.messages.ChangePasswordRequest;
+import networking.messages.request.ChangePasswordRequest;
 import networking.messages.DisconnectNotice;
 import networking.messages.Update;
-import networking.messages.LoginRequest;
-import networking.messages.LogoutRequest;
-import networking.messages.RegisterRequest;
-import networking.messages.Response;
+import networking.messages.request.LoginRequest;
+import networking.messages.request.LogoutRequest;
+import networking.messages.request.RegisterRequest;
+import networking.messages.response.Response;
 
 /**
  * A client-side version of the {@link Connection}. Sends messages to the server
