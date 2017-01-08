@@ -1,16 +1,12 @@
 package dataModel.models;
 
-import dataModel.PrimaryKey;
-
 import java.io.Serializable;
 
 /**
- * Represents a type of currency that has a {@link PrimaryKey} as unique
- * identifier. Final class - no extension intended.
  *
  * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
-public final class Currency extends PrimaryKey implements Serializable {
+public final class Currency implements Serializable {
 
     /**
      * The abbreviation of the currency.
@@ -20,13 +16,9 @@ public final class Currency extends PrimaryKey implements Serializable {
     /**
      * Constructor.
      *
-     * @param primaryKey the primary key value assigned to this currency in the
-     * database.
-     *
      * @param symbol the abbreviation of the currency.
      */
-    public Currency(String primaryKey, String symbol) {
-        super(primaryKey);
+    public Currency(String symbol) {
         this.symbol = symbol;
     }
 

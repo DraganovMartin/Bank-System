@@ -49,13 +49,10 @@ public class Money {
      * the value of {@link Money#SCALE} and {@link Money#ROUNDINGMODE} fields.
      */
 
-    private CurrencyConverter converter;
-
 
     private Money(Currency currency, BigDecimal amount) {
         this.currency = currency;
         this.amount = amount.divide(BigDecimal.ONE, SCALE, ROUNDINGMODE);
-        this.converter = new CurrencyConverter();
     }
 
     /**
@@ -124,23 +121,29 @@ public class Money {
         return this.amount;
     }
 
-    public final BigDecimal add(Money money){
-           this.amount = this.amount.add(money.amount);
-        return this.amount;
+    public final Money add(Money money,CurrencyConverter converter){
+        if(this.currency.compareTo(money.currency) == 0){
+            return Money.createMoney(this.currency,this.amount.add(money.amount));
+        }
+        Money temp = converter.convert(money,this.currency);
+        return Money.createMoney(this.currency,this.amount.add(temp.amount));
     }
 
-    public final BigDecimal substract(Money money){
-            this.amount = this.amount.subtract(money.amount);
-        return this.amount;
+    public final Money substract(Money money,CurrencyConverter converter){
+        if(this.currency.compareTo(money.currency) == 0){
+            return Money.createMoney(this.currency,this.amount.subtract(money.amount));
+        }
+        Money temp = converter.convert(money,this.currency);
+        return Money.createMoney(this.currency,this.amount.subtract(temp.amount));
     }
 
-    public int compareTo(Money money){
+    public int compareTo(Money money,CurrencyConverter converter){
         int result = 0;
         if(this.currency.equals(this.currency)){
             result = this.amount.compareTo(money.amount);
         }
         else{
-            Money m = this.converter.convert(money,this.currency);
+            Money m = converter.convert(money,this.currency);
             result = this.amount.compareTo(m.amount);
         }
         return result;
