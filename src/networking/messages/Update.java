@@ -1,6 +1,8 @@
 package networking.messages;
 
 import dataModel.ProfileData;
+import networking.messages.response.Response;
+
 import java.io.Serializable;
 
 /**

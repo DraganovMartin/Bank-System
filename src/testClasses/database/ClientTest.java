@@ -1,12 +1,8 @@
 package testClasses.database;
 
-import dataModel.models.Client;
-import dataModel.models.SystemProfile;
-import dataModel.models.SystemProfileType;
-import database.DatabaseClientController;
-import database.DatabaseController;
+import database.databaseController.DatabaseClientController;
+import database.databaseController.DatabaseController;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 /**

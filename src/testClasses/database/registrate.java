@@ -1,6 +1,6 @@
 package testClasses.database;
 
-import database.DatabaseController;
+import database.databaseController.DatabaseController;
 
 /**
  * Created by Nikolay on 12/21/2016.

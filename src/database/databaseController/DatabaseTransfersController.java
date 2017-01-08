@@ -1,4 +1,4 @@
-package database;
+package database.databaseController;
 
 import dataModel.Money;
 import dataModel.models.Currency;
@@ -45,7 +45,7 @@ public class DatabaseTransfersController extends DatabaseController {
             this.setStm.setBigDecimal(1,amount.getAmount());
             this.setStm.setInt(2,fromBankAccount_id);
             this.setStm.setInt(3,toBankAccount_id);
-            this.setStm.setString(4,amount.getCurrency().getPrimaryKeyValue());
+            this.setStm.setString(4,amount.getCurrency().getSymbol());
             int result = this.setStm.executeUpdate();
             if(result != 1){
                 throw new IllegalArgumentException("There is problem with the database");

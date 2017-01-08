@@ -9,7 +9,7 @@ import javax.net.ssl.SSLContext;
 import networking.connections.Client;
 import networking.messageHandlers.MappedMessageHandler;
 import networking.messages.DisconnectNotice;
-import networking.messages.LoginRequest;
+import networking.messages.request.LoginRequest;
 import networking.messages.Update;
 import networking.security.SSLContextFactory;
 

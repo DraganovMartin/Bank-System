@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import networking.connections.Server;
-import networking.messages.LoginRequest;
+import networking.messages.request.LoginRequest;
 import networking.messages.Message;
 import networking.messages.Update;
 
