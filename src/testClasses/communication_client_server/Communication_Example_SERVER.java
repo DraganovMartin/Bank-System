@@ -4,7 +4,7 @@ import javax.net.ServerSocketFactory;
 import networking.connections.Server;
 import networking.connections.ServerGUI;
 import networking.messageHandlers.MappedMessageHandler;
-import networking.messages.LoginRequest;
+import networking.messages.request.LoginRequest;
 
 /**
  *

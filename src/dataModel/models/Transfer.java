@@ -52,7 +52,7 @@ public class Transfer implements Serializable {
 
     @Override
     public String toString(){
-        return this.amount.getAmount() + " " + this.amount.getCurrency().getPrimaryKeyValue()+" from: "+
+        return this.amount.getAmount() + " " + this.amount.getCurrency().getSymbol()+" from: "+
                 this.fromBankAccount + " to: " + this.toBankAccount + " on: "+this.date.toString();
     }
 }

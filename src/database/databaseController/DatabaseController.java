@@ -1,4 +1,4 @@
-package database;
+package database.databaseController;
 
 import dataModel.CurrencyConverter;
 import dataModel.Money;
@@ -39,7 +39,7 @@ public class DatabaseController {
     protected   PreparedStatement lastId;
 
 
-    protected static Connection connDatabase;
+    protected static Connection connDatabase = null;
 
     public DatabaseController(){
     }
@@ -58,9 +58,15 @@ public class DatabaseController {
 
     public static void close(){
         try{
-            connDatabase.close();
+            if(connDatabase != null) {
+                connDatabase.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isOpen() {
+        return connDatabase != null;
     }
 }

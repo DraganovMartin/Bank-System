@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import networking.connections.Client;
 import networking.messages.DisconnectNotice;
 import networking.messages.Message;
-import networking.messages.Response;
+import networking.messages.response.Response;
 
 /**
  *

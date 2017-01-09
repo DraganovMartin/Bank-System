@@ -9,6 +9,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import networking.messageHandlers.MessageHandler;
 import networking.messages.*;
+import networking.messages.request.ChangePasswordRequest;
+import networking.messages.DisconnectNotice;
+import networking.messages.request.LoginRequest;
+import networking.messages.request.LogoutRequest;
+import networking.messages.request.RegisterRequest;
+import networking.messages.response.Response;
 
 /**
  * A server-side version of the {@link Connection}. Receives and handles

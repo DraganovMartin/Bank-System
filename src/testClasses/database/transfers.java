@@ -3,9 +3,9 @@ package testClasses.database;
 import dataModel.Money;
 import dataModel.models.Currency;
 import dataModel.models.Transfer;
-import database.DatabaseBankAccountController;
-import database.DatabaseController;
-import database.DatabaseTransfersController;
+import database.databaseController.DatabaseBankAccountController;
+import database.databaseController.DatabaseController;
+import database.databaseController.DatabaseTransfersController;
 
 import java.util.List;
 
@@ -21,9 +21,6 @@ public class transfers {
         Money amount2 = dbBankAccount.getAmount(2);
         System.out.println("Bank Account 1 "+amount1.getAmount());
         System.out.println("Bank Account 2 "+amount2.getAmount());
-        Money m = Money.createMoney(new Currency("BGN","BGN"),"10.09");
-        dbBankAccount.transfer(m,2,1);
-        dbTransfers.setTransfer(m,2,1);
         amount1 = dbBankAccount.getAmount(1);
         amount2 = dbBankAccount.getAmount(2);
         System.out.println("Bank Account 1 "+amount1.getAmount());

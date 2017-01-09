@@ -1,11 +1,9 @@
 package dataModel.models;
 
-import dataModel.PrimaryKey;
-
 import java.io.Serializable;
 
 /**
- * Represents a client that has a {@link PrimaryKey} as unique identifier.
+ * Represents a client.
  *
  * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */

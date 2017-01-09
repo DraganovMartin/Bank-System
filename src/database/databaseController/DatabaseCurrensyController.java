@@ -1,4 +1,4 @@
-package database;
+package database.databaseController;
 
 import dataModel.CurrencyConverter;
 import dataModel.models.Currency;
@@ -7,9 +7,6 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Nikolay on 1/2/2017.
@@ -36,7 +33,7 @@ public class DatabaseCurrensyController extends DatabaseController {
             while(set.next()){
                 String id = set.getString("id");
                 BigDecimal value = set.getBigDecimal("value");
-                converter.setCurrencyValue(new Currency(id,id),value);
+                converter.setCurrencyValue(new Currency(id),value);
             }
 
         } catch (SQLException e) {

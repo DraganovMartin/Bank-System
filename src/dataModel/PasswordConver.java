@@ -1,4 +1,4 @@
-package database;
+package dataModel;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
