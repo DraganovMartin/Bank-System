@@ -45,7 +45,7 @@ public class DatabaseBankAccountController extends DatabaseController {
             }
 
             if(currnetAmount != null && currnetAmount.compareTo(amount,converter) == 1){
-                currnetAmount.substract(amount,converter);
+                currnetAmount.subtract(amount,converter);
                 this.addAmount.setBigDecimal(1,currnetAmount.getAmount());
                 this.addAmount.setInt(2,bankAccountId);
                 int result = this.addAmount.executeUpdate();
@@ -126,7 +126,7 @@ public class DatabaseBankAccountController extends DatabaseController {
             }
 
             if(currnetAmount1.compareTo(amount,converter) == 1){
-                currnetAmount1.substract(amount,converter);
+                currnetAmount1.subtract(amount,converter);
                 this.addAmount.setBigDecimal(1,currnetAmount1.getAmount());
                 this.addAmount.setInt(2,bankAccountId1);
                 int result = this.addAmount.executeUpdate();
