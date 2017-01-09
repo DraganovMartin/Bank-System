@@ -3,6 +3,7 @@ package dataModel.models;
 import java.io.Serializable;
 
 /**
+ * Represents a type of currency. Final class - no extension intended.
  *
  * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */

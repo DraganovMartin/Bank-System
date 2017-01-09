@@ -65,7 +65,7 @@ public class DatabaseTransfersController extends DatabaseController {
             while(set.next()){
                 int id = set.getInt("id");
                 String currencyId = set.getString("currency_id");
-                Money money = Money.createMoney(new Currency(currencyId,currencyId),set.getString("amount"));
+                Money money = Money.createMoney(new Currency(currencyId),set.getString("amount"));
                 Date date = set.getDate("date");
                 int from = set.getInt("fromBankAccount_id");
                 int to = set.getInt("toBankAccount_id");

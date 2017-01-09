@@ -4,7 +4,7 @@ import networking.connections.Client;
 import networking.messages.Message;
 
 /**
- * A abse client-side handler for server responses.
+ * A base client-side handler for server responses.
  *
  * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */

@@ -5,7 +5,7 @@ import networking.messages.Message;
 
 /**
  *
- * @author iliyan-kostov <https://github.com/iliyan-kostov/>
+ * @author Nikolay
  */
 public class DepositRequestHandler extends ServersideMessageHandler {
 

@@ -38,7 +38,7 @@ public class Money {
     /**
      * The amount of the money.
      */
-    private BigDecimal amount;
+    private final BigDecimal amount;
 
     /**
      * Constructor.
@@ -48,8 +48,6 @@ public class Money {
      * @param amount the amount of the money. The amount is rounded according to
      * the value of {@link Money#SCALE} and {@link Money#ROUNDINGMODE} fields.
      */
-
-
     private Money(Currency currency, BigDecimal amount) {
         this.currency = currency;
         this.amount = amount.divide(BigDecimal.ONE, SCALE, ROUNDINGMODE);
@@ -121,32 +119,80 @@ public class Money {
         return this.amount;
     }
 
-    public final Money add(Money money,CurrencyConverter converter){
-        if(this.currency.compareTo(money.currency) == 0){
-            return Money.createMoney(this.currency,this.amount.add(money.amount));
-        }
-        Money temp = converter.convert(money,this.currency);
-        return Money.createMoney(this.currency,this.amount.add(temp.amount));
+    /**
+     * Returns a {@link Money} object with value equal to the sum of the values
+     * of "this" and the argument. The {@link Currency} of the result is
+     * determined by the currency of "this". Uses a provided
+     * {@link CurrencyConverter} for the exchange rates.
+     * <p>
+     * Calls {@link CurrencyConverter#calcSum(dataModel.Money, dataModel.Money)}
+     * internally and returns the result.
+     *
+     * @param money the money to add.
+     *
+     * @param converter the converter to use.
+     *
+     * @see CurrencyConverter
+     *
+     * @return {@link Money} object with value equal to the sum of the values of
+     * "this" and the argument, NULL if either currency is not supported by the
+     * converter.
+     */
+    public final Money add(Money money, CurrencyConverter converter) {
+        return converter.calcSum(this, money);
     }
 
-    public final Money substract(Money money,CurrencyConverter converter){
-        if(this.currency.compareTo(money.currency) == 0){
-            return Money.createMoney(this.currency,this.amount.subtract(money.amount));
-        }
-        Money temp = converter.convert(money,this.currency);
-        return Money.createMoney(this.currency,this.amount.subtract(temp.amount));
+    /**
+     * Returns a {@link Money} object with value equal to the difference of the
+     * values of "this" and the argument. The {@link Currency} of the result is
+     * determined by the currency of "this". Uses a provided
+     * {@link CurrencyConverter} for the exchange rates.
+     * <p>
+     * Calls
+     * {@link CurrencyConverter#calcDifference(dataModel.Money, dataModel.Money)}
+     * internally and returns the result.
+     *
+     * @param money the money to subtract.
+     *
+     * @param converter the converter to use.
+     *
+     * @see CurrencyConverter
+     *
+     * @returna {@link Money} object with value equal to the difference of the
+     * values of "this" and the argument, NULL if either currency is not
+     * supported by the converter.
+     */
+    public final Money subtract(Money money, CurrencyConverter converter) {
+        return converter.calcDifference(this, money);
     }
 
-    public int compareTo(Money money,CurrencyConverter converter){
-        int result = 0;
-        if(this.currency.equals(this.currency)){
-            result = this.amount.compareTo(money.amount);
-        }
-        else{
-            Money m = converter.convert(money,this.currency);
-            result = this.amount.compareTo(m.amount);
-        }
-        return result;
+    /**
+     * Returns whether the value of "this" is greater than the value of the
+     * argument, using the specified {@link CurrencyConverter} for the exchange
+     * rates.
+     * <p>
+     * Calls {@link CurrencyConverter#compare(dataModel.Money, dataModel.Money)}
+     * internally and returns the result.
+     *
+     * @param money
+     *
+     * @param converter
+     *
+     * @see CurrencyConverter
+     *
+     * @return -1 / 0 / 1 as specified by
+     * {@link CurrencyConverter#compare(dataModel.Money, dataModel.Money)}:
+     * <p>
+     * -1 if the value of "this" is less than the value of "money"
+     * <p>
+     * 0 if the values are equal
+     * <p>
+     * 1 if the value of "this" is greater than the value of "money"
+     *
+     * @throws IllegalArgumentException if either currency is not supported.
+     */
+    public int compareTo(Money money, CurrencyConverter converter) throws IllegalArgumentException {
+        return converter.compare(this, money);
     }
 
     @Override

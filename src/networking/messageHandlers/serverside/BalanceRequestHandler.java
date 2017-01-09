@@ -11,14 +11,14 @@ import networking.messages.response.BalanceResponse;
 
 /**
  *
- * @author iliyan-kostov <https://github.com/iliyan-kostov/>
+ * @author Nikolay
  */
 public class BalanceRequestHandler extends DatabaseHandler {
 
     private DatabaseBankAccountController bankAccountController;
     private CurrencyConverter converter;
 
-    public BalanceRequestHandler(Server server,CurrencyConverter converter) {
+    public BalanceRequestHandler(Server server, CurrencyConverter converter) {
         super(server);
         this.bankAccountController = new DatabaseBankAccountController();
         this.converter = converter;
@@ -26,10 +26,10 @@ public class BalanceRequestHandler extends DatabaseHandler {
 
     @Override
     public Message handle(Message message) {
-        BalanceRequest balanceRequest = (BalanceRequest)message;
-        if(balanceRequest != null){
-            Money money = this.bankAccountController.getAmount(balanceRequest.getUsername(),converter);
-            return new BalanceResponse(balanceRequest.getUsername(),money);
+        BalanceRequest balanceRequest = (BalanceRequest) message;
+        if (balanceRequest != null) {
+            Money money = this.bankAccountController.getAmount(balanceRequest.getUsername(), converter);
+            return new BalanceResponse(balanceRequest.getUsername(), money);
         }
         return null;
     }

@@ -3,6 +3,7 @@ package dataModel.models;
 import java.io.Serializable;
 
 /**
+ * Represents a client.
  *
  * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */

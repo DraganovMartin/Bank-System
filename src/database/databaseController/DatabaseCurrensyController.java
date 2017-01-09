@@ -33,7 +33,7 @@ public class DatabaseCurrensyController extends DatabaseController {
             while(set.next()){
                 String id = set.getString("id");
                 BigDecimal value = set.getBigDecimal("value");
-                converter.setCurrencyValue(new Currency(id,id),value);
+                converter.setCurrencyValue(new Currency(id),value);
             }
 
         } catch (SQLException e) {
