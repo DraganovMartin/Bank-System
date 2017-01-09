@@ -158,7 +158,7 @@ public class Money {
      *
      * @see CurrencyConverter
      *
-     * @returna {@link Money} object with value equal to the difference of the
+     * @return {@link Money} object with value equal to the difference of the
      * values of "this" and the argument, NULL if either currency is not
      * supported by the converter.
      */
