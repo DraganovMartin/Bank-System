@@ -15,8 +15,8 @@ public class BalanceResponse extends Response {
 
     private Money amount;
 
-    public BalanceResponse(String userName, Money money ) {
-        super(this.TYPE, "Data for "+userName+" about balance!");
+    public BalanceResponse(String userName, Money money) {
+        super(BalanceResponse.TYPE, "Data for " + userName + " about balance!");
         this.userName = userName;
         this.amount = money;
     }
