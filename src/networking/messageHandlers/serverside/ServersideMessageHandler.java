@@ -5,7 +5,7 @@ import networking.messageHandlers.MessageHandler;
 
 /**
  *
- * @author iliyan-kostov <https://github.com/iliyan-kostov/>
+ * @author Nikolay
  */
 public abstract class ServersideMessageHandler implements MessageHandler {
 
