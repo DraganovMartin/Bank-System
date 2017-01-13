@@ -1,5 +1,7 @@
 package dataModel.models;
 
+import dataModel.Money;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,13 +11,13 @@ import java.util.Date;
 public class Transfer implements Serializable {
 
     private int id;
-    private double amount;
+    private Money amount;
     private Date date;
-    private BankAccount fromBankAccount;
-    private BankAccount toBankAccount;
+    private int fromBankAccount;
+    private int toBankAccount;
     private Currency currency;
 
-    public Transfer(int id, double amount, Date date, BankAccount fromBankAccount, BankAccount toBankAccount, Currency currency) {
+    public Transfer(int id, Money amount, Date date, int fromBankAccount, int toBankAccount) {
         this.id = id;
         this.amount = amount;
         this.date = date;
@@ -28,7 +30,7 @@ public class Transfer implements Serializable {
         return id;
     }
 
-    public double getAmount() {
+    public Money getAmount() {
         return amount;
     }
 
@@ -36,15 +38,21 @@ public class Transfer implements Serializable {
         return date;
     }
 
-    public BankAccount getFromBankAccount() {
+    public int getFromBankAccount() {
         return fromBankAccount;
     }
 
-    public BankAccount getToBankAccount() {
+    public int getToBankAccount() {
         return toBankAccount;
     }
 
     public Currency getCurrency() {
         return currency;
+    }
+
+    @Override
+    public String toString(){
+        return this.amount.getAmount() + " " + this.amount.getCurrency().getSymbol()+" from: "+
+                this.fromBankAccount + " to: " + this.toBankAccount + " on: "+this.date.toString();
     }
 }

@@ -11,18 +11,18 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author iliyan-kostov <iliyan.kostov.gml@gmail.com>
+ * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
 public class CurrencyConverter_TESTCLASS_conversion {
 
     public static void main(String[] args) {
 
         // PREDEFINED CONSTANTS:
-        Currency BGN = new Currency("BGN", "BG leva");
-        Currency USD = new Currency("USD", "US dollars");
-        Currency GBP = new Currency("GBP", "UK pounds");
-        Currency EUR = new Currency("EUR", "Euros");
-        Currency CHF = new Currency("CHF", "Swiss frank");
+        Currency BGN = new Currency("BGN");
+        Currency USD = new Currency("USD");
+        Currency GBP = new Currency("GBP");
+        Currency EUR = new Currency("EUR");
+        Currency CHF = new Currency("CHF");
 
         CurrencyConverter converter = new CurrencyConverter();
         // assign the current rates in BGN:
