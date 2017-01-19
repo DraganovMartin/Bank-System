@@ -1,5 +1,6 @@
 package networking.messages.response;
 
+import networking.messages.Response;
 import dataModel.Money;
 
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package networking.messages.response;
+package networking.messages;
 
 import networking.messages.Message;
 
