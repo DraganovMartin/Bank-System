@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -277,6 +279,13 @@ public class ClientGUI implements MessageHandler {
             // EXIT button:
             this.exitButton = new JButton(ClientGUI.EXITBUTTON_TEXT);
             this.buttons.add(this.exitButton);
+            {
+                this.exitButton.addActionListener((ActionEvent e) -> {
+                    disconnect();
+                    JOptionPane.showMessageDialog(mainFrame, "Connection to server closed!");
+                    mainFrame.dispose();
+                });
+            }
         }
 
         this.display_currencyRates_scrollpane = new JScrollPane();
@@ -313,7 +322,7 @@ public class ClientGUI implements MessageHandler {
         }
     }
 
-    public synchronized void discconnect() {
+    public synchronized void disconnect() {
         JOptionPane.showMessageDialog(this.mainFrame, "Trying to disconnect...");
         client.stop();
     }
