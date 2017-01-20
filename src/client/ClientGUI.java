@@ -467,7 +467,12 @@ public class ClientGUI implements MessageHandler {
     }
 
     public synchronized void send(Message message) throws IOException {
-        this.client.send(message);
+        if (this.client.isConnected()) {
+            this.client.send(message);
+            JOptionPane.showMessageDialog(this.mainFrame, "Message sent!");
+        } else {
+            JOptionPane.showMessageDialog(this.mainFrame, "Not connected to server!");
+        }
     }
 
     public synchronized Message handleUpdate(Update update) {
@@ -646,6 +651,6 @@ public class ClientGUI implements MessageHandler {
         clientGUI.handle(update2);
 
         // 4. Simulate receiving a DisconnectNotice from the server:
-        //clientGUI.handle(new DisconnectNotice("The server has closed your connection!"));
+        clientGUI.handle(new DisconnectNotice("The server has closed your connection!"));
     }
 }
