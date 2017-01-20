@@ -33,6 +33,7 @@ import networking.messageHandlers.MessageHandler;
 import networking.messages.DisconnectNotice;
 import networking.messages.Message;
 import networking.messages.Update;
+import networking.messages.request.ChangePasswordRequest;
 import networking.messages.request.LoginRequest;
 import networking.messages.request.LogoutRequest;
 import networking.messages.request.RegisterRequest;
@@ -292,6 +293,18 @@ public class ClientGUI implements MessageHandler {
             this.buttons.add(this.sendButton_LogoutRequest);
             // ChangePasswordRequest
             this.sendButton_ChangePasswordRequest = new JButton(ClientGUI.SENDBUTTON_CHANGEPASSWORDREQUEST_TEXT);
+            this.sendButton_ChangePasswordRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new ChangePasswordRequest(
+                                oldPassword.getText(),
+                                newPassword.getText()));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_ChangePasswordRequest);
             // BalanceRequest
             this.sendButton_BalanceRequest = new JButton(ClientGUI.SENDBUTTON_BALANCEREQUEST_TEXT);
