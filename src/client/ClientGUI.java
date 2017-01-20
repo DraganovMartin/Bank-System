@@ -33,6 +33,7 @@ import networking.messageHandlers.MessageHandler;
 import networking.messages.DisconnectNotice;
 import networking.messages.Message;
 import networking.messages.Update;
+import networking.messages.request.BalanceRequest;
 import networking.messages.request.ChangePasswordRequest;
 import networking.messages.request.LoginRequest;
 import networking.messages.request.LogoutRequest;
@@ -308,6 +309,16 @@ public class ClientGUI implements MessageHandler {
             this.buttons.add(this.sendButton_ChangePasswordRequest);
             // BalanceRequest
             this.sendButton_BalanceRequest = new JButton(ClientGUI.SENDBUTTON_BALANCEREQUEST_TEXT);
+            this.sendButton_BalanceRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new BalanceRequest());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_BalanceRequest);
             // TransactionHistoryRequest
             this.sendButton_TransactionHistoryRequest = new JButton(ClientGUI.SENDBUTTON_TRANSACTIONHISTORYREQUEST_TEXT);
