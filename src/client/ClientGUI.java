@@ -6,6 +6,7 @@ import dataModel.ProfileData.Balance;
 import dataModel.ProfileData.TransferHistory;
 import dataModel.models.Currency;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -15,10 +16,12 @@ import javax.net.ssl.SSLContext;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import networking.connections.Client;
 import networking.messageHandlers.MappedMessageHandler;
 import networking.messageHandlers.MessageHandler;
@@ -51,7 +54,55 @@ public class ClientGUI implements MessageHandler {
     JScrollPane display_currencyRates_scrollpane;
     JScrollPane display_balance_scrollpane;
     JScrollPane display_transferHistory_scrollpane;
-    JScrollPane display_other;
+    JPanel controls;
+    JScrollPane display_controls;
+
+    // RegisterRequest:
+    JTextField registerUsername;
+    JTextField registerPassword;
+    JTextField firstName;
+    JTextField lastName;
+    JLabel registerUsername_label;
+    JLabel registerPassword_label;
+    JLabel firstName_label;
+    JLabel lastName_label;
+    public static final String REGISTERUSERNAME_LABEL_TEXT = "registerUsername";
+    public static final String REGISTERPASSWORD_LABEL_TEXT = "registerPassword";
+    public static final String FIRSTNAME_LABEL_TEXT = "firstName";
+    public static final String LASTNAME_LABEL_TEXT = "lastName";
+    // LoginRequest:
+    JTextField loginUsername;
+    JTextField loginPassword;
+    JLabel loginUsername_label;
+    JLabel loginPassword_label;
+    public static final String LOGINUSERNAME_LABEL_TEXT = "loginUsername";
+    public static final String LOGINPASSWORD_LABEL_TEXT = "loginPassword";
+    // ChangePasswordRequest:
+    JTextField oldPassword;
+    JTextField newPassword;
+    JLabel oldPassword_label;
+    JLabel newPassword_label;
+    public static final String OLDPASSWORD_LABEL_TEXT = "oldPassword";
+    public static final String NEWPASSWORD_LABEL_TEXT = "newPassword";
+    // Money operations:
+    JTextField moneyCurrency;
+    JTextField moneyAmount;
+    JLabel moneyCurrency_label;
+    JLabel moneyAmount_label;
+    public static final String MONEYCURRENCY_LABEL_TEXT = "moneyCurrency";
+    public static final String MONEYAMOUNT_LABEL_TEXT = "moneyAmount";
+    // CreateBankAccountRequest:
+    JTextField bankAccountType;
+    JLabel bankAccountType_label;
+    public static final String BANKACCOUNTTYPE_LABEL_TEXT = "bankAccountType";
+    // DepositRequest, TransferRequest:
+    JTextField toBankAccount;
+    JLabel toBankAccount_label;
+    public static final String TOBANKACCOUNT_LABEL_TEXT = "toBankAccount";
+    // WithdrawRequest, TransferRequest:
+    JTextField fromBankAccount;
+    JLabel fromBankAccount_label;
+    public static final String FROMBANKACCOUNT_LABEL_TEXT = "fromBankAccount";
 
     public ClientGUI() {
         JOptionPane.showMessageDialog(this.mainFrame, "Initializing SSL Encription engine and networking, please wait...");
@@ -70,19 +121,91 @@ public class ClientGUI implements MessageHandler {
         this.mainPanel = new JPanel();
         this.mainPanel.setLayout(new BoxLayout(this.mainPanel, BoxLayout.Y_AXIS));
 
+        this.controls = new JPanel(new GridLayout(0, 2));
+        {
+            // RegisterRequest:
+            this.registerUsername = new JTextField();
+            this.registerPassword = new JTextField();
+            this.firstName = new JTextField();
+            this.lastName = new JTextField();
+            this.registerUsername_label = new JLabel(ClientGUI.REGISTERUSERNAME_LABEL_TEXT);
+            this.registerPassword_label = new JLabel(ClientGUI.REGISTERPASSWORD_LABEL_TEXT);
+            this.firstName_label = new JLabel(ClientGUI.FIRSTNAME_LABEL_TEXT);
+            this.lastName_label = new JLabel(ClientGUI.LASTNAME_LABEL_TEXT);
+            // LoginRequest:
+            this.loginUsername = new JTextField();
+            this.loginPassword = new JTextField();
+            this.loginUsername_label = new JLabel(ClientGUI.LOGINUSERNAME_LABEL_TEXT);
+            this.loginPassword_label = new JLabel(ClientGUI.LOGINPASSWORD_LABEL_TEXT);
+            // ChangePasswordRequest:
+            this.oldPassword = new JTextField();
+            this.newPassword = new JTextField();
+            this.oldPassword_label = new JLabel(ClientGUI.OLDPASSWORD_LABEL_TEXT);
+            this.newPassword_label = new JLabel(ClientGUI.NEWPASSWORD_LABEL_TEXT);
+            // Money operations:
+            this.moneyCurrency = new JTextField();
+            this.moneyAmount = new JTextField();
+            this.moneyCurrency_label = new JLabel(ClientGUI.MONEYCURRENCY_LABEL_TEXT);
+            this.moneyAmount_label = new JLabel(ClientGUI.MONEYAMOUNT_LABEL_TEXT);
+            // CreateBankAccountRequest:
+            this.bankAccountType = new JTextField();
+            this.bankAccountType_label = new JLabel(ClientGUI.BANKACCOUNTTYPE_LABEL_TEXT);
+            // DepositRequest, TransferRequest:
+            this.toBankAccount = new JTextField();
+            this.toBankAccount_label = new JLabel(ClientGUI.TOBANKACCOUNT_LABEL_TEXT);
+            // WithdrawRequest, TransferRequest:
+            this.fromBankAccount = new JTextField();
+            this.fromBankAccount_label = new JLabel(ClientGUI.FROMBANKACCOUNT_LABEL_TEXT);
+        }
+        {
+            // RegisterRequest:
+            this.controls.add(this.registerUsername_label);
+            this.controls.add(this.registerUsername);
+            this.controls.add(this.registerPassword_label);
+            this.controls.add(this.registerPassword);
+            this.controls.add(this.firstName_label);
+            this.controls.add(this.firstName);
+            this.controls.add(this.lastName_label);
+            this.controls.add(this.lastName);
+            // LoginRequest:
+            this.controls.add(this.loginUsername_label);
+            this.controls.add(this.loginUsername);
+            this.controls.add(this.loginPassword_label);
+            this.controls.add(this.loginPassword);
+            // ChangePasswordRequest:
+            this.controls.add(this.oldPassword_label);
+            this.controls.add(this.oldPassword);
+            this.controls.add(this.newPassword_label);
+            this.controls.add(this.newPassword);
+            // Money operations:
+            this.controls.add(this.moneyCurrency_label);
+            this.controls.add(this.moneyCurrency);
+            this.controls.add(this.moneyAmount_label);
+            this.controls.add(this.moneyAmount);
+            // CreateBankAccountRequest:
+            this.controls.add(this.bankAccountType_label);
+            this.controls.add(this.bankAccountType);
+            // DepositRequest, TransferRequest:
+            this.controls.add(this.toBankAccount_label);
+            this.controls.add(this.toBankAccount);
+            // WithdrawRequest, TransferRequest:
+            this.controls.add(this.fromBankAccount_label);
+            this.controls.add(this.fromBankAccount);
+        }
+
         this.display_currencyRates_scrollpane = new JScrollPane();
         this.display_balance_scrollpane = new JScrollPane();
         this.display_transferHistory_scrollpane = new JScrollPane();
-        this.display_other = new JScrollPane();
+        this.display_controls = new JScrollPane(this.controls);
         this.display_currencyRates_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.display_balance_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.display_transferHistory_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        this.display_other.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.display_controls.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
         this.mainPanel.add(this.display_currencyRates_scrollpane);
         this.mainPanel.add(this.display_balance_scrollpane);
         this.mainPanel.add(this.display_transferHistory_scrollpane);
-        this.mainPanel.add(this.display_other);
+        this.mainPanel.add(this.display_controls);
 
         this.mainPanel_scrollpane = new JScrollPane(this.mainPanel);
         this.mainFrame.add(this.mainPanel_scrollpane);
