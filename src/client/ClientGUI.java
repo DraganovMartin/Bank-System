@@ -38,6 +38,7 @@ import networking.messages.request.ChangePasswordRequest;
 import networking.messages.request.LoginRequest;
 import networking.messages.request.LogoutRequest;
 import networking.messages.request.RegisterRequest;
+import networking.messages.request.TransactionHistoryRequest;
 import networking.security.SSLContextFactory;
 import testClasses.communication_client_server.Communication_Example_CLIENT_SSL;
 
@@ -322,6 +323,16 @@ public class ClientGUI implements MessageHandler {
             this.buttons.add(this.sendButton_BalanceRequest);
             // TransactionHistoryRequest
             this.sendButton_TransactionHistoryRequest = new JButton(ClientGUI.SENDBUTTON_TRANSACTIONHISTORYREQUEST_TEXT);
+            this.sendButton_TransactionHistoryRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new TransactionHistoryRequest());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_TransactionHistoryRequest);
             // CurrencyRatesRequest
             this.sendButton_CurrencyRatesRequest = new JButton(ClientGUI.SENDBUTTON_CURRENCYRATESREQUEST_TEXT);
