@@ -15,6 +15,7 @@ import javax.net.SocketFactory;
 import javax.net.ssl.SSLContext;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -104,6 +105,41 @@ public class ClientGUI implements MessageHandler {
     JLabel fromBankAccount_label;
     public static final String FROMBANKACCOUNT_LABEL_TEXT = "fromBankAccount";
 
+    // Send buttons:
+    // RegisterRequest
+    JButton sendButton_RegisterRequest;
+    public static final String SENDBUTTON_REGISTERREQUEST_TEXT = "Send RegisterRequest...";
+    // LoginRequest
+    JButton sendButton_LoginRequest;
+    public static final String SENDBUTTON_LOGINREQUEST_TEXT = "Send LoginRequest...";
+    // LogoutRequest
+    JButton sendButton_LogoutRequest;
+    public static final String SENDBUTTON_LOGOUTREQUEST_TEXT = "Send LogoutRequest...";
+    // ChangePasswordRequest
+    JButton sendButton_ChangePasswordRequest;
+    public static final String SENDBUTTON_CHANGEPASSWORDREQUEST_TEXT = "Send ChangePasswordRequest...";
+    // BalanceRequest
+    JButton sendButton_BalanceRequest;
+    public static final String SENDBUTTON_BALANCEREQUEST_TEXT = "Send BalanceRequest...";
+    // TransactionHistoryRequest
+    JButton sendButton_TransactionHistoryRequest;
+    public static final String SENDBUTTON_TRANSACTIONHISTORYREQUEST_TEXT = "Send TransactionHistoryRequest...";
+    // CurrencyRatesRequest
+    JButton sendButton_CurrencyRatesRequest;
+    public static final String SENDBUTTON_CURRENCYRATESREQUEST_TEXT = "Send CurrencyRatesRequest...";
+    // CreateBankAccountRequest
+    JButton sendButton_CreateBankAccountRequest;
+    public static final String SENDBUTTON_CREATEBANKACCOUNTREQUEST_TEXT = "Send CreateBankAccountRequest...";
+    // DepositRequest
+    JButton sendButton_DepositRequest;
+    public static final String SENDBUTTON_DEPOSITREQUEST_TEXT = "Send DepositRequest...";
+    // WithdrawRequest
+    JButton sendButton_WithdrawRequest;
+    public static final String SENDBUTTON_WITHDRAWREQUEST_TEXT = "Send WithdrawRequest...";
+    // TransferRequest
+    JButton sendButton_TransferRequest;
+    public static final String SENDBUTTON_TRANSFERREQUEST_TEXT = "Send TransferRequest...";
+
     public ClientGUI() {
         JOptionPane.showMessageDialog(this.mainFrame, "Initializing SSL Encription engine and networking, please wait...");
         this.sslContext = SSLContextFactory.getSSLContext(new File(ClientGUI.CLIENT_KEYSTORE_LOCATION), ClientGUI.CLIENT_KEYSTORE_PASSWORD);
@@ -191,6 +227,31 @@ public class ClientGUI implements MessageHandler {
             // WithdrawRequest, TransferRequest:
             this.controls.add(this.fromBankAccount_label);
             this.controls.add(this.fromBankAccount);
+        }
+        {
+            // Send buttons:
+            // RegisterRequest
+            this.sendButton_RegisterRequest = new JButton(ClientGUI.SENDBUTTON_REGISTERREQUEST_TEXT);
+            // LoginRequest
+            this.sendButton_LoginRequest = new JButton(ClientGUI.SENDBUTTON_LOGINREQUEST_TEXT);
+            // LogoutRequest
+            this.sendButton_LogoutRequest = new JButton(ClientGUI.SENDBUTTON_LOGOUTREQUEST_TEXT);
+            // ChangePasswordRequest
+            this.sendButton_ChangePasswordRequest = new JButton(ClientGUI.SENDBUTTON_CHANGEPASSWORDREQUEST_TEXT);
+            // BalanceRequest
+            this.sendButton_BalanceRequest = new JButton(ClientGUI.SENDBUTTON_BALANCEREQUEST_TEXT);
+            // TransactionHistoryRequest
+            this.sendButton_TransactionHistoryRequest = new JButton(ClientGUI.SENDBUTTON_TRANSACTIONHISTORYREQUEST_TEXT);
+            // CurrencyRatesRequest
+            this.sendButton_CurrencyRatesRequest = new JButton(ClientGUI.SENDBUTTON_CURRENCYRATESREQUEST_TEXT);
+            // CreateBankAccountRequest
+            this.sendButton_CreateBankAccountRequest = new JButton(ClientGUI.SENDBUTTON_CREATEBANKACCOUNTREQUEST_TEXT);
+            // DepositRequest
+            this.sendButton_DepositRequest = new JButton(ClientGUI.SENDBUTTON_DEPOSITREQUEST_TEXT);
+            // WithdrawRequest
+            this.sendButton_WithdrawRequest = new JButton(ClientGUI.SENDBUTTON_WITHDRAWREQUEST_TEXT);
+            // TransferRequest
+            this.sendButton_TransferRequest = new JButton(ClientGUI.SENDBUTTON_TRANSFERREQUEST_TEXT);
         }
 
         this.display_currencyRates_scrollpane = new JScrollPane();
