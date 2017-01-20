@@ -6,6 +6,7 @@ import dataModel.ProfileData.Balance;
 import dataModel.ProfileData.TransferHistory;
 import dataModel.models.Currency;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
@@ -56,7 +57,7 @@ public class ClientGUI implements MessageHandler {
     JScrollPane display_balance_scrollpane;
     JScrollPane display_transferHistory_scrollpane;
     JPanel controls;
-    JScrollPane display_controls;
+    JScrollPane controls_scrollpane;
 
     // RegisterRequest:
     JTextField registerUsername;
@@ -257,16 +258,16 @@ public class ClientGUI implements MessageHandler {
         this.display_currencyRates_scrollpane = new JScrollPane();
         this.display_balance_scrollpane = new JScrollPane();
         this.display_transferHistory_scrollpane = new JScrollPane();
-        this.display_controls = new JScrollPane(this.controls);
+        this.controls_scrollpane = new JScrollPane(this.controls);
         this.display_currencyRates_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.display_balance_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.display_transferHistory_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        this.display_controls.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.controls_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
         this.mainPanel.add(this.display_currencyRates_scrollpane);
         this.mainPanel.add(this.display_balance_scrollpane);
         this.mainPanel.add(this.display_transferHistory_scrollpane);
-        this.mainPanel.add(this.display_controls);
+        this.mainPanel.add(this.controls_scrollpane);
 
         this.mainPanel_scrollpane = new JScrollPane(this.mainPanel);
         this.mainFrame.add(this.mainPanel_scrollpane);
@@ -300,16 +301,30 @@ public class ClientGUI implements MessageHandler {
             }
             JTable currencyRates = update.getProflieData().getCurrencyConverter().getSupportedExchangeRatesAsJTable(this.defaultCurrency, "0.01");
             this.display_currencyRates_scrollpane.setViewportView(currencyRates);
-            this.display_currencyRates_scrollpane.setPreferredSize(currencyRates.getPreferredSize());
+            {
+                Dimension p = currencyRates.getPreferredSize();
+                this.display_currencyRates_scrollpane.setPreferredSize(new Dimension((int) p.getWidth(), (int) p.getHeight() + 25));
+            }
+            this.display_currencyRates_scrollpane.revalidate();
 
             JTable balance = update.getProflieData().getBalanceTable();
             this.display_balance_scrollpane.setViewportView(balance);
-            this.display_balance_scrollpane.setPreferredSize(balance.getPreferredSize());
+            {
+                Dimension p = balance.getPreferredSize();
+                this.display_balance_scrollpane.setPreferredSize(new Dimension((int) p.getWidth(), (int) p.getHeight() + 25));
+            }
+            this.display_balance_scrollpane.revalidate();
 
             JTable transferHistory = update.getProflieData().getTransferHistoryTable();
             this.display_transferHistory_scrollpane.setViewportView(transferHistory);
-            this.display_transferHistory_scrollpane.setPreferredSize(transferHistory.getPreferredSize());
+            {
+                Dimension p = transferHistory.getPreferredSize();
+                this.display_transferHistory_scrollpane.setPreferredSize(new Dimension((int) p.getWidth(), (int) p.getHeight() + 25));
+            }
+            this.display_transferHistory_scrollpane.revalidate();
 
+            this.mainPanel.revalidate();
+            this.mainPanel_scrollpane.revalidate();
             this.mainFrame.revalidate();
             this.mainFrame.pack();
         }
@@ -321,6 +336,19 @@ public class ClientGUI implements MessageHandler {
         this.display_currencyRates_scrollpane.setViewportView(null);
         this.display_balance_scrollpane.setViewportView(null);
         this.display_transferHistory_scrollpane.setViewportView(null);
+
+        this.display_currencyRates_scrollpane.setPreferredSize(new Dimension(0, 0));
+        this.display_balance_scrollpane.setPreferredSize(new Dimension(0, 0));
+        this.display_transferHistory_scrollpane.setPreferredSize(new Dimension(0, 0));
+
+        this.display_currencyRates_scrollpane.revalidate();
+        this.display_balance_scrollpane.revalidate();
+        this.display_transferHistory_scrollpane.revalidate();
+
+        this.mainPanel.revalidate();
+        this.mainPanel_scrollpane.revalidate();
+        this.mainFrame.revalidate();
+        this.mainFrame.pack();
         return null;
     }
 
