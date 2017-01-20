@@ -1,6 +1,7 @@
 package client;
 
 import dataModel.CurrencyConverter;
+import dataModel.Money;
 import dataModel.ProfileData;
 import dataModel.ProfileData.Balance;
 import dataModel.ProfileData.TransferHistory;
@@ -33,6 +34,17 @@ import networking.messageHandlers.MessageHandler;
 import networking.messages.DisconnectNotice;
 import networking.messages.Message;
 import networking.messages.Update;
+import networking.messages.request.BalanceRequest;
+import networking.messages.request.ChangePasswordRequest;
+import networking.messages.request.CreateBankAccountRequest;
+import networking.messages.request.CurrencyRatesRequest;
+import networking.messages.request.DepositRequest;
+import networking.messages.request.LoginRequest;
+import networking.messages.request.LogoutRequest;
+import networking.messages.request.RegisterRequest;
+import networking.messages.request.TransactionHistoryRequest;
+import networking.messages.request.TransferRequest;
+import networking.messages.request.WithdrawRequest;
 import networking.security.SSLContextFactory;
 import testClasses.communication_client_server.Communication_Example_CLIENT_SSL;
 
@@ -244,36 +256,163 @@ public class ClientGUI implements MessageHandler {
             // Send buttons:
             // RegisterRequest
             this.sendButton_RegisterRequest = new JButton(ClientGUI.SENDBUTTON_REGISTERREQUEST_TEXT);
+            this.sendButton_RegisterRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new RegisterRequest(
+                                registerUsername.getText(),
+                                registerPassword.getText(),
+                                firstName.getText(),
+                                lastName.getText()));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_RegisterRequest);
             // LoginRequest
             this.sendButton_LoginRequest = new JButton(ClientGUI.SENDBUTTON_LOGINREQUEST_TEXT);
+            this.sendButton_LoginRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new LoginRequest(
+                                loginUsername.getText(),
+                                loginPassword.getText()));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_LoginRequest);
             // LogoutRequest
             this.sendButton_LogoutRequest = new JButton(ClientGUI.SENDBUTTON_LOGOUTREQUEST_TEXT);
+            this.sendButton_LogoutRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new LogoutRequest());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_LogoutRequest);
             // ChangePasswordRequest
             this.sendButton_ChangePasswordRequest = new JButton(ClientGUI.SENDBUTTON_CHANGEPASSWORDREQUEST_TEXT);
+            this.sendButton_ChangePasswordRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new ChangePasswordRequest(
+                                oldPassword.getText(),
+                                newPassword.getText()));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_ChangePasswordRequest);
             // BalanceRequest
             this.sendButton_BalanceRequest = new JButton(ClientGUI.SENDBUTTON_BALANCEREQUEST_TEXT);
+            this.sendButton_BalanceRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new BalanceRequest());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_BalanceRequest);
             // TransactionHistoryRequest
             this.sendButton_TransactionHistoryRequest = new JButton(ClientGUI.SENDBUTTON_TRANSACTIONHISTORYREQUEST_TEXT);
+            this.sendButton_TransactionHistoryRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new TransactionHistoryRequest());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_TransactionHistoryRequest);
             // CurrencyRatesRequest
             this.sendButton_CurrencyRatesRequest = new JButton(ClientGUI.SENDBUTTON_CURRENCYRATESREQUEST_TEXT);
+            this.sendButton_CurrencyRatesRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new CurrencyRatesRequest());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_CurrencyRatesRequest);
             // CreateBankAccountRequest
             this.sendButton_CreateBankAccountRequest = new JButton(ClientGUI.SENDBUTTON_CREATEBANKACCOUNTREQUEST_TEXT);
+            this.sendButton_CreateBankAccountRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new CreateBankAccountRequest(
+                                bankAccountType.getText(),
+                                Money.createMoney(new Currency(moneyCurrency.getText()), moneyAmount.getText())));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_CreateBankAccountRequest);
             // DepositRequest
             this.sendButton_DepositRequest = new JButton(ClientGUI.SENDBUTTON_DEPOSITREQUEST_TEXT);
+            this.sendButton_DepositRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new DepositRequest(
+                                toBankAccount.getText(),
+                                Money.createMoney(new Currency(moneyCurrency.getText()), moneyAmount.getText())));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_DepositRequest);
             // WithdrawRequest
             this.sendButton_WithdrawRequest = new JButton(ClientGUI.SENDBUTTON_WITHDRAWREQUEST_TEXT);
+            this.sendButton_WithdrawRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new WithdrawRequest(
+                                fromBankAccount.getText(),
+                                Money.createMoney(new Currency(moneyCurrency.getText()), moneyAmount.getText())));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_WithdrawRequest);
             // TransferRequest
             this.sendButton_TransferRequest = new JButton(ClientGUI.SENDBUTTON_TRANSFERREQUEST_TEXT);
+            this.sendButton_TransferRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new TransferRequest(
+                                fromBankAccount.getText(),
+                                toBankAccount.getText(),
+                                Money.createMoney(new Currency(moneyCurrency.getText()), moneyAmount.getText())));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_TransferRequest);
 
             // EXIT button:
@@ -328,7 +467,12 @@ public class ClientGUI implements MessageHandler {
     }
 
     public synchronized void send(Message message) throws IOException {
-        this.client.send(message);
+        if (this.client.isConnected()) {
+            this.client.send(message);
+            JOptionPane.showMessageDialog(this.mainFrame, "Message sent!");
+        } else {
+            JOptionPane.showMessageDialog(this.mainFrame, "Not connected to server!");
+        }
     }
 
     public synchronized Message handleUpdate(Update update) {
@@ -507,6 +651,6 @@ public class ClientGUI implements MessageHandler {
         clientGUI.handle(update2);
 
         // 4. Simulate receiving a DisconnectNotice from the server:
-        //clientGUI.handle(new DisconnectNotice("The server has closed your connection!"));
+        clientGUI.handle(new DisconnectNotice("The server has closed your connection!"));
     }
 }
