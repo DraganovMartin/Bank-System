@@ -56,7 +56,7 @@ public class ClientGUI implements MessageHandler {
 
         this.mainPanel_scrollpane = new JScrollPane(this.mainPanel);
         this.mainFrame.add(this.mainPanel_scrollpane);
-        this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // STOP CONNECTION FIRST !!! USE EXIT BUTTON !!!
+        this.mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // STOP CONNECTION FIRST !!! USE EXIT BUTTON !!!
         this.mainFrame.pack();
         this.mainFrame.setVisible(true);
     }
@@ -83,7 +83,7 @@ public class ClientGUI implements MessageHandler {
     }
 
     @Override
-    public Message handle(Message message) {
+    public synchronized Message handle(Message message) {
         String messageType = message.getType();
         switch (messageType) {
             case Update.TYPE: {
@@ -106,34 +106,43 @@ public class ClientGUI implements MessageHandler {
 
     public static void main(String[] args) {
 
-        Currency defaultCurrency = new Currency("BGN");
-        ClientGUI clientGUI = new ClientGUI(defaultCurrency);
+        // 1. Create simple user interface:
+        ClientGUI clientGUI = new ClientGUI(new Currency("BGN"));
 
-        Balance balance1 = new Balance();
+        // 2. Create an instance of Update (message):
+        Update update1;
         {
-            balance1.add("Acc00001", "deposit", "BGN", "1234.56");
-            balance1.add("Acc00002", "deposit", "BGN", "3456.78");
-            balance1.add("Acc00003", "credit", "USD", "2345.67");
-            // etc. etc.
+            Balance balance1 = new Balance();
+            {
+                // fill in data from the database - table "BankAccounts":
+                balance1.add("Acc00001", "deposit", "BGN", "1234.56");
+                balance1.add("Acc00002", "deposit", "BGN", "3456.78");
+                balance1.add("Acc00003", "credit", "USD", "2345.67");
+                // etc. etc.
+            }
+            TransferHistory transferHistory1 = new TransferHistory();
+            {
+                // fill in data from the database - table "TransferHistory":
+                transferHistory1.add("Transfer00001", "Acc00001", "Acc00002", "BGN", "123.45", "01.01.2017");
+                transferHistory1.add("Transfer00002", "Acc00002", "Acc00003", "BGN", "456.78", "02.01.2017");
+                transferHistory1.add("Transfer00003", "Acc00003", "Acc00002", "BGN", "345.67", "03.01.2017");
+                transferHistory1.add("Transfer00004", "Acc00001", "Acc00002", "BGN", "234.56", "04.01.2017");
+                // etc. etc.
+            }
+            CurrencyConverter currencyConverter1 = new CurrencyConverter();
+            {
+                // fill in data from the database - table "Currencies":
+                currencyConverter1.setCurrencyValue(new Currency("BGN"), "1.00000");
+                currencyConverter1.setCurrencyValue(new Currency("USD"), "1.83336");
+                currencyConverter1.setCurrencyValue(new Currency("GBP"), "2.25964");
+                currencyConverter1.setCurrencyValue(new Currency("CHF"), "1.82294");
+                // etc. etc.
+            }
+            ProfileData profileData1 = new ProfileData(balance1, transferHistory1, currencyConverter1);
+            update1 = new Update("nodescription", null, true, profileData1);
         }
-        TransferHistory transferHistory1 = new TransferHistory();
-        {
-            transferHistory1.add("Transfer00001", "Acc00001", "Acc00002", "BGN", "123.45", "01.01.2017");
-            transferHistory1.add("Transfer00002", "Acc00002", "Acc00003", "BGN", "456.78", "02.01.2017");
-            transferHistory1.add("Transfer00003", "Acc00003", "Acc00002", "BGN", "345.67", "03.01.2017");
-            transferHistory1.add("Transfer00004", "Acc00001", "Acc00002", "BGN", "234.56", "04.01.2017");
-            // etc. etc.
-        }
-        CurrencyConverter currencyConverter1 = new CurrencyConverter();
-        {
-            currencyConverter1.setCurrencyValue(new Currency("BGN"), "1.00000");
-            currencyConverter1.setCurrencyValue(new Currency("USD"), "1.83336");
-            currencyConverter1.setCurrencyValue(new Currency("GBP"), "2.25964");
-            currencyConverter1.setCurrencyValue(new Currency("CHF"), "1.82294");
-            // etc. etc.
-        }
-        ProfileData profileData1 = new ProfileData(balance1, transferHistory1, currencyConverter1);
-        Update update1 = new Update("nodescription", null, true, profileData1);
-        clientGUI.update(update1);
+
+        // 3. Simulate receiving the message from the client (will be automatic):
+        clientGUI.handle(update1);
     }
 }
