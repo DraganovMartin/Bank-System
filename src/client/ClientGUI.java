@@ -83,7 +83,7 @@ public class ClientGUI implements MessageHandler {
     }
 
     @Override
-    public Message handle(Message message) {
+    public synchronized Message handle(Message message) {
         String messageType = message.getType();
         switch (messageType) {
             case Update.TYPE: {
