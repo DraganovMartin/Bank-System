@@ -35,6 +35,7 @@ import networking.messages.Message;
 import networking.messages.Update;
 import networking.messages.request.BalanceRequest;
 import networking.messages.request.ChangePasswordRequest;
+import networking.messages.request.CurrencyRatesRequest;
 import networking.messages.request.LoginRequest;
 import networking.messages.request.LogoutRequest;
 import networking.messages.request.RegisterRequest;
@@ -336,6 +337,16 @@ public class ClientGUI implements MessageHandler {
             this.buttons.add(this.sendButton_TransactionHistoryRequest);
             // CurrencyRatesRequest
             this.sendButton_CurrencyRatesRequest = new JButton(ClientGUI.SENDBUTTON_CURRENCYRATESREQUEST_TEXT);
+            this.sendButton_CurrencyRatesRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new CurrencyRatesRequest());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_CurrencyRatesRequest);
             // CreateBankAccountRequest
             this.sendButton_CreateBankAccountRequest = new JButton(ClientGUI.SENDBUTTON_CREATEBANKACCOUNTREQUEST_TEXT);
