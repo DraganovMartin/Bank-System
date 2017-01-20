@@ -33,6 +33,7 @@ import networking.messageHandlers.MessageHandler;
 import networking.messages.DisconnectNotice;
 import networking.messages.Message;
 import networking.messages.Update;
+import networking.messages.request.RegisterRequest;
 import networking.security.SSLContextFactory;
 import testClasses.communication_client_server.Communication_Example_CLIENT_SSL;
 
@@ -244,6 +245,20 @@ public class ClientGUI implements MessageHandler {
             // Send buttons:
             // RegisterRequest
             this.sendButton_RegisterRequest = new JButton(ClientGUI.SENDBUTTON_REGISTERREQUEST_TEXT);
+            this.sendButton_RegisterRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new RegisterRequest(
+                                registerUsername.getText(),
+                                registerPassword.getText(),
+                                firstName.getText(),
+                                lastName.getText()));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_RegisterRequest);
             // LoginRequest
             this.sendButton_LoginRequest = new JButton(ClientGUI.SENDBUTTON_LOGINREQUEST_TEXT);
