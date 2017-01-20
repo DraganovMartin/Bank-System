@@ -59,6 +59,8 @@ public class ClientGUI implements MessageHandler {
     JScrollPane display_transferHistory_scrollpane;
     JPanel controls;
     JScrollPane controls_scrollpane;
+    JPanel buttons;
+    JScrollPane buttons_scrollpane;
 
     // RegisterRequest:
     JTextField registerUsername;
@@ -141,6 +143,10 @@ public class ClientGUI implements MessageHandler {
     // TransferRequest
     JButton sendButton_TransferRequest;
     public static final String SENDBUTTON_TRANSFERREQUEST_TEXT = "Send TransferRequest...";
+
+    // EXIT button:
+    JButton exitButton;
+    public static final String EXITBUTTON_TEXT = "EXIT...";
 
     public ClientGUI() {
         JOptionPane.showMessageDialog(this.mainFrame, "Initializing SSL Encription engine and networking, please wait...");
@@ -230,45 +236,66 @@ public class ClientGUI implements MessageHandler {
             this.controls.add(this.fromBankAccount_label);
             this.controls.add(this.fromBankAccount);
         }
+
+        this.buttons = new JPanel(new GridLayout(0, 2));
         {
             // Send buttons:
             // RegisterRequest
             this.sendButton_RegisterRequest = new JButton(ClientGUI.SENDBUTTON_REGISTERREQUEST_TEXT);
+            this.buttons.add(this.sendButton_RegisterRequest);
             // LoginRequest
             this.sendButton_LoginRequest = new JButton(ClientGUI.SENDBUTTON_LOGINREQUEST_TEXT);
+            this.buttons.add(this.sendButton_LoginRequest);
             // LogoutRequest
             this.sendButton_LogoutRequest = new JButton(ClientGUI.SENDBUTTON_LOGOUTREQUEST_TEXT);
+            this.buttons.add(this.sendButton_LogoutRequest);
             // ChangePasswordRequest
             this.sendButton_ChangePasswordRequest = new JButton(ClientGUI.SENDBUTTON_CHANGEPASSWORDREQUEST_TEXT);
+            this.buttons.add(this.sendButton_ChangePasswordRequest);
             // BalanceRequest
             this.sendButton_BalanceRequest = new JButton(ClientGUI.SENDBUTTON_BALANCEREQUEST_TEXT);
+            this.buttons.add(this.sendButton_BalanceRequest);
             // TransactionHistoryRequest
             this.sendButton_TransactionHistoryRequest = new JButton(ClientGUI.SENDBUTTON_TRANSACTIONHISTORYREQUEST_TEXT);
+            this.buttons.add(this.sendButton_TransactionHistoryRequest);
             // CurrencyRatesRequest
             this.sendButton_CurrencyRatesRequest = new JButton(ClientGUI.SENDBUTTON_CURRENCYRATESREQUEST_TEXT);
+            this.buttons.add(this.sendButton_CurrencyRatesRequest);
             // CreateBankAccountRequest
             this.sendButton_CreateBankAccountRequest = new JButton(ClientGUI.SENDBUTTON_CREATEBANKACCOUNTREQUEST_TEXT);
+            this.buttons.add(this.sendButton_CreateBankAccountRequest);
             // DepositRequest
             this.sendButton_DepositRequest = new JButton(ClientGUI.SENDBUTTON_DEPOSITREQUEST_TEXT);
+            this.buttons.add(this.sendButton_DepositRequest);
             // WithdrawRequest
             this.sendButton_WithdrawRequest = new JButton(ClientGUI.SENDBUTTON_WITHDRAWREQUEST_TEXT);
+            this.buttons.add(this.sendButton_WithdrawRequest);
             // TransferRequest
             this.sendButton_TransferRequest = new JButton(ClientGUI.SENDBUTTON_TRANSFERREQUEST_TEXT);
+            this.buttons.add(this.sendButton_TransferRequest);
+
+            // EXIT button:
+            this.exitButton = new JButton(ClientGUI.EXITBUTTON_TEXT);
+            this.buttons.add(this.exitButton);
         }
 
         this.display_currencyRates_scrollpane = new JScrollPane();
         this.display_balance_scrollpane = new JScrollPane();
         this.display_transferHistory_scrollpane = new JScrollPane();
         this.controls_scrollpane = new JScrollPane(this.controls);
+        this.buttons_scrollpane = new JScrollPane(this.buttons);
+
         this.display_currencyRates_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.display_balance_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.display_transferHistory_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.controls_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        this.buttons_scrollpane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
         this.mainPanel.add(this.display_currencyRates_scrollpane);
         this.mainPanel.add(this.display_balance_scrollpane);
         this.mainPanel.add(this.display_transferHistory_scrollpane);
         this.mainPanel.add(this.controls_scrollpane);
+        this.mainPanel.add(this.buttons_scrollpane);
 
         this.mainPanel_scrollpane = new JScrollPane(this.mainPanel);
         this.mainFrame.add(this.mainPanel_scrollpane);
@@ -471,6 +498,6 @@ public class ClientGUI implements MessageHandler {
         clientGUI.handle(update2);
 
         // 4. Simulate receiving a DisconnectNotice from the server:
-        clientGUI.handle(new DisconnectNotice("The server has closed your connection!"));
+        //clientGUI.handle(new DisconnectNotice("The server has closed your connection!"));
     }
 }
