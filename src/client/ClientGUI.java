@@ -1,6 +1,7 @@
 package client;
 
 import dataModel.CurrencyConverter;
+import dataModel.Money;
 import dataModel.ProfileData;
 import dataModel.ProfileData.Balance;
 import dataModel.ProfileData.TransferHistory;
@@ -35,6 +36,7 @@ import networking.messages.Message;
 import networking.messages.Update;
 import networking.messages.request.BalanceRequest;
 import networking.messages.request.ChangePasswordRequest;
+import networking.messages.request.CreateBankAccountRequest;
 import networking.messages.request.CurrencyRatesRequest;
 import networking.messages.request.LoginRequest;
 import networking.messages.request.LogoutRequest;
@@ -350,6 +352,18 @@ public class ClientGUI implements MessageHandler {
             this.buttons.add(this.sendButton_CurrencyRatesRequest);
             // CreateBankAccountRequest
             this.sendButton_CreateBankAccountRequest = new JButton(ClientGUI.SENDBUTTON_CREATEBANKACCOUNTREQUEST_TEXT);
+            this.sendButton_CreateBankAccountRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new CreateBankAccountRequest(
+                                bankAccountType.getText(),
+                                Money.createMoney(new Currency(moneyCurrency.getText()), moneyAmount.getText())));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_CreateBankAccountRequest);
             // DepositRequest
             this.sendButton_DepositRequest = new JButton(ClientGUI.SENDBUTTON_DEPOSITREQUEST_TEXT);
