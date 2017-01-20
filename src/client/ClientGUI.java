@@ -9,6 +9,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,8 +33,8 @@ public class ClientGUI implements MessageHandler {
     JScrollPane display_transferHistory_scrollpane;
     JScrollPane display_other;
 
-    public ClientGUI(Currency defaultCurrency) {
-        this.defaultCurrency = defaultCurrency;
+    public ClientGUI() {
+        this.defaultCurrency = null;
 
         this.mainFrame = new JFrame(ClientGUI.MAINFRAMETITLE);
 
@@ -61,21 +62,30 @@ public class ClientGUI implements MessageHandler {
         this.mainFrame.setVisible(true);
     }
 
-    public synchronized void update(Update update) {
-        JTable currencyRates = update.getProflieData().getCurrencyConverter().getSupportedExchangeRatesAsJTable(this.defaultCurrency, "0.01");
-        this.display_currencyRates_scrollpane.setViewportView(currencyRates);
-        this.display_currencyRates_scrollpane.setPreferredSize(currencyRates.getPreferredSize());
+    public synchronized void handleUpdate(Update update) {
+        if (update.getProflieData() != null) {
+            if (this.defaultCurrency == null) {
+                this.defaultCurrency = update.getProflieData().getCurrencyConverter().getSupportedCurrencies()[0];
+            }
+            JTable currencyRates = update.getProflieData().getCurrencyConverter().getSupportedExchangeRatesAsJTable(this.defaultCurrency, "0.01");
+            this.display_currencyRates_scrollpane.setViewportView(currencyRates);
+            this.display_currencyRates_scrollpane.setPreferredSize(currencyRates.getPreferredSize());
 
-        JTable balance = update.getProflieData().getBalanceTable();
-        this.display_balance_scrollpane.setViewportView(balance);
-        this.display_balance_scrollpane.setPreferredSize(balance.getPreferredSize());
+            JTable balance = update.getProflieData().getBalanceTable();
+            this.display_balance_scrollpane.setViewportView(balance);
+            this.display_balance_scrollpane.setPreferredSize(balance.getPreferredSize());
 
-        JTable transferHistory = update.getProflieData().getTransferHistoryTable();
-        this.display_transferHistory_scrollpane.setViewportView(transferHistory);
-        this.display_transferHistory_scrollpane.setPreferredSize(transferHistory.getPreferredSize());
+            JTable transferHistory = update.getProflieData().getTransferHistoryTable();
+            this.display_transferHistory_scrollpane.setViewportView(transferHistory);
+            this.display_transferHistory_scrollpane.setPreferredSize(transferHistory.getPreferredSize());
 
-        this.mainFrame.revalidate();
-        this.mainFrame.pack();
+            this.mainFrame.revalidate();
+            this.mainFrame.pack();
+        }
+    }
+
+    public synchronized void handleDisconnectNotice(DisconnectNotice disconnectNotice) {
+        // HANDLE DISCONNECTNOTICE
     }
 
     public synchronized void setDefaultCurrency(Currency defaultCurrency) {
@@ -84,22 +94,33 @@ public class ClientGUI implements MessageHandler {
 
     @Override
     public synchronized Message handle(Message message) {
-        String messageType = message.getType();
-        switch (messageType) {
-            case Update.TYPE: {
-                Update update = (Update) message;
-                this.update(update);
+        if (message != null) {
+            String messageType = message.getType();
+            JOptionPane.showMessageDialog(this.mainFrame, "Received from server: " + messageType);
+            if (messageType != null) {
+                switch (messageType) {
+                    case Update.TYPE: {
+                        try {
+                            Update update = (Update) message;
+                            this.handleUpdate(update);
+                        } catch (Exception ex) {
+                        }
+                    }
+                    break;
+                    case DisconnectNotice.TYPE: {
+                        try {
+                            DisconnectNotice disconnectNotice = (DisconnectNotice) message;
+                            this.handleDisconnectNotice(disconnectNotice);
+                        } catch (Exception ex) {
+                        }
+                    }
+                    break;
+                    default: {
+                        // DO NOTHING
+                    }
+                    break;
+                }
             }
-            break;
-            case DisconnectNotice.TYPE: {
-                DisconnectNotice disconnectNotice = (DisconnectNotice) message;
-                // HANDLE DISCONNECT
-            }
-            break;
-            default: {
-                // DO NOTHING
-            }
-            break;
         }
         return null;
     }
@@ -107,7 +128,7 @@ public class ClientGUI implements MessageHandler {
     public static void main(String[] args) {
 
         // 1. Create simple user interface:
-        ClientGUI clientGUI = new ClientGUI(new Currency("BGN"));
+        ClientGUI clientGUI = new ClientGUI();
 
         // 2. Create an instance of Update (message):
         Update update1;
@@ -144,5 +165,7 @@ public class ClientGUI implements MessageHandler {
 
         // 3. Simulate receiving the message from the client (will be automatic):
         clientGUI.handle(update1);
+
+        clientGUI.handle(new DisconnectNotice("The server has closed your connection!"));
     }
 }
