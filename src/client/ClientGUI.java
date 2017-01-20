@@ -38,6 +38,7 @@ import networking.messages.request.BalanceRequest;
 import networking.messages.request.ChangePasswordRequest;
 import networking.messages.request.CreateBankAccountRequest;
 import networking.messages.request.CurrencyRatesRequest;
+import networking.messages.request.DepositRequest;
 import networking.messages.request.LoginRequest;
 import networking.messages.request.LogoutRequest;
 import networking.messages.request.RegisterRequest;
@@ -367,6 +368,18 @@ public class ClientGUI implements MessageHandler {
             this.buttons.add(this.sendButton_CreateBankAccountRequest);
             // DepositRequest
             this.sendButton_DepositRequest = new JButton(ClientGUI.SENDBUTTON_DEPOSITREQUEST_TEXT);
+            this.sendButton_DepositRequest.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        send(new DepositRequest(
+                                toBankAccount.getText(),
+                                Money.createMoney(new Currency(moneyCurrency.getText()), moneyAmount.getText())));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             this.buttons.add(this.sendButton_DepositRequest);
             // WithdrawRequest
             this.sendButton_WithdrawRequest = new JButton(ClientGUI.SENDBUTTON_WITHDRAWREQUEST_TEXT);
