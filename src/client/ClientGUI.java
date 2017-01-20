@@ -6,6 +6,7 @@ import dataModel.ProfileData.Balance;
 import dataModel.ProfileData.TransferHistory;
 import dataModel.models.Currency;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.File;
@@ -304,27 +305,37 @@ public class ClientGUI implements MessageHandler {
             {
                 Dimension p = currencyRates.getPreferredSize();
                 this.display_currencyRates_scrollpane.setPreferredSize(new Dimension((int) p.getWidth(), (int) p.getHeight() + 25));
+                Container current = this.display_currencyRates_scrollpane;
+                do {
+                    current.revalidate();
+                    current = current.getParent();
+                } while (current != null);
             }
-            this.display_currencyRates_scrollpane.revalidate();
 
             JTable balance = update.getProflieData().getBalanceTable();
             this.display_balance_scrollpane.setViewportView(balance);
             {
                 Dimension p = balance.getPreferredSize();
                 this.display_balance_scrollpane.setPreferredSize(new Dimension((int) p.getWidth(), (int) p.getHeight() + 25));
+                Container current = this.display_balance_scrollpane;
+                do {
+                    current.revalidate();
+                    current = current.getParent();
+                } while (current != null);
             }
-            this.display_balance_scrollpane.revalidate();
 
             JTable transferHistory = update.getProflieData().getTransferHistoryTable();
             this.display_transferHistory_scrollpane.setViewportView(transferHistory);
             {
                 Dimension p = transferHistory.getPreferredSize();
                 this.display_transferHistory_scrollpane.setPreferredSize(new Dimension((int) p.getWidth(), (int) p.getHeight() + 25));
+                Container current = this.display_transferHistory_scrollpane;
+                do {
+                    current.revalidate();
+                    current = current.getParent();
+                } while (current != null);
             }
-            this.display_transferHistory_scrollpane.revalidate();
 
-            this.mainPanel.revalidate();
-            this.mainPanel_scrollpane.revalidate();
             this.mainFrame.revalidate();
             this.mainFrame.pack();
         }
@@ -341,12 +352,28 @@ public class ClientGUI implements MessageHandler {
         this.display_balance_scrollpane.setPreferredSize(new Dimension(0, 0));
         this.display_transferHistory_scrollpane.setPreferredSize(new Dimension(0, 0));
 
-        this.display_currencyRates_scrollpane.revalidate();
-        this.display_balance_scrollpane.revalidate();
-        this.display_transferHistory_scrollpane.revalidate();
+        {
+            Container current = this.display_currencyRates_scrollpane;
+            do {
+                current.revalidate();
+                current = current.getParent();
+            } while (current != null);
+        }
+        {
+            Container current = this.display_balance_scrollpane;
+            do {
+                current.revalidate();
+                current = current.getParent();
+            } while (current != null);
+        }
+        {
+            Container current = this.display_transferHistory_scrollpane;
+            do {
+                current.revalidate();
+                current = current.getParent();
+            } while (current != null);
+        }
 
-        this.mainPanel.revalidate();
-        this.mainPanel_scrollpane.revalidate();
         this.mainFrame.revalidate();
         this.mainFrame.pack();
         return null;
