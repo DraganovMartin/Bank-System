@@ -1,15 +1,13 @@
 package dataModel;
 
 import dataModel.models.Currency;
-import java.awt.GridLayout;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
 import java.util.TreeMap;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
  * A class that supports currency conversion. A "currency value" is a relative
@@ -469,7 +467,7 @@ public class CurrencyConverter implements Serializable {
 
     /**
      * Returns the exchange rates of all supported currencies towards the
-     * specified base currency in the format of a JPanel formatted as a table:
+     * specified base currency in the format of a {@link JTable}:
      * <p>
      * <table border=1>
      *
@@ -537,19 +535,21 @@ public class CurrencyConverter implements Serializable {
      * Used to avoid results with zero value. If NULL is provided, returns any
      * results greater that 0.00, otherwise multiplies them.
      *
-     * @return a JPanel formatted as a table with the exchange rates, NULL if no
-     * currency is supported.
+     * @return a {@link JTable} with the exchange rates, NULL if no currency is
+     * supported.
      */
-    public JPanel getSupportedExchangeRatesAsJPanel(Currency currencyTo, BigDecimal minResult) {
+    public JTable getSupportedExchangeRatesAsJTable(Currency currencyTo, BigDecimal minResult) {
         String[][] rates = this.getSupportedExchangeRates(currencyTo, minResult);
         if (rates != null) {
-            JPanel result = new JPanel(new GridLayout(rates.length, rates[0].length));
+            String[] columnNames = new String[]{"Amount", "Currency", "=", "Amount", "Currency"};
+            String[][] rowData = new String[rates.length][];
             for (int i = 0; i < rates.length; i++) {
+                rowData[i] = new String[rates[i].length];
                 for (int j = 0; j < rates[i].length; j++) {
-                    result.add(new JLabel(rates[i][j]));
+                    rowData[i][j] = rates[i][j];
                 }
             }
-            return result;
+            return new JTable(rowData, columnNames);
         } else {
             return null;
         }
@@ -557,7 +557,7 @@ public class CurrencyConverter implements Serializable {
 
     /**
      * Returns the exchange rates of all supported currencies towards the
-     * specified base currency in the format of a JPanel formatted as a table:
+     * specified base currency in the format of a {@link JTable}:
      * <p>
      * <table border=1>
      *
@@ -625,17 +625,17 @@ public class CurrencyConverter implements Serializable {
      * Used to avoid results with zero value. If NULL is provided, returns any
      * results greater that 0.00, otherwise multiplies them.
      *
-     * @return a JPanel formatted as a table with the exchange rates, NULL if no
-     * currency is supported.
+     * @return a {@link JTable} with the exchange rates, NULL if no currency is
+     * supported.
      */
-    public JPanel getSupportedExchangeRatesAsJPanel(Currency currencyTo, String minResult) {
+    public JTable getSupportedExchangeRatesAsJTable(Currency currencyTo, String minResult) {
         BigDecimal min;
         try {
             min = new BigDecimal(minResult);
         } catch (Exception ex) {
             min = null;
         }
-        return this.getSupportedExchangeRatesAsJPanel(currencyTo, min);
+        return this.getSupportedExchangeRatesAsJTable(currencyTo, min);
     }
 
     /**
