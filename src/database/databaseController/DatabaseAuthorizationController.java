@@ -5,6 +5,7 @@ import dataModel.models.SystemProfile;
 import dataModel.models.SystemProfileType;
 import dataModel.PasswordConver;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,18 +13,22 @@ import java.sql.SQLException;
 /**
  * Created by Nikolay on 12/22/2016.
  */
-public class DatabaseAuthorizationController extends DatabaseController {
+public class DatabaseAuthorizationController {
+
+    private Connection connDatabase;
 
     private PreparedStatement registration;
     private PreparedStatement login;
 
-    private DatabaseClientController client;
-    private DatabaseSystemProfileController systemProfile;
+    private DatabaseClientController clientController;
+    private DatabaseSystemProfileController systemProfileController;
 
-    public DatabaseAuthorizationController(){
-        super();
-        client = new DatabaseClientController();
-        systemProfile = new DatabaseSystemProfileController();
+    public DatabaseAuthorizationController
+            (Connection connDatabase,DatabaseClientController clientController,
+             DatabaseSystemProfileController systemProfileController){
+        this.connDatabase = connDatabase;
+        this.clientController = clientController;
+        this.systemProfileController = systemProfileController;
         try {
             this.registration = connDatabase.
                     prepareStatement("INSERT INTO systemProfiles(userName,password,type_id,client_id) VALUES(?,?,?,?)");
@@ -40,8 +45,8 @@ public class DatabaseAuthorizationController extends DatabaseController {
             resultSet = this.login.executeQuery();
             if(resultSet.first()) {
                 if (PasswordConver.isEqualPasswords(resultSet.getBytes("password"), PasswordConver.convertPssword(password))) {
-                    SystemProfileType type = systemProfile.getSystemProfileType(resultSet.getInt("type_id"));
-                    Client client = this.client.getClient(resultSet.getInt("client_id"));
+                    SystemProfileType type = this.systemProfileController.getSystemProfileType(resultSet.getInt("type_id"));
+                    Client client = this.clientController.getClient(resultSet.getInt("client_id"));
                     return new SystemProfile(userName, client, type);
                 }
             }
@@ -73,23 +78,10 @@ public class DatabaseAuthorizationController extends DatabaseController {
         return false;
     }
 
-    public void closeAuthorizationController(){
-        try {
-            if(this.lastId != null) {
-                this.lastId.close();
-            }
-            if(this.login != null) {
-                this.login.close();
-            }
-            if(this.registration != null) {
-                this.registration.close();
-            }
-            if(this.client != null) {
-                client.close();
-            }
-            if(this.systemProfile != null) {
-                systemProfile.close();
-            }
+    public void close(){
+        try{
+            this.login.close();
+            this.registration.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

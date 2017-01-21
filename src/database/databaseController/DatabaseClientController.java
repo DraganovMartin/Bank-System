@@ -2,6 +2,7 @@ package database.databaseController;
 
 import dataModel.models.Client;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,15 +11,20 @@ import java.util.zip.DataFormatException;
 /**
  * Created by Nikolay on 12/22/2016.
  */
-public class DatabaseClientController extends DatabaseController {
+public class DatabaseClientController{
+    private Connection connDatabase;
+
     private PreparedStatement getClient;
     private PreparedStatement setClient;
 
-    public DatabaseClientController(){
-        super();
+    private PreparedStatement lastId;
+
+    public DatabaseClientController(Connection connDatabase){
+        this.connDatabase = connDatabase;
         try {
-            this.getClient = connDatabase.prepareStatement("SELECT * FROM clients WHERE id = ?");
-            this.setClient = connDatabase.prepareStatement("INSERT INTO clients(firstName,lastName) VALUES(?,?)");
+            this.getClient = this.connDatabase.prepareStatement("SELECT * FROM clients WHERE id = ?");
+            this.setClient = this.connDatabase.prepareStatement("INSERT INTO clients(firstName,lastName) VALUES(?,?)");
+            this.lastId = this.connDatabase.prepareStatement("SELECT LAST_INSERT_ID()");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,7 +63,7 @@ public class DatabaseClientController extends DatabaseController {
             if(result != 1){
                 throw new DataFormatException("Something wrong hapen with database conetion");
             }
-            resultSet = lastId.executeQuery();
+            resultSet = this.lastId.executeQuery();
             if(resultSet.first()){
                 return resultSet.getInt("last_id");
             }
@@ -75,17 +81,11 @@ public class DatabaseClientController extends DatabaseController {
         return -1;
     }
 
-    public void closeClientController(){
+    public void close(){
         try {
-            if(this.lastId != null) {
                 this.lastId.close();
-            }
-            if(this.getClient != null) {
                 this.getClient.close();
-            }
-            if(this.setClient != null) {
                 this.setClient.close();
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

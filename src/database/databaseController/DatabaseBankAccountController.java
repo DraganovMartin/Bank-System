@@ -4,6 +4,7 @@ import dataModel.CurrencyConverter;
 import dataModel.Money;
 import dataModel.models.Currency;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,17 +12,18 @@ import java.sql.SQLException;
 /**
  * Created by Nikolay on 12/22/2016.
  */
-public class DatabaseBankAccountController extends DatabaseController {
+public class DatabaseBankAccountController {
+    private Connection connDatabase;
 
-    private PreparedStatement getBankAccoutType;
+   //private PreparedStatement getBankAccoutType;
     private PreparedStatement getAmount;
     private PreparedStatement getAmountByUserName;
     private PreparedStatement addAmount;
 
-    public DatabaseBankAccountController(){
-        super();
+    public DatabaseBankAccountController(Connection connDatabase){
+        this.connDatabase = connDatabase;
         try {
-            this.getBankAccoutType = connDatabase.prepareStatement("SELECT * FROM bankAccountType WHERE id = ?");
+            //this.getBankAccoutType = connDatabase.prepareStatement("SELECT * FROM bankAccountType WHERE id = ?");
             this.getAmount = connDatabase.prepareStatement("SELECT amount, currency_id FROM bankAccount WHERE id = ?");
             this.getAmountByUserName = connDatabase.prepareStatement
                     ("SELECT amount, currency_id FROM bankAccount, systemProfiles WHERE bankAccount.client_id = systemProfiles.client_id AND systemProfiles.userName = ?");
@@ -33,7 +35,7 @@ public class DatabaseBankAccountController extends DatabaseController {
 
     public boolean draw(Money amount, int bankAccountId,CurrencyConverter converter){
         try {
-            connDatabase.setAutoCommit(false); // transaction starts
+            this.connDatabase.setAutoCommit(false); // transaction starts
             this.getAmount.setInt(1,bankAccountId);
             ResultSet amountSet = this.getAmount.executeQuery();
             Money currnetAmount = null;
@@ -56,7 +58,7 @@ public class DatabaseBankAccountController extends DatabaseController {
             else{
                 return false;
             }
-            connDatabase.commit(); // transaction ends
+            this.connDatabase.commit(); // transaction ends
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -69,7 +71,7 @@ public class DatabaseBankAccountController extends DatabaseController {
 
     public boolean depositing(Money amount, int bankAccountId, CurrencyConverter converter){
         try {
-            connDatabase.setAutoCommit(false);
+            this.connDatabase.setAutoCommit(false);
 
             this.getAmount.setInt(1,bankAccountId);
             ResultSet amountSet = this.getAmount.executeQuery();
@@ -90,7 +92,7 @@ public class DatabaseBankAccountController extends DatabaseController {
                 throw new IllegalArgumentException("There is problem with the bank account id ="+bankAccountId+".");
             }
 
-            connDatabase.commit();
+            this.connDatabase.commit();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -102,7 +104,7 @@ public class DatabaseBankAccountController extends DatabaseController {
     }
     public boolean transfer(Money amount,int bankAccountId1,int bankAccountId2,CurrencyConverter converter){
         try {
-            connDatabase.setAutoCommit(false);
+            this.connDatabase.setAutoCommit(false);
 
             this.getAmount.setInt(1,bankAccountId1);
             ResultSet amountSet = this.getAmount.executeQuery();
@@ -146,8 +148,8 @@ public class DatabaseBankAccountController extends DatabaseController {
             }
             amountSet.close();
 
-            connDatabase.commit();
-            connDatabase.setAutoCommit(true);
+            this.connDatabase.commit();
+            this.connDatabase.setAutoCommit(true);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -211,21 +213,11 @@ public class DatabaseBankAccountController extends DatabaseController {
         }
         return m;
     }
-
-    public void closeBankAccountController(){
-        try {
-            if(this.lastId != null) {
-                this.lastId.close();
-            }
-            if(this.getBankAccoutType != null) {
-                this.getBankAccoutType.close();
-            }
-            if(this.getAmount != null) {
-                this.getAmount.close();
-            }
-            if(this.addAmount != null) {
-                this.addAmount.close();
-            }
+    public void close(){
+        try{
+            this.getAmount.close();
+            this.getAmountByUserName.close();
+            this.addAmount.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

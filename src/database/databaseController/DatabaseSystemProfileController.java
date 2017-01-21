@@ -2,6 +2,7 @@ package database.databaseController;
 
 import dataModel.models.SystemProfileType;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,14 +10,17 @@ import java.sql.SQLException;
 /**
  * Created by Nikolay on 12/22/2016.
  */
-public class DatabaseSystemProfileController extends DatabaseController {
+public class DatabaseSystemProfileController {
+    private Connection connDatabase;
 
     private PreparedStatement getSystemProfileType;
+    private PreparedStatement lastId;
 
-    public DatabaseSystemProfileController(){
-        super();
+    public DatabaseSystemProfileController(Connection connDatabase){
+        this.connDatabase = connDatabase;
         try {
-            this.getSystemProfileType = connDatabase.prepareStatement("SELECT * FROM systemProfileType WHERE id = ?");
+            this.getSystemProfileType = this.connDatabase.prepareStatement("SELECT * FROM systemProfileType WHERE id = ?");
+            this.lastId = this.connDatabase.prepareStatement("SELECT LAST_INSERT_ID()");
         } catch (SQLException e) {
             e.printStackTrace();
         }
