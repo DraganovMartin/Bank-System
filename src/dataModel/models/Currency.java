@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
-public final class Currency implements Serializable {
+public final class Currency implements Serializable, Comparable<Currency> {
 
     /**
      * The abbreviation of the currency.
@@ -35,5 +35,10 @@ public final class Currency implements Serializable {
     @Override
     public String toString() {
         return this.symbol;
+    }
+
+    @Override
+    public int compareTo(Currency other) {
+        return this.getSymbol().compareTo(other.getSymbol());
     }
 }

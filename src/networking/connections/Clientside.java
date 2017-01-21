@@ -14,7 +14,7 @@ import networking.messages.Update;
 import networking.messages.request.LoginRequest;
 import networking.messages.request.LogoutRequest;
 import networking.messages.request.RegisterRequest;
-import networking.messages.response.Response;
+import networking.messages.Response;
 
 /**
  * A client-side version of the {@link Connection}. Sends messages to the server
