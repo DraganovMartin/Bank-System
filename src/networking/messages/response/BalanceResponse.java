@@ -1,12 +1,16 @@
 package networking.messages.response;
 
+import networking.messages.Response;
 import dataModel.Money;
 
 import java.sql.ResultSet;
 
 /**
  * Created by Nikolay on 1/8/2017.
+ *
+ * @deprecated use {@link networking.messages.Update} instead.
  */
+@Deprecated
 public class BalanceResponse extends Response {
 
     public static final String TYPE = "BALANCERESPONSE";

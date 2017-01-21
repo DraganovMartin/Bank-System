@@ -197,7 +197,8 @@ public class CurrencyConverter_TESTCLASS_conversion {
 
             // Exchange rates:
             JFrame frame = new JFrame();
-            JPanel panel = converter.getSupportedExchangeRatesAsJPanel(currencyTo, minResult);
+            JPanel panel = new JPanel();
+            panel.add(converter.getSupportedExchangeRatesAsJTable(currencyTo, minResult));
             frame.add(panel);
             frame.pack();
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -212,7 +213,8 @@ public class CurrencyConverter_TESTCLASS_conversion {
 
             // Exchange rates:
             JFrame frame = new JFrame();
-            JPanel panel = converter.getSupportedExchangeRatesAsJPanel(currencyTo, minResult);
+            JPanel panel = new JPanel();
+            panel.add(converter.getSupportedExchangeRatesAsJTable(currencyTo, minResult));
             frame.add(panel);
             frame.pack();
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

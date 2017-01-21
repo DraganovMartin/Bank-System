@@ -14,7 +14,7 @@ import networking.messages.DisconnectNotice;
 import networking.messages.request.LoginRequest;
 import networking.messages.request.LogoutRequest;
 import networking.messages.request.RegisterRequest;
-import networking.messages.response.Response;
+import networking.messages.Response;
 
 /**
  * A server-side version of the {@link Connection}. Receives and handles

@@ -86,4 +86,8 @@ public class Client {
             this.clientside.send(message);
         }
     }
+
+    public synchronized boolean isConnected() {
+        return (this.clientside != null) && !(this.clientside.socket.isClosed());
+    }
 }
