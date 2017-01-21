@@ -577,80 +577,85 @@ public class ClientGUI implements MessageHandler {
 
     public static void main(String[] args) {
 
-        // 1. Create simple user interface:
+        /**{
+            // 1. Create simple user interface:
+            ClientGUI clientGUI = new ClientGUI();
+
+            // 2. Create an instance of Update (message):
+            Update update1;
+            {
+                Balance balance1 = new Balance();
+                {
+                    // fill in data from the database - table "BankAccounts":
+                    balance1.add("Acc00001", "deposit", "BGN", "1234.56");
+                    balance1.add("Acc00002", "deposit", "BGN", "3456.78");
+                    balance1.add("Acc00003", "credit", "USD", "2345.67");
+                    // etc. etc.
+                }
+                TransferHistory transferHistory1 = new TransferHistory();
+                {
+                    // fill in data from the database - table "TransferHistory":
+                    transferHistory1.add("Transfer00001", "Acc00001", "Acc00002", "BGN", "123.45", "01.01.2017");
+                    transferHistory1.add("Transfer00002", "Acc00002", "Acc00003", "BGN", "456.78", "02.01.2017");
+                    transferHistory1.add("Transfer00003", "Acc00003", "Acc00002", "BGN", "345.67", "03.01.2017");
+                    transferHistory1.add("Transfer00004", "Acc00001", "Acc00002", "BGN", "234.56", "04.01.2017");
+                    // etc. etc.
+                }
+                CurrencyConverter currencyConverter1 = new CurrencyConverter();
+                {
+                    // fill in data from the database - table "Currencies":
+                    currencyConverter1.setCurrencyValue(new Currency("BGN"), "1.00000");
+                    currencyConverter1.setCurrencyValue(new Currency("USD"), "1.83336");
+                    currencyConverter1.setCurrencyValue(new Currency("GBP"), "2.25964");
+                    currencyConverter1.setCurrencyValue(new Currency("CHF"), "1.82294");
+                    // etc. etc.
+                }
+                ProfileData profileData1 = new ProfileData(balance1, transferHistory1, currencyConverter1);
+                update1 = new Update("nodescription", null, true, profileData1);
+            }
+
+            // 3. Simulate receiving the message update1 from the client (will be automatic):
+            clientGUI.handle(update1);
+
+            // 2. Create another instance of Update (message):
+            Update update2;
+            {
+                Balance balance1 = new Balance();
+                {
+                    // fill in data from the database - table "BankAccounts":
+                    balance1.add("NEW-ACC1", "deposit", "USD", "5000");
+                    balance1.add("NEW-ACC2", "credit", "BGN", "200");
+                    // etc. etc.
+                }
+                TransferHistory transferHistory1 = new TransferHistory();
+                {
+                    // fill in data from the database - table "TransferHistory":
+                    transferHistory1.add("Tr001", "NEW-ACC1", "NEW-ACC2", "BGN", "10", "04.01.2017");
+                    transferHistory1.add("Tr002", "NEW-ACC2", "NEW-ACC1", "BGN", "100", "05.01.2017");
+                    transferHistory1.add("Tr003", "NEW-ACC2", "NEW-ACC1", "USD", "1000", "06.01.2017");
+                    // etc. etc.
+                }
+                CurrencyConverter currencyConverter1 = new CurrencyConverter();
+                {
+                    // fill in data from the database - table "Currencies":
+                    currencyConverter1.setCurrencyValue(new Currency("BGN"), "1.00000");
+                    currencyConverter1.setCurrencyValue(new Currency("USD"), "1.83336");
+                    currencyConverter1.setCurrencyValue(new Currency("GBP"), "2.25964");
+                    currencyConverter1.setCurrencyValue(new Currency("CHF"), "1.82294");
+                    // etc. etc.
+                }
+                ProfileData profileData1 = new ProfileData(balance1, transferHistory1, currencyConverter1);
+                update2 = new Update("nodescription", null, true, profileData1);
+            }
+
+            // 3. Simulate receiving the message update2 from the client (will be automatic):
+            clientGUI.handle(update2);
+
+            // 4. Simulate receiving a DisconnectNotice from the server:
+            clientGUI.handle(new DisconnectNotice("The server has closed your connection!"));
+        }*/
+        
         ClientGUI clientGUI = new ClientGUI();
-
-        // 2. Create an instance of Update (message):
-        Update update1;
-        {
-            Balance balance1 = new Balance();
-            {
-                // fill in data from the database - table "BankAccounts":
-                balance1.add("Acc00001", "deposit", "BGN", "1234.56");
-                balance1.add("Acc00002", "deposit", "BGN", "3456.78");
-                balance1.add("Acc00003", "credit", "USD", "2345.67");
-                // etc. etc.
-            }
-            TransferHistory transferHistory1 = new TransferHistory();
-            {
-                // fill in data from the database - table "TransferHistory":
-                transferHistory1.add("Transfer00001", "Acc00001", "Acc00002", "BGN", "123.45", "01.01.2017");
-                transferHistory1.add("Transfer00002", "Acc00002", "Acc00003", "BGN", "456.78", "02.01.2017");
-                transferHistory1.add("Transfer00003", "Acc00003", "Acc00002", "BGN", "345.67", "03.01.2017");
-                transferHistory1.add("Transfer00004", "Acc00001", "Acc00002", "BGN", "234.56", "04.01.2017");
-                // etc. etc.
-            }
-            CurrencyConverter currencyConverter1 = new CurrencyConverter();
-            {
-                // fill in data from the database - table "Currencies":
-                currencyConverter1.setCurrencyValue(new Currency("BGN"), "1.00000");
-                currencyConverter1.setCurrencyValue(new Currency("USD"), "1.83336");
-                currencyConverter1.setCurrencyValue(new Currency("GBP"), "2.25964");
-                currencyConverter1.setCurrencyValue(new Currency("CHF"), "1.82294");
-                // etc. etc.
-            }
-            ProfileData profileData1 = new ProfileData(balance1, transferHistory1, currencyConverter1);
-            update1 = new Update("nodescription", null, true, profileData1);
-        }
-
-        // 3. Simulate receiving the message update1 from the client (will be automatic):
-        clientGUI.handle(update1);
-
-        // 2. Create another instance of Update (message):
-        Update update2;
-        {
-            Balance balance1 = new Balance();
-            {
-                // fill in data from the database - table "BankAccounts":
-                balance1.add("NEW-ACC1", "deposit", "USD", "5000");
-                balance1.add("NEW-ACC2", "credit", "BGN", "200");
-                // etc. etc.
-            }
-            TransferHistory transferHistory1 = new TransferHistory();
-            {
-                // fill in data from the database - table "TransferHistory":
-                transferHistory1.add("Tr001", "NEW-ACC1", "NEW-ACC2", "BGN", "10", "04.01.2017");
-                transferHistory1.add("Tr002", "NEW-ACC2", "NEW-ACC1", "BGN", "100", "05.01.2017");
-                transferHistory1.add("Tr003", "NEW-ACC2", "NEW-ACC1", "USD", "1000", "06.01.2017");
-                // etc. etc.
-            }
-            CurrencyConverter currencyConverter1 = new CurrencyConverter();
-            {
-                // fill in data from the database - table "Currencies":
-                currencyConverter1.setCurrencyValue(new Currency("BGN"), "1.00000");
-                currencyConverter1.setCurrencyValue(new Currency("USD"), "1.83336");
-                currencyConverter1.setCurrencyValue(new Currency("GBP"), "2.25964");
-                currencyConverter1.setCurrencyValue(new Currency("CHF"), "1.82294");
-                // etc. etc.
-            }
-            ProfileData profileData1 = new ProfileData(balance1, transferHistory1, currencyConverter1);
-            update2 = new Update("nodescription", null, true, profileData1);
-        }
-
-        // 3. Simulate receiving the message update2 from the client (will be automatic):
-        clientGUI.handle(update2);
-
-        // 4. Simulate receiving a DisconnectNotice from the server:
-        clientGUI.handle(new DisconnectNotice("The server has closed your connection!"));
+        clientGUI.connect();
     }
 }
