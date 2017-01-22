@@ -8,8 +8,9 @@ import dataModel.ProfileData;
  */
 public class ClientDataUIHelper extends ProfileData {
     private String username;
-
-    public ClientDataUIHelper(Balance balance, TransferHistory transferHistory, CurrencyConverter currencyConverter,String username) {
+    private char[] pass;
+    
+	public ClientDataUIHelper(Balance balance, TransferHistory transferHistory, CurrencyConverter currencyConverter,String username) {
         super(balance, transferHistory, currencyConverter);
         if(!username.isEmpty()) {
             this.username = username;
@@ -26,5 +27,14 @@ public class ClientDataUIHelper extends ProfileData {
     	}
     	
     }
+    
+    public void setPass(char[] pass) {
+ 		this.pass = pass;
+ 	}
+    
+    public char[] getPass() {
+		return pass;
+	}
+
 
 }
