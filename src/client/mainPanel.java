@@ -1,10 +1,10 @@
-/*
- * Created by JFormDesigner on Sat Jan 21 22:45:10 EET 2017
- */
 
 package client;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -12,7 +12,8 @@ import javax.swing.GroupLayout;
  * @author Martin Draganov
  */
 public class mainPanel extends JPanel {
-	
+		
+		private JPanel thisPanel;
 	    private JPanel panelMain;
 	    private JLabel helloUserLabel;
 	    private JLabel helloLabel;
@@ -31,7 +32,9 @@ public class mainPanel extends JPanel {
 	    
     public mainPanel(ClientDataUIHelper user) {
     	this.user = user;
+    	thisPanel = this;
         initComponents();
+        
     }
 
     private void initComponents() {
@@ -71,19 +74,66 @@ public class mainPanel extends JPanel {
 
                 //---- createBankAccBtn ----
                 createBankAccBtn.setText("Create Account");
+                createBankAccBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						 add(new CreateAccPanel(user),"CreateAccPanel");
+						 CardLayout cl = (CardLayout)(getLayout());
+					     cl.show(thisPanel, "CreateAccPanel");
+					        
+						
+					}
+				});
 
                 //---- balanceCheck ----
                 balanceCheck.setText("Balance Info");
 
                 //---- changePassBtn ----
                 changePassBtn.setText("Change Password");
+                changePassBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						add(new ChangePasswordPanel(user),"ChangePassPanel");
+						 CardLayout cl = (CardLayout)(getLayout());
+					     cl.show(thisPanel, "ChangePassPanel");
+						
+					}
+				});
 
                 //---- depositBtn ----
                 depositBtn.setText("Deposit Money");
+                depositBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						add(new DepositPanel(user),"DepositPanel");
+						 CardLayout cl = (CardLayout)(getLayout());
+					     cl.show(thisPanel, "DepositPanel");
+					}
+				});
 
                 //---- transferBtn ----
                 transferBtn.setText("Transfer");
-                transferBtn.setActionCommand("Transfer ");
+                transferBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						add(new TransferPanel(user),"TransferPanel");
+						 CardLayout cl = (CardLayout)(getLayout());
+					     cl.show(thisPanel, "TransferPanel");
+						
+					}
+				});
+                
+                transactionBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 
                 //---- transactionBtn ----
                 transactionBtn.setText("Transaction History");
@@ -91,9 +141,32 @@ public class mainPanel extends JPanel {
 
                 //---- withdrawBtn ----
                 withdrawBtn.setText("Withdraw");
+                withdrawBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						add(new WithdrawPanel(user),"WithdrawPanel");
+						 CardLayout cl = (CardLayout)(getLayout());
+					     cl.show(thisPanel, "WithdrawPanel");
+					}
+				});
 
                 //---- logoutBtn ----
                 logoutBtn.setText("Logout");
+                logoutBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						int choice = JOptionPane.showConfirmDialog((JButton)e.getSource(), "Are you sure you want to log out ???", "Logout", JOptionPane.YES_NO_OPTION);
+						switch(choice){
+						case JOptionPane.NO_OPTION :
+							break;
+						case JOptionPane.YES_OPTION:
+							setVisible(false);
+						}
+						
+					}
+				});
                 
               //---- backBtn ----
                // backBtn.setText("Back");

@@ -20,28 +20,16 @@ public class BankSystemUI extends JFrame implements MessageHandler {
     private JPasswordField passwordTF;
     private JButton loginBtn;
     private JButton registerBtn;
+    private JMenuBar mainFrameMenu;
+    private JMenu aboutMenu;
+    private JMenuItem devs;
     private Container BankSystemUIContentPane = null;
     private ClientDataUIHelper user = null;
+    
 
     public BankSystemUI() {
         initComponents();
         user = new ClientDataUIHelper(null, null, null, "");
-    }
-
-    private void loginBtnActionPerformed(ActionEvent e) {
-        user.setUsetname(usernameTF.getText());
-        user.setPass(passwordTF.getPassword());
-        BankSystemUIContentPane.add(new mainPanel(user),"mainCard");
-        CardLayout cl = (CardLayout)(BankSystemUIContentPane.getLayout());
-        cl.show(BankSystemUIContentPane, "mainCard");
-        
-    }
-
-    private void registerBtnActionPerformed(ActionEvent e) {
-        JOptionPane.showConfirmDialog(this, "Clicked");
-        BankSystemUIContentPane.add(new RegisterForm(),"registerCard");
-        CardLayout cl = (CardLayout)(BankSystemUIContentPane.getLayout());
-        cl.show(BankSystemUIContentPane, "registerCard");
     }
 
     private void initComponents() {
@@ -53,12 +41,37 @@ public class BankSystemUI extends JFrame implements MessageHandler {
         passwordTF = new JPasswordField();
         loginBtn = new JButton();
         registerBtn = new JButton();
+        mainFrameMenu = new JMenuBar();
+        aboutMenu = new JMenu();
+        devs = new JMenuItem();
 
         //======== mainFrame ========
         {
         	this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         	this.setTitle("Banking System");
             BankSystemUIContentPane.setLayout(new CardLayout());
+            
+          //======== mainFrameMenu ========
+            {
+
+                //======== aboutMenu ========
+                {
+                    aboutMenu.setText("About");
+
+                    //---- devs ----
+                    devs.setText("Developers");
+                    aboutMenu.add(devs);
+                    devs.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							JOptionPane.showMessageDialog((JMenuItem)e.getSource(), "Developed by" +"\n" +" Martin Draganov - UI" +"\n" +" Iliyan Kostov - Server" +"\n" +"Nikolay Nikolov - Database");
+							
+						}
+					});
+                }
+                mainFrameMenu.add(aboutMenu);
+            }
 
             //======== LoginPanel ========
             {
@@ -73,11 +86,33 @@ public class BankSystemUI extends JFrame implements MessageHandler {
                 
                 //---- loginBtn ----
                 loginBtn.setText("Login");
-                loginBtn.addActionListener(e -> loginBtnActionPerformed(e));
+                loginBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						  	user.setUsetname(usernameTF.getText());
+					        user.setPass(passwordTF.getPassword());
+					        usernameTF.setText("");
+					        passwordTF.setText("");
+					        BankSystemUIContentPane.add(new mainPanel(user),"mainCard");
+					        CardLayout cl = (CardLayout)(BankSystemUIContentPane.getLayout());
+					        cl.show(BankSystemUIContentPane, "mainCard");
+						
+					}
+				});
 
                 //---- registerBtn ----
                 registerBtn.setText("Register");
-                registerBtn.addActionListener(e -> registerBtnActionPerformed(e));
+                registerBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						   	BankSystemUIContentPane.add(new RegisterForm(),"registerCard");
+					        CardLayout cl = (CardLayout)(BankSystemUIContentPane.getLayout());
+					        cl.show(BankSystemUIContentPane, "registerCard");
+						
+					}
+				});
 
                 GroupLayout LoginPanelLayout = new GroupLayout(LoginPanel);
                 LoginPanel.setLayout(LoginPanelLayout);
@@ -103,11 +138,17 @@ public class BankSystemUI extends JFrame implements MessageHandler {
                                     .addComponent(registerBtn, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)))
                             .addGap(103, 103, 103))
+                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(mainFrameMenu, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(561, Short.MAX_VALUE))
                 );
                 LoginPanelLayout.setVerticalGroup(
                     LoginPanelLayout.createParallelGroup()
                         .addGroup(LoginPanelLayout.createSequentialGroup()
-                            .addGap(161, 161, 161)
+                            .addContainerGap()
+                            .addComponent(mainFrameMenu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(211, 211, 211)
                             .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(usernameTF)
                                 .addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -122,7 +163,7 @@ public class BankSystemUI extends JFrame implements MessageHandler {
                                 .addGroup(LoginPanelLayout.createSequentialGroup()
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(registerBtn, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
-                            .addContainerGap(158, Short.MAX_VALUE))
+                            .addContainerGap(108, Short.MAX_VALUE))
                 );
             }
             BankSystemUIContentPane.add(LoginPanel, "card1");

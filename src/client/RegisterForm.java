@@ -1,8 +1,9 @@
-/*
- * Created by JFormDesigner on Sat Jan 21 18:34:05 EET 2017
- */
 
 package client;
+
+import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -11,13 +12,24 @@ import javax.swing.GroupLayout;
  * @author Martin Draganov
  */
 public class RegisterForm extends JPanel {
+	
+	 	private JLabel firstNameLabel;
+	    private JTextField firstNameTF;
+	    private JLabel lastNameLabel;
+	    private JTextField lastNameTF;
+	    private JLabel usernameLaebl;
+	    private JTextField usernameTF;
+	    private JLabel passwordLabel;
+	    private JTextField textField1; 
+	    private JButton saveBtn;
+	    private JButton backBtn;
+	    
     public RegisterForm() {
         initComponents();
     }
 
     private void initComponents() {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Martin Draganov
+      
         firstNameLabel = new JLabel();
         firstNameTF = new JTextField();
         lastNameLabel = new JLabel();
@@ -26,18 +38,11 @@ public class RegisterForm extends JPanel {
         usernameTF = new JTextField();
         passwordLabel = new JLabel();
         textField1 = new JTextField();
+        saveBtn = new JButton();
+        backBtn = new JButton();
 
-        //======== this. ========
+       
         {
-
-            // JFormDesigner evaluation mark
-            this.setBorder(new javax.swing.border.CompoundBorder(
-                new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                    javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                    java.awt.Color.red), this.getBorder())); this.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
-
-
             //---- firstNameLabel ----
             firstNameLabel.setText("Enter your first name :");
             firstNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -54,59 +59,73 @@ public class RegisterForm extends JPanel {
             passwordLabel.setText("Enter password :");
             passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-            GroupLayout thisLayout = new GroupLayout(this);
-            this.setLayout(thisLayout);
-            thisLayout.setHorizontalGroup(
-                thisLayout.createParallelGroup()
-                    .addGroup(GroupLayout.Alignment.TRAILING, thisLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(usernameLaebl, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                            .addComponent(firstNameLabel, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                            .addComponent(lastNameLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(passwordLabel, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+            //---- saveBtn ----
+            saveBtn.setText("Save");
+
+            //---- backBtn ----
+            backBtn.setText("Back");
+            backBtn.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //CardLayout cl = (CardLayout)getParent().getParent().getLayout(); 	//first parent is the current panel holding the button, we want the main panel
+                    setVisible(false);
+                }
+            });
+
+            GroupLayout RegisterPanelLayout = new GroupLayout(this);
+            this.setLayout(RegisterPanelLayout);
+            RegisterPanelLayout.setHorizontalGroup(
+                RegisterPanelLayout.createParallelGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, RegisterPanelLayout.createSequentialGroup()
+                        .addGroup(RegisterPanelLayout.createParallelGroup()
+                            .addGroup(RegisterPanelLayout.createSequentialGroup()
+                                .addGap(141, 141, 141)
+                                .addGroup(RegisterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(usernameLaebl, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(firstNameLabel, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(lastNameLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(passwordLabel, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
+                            .addGroup(RegisterPanelLayout.createSequentialGroup()
+                                .addContainerGap(199, Short.MAX_VALUE)
+                                .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
                         .addGap(48, 48, 48)
-                        .addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(firstNameTF, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(lastNameTF, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(usernameTF, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(textField1, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                        .addGroup(RegisterPanelLayout.createParallelGroup()
+                            .addGroup(RegisterPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(firstNameTF, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                .addComponent(lastNameTF, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                .addComponent(usernameTF, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                .addComponent(textField1, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                            .addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
                         .addGap(135, 135, 135))
             );
-            thisLayout.setVerticalGroup(
-                thisLayout.createParallelGroup()
-                    .addGroup(thisLayout.createSequentialGroup()
+            RegisterPanelLayout.setVerticalGroup(
+                RegisterPanelLayout.createParallelGroup()
+                    .addGroup(RegisterPanelLayout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(RegisterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(firstNameLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                             .addComponent(firstNameTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addGroup(RegisterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addComponent(lastNameLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                             .addComponent(lastNameTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(RegisterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(usernameLaebl)
                             .addComponent(usernameTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(RegisterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(passwordLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
                             .addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(243, Short.MAX_VALUE))
+                        .addGap(107, 107, 107)
+                        .addGroup(RegisterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(saveBtn)
+                            .addComponent(backBtn))
+                        .addContainerGap(104, Short.MAX_VALUE))
             );
         }
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
+       
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Martin Draganov
-    private JLabel firstNameLabel;
-    private JTextField firstNameTF;
-    private JLabel lastNameLabel;
-    private JTextField lastNameTF;
-    private JLabel usernameLaebl;
-    private JTextField usernameTF;
-    private JLabel passwordLabel;
-    private JTextField textField1;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
