@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>240</y>
+      <w>24</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>group=2
+*id*
+--
+1
+-.
+2
+-.
+3
+-.
+4
+-.
+5
+-.
+6
+-.
+7
+-.
+8
+-.
+9
+-.
+10
+-.
+11
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>642</x>
+      <y>240</y>
+      <w>42</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>group=2
+*type_id*
+--
+deposit
+-.
+deposit
+-.
+deposit
+-.
+deposit
+-.
+credit
+-.
+deposit
+-.
+credit
+-.
+credit
+-.
+deposit
+-.
+deposit
+-.
+deposit
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>684</x>
+      <y>240</y>
+      <w>54</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>group=2
+*currency_id*
+--
+BGN
+-.
+EUR
+-.
+EUR
+-.
+BGN
+-.
+USD
+-.
+BGN
+-.
+EUR
+-.
+BGN
+-.
+BGN
+-.
+USD
+-.
+BGN
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>240</y>
+      <w>42</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>group=2
+*amount*
+--
+1500
+-.
+2500
+-.
+3500
+-.
+450000
+-.
+3500
+-.
+1500
+-.
+550000
+-.
+1500
+-.
+2500
+-.
+3500
+-.
+4500
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>594</x>
+      <y>240</y>
+      <w>48</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>group=2
+*userName*
+--
+user1
+-.
+user2
+-.
+user4
+-.
+user2
+-.
+user2
+-.
+user4
+-.
+user4
+-.
+user1
+-.
+user4
+-.
+user2
+-.
+user1
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>222</y>
+      <w>210</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>group=2
+*bankAccount*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>240</y>
+      <w>54</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>group=3
+*currency_id*
+--
+BGN
+-.
+EUR
+-.
+USD
+-.
+CHF
+-.
+GBP
+-.
+JPY
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>126</x>
+      <y>240</y>
+      <w>48</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>group=3
+*value*
+--
+1.00000
+-.
+1.95583
+-.
+1.83750
+-.
+1.81988
+-.
+2.32940
+-.
+0.0159803
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>222</y>
+      <w>102</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>group=3
+*currencies*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>936</x>
+      <y>240</y>
+      <w>48</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>group=4
+*lastName*
+--
+last1
+-.
+last2
+-.
+last3
+-.
+last4
+-.
+last5
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>792</x>
+      <y>240</y>
+      <w>48</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>group=4
+*userName*
+--
+user1
+-.
+user2
+-.
+user3
+-.
+user4
+-.
+user5
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>240</y>
+      <w>48</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>group=4
+*password*
+--
+pass1
+-.
+pass2
+-.
+pass3
+-.
+pass4
+-.
+pass5
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>888</x>
+      <y>240</y>
+      <w>48</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>group=4
+*firstName*
+--
+first1
+-.
+first2
+-.
+first3
+-.
+first4
+-.
+first5
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>792</x>
+      <y>222</y>
+      <w>192</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>group=4
+*systemProfiles*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>84</x>
+      <y>354</y>
+      <w>648</w>
+      <h>186</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;290.0;1040.0;290.0;1040.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>240</y>
+      <w>90</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>group=5
+*fromBankAccount_id*
+--
+3
+-.
+3
+-.
+6
+-.
+9
+-.
+9
+-.
+6
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>306</x>
+      <y>240</y>
+      <w>78</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>group=5
+*toBankAccount_id*
+--
+6
+-.
+4
+-.
+8
+-.
+7
+-.
+1
+-.
+1
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>192</x>
+      <y>240</y>
+      <w>24</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>group=5
+*id*
+--
+1
+-.
+2
+-.
+3
+-.
+4
+-.
+5
+-.
+6
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>240</y>
+      <w>54</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>group=5
+*currency_id*
+--
+BGN
+-.
+EUR
+-.
+USD
+-.
+CHF
+-.
+GBP
+-.
+JPY
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>438</x>
+      <y>240</y>
+      <w>36</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>group=5
+*amount*
+--
+500
+-.
+10
+-.
+20
+-.
+1000
+-.
+50
+-.
+100
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>474</x>
+      <y>240</y>
+      <w>78</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>group=5
+*date*
+--
+2016-01-01 10:00
+-.
+2016-01-05 10:15
+-.
+2016-03-04 12:00
+-.
+2016-03-04 13:10
+-.
+2016-03-08 08:05
+-.
+2016-05-02 09:00
+-.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>192</x>
+      <y>222</y>
+      <w>360</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>group=5
+*transfers*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>378</y>
+      <w>246</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>390.0;60.0;390.0;190.0;10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>252</x>
+      <y>378</y>
+      <w>348</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>560.0;60.0;560.0;220.0;10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>102</x>
+      <y>354</y>
+      <w>330</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0;510.0;200.0;510.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>606</x>
+      <y>354</y>
+      <w>222</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>350.0;10.0;350.0;190.0;10.0;190.0;10.0;100.0</additional_attributes>
+  </element>
+</diagram>
