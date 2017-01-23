@@ -1,5 +1,6 @@
 package database.databaseController;
 
+import dataModel.PasswordConver;
 import dataModel.models.SystemProfileType;
 
 import java.sql.Connection;
@@ -13,34 +14,48 @@ import java.sql.SQLException;
 public class DatabaseSystemProfileController {
     private Connection connDatabase;
 
-    private PreparedStatement getSystemProfileType;
     private PreparedStatement lastId;
+    private PreparedStatement loginStatment;
+    private PreparedStatement registrateStatment;
 
     public DatabaseSystemProfileController(Connection connDatabase){
         this.connDatabase = connDatabase;
         try {
-            this.getSystemProfileType = this.connDatabase.prepareStatement("SELECT * FROM systemProfileType WHERE id = ?");
+            this.registrateStatment = connDatabase.
+                    prepareStatement("INSERT INTO systemProfiles(userName,password,firstName,secondName) VALUES(?,?,?,?)");
             this.lastId = this.connDatabase.prepareStatement("SELECT LAST_INSERT_ID()");
+            this.loginStatment = this.connDatabase.prepareStatement("SELECT userName,password FROM systemProfiles WHERE userName = ?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public SystemProfileType getSystemProfileType(int type_id) {
-        ResultSet resultSet = null;
+    public String registrate(String userName,String password,String firsrName,String secondName){
         try{
-            this.getSystemProfileType.setInt(1,type_id);
-            resultSet = this.getSystemProfileType.executeQuery();
+            System.out.println(userName);
+            this.registrateStatment.setString(1,userName);
+            this.registrateStatment.setBytes(2, PasswordConver.convertPssword(password));
+            this.registrateStatment.setString(3,firsrName);
+            this.registrateStatment.setString(4,secondName);
+            int result = this.registrateStatment.executeUpdate();
+            if(result == 1){
+                return userName;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String login(String username,String password){
+        ResultSet resultSet = null;
+        try {
+            this.loginStatment.setString(1,username);
+            resultSet = this.loginStatment.executeQuery();
             if(resultSet.first()) {
-                String name = resultSet.getString("name");
-                boolean canRead = resultSet.getBoolean("canRead");
-                boolean canWrite = resultSet.getBoolean("canWrite");
-                boolean canTransfer = resultSet.getBoolean("canTransfer");
-                SystemProfileType type = new SystemProfileType(type_id, name);
-                type.setCanRead(canRead);
-                type.setCanWrite(canWrite);
-                type.setCanTransfer(canTransfer);
-                return type;
+                if (PasswordConver.isEqualPasswords(resultSet.getBytes("password"), PasswordConver.convertPssword(password))) {
+                    return username;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,12 +71,8 @@ public class DatabaseSystemProfileController {
 
     public void closeSystemProfileController(){
         try {
-            if(this.lastId != null) {
-                this.lastId.close();
-            }
-            if(this.getSystemProfileType != null) {
-                this.getSystemProfileType.close();
-            }
+            this.lastId.close();
+            this.registrateStatment.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
