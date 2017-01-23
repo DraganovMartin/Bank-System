@@ -8,6 +8,7 @@ import dataModel.models.SystemProfile;
 import database.databaseController.*;
 import networking.messages.Update;
 import networking.messages.request.*;
+import sun.nio.cs.HistoricallyNamedCharset;
 
 import java.net.ConnectException;
 import java.sql.Connection;
@@ -126,9 +127,7 @@ public class DatabaseHandler implements DatabaseToServerAdapter {
             String user = this.systemProfileController.login(loginRequest.getLoginUsername(),loginRequest.getLoginPassword());
             if(user != null){
                 loginRequest.setUsername(user);
-                ProfileData.Balance balance = this.bankAccountController.getBankAccounts(loginRequest.getUsername());
-                ProfileData.TransferHistory history = this.transfersController.getHistory(loginRequest.getLoginUsername());
-                return new Update(LoginRequest.TYPE,loginRequest,true,new ProfileData(balance,history,this.converter));
+                return new Update(LoginRequest.TYPE,loginRequest,true,this.getUserProfileData(loginRequest.getUsername()));
             } else {
                 return new Update(LoginRequest.TYPE,loginRequest,false,null);
             }
@@ -143,21 +142,40 @@ public class DatabaseHandler implements DatabaseToServerAdapter {
 
     @Override
     public Update handleChangePasswordRequest(ChangePasswordRequest changePasswordRequest) {
+        if(changePasswordRequest.getUsername() != null){
+            boolean result = this.systemProfileController
+                    .changePassword(changePasswordRequest.getUsername(),changePasswordRequest.getOldPassword(),changePasswordRequest.getNewPassword());
+
+            if(result){
+                return new Update(ChangePasswordRequest.TYPE,changePasswordRequest,true,this.getUserProfileData(changePasswordRequest.getUsername()));
+            } else {
+                return new Update(ChangePasswordRequest.TYPE,changePasswordRequest,false,this.getUserProfileData(changePasswordRequest.getUsername()));
+            }
+        }
         return null;
     }
 
     @Override
     public Update handleBalanceRequest(BalanceRequest balanceRequest) {
+        if(balanceRequest.getUsername() != null) {
+            return new Update(BalanceRequest.TYPE,balanceRequest,true,this.getUserProfileData(balanceRequest.getUsername()));
+        }
         return null;
     }
 
     @Override
     public Update handleTransactionHistoryRequest(TransactionHistoryRequest transactionHistoryRequest) {
+        if(transactionHistoryRequest.getUsername() != null) {
+            return new Update(BalanceRequest.TYPE,transactionHistoryRequest,true,this.getUserProfileData(transactionHistoryRequest.getUsername()));
+        }
         return null;
     }
 
     @Override
     public Update handleCurrencyRatesRequest(CurrencyRatesRequest currencyRatesRequest) {
+        if(currencyRatesRequest.getUsername() != null) {
+            return new Update(BalanceRequest.TYPE,currencyRatesRequest,true,this.getUserProfileData(currencyRatesRequest    .getUsername()));
+        }
         return null;
     }
 
@@ -166,15 +184,12 @@ public class DatabaseHandler implements DatabaseToServerAdapter {
         if(createBankAccountRequest.getUsername() != null){
             int bankAccounIid = this.bankAccountController.setBankAccount(createBankAccountRequest.getUsername(),
                     createBankAccountRequest.getInitialMoney(),createBankAccountRequest.getBankAccountType());
-            ProfileData.Balance balance = this.bankAccountController.getBankAccounts(createBankAccountRequest.getUsername());
-            ProfileData.TransferHistory history = this.transfersController.getHistory(createBankAccountRequest.getUsername());
-
             if(bankAccounIid != 0){
                 return new Update(CreateBankAccountRequest.TYPE,createBankAccountRequest,true,
-                        new ProfileData(balance,history,this.converter));
+                        this.getUserProfileData(createBankAccountRequest.getUsername()));
             } else {
                 return new Update(CreateBankAccountRequest.TYPE,createBankAccountRequest,false,
-                        new ProfileData(balance,history,this.converter));
+                        this.getUserProfileData(createBankAccountRequest.getUsername()));
             }
         }
         return null;
@@ -182,11 +197,35 @@ public class DatabaseHandler implements DatabaseToServerAdapter {
 
     @Override
     public Update handleDepositRequest(DepositRequest depositRequest) {
+        if(depositRequest.getUsername() != null) {
+            int id = Integer.parseInt(depositRequest.getToBankAccount());
+            boolean result = this.bankAccountController.depositing(depositRequest.getMoney(),id,this.converter);
+
+            if (result) {
+                return new Update(DepositRequest.TYPE, depositRequest, true,
+                        this.getUserProfileData(depositRequest.getUsername()));
+            } else {
+                return new Update(DepositRequest.TYPE, depositRequest, false,
+                        this.getUserProfileData(depositRequest.getUsername()));
+            }
+        }
         return null;
     }
 
     @Override
     public Update handleWithdrawRequest(WithdrawRequest withdrawRequest) {
+        if(withdrawRequest.getUsername() != null) {
+            int id = Integer.parseInt(withdrawRequest.getFromBankAccount());
+            boolean result = this.bankAccountController.draw(withdrawRequest.getMoney(),id,this.converter);
+
+            if (result) {
+                return new Update(DepositRequest.TYPE, withdrawRequest, true,
+                        this.getUserProfileData(withdrawRequest.getUsername()));
+            } else {
+                return new Update(DepositRequest.TYPE, withdrawRequest, false,
+                        this.getUserProfileData(withdrawRequest.getUsername()));
+            }
+        }
         return null;
     }
 
@@ -195,17 +234,13 @@ public class DatabaseHandler implements DatabaseToServerAdapter {
         int from = Integer.parseInt(transferRequest.getFromBankAccount());
         int to = Integer.parseInt(transferRequest.getToBankAccount());
         boolean result = this.bankAccountController.transfer(transferRequest.getMoney(),from,to,this.converter);
-        ProfileData.Balance balance = this.bankAccountController.getBankAccounts(transferRequest.getUsername());
-        ProfileData.TransferHistory history = this.transfersController.getHistory(transferRequest.getUsername());
 
         if(result){
-            new Update(TransferRequest.TYPE,transferRequest,true,
-                    new ProfileData(balance,history,this.converter));
+            return new Update(TransferRequest.TYPE,transferRequest,true,
+                    this.getUserProfileData(transferRequest.getUsername()));
         } else {
-            new Update(TransferRequest.TYPE,transferRequest,false,
-                    new ProfileData(balance,history,this.converter));
+            return new Update(TransferRequest.TYPE,transferRequest,false,
+                    this.getUserProfileData(transferRequest.getUsername()));
         }
-
-        return null;
     }
 }

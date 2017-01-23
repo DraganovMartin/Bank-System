@@ -63,7 +63,7 @@ public class DatabaseBankAccountController {
             }
 
             if(currnetAmount != null && currnetAmount.compareTo(amount,converter) == 1){
-                currnetAmount.subtract(amount,converter);
+                currnetAmount = currnetAmount.subtract(amount,converter);
                 this.addAmountStatment.setBigDecimal(1,currnetAmount.getAmount());
                 this.addAmountStatment.setInt(2,bankAccountId);
                 int result = this.addAmountStatment.executeUpdate();
@@ -74,7 +74,10 @@ public class DatabaseBankAccountController {
             else{
                 return false;
             }
+            Money money = Money.createMoney(currnetAmount.getCurrency(),"-"+amount.getAmount().toPlainString());
+            this.transfersController.setTransfer(money,bankAccountId,bankAccountId);
             this.connDatabase.commit(); // transaction ends
+            this.connDatabase.setAutoCommit(true);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -100,7 +103,7 @@ public class DatabaseBankAccountController {
             } else{
                 return false;
             }
-            currnetAmount.add(amount,converter);
+            currnetAmount = currnetAmount.add(amount,converter);
             this.addAmountStatment.setBigDecimal(1,currnetAmount.getAmount());
             this.addAmountStatment.setInt(2,bankAccountId);
             int result = this.addAmountStatment.executeUpdate();
@@ -108,7 +111,9 @@ public class DatabaseBankAccountController {
                 throw new IllegalArgumentException("There is problem with the bank account id ="+bankAccountId+".");
             }
 
+            this.transfersController.setTransfer(amount,bankAccountId,bankAccountId);
             this.connDatabase.commit();
+            this.connDatabase.setAutoCommit(true);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

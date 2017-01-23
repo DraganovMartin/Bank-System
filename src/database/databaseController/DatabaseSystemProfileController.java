@@ -2,6 +2,7 @@ package database.databaseController;
 
 import dataModel.PasswordConver;
 import dataModel.models.SystemProfileType;
+import sun.security.util.Password;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ public class DatabaseSystemProfileController {
     private PreparedStatement lastId;
     private PreparedStatement loginStatment;
     private PreparedStatement registrateStatment;
+    private PreparedStatement changePasswordStatment;
 
     public DatabaseSystemProfileController(Connection connDatabase){
         this.connDatabase = connDatabase;
@@ -25,6 +27,7 @@ public class DatabaseSystemProfileController {
                     prepareStatement("INSERT INTO systemProfiles(userName,password,firstName,secondName) VALUES(?,?,?,?)");
             this.lastId = this.connDatabase.prepareStatement("SELECT LAST_INSERT_ID()");
             this.loginStatment = this.connDatabase.prepareStatement("SELECT userName,password FROM systemProfiles WHERE userName = ?");
+            this.changePasswordStatment = this.connDatabase.prepareStatement("UPDATE sustempprofiles SET password = ? WHERE userName = ?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -67,6 +70,23 @@ public class DatabaseSystemProfileController {
             }
         }
         return null;
+    }
+
+    public boolean changePassword(String userName,String currPassword,String newPassword){
+        try{
+            this.loginStatment.setString(1,userName);
+            ResultSet resultSet = this.loginStatment.executeQuery();
+            if(resultSet.first()) {
+                if (PasswordConver.isEqualPasswords(resultSet.getBytes("password"), PasswordConver.convertPssword(currPassword))) {
+                    this.changePasswordStatment.setBytes(1, PasswordConver.convertPssword(newPassword));
+                    this.changePasswordStatment.setString(2,userName);
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void closeSystemProfileController(){
