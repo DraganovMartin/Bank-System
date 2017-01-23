@@ -301,4 +301,48 @@ public class ProfileData implements Serializable {
     public TransferHistory getTransferHistory() {
         return this.transferHistory;
     }
+
+    /**
+     * Adds a {@link SingleTransferHistory} object that is constructed from the
+     * arguments provided to the history list of the {@link ProfileData} object.
+     * <p>
+     * Parameters - according to database columns for table "TransferHistory".
+     * <p>
+     * @see SingleTransferHistory#SingleTransferHistory(java.lang.String,
+     * java.lang.String, java.lang.String, java.lang.String, java.lang.String,
+     * java.lang.String)}
+     *
+     * @param transferID
+     * @param fromBankAccountID
+     * @param toBankAccountID
+     * @param currencyID
+     * @param amount
+     * @param date
+     *
+     * @return true (as specified by {@link Collection#add(java.lang.Object)}).
+     */
+    public boolean addToTransferHistory(String transferID, String fromBankAccountID, String toBankAccountID, String currencyID, String amount, String date) {
+        return this.transferHistory.add(transferID, fromBankAccountID, toBankAccountID, currencyID, amount, date);
+    }
+
+    /**
+     * Adds a {@link SingleBankAccountBalance} object that is constructed from
+     * the arguments provided to the balance list of the {@link ProfileData}
+     * object.
+     * <p>
+     * Parameters - according to database columns for table "BankAccounts".
+     * <p>
+     * @see SingleBankAccountBalance#SingleBankAccountBalance(java.lang.String,
+     * java.lang.String, java.lang.String, java.lang.String)}
+     *
+     * @param bankAccountID
+     * @param type
+     * @param currencyID
+     * @param amount
+     *
+     * @return true (as specified by {@link Collection#add(java.lang.Object)}).
+     */
+    public boolean addToBalance(String bankAccountID, String type, String currencyID, String amount) {
+        return this.balance.add(bankAccountID, type, currencyID, amount);
+    }
 }
