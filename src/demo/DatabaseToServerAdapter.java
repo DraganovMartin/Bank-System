@@ -1,5 +1,6 @@
 package demo;
 
+import dataModel.CurrencyConverter;
 import dataModel.ProfileData;
 import networking.messages.Update;
 import networking.messages.request.*;
@@ -9,6 +10,15 @@ import networking.messages.request.*;
  * @author iliyan
  */
 public interface DatabaseToServerAdapter {
+
+    /**
+     * Връща {@link CurrencyConverter} обект според наличните в базата данни
+     * (таблицата с валутите).
+     *
+     * @return {@link CurrencyConverter} обект според наличните в базата данни
+     * (таблицата с валутите).
+     */
+    public CurrencyConverter getCurrencyConverter();
 
     /**
      * Връща {@link ProfileData} обект, съдържащ предназначените за потребителя
