@@ -4,6 +4,7 @@ import dataModel.Money;
 import dataModel.models.Currency;
 import dataModel.models.Transfer;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +16,8 @@ import java.util.List;
  * Created by Nikolay on 1/2/2017.
  * This class is responsible for controlling the transfers connection with the database.
  */
-public class DatabaseTransfersController extends DatabaseController {
+public class DatabaseTransfersController  {
+    private Connection connDatabase;
     /**
      * Statement for set a transfer.
      * It takes amount, bank account id form which you took money,
@@ -28,12 +30,12 @@ public class DatabaseTransfersController extends DatabaseController {
      */
     private PreparedStatement getStm;
 
-    public DatabaseTransfersController(){
-        super();
+    public DatabaseTransfersController(Connection connDatabase){
+        this.connDatabase = connDatabase;
         try{
-            this.setStm = connDatabase.prepareStatement
+            this.setStm = this.connDatabase.prepareStatement
                     ("INSERT INTO transfers(amount,fromBankAccount_id,toBankAccount_id,currency_id) VALUES (?,?,?,?)");
-            this.getStm = connDatabase.prepareStatement
+            this.getStm = this.connDatabase.prepareStatement
                     ("SELECT * FROM transfers WHERE fromBankAccount_id = ? OR toBankAccount_id = ? ORDER BY date DESC");
         } catch (SQLException e) {
             e.printStackTrace();

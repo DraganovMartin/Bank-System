@@ -4,6 +4,7 @@ import dataModel.CurrencyConverter;
 import dataModel.models.Currency;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,15 +12,15 @@ import java.sql.SQLException;
 /**
  * Created by Nikolay on 1/2/2017.
  */
-public class DatabaseCurrensyController extends DatabaseController {
-
+public class DatabaseCurrensyController{
+    private Connection connDatabase;
 
     private PreparedStatement getAll;
 
-    public DatabaseCurrensyController(){
-        super();
+    public DatabaseCurrensyController(Connection connDatabase){
+        this.connDatabase = connDatabase;
         try{
-            this.getAll = connDatabase.prepareStatement("SELECT * FROM currencies");
+            this.getAll = this.connDatabase.prepareStatement("SELECT * FROM currencies");
         } catch (SQLException e) {
             e.printStackTrace();
         }
