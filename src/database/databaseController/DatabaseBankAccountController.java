@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class DatabaseBankAccountController {
     private Connection connDatabase;
 
-   //private PreparedStatement getBankAccoutType;
+   private PreparedStatement getBankAccoutType;
     private PreparedStatement getAmount;
     private PreparedStatement getAmountByUserName;
     private PreparedStatement addAmount;
