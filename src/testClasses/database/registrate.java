@@ -12,7 +12,7 @@ public class registrate {
     public static void main(String[] args){
         try {
             DatabaseHandler dh = new DatabaseHandler();
-            dh.handleRegisterRequest(new RegisterRequest("MIKI","1234n","Mark","Markov"));
+            dh.handleRegisterRequest(new RegisterRequest("kake","miok","Mark","Markov"));
         } catch (ConnectException e) {
             e.printStackTrace();
         }
