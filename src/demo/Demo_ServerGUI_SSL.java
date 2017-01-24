@@ -21,7 +21,7 @@ import networking.messages.Message;
 import networking.messages.Update;
 
 /**
- * A class to start the server using {@link ServerGUI_SSL.
+ * A class to start the server using {@link ServerGUI_SSL}.
  *
  * @author iliyan
  */
