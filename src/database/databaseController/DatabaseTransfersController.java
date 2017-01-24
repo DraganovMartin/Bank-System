@@ -1,6 +1,7 @@
 package database.databaseController;
 
 import dataModel.Money;
+import dataModel.ProfileData;
 import dataModel.models.Currency;
 import dataModel.models.Transfer;
 
@@ -36,42 +37,48 @@ public class DatabaseTransfersController  {
             this.setStm = this.connDatabase.prepareStatement
                     ("INSERT INTO transfers(amount,fromBankAccount_id,toBankAccount_id,currency_id) VALUES (?,?,?,?)");
             this.getStm = this.connDatabase.prepareStatement
-                    ("SELECT * FROM transfers WHERE fromBankAccount_id = ? OR toBankAccount_id = ? ORDER BY date DESC");
+                    ("SELECT transfers.id,fromBankAccount_id,toBankAccount_id,transfers.currency_id,transfers.amount,transfers.date " +
+                            "FROM systemprofiles,bankaccount,transfers WHERE " +
+                            "systemprofiles.userName = bankAccount.userName AND " +
+                            "(bankAccount.id = transfers.fromBankAccount_id OR bankAccount.id = transfers.toBankAccount_id) AND " +
+                            "systemprofiles.userName = ?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void setTransfer(Money amount,int fromBankAccount_id,int toBankAccount_id){
+    public boolean setTransfer(Money amount,int fromBankAccount_id,int toBankAccount_id){
         try {
             this.setStm.setBigDecimal(1,amount.getAmount());
             this.setStm.setInt(2,fromBankAccount_id);
             this.setStm.setInt(3,toBankAccount_id);
             this.setStm.setString(4,amount.getCurrency().getSymbol());
             int result = this.setStm.executeUpdate();
-            if(result != 1){
-                throw new IllegalArgumentException("There is problem with the database");
+            if(result == 1){
+                return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public List<Transfer> getHistory(int bankAccountId){
+    public ProfileData.TransferHistory getHistory(String username){
         ResultSet set = null;
-        List<Transfer> transfers = new ArrayList<Transfer>();
+        ProfileData.TransferHistory transfers = new ProfileData.TransferHistory();
         try{
-            this.getStm.setInt(1,bankAccountId);
-            this.getStm.setInt(2,bankAccountId);
+            this.getStm.setString(1,username);
             set = this.getStm.executeQuery();
             while(set.next()){
-                int id = set.getInt("id");
+                String id = set.getString("id");
                 String currencyId = set.getString("currency_id");
-                Money money = Money.createMoney(new Currency(currencyId),set.getString("amount"));
+                String amount = set.getString("amount");
                 Date date = set.getDate("date");
-                int from = set.getInt("fromBankAccount_id");
-                int to = set.getInt("toBankAccount_id");
-                transfers.add(new Transfer(id,money,date,from,to));
+                String from = set.getString("fromBankAccount_id");
+                String to = set.getString("toBankAccount_id");
+                ProfileData.TransferHistory.SingleTransferHistory lineHistory =
+                        new ProfileData.TransferHistory.SingleTransferHistory(id,from,to,currencyId,amount,date.toString());
+                transfers.add(lineHistory);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,10 +1,13 @@
 package networking.connections;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
 import networking.messageHandlers.MessageHandler;
+import networking.messages.Message;
 
 /**
  * A class that executes the server-side activities.
@@ -142,6 +145,38 @@ public class Server {
                 }
             }
             this.connectionManager = null;
+        }
+    }
+
+    /**
+     * Sends the provided {@link Message} to the client connected under the
+     * specified connection log number;
+     *
+     * @param message the {@link Message} to send.
+     *
+     * @param logNumber the log number of the target connection.
+     */
+    public synchronized void send(Message message, BigInteger logNumber) {
+        if (this.connectionManager != null) {
+            Connection unverified = this.connectionManager.unverified.get(logNumber);
+            if (unverified != null) {
+                try {
+                    unverified.send(message);
+                } catch (IOException ex) {
+                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                for (Map.Entry<String, Serverside> entry : this.connectionManager.verified.entrySet()) {
+                    if (entry.getValue().logNumber.equals(logNumber)) {
+                        Connection verified = entry.getValue();
+                        try {
+                            verified.send(message);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            }
         }
     }
 }
