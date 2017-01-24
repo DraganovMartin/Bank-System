@@ -38,6 +38,7 @@ public class ServerGUI extends Server {
     static final String STARTSERVERBUTTONTEXT = "Start server";
     static final String STOPSERVERBUTTONTEXT = "Stop server";
     static final String EXITBUTTONTEXT = "Exit";
+    static final String REFRESHCLIENTLISTBUTTONTEXT = "Refresh client list...";
     static final String PORTLABELTEXT = "Server port:";
     static final String STATUSPANELTITLE = "Server status";
     static final String CONTROLPANELTITLE = "Server control panel";
@@ -60,6 +61,7 @@ public class ServerGUI extends Server {
     JButton startServerButton;
     JButton stopServerButton;
     JButton exitButton;
+    JButton refreshClientListButton;
 
     /**
      * Constructor. Provides a graphical user interface for a {@link Server}.
@@ -99,9 +101,11 @@ public class ServerGUI extends Server {
             this.startServerButton = new JButton(ServerGUI.STARTSERVERBUTTONTEXT);
             this.stopServerButton = new JButton(ServerGUI.STOPSERVERBUTTONTEXT);
             this.exitButton = new JButton(ServerGUI.EXITBUTTONTEXT);
+            this.refreshClientListButton = new JButton(ServerGUI.REFRESHCLIENTLISTBUTTONTEXT);
             this.startServerButton.setEnabled(true);
             this.stopServerButton.setEnabled(false);
             this.exitButton.setEnabled(true);
+            this.refreshClientListButton.setEnabled(false);
             // add action listeners to the buttons:
             this.startServerButton.addActionListener(new ActionListener() {
                 @Override
@@ -121,12 +125,19 @@ public class ServerGUI extends Server {
                     onExitButton();
                 }
             });
+            this.refreshClientListButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    onRefreshClientListButton();
+                }
+            });
             // insert the components into the control panel:
             this.controlPanelNorth.add(this.portLabel);
             this.controlPanelNorth.add(this.portField);
             this.controlPanelNorth.add(this.startServerButton);
             this.controlPanelNorth.add(this.stopServerButton);
             this.controlPanelSouth.add(this.exitButton);
+            this.controlPanelSouth.add(this.refreshClientListButton);
             // lay out the control panel:
             this.controlPanel.add(this.controlPanelCenter, BorderLayout.CENTER);
             this.controlPanel.add(this.controlPanelNorth, BorderLayout.NORTH);
@@ -173,6 +184,7 @@ public class ServerGUI extends Server {
                 this.portField.setEnabled(false);
                 this.stopServerButton.setEnabled(true);
                 this.exitButton.setEnabled(false);
+                this.refreshClientListButton.setEnabled(true);
                 this.setRunningStatus(true);
                 JOptionPane.showMessageDialog(this.mainFrame, "Server started at port: " + port);
             }
@@ -194,6 +206,7 @@ public class ServerGUI extends Server {
             this.portField.setEnabled(true);
             this.stopServerButton.setEnabled(false);
             this.exitButton.setEnabled(true);
+            this.refreshClientListButton.setEnabled(false);
             this.setRunningStatus(false);
         }
     }
@@ -203,6 +216,13 @@ public class ServerGUI extends Server {
      */
     synchronized void onExitButton() {
         this.mainFrame.dispose();
+    }
+
+    /**
+     * Executed when the {@link #refreshClientListButtonButton} is pressed.
+     */
+    synchronized void onRefreshClientListButton() {
+        JOptionPane.showMessageDialog(this.mainFrame, "NOT SUPPORTED YET!");
     }
 
     /**
