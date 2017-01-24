@@ -125,6 +125,7 @@ public class DatabaseHandler implements DatabaseToServerAdapter {
     public Update handleLoginRequest(LoginRequest loginRequest) {
         if(loginRequest.getUsername() == null){
             String user = this.systemProfileController.login(loginRequest.getLoginUsername(),loginRequest.getLoginPassword());
+            System.out.println(user);
             if(user != null){
                 loginRequest.setUsername(user);
                 return new Update(LoginRequest.TYPE,loginRequest,true,this.getUserProfileData(loginRequest.getUsername()));
