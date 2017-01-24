@@ -1,4 +1,4 @@
-package demo;
+package database;
 
 import dataModel.CurrencyConverter;
 import dataModel.ProfileData;
