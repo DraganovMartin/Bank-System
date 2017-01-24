@@ -1,13 +1,20 @@
 package testClasses.database;
 
-import database.databaseController.DatabaseController;
+import database.DatabaseHandler;
+import networking.messages.request.RegisterRequest;
+
+import java.net.ConnectException;
 
 /**
- * Created by Nikolay on 12/21/2016.
+ * Created by Nikolay on 1/23/2017.
  */
 public class registrate {
     public static void main(String[] args){
-        DatabaseController db = new DatabaseController();
-         //System.out.println(db.registrate("miksan","1234",1,1));
+        try {
+            DatabaseHandler dh = new DatabaseHandler();
+            dh.handleRegisterRequest(new RegisterRequest("kake","miok","Mark","Markov"));
+        } catch (ConnectException e) {
+            e.printStackTrace();
+        }
     }
 }

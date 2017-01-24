@@ -23,7 +23,7 @@ public class PasswordConver {
     }
 
     public static byte[] convertPssword(String password){
-        md.update("12345".getBytes());
+        md.update(password.getBytes());
         byte byteData[] = md.digest();
         return byteData;
     }
