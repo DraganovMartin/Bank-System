@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import dataModel.ProfileData;
 import networking.messageHandlers.MessageHandler;
 import networking.messages.DisconnectNotice;
 import networking.messages.Message;
@@ -37,8 +38,12 @@ public class MainPanel extends JPanel implements MessageHandler {
 	    private JButton logoutBtn;
 	    //private JButton backBtn;
 	    private ClientDataUIHelper user;
+	    private JScrollPane paneBalance;
+	    private JScrollPane paneHistory;
 	    
     public MainPanel(ClientDataUIHelper user, networking.connections.Client connection) {
+	    paneBalance = new JScrollPane();
+	    paneHistory = new JScrollPane();
     	this.user = user;
     	thisPanel = this;
         initComponents();
@@ -107,7 +112,7 @@ public class MainPanel extends JPanel implements MessageHandler {
 							//JOptionPane.showConfirmDialog(this, "Connection problem !");
 							e1.printStackTrace();
 						}
-						JOptionPane.showConfirmDialog(panelMain, "Request send, wait a moment !");
+						JOptionPane.showMessageDialog(panelMain, "Request send, wait a moment !");
 						add(new BalancePanel(user),"BalancePanel");
 						 CardLayout cl = (CardLayout)(getLayout());
 					     cl.show(thisPanel, "BalancePanel");
@@ -281,7 +286,8 @@ public class MainPanel extends JPanel implements MessageHandler {
             }
             this.add(panelMain, "card1");
         }
-       
+        this.add(paneBalance);
+        this.add(paneHistory);
     }
 
     /**
@@ -305,9 +311,10 @@ public class MainPanel extends JPanel implements MessageHandler {
 	}
 	public synchronized void handleUpdate(Update message){
 		if(message.getProflieData() != null){
-			this.user = (ClientDataUIHelper)message.getProflieData();
-			
-			
+			this.user = new ClientDataUIHelper(message.getProflieData().getBalance(), message.getProflieData().getTransferHistory(), message.getProflieData().getCurrencyConverter(), message.getUsername());
+			JOptionPane.showMessageDialog(null, "Received data from server");
+			paneBalance.setViewportView(user.getBalanceTable());
+			paneHistory.setViewportView(user.getTransferHistoryTable());
 		}
 	}
 }

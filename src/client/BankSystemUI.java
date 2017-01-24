@@ -35,6 +35,7 @@ public class BankSystemUI extends JFrame {
     private Client connection = null;
     private String host;
     private int port;
+    public MainPanel mainWindow;
     
     //-----------------------------------------------
    
@@ -120,6 +121,7 @@ public class BankSystemUI extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						  	user.setUsetname(usernameTF.getText());
 					        user.setPass(passwordTF.getPassword());
+					        mainWindow = new MainPanel(user,connection);
 					        try {
 								connection.send(new LoginRequest(usernameTF.getText(),passwordTF.getText()));
 							} catch (IOException e1) {
@@ -128,7 +130,7 @@ public class BankSystemUI extends JFrame {
 							}
 					        usernameTF.setText("");
 					        passwordTF.setText("");
-					        BankSystemUIContentPane.add(new MainPanel(user,connection),"mainCard");
+					        BankSystemUIContentPane.add(mainWindow, "mainCard");
 					        CardLayout cl = (CardLayout)(BankSystemUIContentPane.getLayout());
 					        cl.show(BankSystemUIContentPane, "mainCard");
 						

@@ -16,9 +16,10 @@ public class ClientDataUIHelper extends ProfileData {
     
 	public ClientDataUIHelper(Balance balance, TransferHistory transferHistory, CurrencyConverter currencyConverter,String username) {
         super(balance, transferHistory, currencyConverter);
-        if(!username.isEmpty()) {
+        if(username != null && !username.isEmpty()) {
             this.username = username;
         }
+        else this.username = "Guest";
     	this.balanceTable = this.getBalanceTable();
     	this.transferTable = this.getTransferHistoryTable();
         

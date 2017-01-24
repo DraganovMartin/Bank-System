@@ -22,8 +22,8 @@ public class RegisterForm extends JPanel {
 	    private JTextField lastNameTF;
 	    private JLabel usernameLaebl;
 	    private JTextField usernameTF;
-	    private JPasswordField passwordLabel;
-	    private JTextField textField1; 
+	    private JLabel passwordLabel;
+	    private JPasswordField passwordField; 
 	    private JButton saveBtn;
 	    private JButton backBtn;
 	    private Client connection;
@@ -41,8 +41,8 @@ public class RegisterForm extends JPanel {
         lastNameTF = new JTextField();
         usernameLaebl = new JLabel();
         usernameTF = new JTextField();
-        passwordLabel = new JPasswordField();
-        textField1 = new JTextField();
+        passwordLabel = new JLabel();
+        passwordField = new JPasswordField();
         saveBtn = new JButton();
         backBtn = new JButton();
 
@@ -113,7 +113,7 @@ public class RegisterForm extends JPanel {
                                 .addComponent(firstNameTF, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                                 .addComponent(lastNameTF, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                                 .addComponent(usernameTF, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                .addComponent(textField1, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                                .addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                             .addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
                         .addGap(135, 135, 135))
             );
@@ -135,7 +135,7 @@ public class RegisterForm extends JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(RegisterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(passwordLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(107, 107, 107)
                         .addGroup(RegisterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addComponent(saveBtn)
