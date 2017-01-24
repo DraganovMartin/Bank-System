@@ -6,6 +6,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ServerSocketFactory;
@@ -14,6 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import networking.messageHandlers.MessageHandler;
@@ -35,6 +42,32 @@ import networking.messageHandlers.MessageHandler;
  */
 public class ServerGUI extends Server {
 
+    class Row implements Comparable<Row> {
+
+        BigInteger logNumber;
+        String username;
+        boolean isVerified;
+
+        public Row(BigInteger logNumber, String username, boolean isVerified) {
+            this.logNumber = logNumber;
+            this.username = username;
+            this.isVerified = isVerified;
+        }
+
+        @Override
+        public int compareTo(Row other) {
+            if (!this.isVerified && other.isVerified) {
+                return -1;
+            } else if (this.isVerified && !other.isVerified) {
+                return 1;
+            } else if (this.isVerified) {
+                return this.username.compareTo(other.username);
+            } else {
+                return this.logNumber.compareTo(other.logNumber);
+            }
+        }
+    }
+
     static final String STARTSERVERBUTTONTEXT = "Start server";
     static final String STOPSERVERBUTTONTEXT = "Stop server";
     static final String EXITBUTTONTEXT = "Exit";
@@ -42,6 +75,7 @@ public class ServerGUI extends Server {
     static final String PORTLABELTEXT = "Server port:";
     static final String STATUSPANELTITLE = "Server status";
     static final String CONTROLPANELTITLE = "Server control panel";
+    static final String CLIENTLISTPANETITLE = "Clients list";
     static final String STATUSRUNNING = "Server is running!";
     static final Color STATUSRUNNINGCOLOR = Color.GREEN;
     static final String STATUSNOTRUNNING = "Server is NOT running!";
@@ -62,6 +96,10 @@ public class ServerGUI extends Server {
     JButton stopServerButton;
     JButton exitButton;
     JButton refreshClientListButton;
+    JTable clientListTable;
+    static final String[] CLIENTLISTTABLE_COLUMNNAMES = new String[]{"connection ID", "verified", "username"};
+    String[][] clientListTable_rowData;
+    JScrollPane clientListPane;
 
     /**
      * Constructor. Provides a graphical user interface for a {@link Server}.
@@ -102,6 +140,12 @@ public class ServerGUI extends Server {
             this.stopServerButton = new JButton(ServerGUI.STOPSERVERBUTTONTEXT);
             this.exitButton = new JButton(ServerGUI.EXITBUTTONTEXT);
             this.refreshClientListButton = new JButton(ServerGUI.REFRESHCLIENTLISTBUTTONTEXT);
+            {
+                this.clientListTable_rowData = new String[0][0];
+                this.clientListTable = new JTable(this.clientListTable_rowData, ServerGUI.CLIENTLISTTABLE_COLUMNNAMES);
+            }
+            this.clientListPane = new JScrollPane(this.clientListTable);
+            this.clientListPane.setBorder(new TitledBorder(ServerGUI.CLIENTLISTPANETITLE));
             this.startServerButton.setEnabled(true);
             this.stopServerButton.setEnabled(false);
             this.exitButton.setEnabled(true);
@@ -138,6 +182,7 @@ public class ServerGUI extends Server {
             this.controlPanelNorth.add(this.stopServerButton);
             this.controlPanelSouth.add(this.exitButton);
             this.controlPanelSouth.add(this.refreshClientListButton);
+            this.controlPanelCenter.add(this.clientListPane);
             // lay out the control panel:
             this.controlPanel.add(this.controlPanelCenter, BorderLayout.CENTER);
             this.controlPanel.add(this.controlPanelNorth, BorderLayout.NORTH);
@@ -208,6 +253,7 @@ public class ServerGUI extends Server {
             this.exitButton.setEnabled(true);
             this.refreshClientListButton.setEnabled(false);
             this.setRunningStatus(false);
+            this.onRefreshClientListButton();
         }
     }
 
@@ -222,7 +268,62 @@ public class ServerGUI extends Server {
      * Executed when the {@link #refreshClientListButtonButton} is pressed.
      */
     synchronized void onRefreshClientListButton() {
-        JOptionPane.showMessageDialog(this.mainFrame, "NOT SUPPORTED YET!");
+        JOptionPane.showMessageDialog(this.mainFrame, "Refreshing client list...");
+
+        Vector<Row> rows = new Vector<>();
+
+        if (this.connectionManager != null) {
+
+            // add list of unverified clients to the table:
+            for (Map.Entry<BigInteger, Serverside> entry : this.connectionManager.unverified.entrySet()) {
+                String username = entry.getValue().username;
+                BigInteger logNumber = entry.getValue().logNumber;
+                boolean isVerified = false;
+                rows.add(new Row(logNumber, username, isVerified));
+            }
+
+            // add list of verified clients to the table:
+            for (Map.Entry<String, Serverside> entry : this.connectionManager.verified.entrySet()) {
+                String username = entry.getValue().username;
+                BigInteger logNumber = entry.getValue().logNumber;
+                boolean isVerified = true;
+                rows.add(new Row(logNumber, username, isVerified));
+            }
+        }
+
+        {
+            // DEBUG !!!
+            //rows.add(new Row(new BigInteger("5"), "user_5", true));
+            //rows.add(new Row(new BigInteger("2"), "user_2", false));
+            //rows.add(new Row(new BigInteger("6"), "user_6", false));
+            //rows.add(new Row(new BigInteger("4"), "user_4", true));
+            //rows.add(new Row(new BigInteger("7"), "user_7", true));
+            //rows.add(new Row(new BigInteger("1"), "user_1", false));
+            //rows.add(new Row(new BigInteger("3"), "user_3", true));
+        }
+
+        // sort rows
+        Collections.sort(rows);
+
+        // enter table data:
+        {
+            int size = rows.size();
+            this.clientListTable_rowData = new String[size][];
+            Iterator<Row> it = rows.iterator();
+            for (int i = 0; i < size; i++) {
+                this.clientListTable_rowData[i] = new String[3];
+                Row current = it.next();
+                this.clientListTable_rowData[i][0] = current.logNumber.toString();
+                this.clientListTable_rowData[i][1] = "" + current.isVerified;
+                this.clientListTable_rowData[i][2] = (current.username != null) ? current.username : "";
+            }
+        }
+
+        //refresh table:
+        this.clientListTable = new JTable(this.clientListTable_rowData, ServerGUI.CLIENTLISTTABLE_COLUMNNAMES);
+
+        //refresh client list:
+        this.clientListPane.setViewportView(this.clientListTable);
     }
 
     /**
