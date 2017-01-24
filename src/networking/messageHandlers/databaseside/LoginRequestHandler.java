@@ -11,18 +11,17 @@ import java.net.ConnectException;
 /**
  * Created by Nikolay on 1/24/2017.
  */
-public class LoginRequestHandler implements MessageHandler {
-    private DatabaseHandler dh;
+public class LoginRequestHandler extends BalanceRequestHandler {
 
     public LoginRequestHandler(DatabaseHandler databaseHandler){
-        this.dh = databaseHandler;
+        super(databaseHandler);
     }
 
     @Override
     public Message handle(Message message) {
         LoginRequest login = (LoginRequest)message;
         if(login != null){
-            Update update = dh.handleLoginRequest(login);
+            Update update = this.databaseHandler.handleLoginRequest(login);
             return update;
         }
         return null;

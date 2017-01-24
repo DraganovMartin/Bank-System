@@ -10,19 +10,17 @@ import javax.xml.crypto.Data;
 /**
  * Created by Nikolay on 1/24/2017.
  */
-public class RegistrateRequestHandler implements MessageHandler {
-
-    private DatabaseHandler dh;
+public class RegistrateRequestHandler extends BalanceRequestHandler {
 
     public RegistrateRequestHandler(DatabaseHandler databaseHandler){
-        this.dh = databaseHandler;
+        super(databaseHandler);
     }
 
     @Override
     public Message handle(Message message){
         RegisterRequest registerRequest = (RegisterRequest)message;
         if(registerRequest != null){
-            return this.dh.handleRegisterRequest(registerRequest);
+            return this.databaseHandler.handleRegisterRequest(registerRequest);
         }
         return null;
     }

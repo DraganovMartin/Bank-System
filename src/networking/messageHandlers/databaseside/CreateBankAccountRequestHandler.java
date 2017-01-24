@@ -8,12 +8,10 @@ import networking.messages.request.CreateBankAccountRequest;
 /**
  * Created by Nikolay on 1/24/2017.
  */
-public class CreateBankAccountRequestHandler implements MessageHandler {
-
-    private DatabaseHandler databaseHandler;
+public class CreateBankAccountRequestHandler extends BasicRequestHandler {
 
     public CreateBankAccountRequestHandler(DatabaseHandler databaseHandler){
-        this.databaseHandler = databaseHandler;
+        super(databaseHandler);
     }
 
     @Override

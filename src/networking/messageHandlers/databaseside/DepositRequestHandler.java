@@ -8,11 +8,10 @@ import networking.messages.request.DepositRequest;
 /**
  * Created by Nikolay on 1/24/2017.
  */
-public class DepositRequestHandler implements MessageHandler {
-    private DatabaseHandler databaseHandler;
+public class DepositRequestHandler extends BalanceRequestHandler {
 
     public DepositRequestHandler(DatabaseHandler databaseHandler){
-        this.databaseHandler = databaseHandler;
+        super(databaseHandler);
     }
 
     @Override

@@ -8,11 +8,10 @@ import networking.messages.request.CurrencyRatesRequest;
 /**
  * Created by Nikolay on 1/24/2017.
  */
-public class CurrencyRateRequestHandler implements MessageHandler {
-    private DatabaseHandler databaseHandler;
+public class CurrencyRateRequestHandler extends BasicRequestHandler {
 
     public CurrencyRateRequestHandler(DatabaseHandler databaseHandler){
-        this.databaseHandler = databaseHandler;
+        super(databaseHandler);
     }
 
     @Override

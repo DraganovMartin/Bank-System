@@ -8,11 +8,10 @@ import networking.messages.request.TransferRequest;
 /**
  * Created by Nikolay on 1/24/2017.
  */
-public class TransferRequestHandler implements MessageHandler {
-    private DatabaseHandler databaseHandler;
+public class TransferRequestHandler extends BalanceRequestHandler {
 
     public TransferRequestHandler(DatabaseHandler databaseHandler){
-        this.databaseHandler = databaseHandler;
+        super(databaseHandler);
     }
 
     @Override

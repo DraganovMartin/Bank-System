@@ -8,11 +8,10 @@ import networking.messages.request.WithdrawRequest;
 /**
  * Created by Nikolay on 1/24/2017.
  */
-public class WithdrawRequestHandler implements MessageHandler {
-    private DatabaseHandler databaseHandler;
+public class WithdrawRequestHandler extends BalanceRequestHandler {
 
     public WithdrawRequestHandler(DatabaseHandler databaseHandler){
-        this.databaseHandler = databaseHandler;
+        super(databaseHandler);
     }
 
     @Override

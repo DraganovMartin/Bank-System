@@ -8,19 +8,17 @@ import networking.messages.request.TransactionHistoryRequest;
 /**
  * Created by Nikolay on 1/24/2017.
  */
-public class TransfersHistoryRequestHandler implements MessageHandler {
-
-    private DatabaseHandler dh;
+public class TransfersHistoryRequestHandler extends BasicRequestHandler {
 
     public TransfersHistoryRequestHandler(DatabaseHandler databaseHandler){
-        this.dh = databaseHandler;
+        super(databaseHandler);
     }
 
     @Override
     public Message handle(Message message) {
         TransactionHistoryRequest request = (TransactionHistoryRequest) message;
         if(request != null){
-            return this.dh.handleTransactionHistoryRequest(request);
+            return this.databaseHandler.handleTransactionHistoryRequest(request);
         }
         return null;
     }

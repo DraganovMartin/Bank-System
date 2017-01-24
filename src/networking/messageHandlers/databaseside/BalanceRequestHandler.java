@@ -8,11 +8,10 @@ import networking.messages.request.BalanceRequest;
 /**
  * Created by Nikolay on 1/24/2017.
  */
-public class BalanceRequestHandler implements MessageHandler {
-    private DatabaseHandler databaseHandler;
+public class BalanceRequestHandler extends BasicRequestHandler {
 
     public BalanceRequestHandler(DatabaseHandler databaseHandler){
-        this.databaseHandler = databaseHandler;
+        super(databaseHandler);
     }
 
     @Override
