@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>396</x>
+      <y>282</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*bankAccount*
+--
+*id: INT &lt;&lt;primary key&gt;&gt;*
+userName: VARCHAR(40) &lt;&lt;foreign key&gt;&gt;
+type_id: VARCHAR(30) &lt;&lt;foreign key&gt;&gt;
+currency_id: VARCHAR &lt;&lt;foreign key&gt;&gt;
+amount: DECIMAL
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>324</y>
+      <w>168</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=[userName]&lt;-
+&lt; принадлежи на
+притежава &gt;
+m1=      1
+m2=0..*</panel_attributes>
+    <additional_attributes>40.0;20.0;260.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>396</x>
+      <y>138</y>
+      <w>168</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Банкова сметка*
+id: номер на сметката
+userName: собственик
+currency_id: валута
+amount: количество
+type_id: тип сметка
+
+Всеки клиент може няма никаква или да има неограничен брой сметки, и всяка сметка принадлежи на точно един клиент
+ВРЪЗКА 1 &lt;--- 0..много</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>474</x>
+      <y>258</y>
+      <w>18</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>96</x>
+      <y>282</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*systemProfiles*
+--
+*userName: VARCHAR(30) &lt;&lt;primary key&gt;&gt;*
+password: BINARY(16)
+firstName: VARCHAR(45)
+secondName: VARCHAR(45)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>96</x>
+      <y>138</y>
+      <w>168</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Профил в системата*
+userName - потр. име
+password - парола
+firstName: първо име
+secondName: фамилия
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>174</x>
+      <y>258</y>
+      <w>18</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>282</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*currencies*
+--
+*id: VARCHAR(3) &lt;&lt;primary key&gt;&gt;*
+value: DOUBLE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>324</y>
+      <w>168</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=[currency_id]&lt;-
+m1=1
+m2=0..*
+използва &gt;
+&lt; се използва от</panel_attributes>
+    <additional_attributes>230.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>696</x>
+      <y>426</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Валута*
+id - име на валутата
+value - текущ курс
+
+Всяка сметка ползва точно и само една валута, а може да има валути, които не се ползват в нито една сметка
+ВРЪЗКА 0..много ---&gt; 1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>774</x>
+      <y>372</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>396</x>
+      <y>426</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*transfers*
+--
+*id: INT &lt;&lt;primary key&gt;&gt;*
+fromBankAccount_id: INT &lt;&lt;foreign key&gt;&gt;
+toBankAccount_id: INT &lt;&lt;foreign key&gt;&gt;
+currency_id: INT &lt;&lt;foreign key&gt;&gt;
+amount: DECIMAL
+date: DATETIME
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>354</y>
+      <w>168</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=[currency_id]&lt;-
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>230.0;10.0;70.0;10.0;70.0;220.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>402</x>
+      <y>372</y>
+      <w>84</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=[fromBankAccount_id]&lt;-
+от сметка
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>60.0;10.0;60.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>372</y>
+      <w>90</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=[toBankAccount_id]&lt;-
+към сметка
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>60.0;10.0;60.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>138</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+&lt;&lt;table&gt;&gt;
+*bankAccountType*
+--
+*id: VARCHAR(30) &lt;&lt;primary key&gt;&gt;*
+overdraft: DECIMAL
+interestRate: DECIMAL
+tax: DECIMAL</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>210</y>
+      <w>162</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=[type_id]&lt;-
+m1=1
+m2=0..*
+</panel_attributes>
+    <additional_attributes>230.0;10.0;130.0;10.0;130.0;170.0;10.0;170.0</additional_attributes>
+  </element>
+</diagram>
