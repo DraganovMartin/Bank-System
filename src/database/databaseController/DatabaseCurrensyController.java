@@ -50,4 +50,12 @@ public class DatabaseCurrensyController{
         }
         return converter;
     }
+
+    public void close(){
+        try {
+            this.getAll.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

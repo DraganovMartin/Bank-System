@@ -93,6 +93,8 @@ public class DatabaseSystemProfileController {
         try {
             this.lastId.close();
             this.registrateStatment.close();
+            this.loginStatment.close();
+            this.changePasswordStatment.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
