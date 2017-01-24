@@ -243,4 +243,16 @@ public class DatabaseHandler implements DatabaseToServerAdapter {
                     this.getUserProfileData(transferRequest.getUsername()));
         }
     }
+
+    public void close(){
+        this.transfersController.closeTransferContoller();
+        this.bankAccountController.close();
+        this.currensyController.close();
+        this.systemProfileController.closeSystemProfileController();
+        try {
+            this.connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
