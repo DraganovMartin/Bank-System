@@ -4,9 +4,12 @@ package client;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
-import javax.swing.GroupLayout;
+
+import networking.connections.Client;
+import networking.messages.request.RegisterRequest;
 
 /**
  * @author Martin Draganov
@@ -19,12 +22,14 @@ public class RegisterForm extends JPanel {
 	    private JTextField lastNameTF;
 	    private JLabel usernameLaebl;
 	    private JTextField usernameTF;
-	    private JLabel passwordLabel;
+	    private JPasswordField passwordLabel;
 	    private JTextField textField1; 
 	    private JButton saveBtn;
 	    private JButton backBtn;
+	    private Client connection;
 	    
-    public RegisterForm() {
+    public RegisterForm(Client connection) {
+    	this.connection = connection;
         initComponents();
     }
 
@@ -36,7 +41,7 @@ public class RegisterForm extends JPanel {
         lastNameTF = new JTextField();
         usernameLaebl = new JLabel();
         usernameTF = new JTextField();
-        passwordLabel = new JLabel();
+        passwordLabel = new JPasswordField();
         textField1 = new JTextField();
         saveBtn = new JButton();
         backBtn = new JButton();
@@ -61,6 +66,19 @@ public class RegisterForm extends JPanel {
 
             //---- saveBtn ----
             saveBtn.setText("Save");
+            saveBtn.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					try {
+						connection.send(new RegisterRequest(usernameTF.getText(), passwordLabel.getText(), firstNameTF.getText(), lastNameTF.getText()));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					setVisible(false);
+				}
+			});
 
             //---- backBtn ----
             backBtn.setText("Back");

@@ -5,6 +5,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
+import client.BankSystemUI;
 import networking.messageHandlers.MessageHandler;
 import networking.messages.Message;
 
@@ -37,6 +39,6 @@ public class Demo_ClientGUI_SSL {
         SSLSocketFactory sslSocketFactory = clientSSLContext.getSocketFactory();
         networking.connections.Client clientConnection = new networking.connections.Client(sslSocketFactory, messageHandler);
         JOptionPane.showMessageDialog(null, "Успешно е създаден SSL контекст за клиента!");
-        // connect client GUI to client connection:
+        BankSystemUI ui = new BankSystemUI(clientConnection);
     }
 }

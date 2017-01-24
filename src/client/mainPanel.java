@@ -4,14 +4,22 @@ package client;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
-import javax.swing.GroupLayout;
+
+import networking.messageHandlers.MessageHandler;
+import networking.messages.DisconnectNotice;
+import networking.messages.Message;
+import networking.messages.Update;
+import networking.messages.request.BalanceRequest;
+import networking.messages.request.TransactionHistoryRequest;
 
 /**
  * @author Martin Draganov
  */
-public class mainPanel extends JPanel {
+public class MainPanel extends JPanel implements MessageHandler {
+	networking.connections.Client connection;
 		
 		private JPanel thisPanel;
 	    private JPanel panelMain;
@@ -30,11 +38,11 @@ public class mainPanel extends JPanel {
 	    //private JButton backBtn;
 	    private ClientDataUIHelper user;
 	    
-    public mainPanel(ClientDataUIHelper user) {
+    public MainPanel(ClientDataUIHelper user, networking.connections.Client connection) {
     	this.user = user;
     	thisPanel = this;
         initComponents();
-        
+        this.connection = connection;
     }
 
     private void initComponents() {
@@ -88,6 +96,23 @@ public class mainPanel extends JPanel {
 
                 //---- balanceCheck ----
                 balanceCheck.setText("Balance Info");
+                balanceCheck.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							connection.send(new BalanceRequest());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							//JOptionPane.showConfirmDialog(this, "Connection problem !");
+							e1.printStackTrace();
+						}
+						JOptionPane.showConfirmDialog(panelMain, "Request send, wait a moment !");
+						add(new BalancePanel(user),"BalancePanel");
+						 CardLayout cl = (CardLayout)(getLayout());
+					     cl.show(thisPanel, "BalancePanel");
+					}
+				});
 
                 //---- changePassBtn ----
                 changePassBtn.setText("Change Password");
@@ -131,6 +156,13 @@ public class mainPanel extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						try {
+							connection.send(new TransactionHistoryRequest());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						JOptionPane.showConfirmDialog(panelMain, "Request send, wait a moment !");
 						
 					}
 				});
@@ -138,6 +170,15 @@ public class mainPanel extends JPanel {
                 //---- transactionBtn ----
                 transactionBtn.setText("Transaction History");
                 transactionBtn.setHorizontalAlignment(SwingConstants.LEFT);
+                transactionBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						add(new TransactionHistoryPanel(user),"TransferPanel");
+						 CardLayout cl = (CardLayout)(getLayout());
+					     cl.show(thisPanel, "TransferPanel");
+					}
+				});
 
                 //---- withdrawBtn ----
                 withdrawBtn.setText("Withdraw");
@@ -242,4 +283,31 @@ public class mainPanel extends JPanel {
         }
        
     }
+
+    /**
+     * Handling responses from server
+     */
+	@Override
+	public Message handle(Message message) {
+		switch(message.getType()){
+		case DisconnectNotice.TYPE:
+			handleDisconnect();
+			break;
+		case Update.TYPE:
+			handleUpdate((Update)message);
+		}
+		return null;
+	}
+	
+	public synchronized void handleDisconnect(){
+		JOptionPane.showMessageDialog(getParent(), "Disconnected from server !");
+		System.exit(1);
+	}
+	public synchronized void handleUpdate(Update message){
+		if(message.getProflieData() != null){
+			this.user = (ClientDataUIHelper)message.getProflieData();
+			
+			
+		}
+	}
 }

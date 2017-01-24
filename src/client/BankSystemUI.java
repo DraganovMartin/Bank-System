@@ -3,16 +3,23 @@ package client;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
+import networking.connections.Client;
 import networking.messageHandlers.MessageHandler;
+import networking.messages.DisconnectNotice;
 import networking.messages.Message;
+import networking.messages.Update;
+import networking.messages.request.LoginRequest;
 
 /**
  * @author Martin Draganov
  */
-public class BankSystemUI extends JFrame implements MessageHandler {
+public class BankSystemUI extends JFrame {
     private JPanel LoginPanel;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
@@ -25,14 +32,35 @@ public class BankSystemUI extends JFrame implements MessageHandler {
     private JMenuItem devs;
     private Container BankSystemUIContentPane = null;
     private ClientDataUIHelper user = null;
+    private Client connection = null;
+    private String host;
+    private int port;
+    
+    //-----------------------------------------------
+   
     
 
-    public BankSystemUI() {
+    public BankSystemUI(Client client ) {
+    	this.connection = client;
         initComponents();
+        user = new ClientDataUIHelper(null, null, null, "");
+    }
+    
+    public BankSystemUI(){
+    	initComponents();
         user = new ClientDataUIHelper(null, null, null, "");
     }
 
     private void initComponents() {
+//    	try {
+//			client.connect(host, port);
+//		} catch (UnknownHostException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
         BankSystemUIContentPane = this.getContentPane();
         LoginPanel = new JPanel();
         usernameLabel = new JLabel();
@@ -92,9 +120,15 @@ public class BankSystemUI extends JFrame implements MessageHandler {
 					public void actionPerformed(ActionEvent e) {
 						  	user.setUsetname(usernameTF.getText());
 					        user.setPass(passwordTF.getPassword());
+					        try {
+								connection.send(new LoginRequest(usernameTF.getText(),passwordTF.getText()));
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 					        usernameTF.setText("");
 					        passwordTF.setText("");
-					        BankSystemUIContentPane.add(new mainPanel(user),"mainCard");
+					        BankSystemUIContentPane.add(new MainPanel(user,connection),"mainCard");
 					        CardLayout cl = (CardLayout)(BankSystemUIContentPane.getLayout());
 					        cl.show(BankSystemUIContentPane, "mainCard");
 						
@@ -107,7 +141,7 @@ public class BankSystemUI extends JFrame implements MessageHandler {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						   	BankSystemUIContentPane.add(new RegisterForm(),"registerCard");
+						   	BankSystemUIContentPane.add(new RegisterForm(connection),"registerCard");
 					        CardLayout cl = (CardLayout)(BankSystemUIContentPane.getLayout());
 					        cl.show(BankSystemUIContentPane, "registerCard");
 						
@@ -174,15 +208,6 @@ public class BankSystemUI extends JFrame implements MessageHandler {
         }
         
     }
-    
-    /**
-     * Handling responses from server
-     */
-	@Override
-	public Message handle(Message message) {
-		
-		return null;
-	}
 
  
 }
