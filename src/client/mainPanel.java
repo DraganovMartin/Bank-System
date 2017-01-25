@@ -113,8 +113,7 @@ public class mainPanel extends JPanel implements MessageHandler {
                             //JOptionPane.showConfirmDialog(this, "Connection problem !");
                             e1.printStackTrace();
                         }
-                        JOptionPane.showMessageDialog(panelMain, "Request send, wait a moment !");
-                        add(new BalancePanel(user), "BalancePanel");
+                        add(new BalancePanel(user, parent), "BalancePanel");
                         CardLayout cl = (CardLayout) (getLayout());
                         cl.show(thisPanel, "BalancePanel");
                     }
@@ -158,21 +157,6 @@ public class mainPanel extends JPanel implements MessageHandler {
                     }
                 });
 
-                transactionBtn.addActionListener(new ActionListener() {
-
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            connection.send(new TransactionHistoryRequest());
-                        } catch (IOException e1) {
-                            // TODO Auto-generated catch block
-                            e1.printStackTrace();
-                        }
-                        JOptionPane.showConfirmDialog(panelMain, "Request send, wait a moment !");
-
-                    }
-                });
-
                 //---- transactionBtn ----
                 transactionBtn.setText("Transaction History");
                 transactionBtn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -180,9 +164,9 @@ public class mainPanel extends JPanel implements MessageHandler {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        add(new TransactionHistoryPanel(user), "TransferPanel");
+                        add(new TransactionHistoryPanel(user, parent), "TransactionHistoryPanel");
                         CardLayout cl = (CardLayout) (getLayout());
-                        cl.show(thisPanel, "TransferPanel");
+                        cl.show(thisPanel, "TransactionHistoryPanel");
                     }
                 });
 
