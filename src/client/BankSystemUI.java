@@ -30,7 +30,7 @@ public class BankSystemUI extends JFrame {
     private Client connection = null;
     private String host;
     private int port;
-    public MainPanel mainWindow;
+    public mainPanel mainWindow;
 
     // контейнери за данните от сървъра - НЕ СЕ ПРЕИНСТАНЦИРАТ !!!
     public final JScrollPane scrollpane_Balance;
@@ -120,7 +120,7 @@ public class BankSystemUI extends JFrame {
                         user.setUsetname(usernameTF.getText());
                         user.setPass(passwordTF.getPassword());
                         // референция към най-горното ниво (обекта - родител) с данните от сървъра:
-                        mainWindow = new MainPanel(user, connection, parent);
+                        mainWindow = new mainPanel(user, connection, parent);
                         try {
                             connection.send(new LoginRequest(usernameTF.getText(), passwordTF.getText()));
                         } catch (IOException e1) {

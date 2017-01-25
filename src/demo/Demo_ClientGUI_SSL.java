@@ -10,7 +10,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import client.BankSystemUI;
-import client.MainPanel;
+import client.mainPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import networking.messageHandlers.MappedMessageHandler;
