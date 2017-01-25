@@ -268,8 +268,6 @@ public class ServerGUI extends Server {
      * Executed when the {@link #refreshClientListButtonButton} is pressed.
      */
     synchronized void onRefreshClientListButton() {
-        JOptionPane.showMessageDialog(this.mainFrame, "Refreshing client list...");
-
         Vector<Row> rows = new Vector<>();
 
         if (this.connectionManager != null) {
@@ -355,6 +353,12 @@ public class ServerGUI extends Server {
         } else {
             this.statusLabel.setText(ServerGUI.STATUSNOTRUNNING);
             this.statusPanel.setBackground(ServerGUI.STATUSNOTRUNNINGCOLOR);
+        }
+    }
+
+    public synchronized void setDefaultPortNumber(int defaultPortNumber) {
+        if (!this.isRunning() || this.startServerButton.isEnabled()) {
+            this.portField.setText(String.valueOf(defaultPortNumber));
         }
     }
 }
