@@ -164,6 +164,13 @@ public class mainPanel extends JPanel implements MessageHandler {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        try {
+                            connection.send(new TransactionHistoryRequest());
+                        } catch (IOException e1) {
+                            // TODO Auto-generated catch block
+                            //JOptionPane.showConfirmDialog(this, "Connection problem !");
+                            e1.printStackTrace();
+                        }
                         add(new TransactionHistoryPanel(user, parent), "TransactionHistoryPanel");
                         CardLayout cl = (CardLayout) (getLayout());
                         cl.show(thisPanel, "TransactionHistoryPanel");
@@ -270,10 +277,6 @@ public class mainPanel extends JPanel implements MessageHandler {
             }
             this.add(panelMain, "card1");
         }
-
-        // контейнери за данните от сървъра - НЕ СЕ ПРЕИНСТАНЦИРАТ !!!
-        this.add(parent.scrollpane_Balance);
-        this.add(parent.scrollpane_History);
     }
 
     /**
@@ -299,7 +302,7 @@ public class mainPanel extends JPanel implements MessageHandler {
     public synchronized void handleUpdate(Update message) {
         if (message.getProflieData() != null) {
             this.user = new ClientDataUIHelper(message.getProflieData().getBalance(), message.getProflieData().getTransferHistory(), message.getProflieData().getCurrencyConverter(), message.getUsername());
-            JOptionPane.showMessageDialog(null, "Received data from server");
+            //JOptionPane.showMessageDialog(null, "Received data from server");
 
             // контейнери за данните от сървъра - НЕ СЕ ПРЕИНСТАНЦИРАТ !!!
             parent.scrollpane_Balance.setViewportView(user.getBalanceTable());

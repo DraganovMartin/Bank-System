@@ -2,7 +2,6 @@ package demo;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -10,11 +9,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import client.BankSystemUI;
-import client.mainPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import networking.messageHandlers.MappedMessageHandler;
-import networking.messageHandlers.MessageHandler;
 import networking.messages.DisconnectNotice;
 import networking.messages.Message;
 import networking.messages.Update;
@@ -28,6 +25,13 @@ public class Demo_ClientGUI_SSL {
 
     public static void main(String[] args) {
 
+        // настройки - тук:
+        final String CLIENT_KEYSTORE_DEFAULT_PATH = "D:\\example_certificates\\client.keystore";
+        final String CLIENT_KEYSTORE_DEFAULT_PASSWORD = "client";
+        final String HOSTNAME = "localhost";
+        final int HOSTPORT = 15000;
+
+        // надолу - стартиране на клиента:
         // избор на файл със SSL сертификат за клиента и задаване на парола за сертификата:
         JOptionPane.showMessageDialog(null,
                 "За да се използва SSL защита е необходимо да изберете файл (сертификат),\n"
@@ -38,19 +42,18 @@ public class Demo_ClientGUI_SSL {
         chooser.setDialogTitle("Изберете файла с SSL ключовете за клиента:");
         chooser.showOpenDialog(null);
         //File clientKeystore = chooser.getSelectedFile();
-        File clientKeystore = new File("D:\\Projects for nbu and tasks\\TestingBankSystemUIEclipseProject\\documentation\\example_certificates\\client.keystore");
+        File clientKeystore = new File(CLIENT_KEYSTORE_DEFAULT_PATH);
         JOptionPane.showMessageDialog(null,
                 "Избраният файл е променен чрез кода на програмата:\n"
                 + clientKeystore.getAbsolutePath() + "\n"
                 + "За настройки - в кода !!!");
-        final String CLIENTPASSWORD = "client";
         JOptionPane.showMessageDialog(null,
                 "Зададена е парола за клиентския SSL ключ:\n"
-                + CLIENTPASSWORD + "\n"
+                + CLIENT_KEYSTORE_DEFAULT_PASSWORD + "\n"
                 + "За настройки - в кода !!!");
 
         // генериране на SSL контекст и създаване на обект за мрежова връзка:
-        SSLContext clientSSLContext = networking.security.SSLContextFactory.getSSLContext(clientKeystore, CLIENTPASSWORD);
+        SSLContext clientSSLContext = networking.security.SSLContextFactory.getSSLContext(clientKeystore, CLIENT_KEYSTORE_DEFAULT_PASSWORD);
         if (clientSSLContext != null) {
             JOptionPane.showMessageDialog(null, "Успешно е създаден SSL контекст за клиента!");
         } else {
@@ -60,9 +63,7 @@ public class Demo_ClientGUI_SSL {
         MappedMessageHandler handler = new MappedMessageHandler();
         networking.connections.Client clientConnection = new networking.connections.Client(sslSocketFactory, handler);
 
-        // задаване на параметри за свързване към сървъра:
-        final String HOSTNAME = "172.16.21.180";
-        final int HOSTPORT = 15000;
+        // свързване към сървъра:
         JOptionPane.showMessageDialog(null,
                 "Зададен е адрес на сървъра:\n"
                 + HOSTNAME + "\n"
@@ -97,5 +98,7 @@ public class Demo_ClientGUI_SSL {
         // задаване на обработките за клиентския интерфейс:
         handler.set(Update.TYPE, defaultHandler);
         handler.set(DisconnectNotice.TYPE, defaultHandler);
+
+        // клиентският интерфейс е стартиран
     }
 }
