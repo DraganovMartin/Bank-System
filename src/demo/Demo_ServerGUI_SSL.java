@@ -19,13 +19,10 @@ import javax.swing.JTextField;
 import database.DatabaseHandler;
 import networking.connections.ServerGUI_SSL;
 import networking.messageHandlers.MappedMessageHandler;
-import networking.messageHandlers.MessageHandler;
 import networking.messageHandlers.databaseside.*;
 import networking.messages.DisconnectNotice;
-import networking.messages.Message;
 import networking.messages.Update;
 import networking.messages.request.*;
-import testClasses.database.ChangePassword;
 
 /**
  * A class to start the server using {@link ServerGUI_SSL}.

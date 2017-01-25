@@ -1,25 +1,20 @@
-
 package client;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
 import networking.connections.Client;
-import networking.messageHandlers.MessageHandler;
-import networking.messages.DisconnectNotice;
-import networking.messages.Message;
-import networking.messages.Update;
 import networking.messages.request.LoginRequest;
 
 /**
  * @author Martin Draganov
  */
 public class BankSystemUI extends JFrame {
+
     private JPanel LoginPanel;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
@@ -36,19 +31,20 @@ public class BankSystemUI extends JFrame {
     private String host;
     private int port;
     public MainPanel mainWindow;
-    
-    //-----------------------------------------------
-   
-    
 
-    public BankSystemUI(Client client ) {
-    	this.connection = client;
+    // контейнери за данните от сървъра - НЕ СЕ ПРЕИНСТАНЦИРАТ !!!
+    public final JScrollPane scrollpane_Balance;
+    public final JScrollPane scrollpane_History;
+
+    //-----------------------------------------------
+    public BankSystemUI(Client client) {
+        this.connection = client;
+        // контейнери за данните от сървъра - НЕ СЕ ПРЕИНСТАНЦИРАТ !!!
+        this.scrollpane_Balance = new JScrollPane();
+        this.scrollpane_History = new JScrollPane();
+
+        // интерфейс:
         initComponents();
-        user = new ClientDataUIHelper(null, null, null, "");
-    }
-    
-    public BankSystemUI(){
-    	initComponents();
         user = new ClientDataUIHelper(null, null, null, "");
     }
 
@@ -76,11 +72,11 @@ public class BankSystemUI extends JFrame {
 
         //======== mainFrame ========
         {
-        	this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        	this.setTitle("Banking System");
+            this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            this.setTitle("Banking System");
             BankSystemUIContentPane.setLayout(new CardLayout());
-            
-          //======== mainFrameMenu ========
+
+            //======== mainFrameMenu ========
             {
 
                 //======== aboutMenu ========
@@ -91,13 +87,13 @@ public class BankSystemUI extends JFrame {
                     devs.setText("Developers");
                     aboutMenu.add(devs);
                     devs.addActionListener(new ActionListener() {
-						
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							JOptionPane.showMessageDialog((JMenuItem)e.getSource(), "Developed by" +"\n" +" Martin Draganov - UI" +"\n" +" Iliyan Kostov - Server" +"\n" +"Nikolay Nikolov - Database");
-							
-						}
-					});
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JOptionPane.showMessageDialog((JMenuItem) e.getSource(), "Developed by" + "\n" + " Martin Draganov - UI" + "\n" + " Iliyan Kostov - Server" + "\n" + "Nikolay Nikolov - Database");
+
+                        }
+                    });
                 }
                 mainFrameMenu.add(aboutMenu);
             }
@@ -112,104 +108,106 @@ public class BankSystemUI extends JFrame {
                 //---- passwordLabel ----
                 passwordLabel.setText("Please enter password :");
                 passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                
+
                 //---- loginBtn ----
                 loginBtn.setText("Login");
+                // референция към най-горното ниво (обекта - родител) с данните от сървъра:
+                BankSystemUI parent = this;
                 loginBtn.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						  	user.setUsetname(usernameTF.getText());
-					        user.setPass(passwordTF.getPassword());
-					        mainWindow = new MainPanel(user,connection);
-					        try {
-								connection.send(new LoginRequest(usernameTF.getText(),passwordTF.getText()));
-							} catch (IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-					        usernameTF.setText("");
-					        passwordTF.setText("");
-					        BankSystemUIContentPane.add(mainWindow, "mainCard");
-					        CardLayout cl = (CardLayout)(BankSystemUIContentPane.getLayout());
-					        cl.show(BankSystemUIContentPane, "mainCard");
-						
-					}
-				});
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        user.setUsetname(usernameTF.getText());
+                        user.setPass(passwordTF.getPassword());
+                        // референция към най-горното ниво (обекта - родител) с данните от сървъра:
+                        mainWindow = new MainPanel(user, connection, parent);
+                        try {
+                            connection.send(new LoginRequest(usernameTF.getText(), passwordTF.getText()));
+                        } catch (IOException e1) {
+                            // TODO Auto-generated catch block
+                            e1.printStackTrace();
+                        }
+                        usernameTF.setText("");
+                        passwordTF.setText("");
+                        BankSystemUIContentPane.add(mainWindow, "mainCard");
+                        CardLayout cl = (CardLayout) (BankSystemUIContentPane.getLayout());
+                        cl.show(BankSystemUIContentPane, "mainCard");
+
+                    }
+                });
 
                 //---- registerBtn ----
                 registerBtn.setText("Register");
                 registerBtn.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						   	BankSystemUIContentPane.add(new RegisterForm(connection),"registerCard");
-					        CardLayout cl = (CardLayout)(BankSystemUIContentPane.getLayout());
-					        cl.show(BankSystemUIContentPane, "registerCard");
-						
-					}
-				});
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        BankSystemUIContentPane.add(new RegisterForm(connection), "registerCard");
+                        CardLayout cl = (CardLayout) (BankSystemUIContentPane.getLayout());
+                        cl.show(BankSystemUIContentPane, "registerCard");
+
+                    }
+                });
 
                 GroupLayout LoginPanelLayout = new GroupLayout(LoginPanel);
                 LoginPanel.setLayout(LoginPanelLayout);
                 LoginPanelLayout.setHorizontalGroup(
-                    LoginPanelLayout.createParallelGroup()
+                        LoginPanelLayout.createParallelGroup()
                         .addGroup(LoginPanelLayout.createSequentialGroup()
-                            .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addGroup(LoginPanelLayout.createSequentialGroup()
-                                    .addGap(133, 133, 133)
-                                    .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addGroup(GroupLayout.Alignment.LEADING, LoginPanelLayout.createSequentialGroup()
-                                            .addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(usernameTF, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
+                                .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addGroup(LoginPanelLayout.createSequentialGroup()
-                                            .addComponent(passwordLabel, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(passwordTF, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))))
-                                .addGroup(GroupLayout.Alignment.LEADING, LoginPanelLayout.createSequentialGroup()
-                                    .addContainerGap(169, Short.MAX_VALUE)
-                                    .addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                                    .addComponent(registerBtn, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)))
-                            .addGap(103, 103, 103))
+                                                .addGap(133, 133, 133)
+                                                .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(GroupLayout.Alignment.LEADING, LoginPanelLayout.createSequentialGroup()
+                                                                .addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(usernameTF, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
+                                                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                                                                .addComponent(passwordLabel, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(passwordTF, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))))
+                                        .addGroup(GroupLayout.Alignment.LEADING, LoginPanelLayout.createSequentialGroup()
+                                                .addContainerGap(169, Short.MAX_VALUE)
+                                                .addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                                                .addComponent(registerBtn, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)))
+                                .addGap(103, 103, 103))
                         .addGroup(LoginPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(mainFrameMenu, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(561, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addComponent(mainFrameMenu, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(561, Short.MAX_VALUE))
                 );
                 LoginPanelLayout.setVerticalGroup(
-                    LoginPanelLayout.createParallelGroup()
+                        LoginPanelLayout.createParallelGroup()
                         .addGroup(LoginPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(mainFrameMenu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGap(211, 211, 211)
-                            .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(usernameTF)
-                                .addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(35, 35, 35)
-                            .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(passwordTF)
-                                .addComponent(passwordLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addGroup(LoginPanelLayout.createSequentialGroup()
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(LoginPanelLayout.createSequentialGroup()
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(registerBtn, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
-                            .addContainerGap(108, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addComponent(mainFrameMenu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(211, 211, 211)
+                                .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(usernameTF)
+                                        .addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(35, 35, 35)
+                                .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(passwordTF)
+                                        .addComponent(passwordLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(LoginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(registerBtn, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(108, Short.MAX_VALUE))
                 );
             }
             BankSystemUIContentPane.add(LoginPanel, "card1");
             this.pack();
             Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-            this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+            this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
             this.setVisible(true);
         }
-        
+
     }
 
- 
 }
