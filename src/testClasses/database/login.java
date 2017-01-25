@@ -11,7 +11,7 @@ import java.net.ConnectException;
 public class login {
     public static void main(String[] args) throws ConnectException {
         DatabaseHandler dh = new DatabaseHandler();
-        dh.handleLoginRequest(new LoginRequest("kake","mi"));
-        dh.handleLoginRequest(new LoginRequest("mi","kake"));
+        dh.handleLoginRequest(new LoginRequest("alex","12345"));
+        //dh.handleLoginRequest(new LoginRequest("mi","kake"));
     }
 }

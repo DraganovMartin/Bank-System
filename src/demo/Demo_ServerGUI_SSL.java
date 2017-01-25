@@ -59,7 +59,7 @@ public class Demo_ServerGUI_SSL {
                 ServerGUI_SSL server = new ServerGUI_SSL(serversideHandler, SERVER_FRAME_TITLE);
                 // сървърът е готов
 
-                if (server != null)
+                if (server == null)
                 {
                     // testing control panel:
                     Random random = new Random();
@@ -139,10 +139,6 @@ public class Demo_ServerGUI_SSL {
             }
         } catch (ConnectException e) {
             e.printStackTrace();
-        } finally {
-            if(dbHandler != null){
-                dbHandler.close();
-            }
         }
     }
 }
