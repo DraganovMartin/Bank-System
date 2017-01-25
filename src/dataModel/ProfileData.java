@@ -224,6 +224,7 @@ public class ProfileData implements Serializable {
      * {@link JTable} if empty.
      */
     public JTable getBalanceTable() {
+    	if(this.balance != null && this.balance.entries != null){
         int rows = this.balance.entries.size();
         if (rows < 1) {
             return null;
@@ -242,7 +243,10 @@ public class ProfileData implements Serializable {
                 i++;
             }
             return new JTable(rowData, columnNames);
+            
         }
+    	}
+    	else return new JTable();
     }
 
     /**
@@ -252,6 +256,7 @@ public class ProfileData implements Serializable {
      * empty {@link JTable} if empty
      */
     public JTable getTransferHistoryTable() {
+    	if(this.transferHistory != null && this.transferHistory.entries != null){
         int rows = this.transferHistory.entries.size();
         if (rows < 1) {
             return null;
@@ -273,6 +278,8 @@ public class ProfileData implements Serializable {
             }
             return new JTable(rowData, columnNames);
         }
+    	}
+    	else return new JTable();
     }
 
     /**

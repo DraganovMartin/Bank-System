@@ -35,6 +35,7 @@ public class DatabaseSystemProfileController {
 
     public String registrate(String userName,String password,String firsrName,String secondName){
         try{
+            System.out.println(userName);
             this.registrateStatment.setString(1,userName);
             this.registrateStatment.setBytes(2, PasswordConver.convertPssword(password));
             this.registrateStatment.setString(3,firsrName);
