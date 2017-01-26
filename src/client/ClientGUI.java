@@ -43,8 +43,12 @@ import networking.messages.request.WithdrawRequest;
 import networking.security.SSLContextFactory;
 import testClasses.communication_client_server.Communication_Example_CLIENT_SSL;
 
+/**
+ * Клас за графичен потребителски интерфейс към банковата система.
+ */
 public class ClientGUI {
 
+    // мрежови елементи - не се пипат:
     public SSLContext sslContext;
     public SocketFactory socketFactory;
     public MappedMessageHandler clientsideHandler;
@@ -52,12 +56,16 @@ public class ClientGUI {
 
     public Currency defaultCurrency;
 
+    // графичен интерфейс - най-горно ниво:
     public static final String MAINFRAMETITLE = "Client";
-
     JFrame mainFrame;
     JPanel mainPanel;
     JScrollPane mainPanel_scrollpane;
 
+    // графичен интерфейс - разделен на три зони:
+    // - информация за валутите, сметките и историята на транзакциите
+    // - полета за въвеждане на данни
+    // - бутони за изпращане на заявки:
     JScrollPane display_currencyRates_scrollpane;
     JScrollPane display_balance_scrollpane;
     JScrollPane display_transferHistory_scrollpane;
@@ -66,6 +74,7 @@ public class ClientGUI {
     JPanel buttons;
     JScrollPane buttons_scrollpane;
 
+    // класифициране на полетата спрямо това за кои заявки се използват:
     // RegisterRequest:
     JTextField registerUsername;
     JTextField registerPassword;
@@ -113,6 +122,7 @@ public class ClientGUI {
     JLabel fromBankAccount_label;
     public static final String FROMBANKACCOUNT_LABEL_TEXT = "fromBankAccount";
 
+    // класифициране на бутоните спрямо това за кои заявки се използват:
     // Send buttons:
     // RegisterRequest
     JButton sendButton_RegisterRequest;
@@ -152,6 +162,19 @@ public class ClientGUI {
     JButton exitButton;
     public static final String EXITBUTTON_TEXT = "EXIT...";
 
+    /**
+     * Клас за графичен потребителск иинтерфейс към банковата система. Ключове и
+     * пароли - в папката "documentation/example_certificates/".
+     *
+     * @param client_keystore_location път до клиентския ключ (файл със SSL
+     * сертификати).
+     *
+     * @param client_keystore_password парола на ключа.
+     *
+     * @param hostname адрес на сървъра.
+     *
+     * @param hostport порт на сървъра.
+     */
     public ClientGUI(String client_keystore_location, String client_keystore_password, String hostname, int hostport) {
         JOptionPane.showMessageDialog(this.mainFrame, "Initializing SSL Encription engine and networking, please wait...");
         // създаване на SSL контекст за криптиране на връзката:
@@ -465,6 +488,13 @@ public class ClientGUI {
         }
     }
 
+    /**
+     * Свързва мрежовия клиент към сървъра.
+     *
+     * @param hostname адрес на сървъра.
+     *
+     * @param hostport порт на сървъра.
+     */
     public final synchronized void connect(String hostname, int hostport) {
         JOptionPane.showMessageDialog(this.mainFrame, "Trying to connect...");
         try {
@@ -477,6 +507,10 @@ public class ClientGUI {
         }
     }
 
+    /**
+     * Прекратява връзката на мрежовия клиент към сървъра и затваря графичния
+     * потребителски интерфейс.
+     */
     public final synchronized void disconnect() {
         JOptionPane.showMessageDialog(this.mainFrame, "Trying to disconnect...");
         try {
@@ -487,6 +521,13 @@ public class ClientGUI {
         mainFrame.dispose();
     }
 
+    /**
+     * Изпраща съобщение до сървъра, използвайки мрежовия клиент.
+     *
+     * @param message съобщението за изпращане.
+     *
+     * @throws IOException при неосъществено изпращане.
+     */
     public synchronized void send(Message message) throws IOException {
         if (this.client.isConnected()) {
             this.client.send(message);
@@ -496,6 +537,19 @@ public class ClientGUI {
         }
     }
 
+    /**
+     * Извиква се автоматично от мрежовия клиент за обработка на първия от два
+     * типа входящо от сървъра съобщение - с данни.
+     * <p>
+     * Визуализира включените в обекта-съобщение таблици за валутните курсове,
+     * за баланса по сметки и за историята на трансферите. Данните се
+     * изобразяват в зоната за информация.
+     *
+     * @param update входящото съобщение от сървъра.
+     *
+     * @return не връща отговор - клиентският интерфейс само изобразява
+     * получените данни.
+     */
     public synchronized Message handleUpdate(Update update) {
         if (update.getProflieData() != null) {
             if (this.defaultCurrency == null) {
@@ -543,6 +597,15 @@ public class ClientGUI {
         return null;
     }
 
+    /**
+     * Извиква се автоматично от мрежовия клиент за обработка на втория от два
+     * типа входящо от сървъра съобщение - за прекратяване на връзката.
+     *
+     * @param disconnectNotice входящото съобщение от сървъра.
+     *
+     * @return не връща отговор - клиентският интерфейс само изобразява
+     * получените данни.
+     */
     public synchronized Message handleDisconnectNotice(DisconnectNotice disconnectNotice) {
         // HANDLE DISCONNECTNOTICE
         this.display_currencyRates_scrollpane.setViewportView(null);
@@ -581,16 +644,36 @@ public class ClientGUI {
         return null;
     }
 
+    /**
+     * Задава избрана от потребителя валута по подразбиране.
+     *
+     * @param defaultCurrency валута по подразбиране
+     */
     public synchronized void setDefaultCurrency(Currency defaultCurrency) {
         this.defaultCurrency = defaultCurrency;
     }
 
+    /**
+     * Главен метод - предлага стартиране на интерфейс.
+     * <p>
+     * Съдържа дефиниции по подразбиране на четирите параметъра за свързване:
+     * <p>
+     * адрес на сървъра
+     * <p>
+     * порт на сървъра
+     * <p>
+     * път до клиентския SSL ключ
+     * <p>
+     * парола за клиентския SSL ключ
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         final String HOSTNAME = "localhost";
         final int HOSTPORT = 15000;
-        final String CLIENT_KEYSTORE_PASSWORD = "client";
         final String CLIENT_KEYSTORE_LOCATION = "D:\\example_certificates\\client.keystore";
+        final String CLIENT_KEYSTORE_PASSWORD = "client";
 
         ClientGUI clientGUI = new ClientGUI(CLIENT_KEYSTORE_LOCATION, CLIENT_KEYSTORE_PASSWORD, HOSTNAME, HOSTPORT);
     }
