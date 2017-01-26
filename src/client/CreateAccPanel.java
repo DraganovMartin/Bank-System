@@ -4,9 +4,15 @@ package client;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
-import javax.swing.GroupLayout;
+
+import dataModel.CurrencyConverter;
+import dataModel.Money;
+import dataModel.models.Currency;
+import networking.connections.Client;
+import networking.messages.request.CreateBankAccountRequest;
 
 /**
  * @author Martin Draganov
@@ -20,8 +26,12 @@ public class CreateAccPanel extends JPanel {
     private JButton backBtn;
     private JButton createBtn;
     private ClientDataUIHelper user;
+    private JTextField currencyTF;
+    private Client connection;
+    private String accChoice;
 	
-    public CreateAccPanel(ClientDataUIHelper user) {
+    public CreateAccPanel(ClientDataUIHelper user, Client connection) {
+    	this.connection = connection;
     	this.user = user;
     	thisPanel = this;
         initComponents();
@@ -34,6 +44,7 @@ public class CreateAccPanel extends JPanel {
         initMoneyTF = new JTextField();
         backBtn = new JButton();
         createBtn = new JButton();
+        currencyTF = new JTextField();
 
 
         //---- accTypeLabel ----
@@ -44,6 +55,7 @@ public class CreateAccPanel extends JPanel {
             "Full access",
             "Ordinary"
         }));
+        
 
         //---- initMoneyLabel ----
         initMoneyLabel.setText("Initial money :");
@@ -62,6 +74,23 @@ public class CreateAccPanel extends JPanel {
         
         //---- createBtn ----
         createBtn.setText("Create");
+        
+        createBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// accTypeCombobox, initMoneyTF - JTextField, currencyTF - JTextField
+				Money money = Money.createMoney(new Currency(currencyTF.getText()), initMoneyTF.getText());
+				try {
+					connection.send(new CreateBankAccountRequest(accTypeComBox.getSelectedItem().toString(),money));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(false);
+			}
+		});
+        
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -72,15 +101,17 @@ public class CreateAccPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(accTypeLabel, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addComponent(initMoneyLabel, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                        .addComponent(createBtn, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                            .addGap(0, 26, Short.MAX_VALUE))
+                        .addComponent(initMoneyLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGap(65, 65, 65)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                         .addComponent(accTypeComBox, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addComponent(initMoneyTF, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addComponent(backBtn, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
-                    .addGap(93, 93, 93))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -89,15 +120,17 @@ public class CreateAccPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addComponent(accTypeLabel)
                         .addComponent(accTypeComBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(26, 26, 26)
+                    .addGap(27, 27, 27)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(initMoneyLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(initMoneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(initMoneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                     .addGap(75, 75, 75)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(createBtn)
                         .addComponent(backBtn))
-                    .addContainerGap(92, Short.MAX_VALUE))
+                    .addContainerGap(91, Short.MAX_VALUE))
         );
         
     }

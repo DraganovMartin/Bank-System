@@ -3,9 +3,13 @@ package client;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.GroupLayout;
+
+import networking.connections.Client;
+import networking.messages.request.ChangePasswordRequest;
 
 /**
  * @author Martin Draganov
@@ -21,8 +25,10 @@ public class ChangePasswordPanel extends JPanel {
     private JButton saveBtn;
     private JButton backBtn;
     private ClientDataUIHelper user;
+    private Client connection;
 
-    public ChangePasswordPanel(ClientDataUIHelper user) {
+    public ChangePasswordPanel(ClientDataUIHelper user,Client connection) {
+    	this.connection = connection;
         this.user = user;
         initComponents();
     }
@@ -48,6 +54,21 @@ public class ChangePasswordPanel extends JPanel {
 
         //---- saveBtn ----
         saveBtn.setText("Save");
+        
+        saveBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// get data from oldPassField - PasswordField, newPassField - PasswordField, repPassField - PasswordField
+				try {
+					connection.send(new ChangePasswordRequest(oldPassField.getText(), newPassField.getText()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(false);
+			}
+		});
 
         //---- backBtn ----
         backBtn.setText("Back");
