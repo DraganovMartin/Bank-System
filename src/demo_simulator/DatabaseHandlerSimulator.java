@@ -119,10 +119,15 @@ public class DatabaseHandlerSimulator extends SynchronizedMappedMessageHandler {
         BankAccount from = this.bankAccountsTable.get(message.getFromBankAccount());
         BankAccount to = this.bankAccountsTable.get(message.getToBankAccount());
         if ((money.getAmount().compareTo(BigDecimal.ZERO) > 0) && from != null && to != null && from.userName.equals(message.getUsername())) {
-            if (from.money.compareTo(money, this.currencyConverter) >= 0) {
-                from.money = from.money.subtract(money, this.currencyConverter);
-                to.money = to.money.add(money, this.currencyConverter);
-                return new Update("Transfered successfully!", message, true, this.getProfileData(message.getUsername()));
+            try {
+                if (from.money.compareTo(money, this.currencyConverter) >= 0) {
+                    from.money = from.money.subtract(money, this.currencyConverter);
+                    to.money = to.money.add(money, this.currencyConverter);
+                    return new Update("Transfered successfully!", message, true, this.getProfileData(message.getUsername()));
+                }
+            } catch (IllegalArgumentException ex) {
+                // неподдържана валута !!!
+                return new Update("Transfer failed - currency not supported!", message, false, this.getProfileData(message.getUsername()));
             }
         }
         return new Update("Transfer failed!", message, false, this.getProfileData(message.getUsername()));
@@ -131,9 +136,15 @@ public class DatabaseHandlerSimulator extends SynchronizedMappedMessageHandler {
     Message handleDepositRequest(DepositRequest message) {
         Money money = message.getMoney();
         BankAccount to = this.bankAccountsTable.get(message.getToBankAccount());
-        if ((money.getAmount().compareTo(BigDecimal.ZERO) > 0) && to != null) {
-            to.money = to.money.add(money, this.currencyConverter);
-            return new Update("Deposited successfully!", message, true, this.getProfileData(message.getUsername()));
+        try {
+            this.currencyConverter.compare(money, money);
+            if ((money.getAmount().compareTo(BigDecimal.ZERO) > 0) && to != null) {
+                to.money = to.money.add(money, this.currencyConverter);
+                return new Update("Deposited successfully!", message, true, this.getProfileData(message.getUsername()));
+            }
+        } catch (IllegalArgumentException ex) {
+            // неподдържана валута !!!
+            return new Update("Deposit failed - currency not supported!", message, false, this.getProfileData(message.getUsername()));
         }
         return new Update("Deposit failed!", message, false, this.getProfileData(message.getUsername()));
     }
@@ -142,8 +153,16 @@ public class DatabaseHandlerSimulator extends SynchronizedMappedMessageHandler {
         Money money = message.getMoney();
         BankAccount from = this.bankAccountsTable.get(message.getFromBankAccount());
         if ((money.getAmount().compareTo(BigDecimal.ZERO) > 0) && from != null && from.userName.equals(message.getUsername())) {
-            from.money = from.money.subtract(money, this.currencyConverter);
-            return new Update("Withdrew successfully!", message, true, this.getProfileData(message.getUsername()));
+            try {
+                if (from.money.compareTo(money, this.currencyConverter) >= 0) {
+                    from.money = from.money.subtract(money, this.currencyConverter);
+                    from.money = from.money.subtract(money, this.currencyConverter);
+                    return new Update("Withdrew successfully!", message, true, this.getProfileData(message.getUsername()));
+                }
+            } catch (IllegalArgumentException ex) {
+                // неподдържана валута !!!
+                return new Update("Withdrew failed - currency not supported!", message, false, this.getProfileData(message.getUsername()));
+            }
         }
         return new Update("Withdraw failed!", message, false, this.getProfileData(message.getUsername()));
     }
@@ -182,11 +201,16 @@ public class DatabaseHandlerSimulator extends SynchronizedMappedMessageHandler {
         String userName = message.getUsername();
         String type = message.getBankAccountType();
         Money money = message.getInitialMoney();
-        boolean successful = this.bankAccountsTable.add(new BankAccount(String.valueOf(this.bankAccountsTable.data.size() + 1), userName, type, money));
-        if (successful) {
-            return new Update("Creation of bank account successful!", message, true, this.getProfileData(message.getUsername()));
-        } else {
-            return new Update("Creation of bank account failed!", message, false, this.getProfileData(message.getUsername()));
+        try {
+            this.currencyConverter.compare(money, money);
+            boolean successful = this.bankAccountsTable.add(new BankAccount(String.valueOf(this.bankAccountsTable.data.size() + 1), userName, type, money));
+            if (successful) {
+                return new Update("Creation of bank account successful!", message, true, this.getProfileData(message.getUsername()));
+            }
+        } catch (IllegalArgumentException ex) {
+            // неподдържана валута !!!
+            return new Update("Creation of bank account failed - currency not supported!", message, false, this.getProfileData(message.getUsername()));
         }
+        return new Update("Creation of bank account failed!", message, false, this.getProfileData(message.getUsername()));
     }
 }
