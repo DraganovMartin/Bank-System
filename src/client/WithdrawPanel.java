@@ -1,6 +1,9 @@
 
 package client;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 import dataModel.models.Currency;
@@ -16,7 +19,7 @@ public class WithdrawPanel extends JPanel {
     private JTextField moneyTF;
     private JButton saveBtn;
     private JButton backBtn;
-    private JComboBox currencyBox;
+    private JTextField currencyTF;
     private ClientDataUIHelper user;
     
     public WithdrawPanel(ClientDataUIHelper user) {
@@ -32,7 +35,7 @@ public class WithdrawPanel extends JPanel {
         moneyTF = new JTextField();
         saveBtn = new JButton();
         backBtn = new JButton();
-        currencyBox = new JComboBox();
+        currencyTF = new JTextField();
 
         //---- accLabel ----
         accLabel.setText("Account :");
@@ -42,17 +45,20 @@ public class WithdrawPanel extends JPanel {
 
         //---- saveBtn ----
         saveBtn.setText("Save");
+        
+        saveBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO get info from accountTF - JTextField,  moneyTF - JTextField, amountTF - JTextField, currencyTF - JTextField
+				
+			}
+		});
+
 
         //---- backBtn ----
         backBtn.setText("Back");
-        
-      //---- currencyBox ---- THIS IS WHERE IS THE PROBLEM
-        String list[] = new String[user.currencyConverter.getSupportedCurrencies().length];
-        for (int i = 0; i < list.length; i++) {
-			Currency[] c = user.currencyConverter.getSupportedCurrencies();
-			list[i] = c[i].getSymbol();
-		}
-        currencyBox.setModel(new DefaultComboBoxModel<>(list));
+       
         
 
         // --------------------------------------------- THIS SEGMENT IS ONLY FOR POSITIONING AND ADDING COMPONENTS
@@ -73,10 +79,10 @@ public class WithdrawPanel extends JPanel {
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                 .addComponent(accountTF, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                                 .addComponent(moneyTF, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
                         .addComponent(backBtn))
-                    .addContainerGap(18, Short.MAX_VALUE))
+                    .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -88,8 +94,9 @@ public class WithdrawPanel extends JPanel {
                     .addGap(67, 67, 67)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(moneyLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(moneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(moneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                     .addGap(63, 63, 63)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(saveBtn)

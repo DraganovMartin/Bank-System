@@ -29,7 +29,7 @@ public class BankSystemUI extends JFrame implements MessageHandler {
     private JMenuBar mainFrameMenu;
     private JMenu aboutMenu;
     private JMenuItem devs;
-    private Container BankSystemUIContentPane = null;
+    public Container BankSystemUIContentPane = null;
     private ClientDataUIHelper user = null;
     private Client connection = null;
     private String host;
@@ -75,6 +75,8 @@ public class BankSystemUI extends JFrame implements MessageHandler {
         mainFrameMenu = new JMenuBar();
         aboutMenu = new JMenu();
         devs = new JMenuItem();
+        BankSystemUI parent = this;
+        
 
         //======== mainFrame ========
         {
@@ -118,15 +120,16 @@ public class BankSystemUI extends JFrame implements MessageHandler {
                 //---- loginBtn ----
                 loginBtn.setText("Login");
                 // референция към най-горното ниво (обекта - родител) с данните от сървъра:
-                BankSystemUI parent = this;
                 loginBtn.addActionListener(new ActionListener() {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         user.setUsetname(usernameTF.getText());
                         user.setPass(passwordTF.getPassword());
-                        // референция към най-горното ниво (обекта - родител) с данните от сървъра:
+                        
+                     // референция към най-горното ниво (обекта - родител) с данните от сървъра:
                         mainWindow = new MainPanel(user, connection, parent);
+                        
                         try {
                             connection.send(new LoginRequest(usernameTF.getText(), passwordTF.getText()));
                         } catch (IOException e1) {
@@ -148,7 +151,7 @@ public class BankSystemUI extends JFrame implements MessageHandler {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        BankSystemUIContentPane.add(new RegisterForm(connection), "registerCard");
+                        BankSystemUIContentPane.add(new RegisterForm(connection,parent,user), "registerCard");
                         CardLayout cl = (CardLayout) (BankSystemUIContentPane.getLayout());
                         cl.show(BankSystemUIContentPane, "registerCard");
 

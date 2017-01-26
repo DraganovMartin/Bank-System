@@ -24,7 +24,7 @@ public class TransferPanel extends JPanel {
     private JButton saveBtn;
     private JButton backBtn;
     private ClientDataUIHelper user;
-    private JComboBox currencyBox;
+    private JTextField currencyTF;
     
     public TransferPanel(ClientDataUIHelper user) {
     	this.user = user;
@@ -40,7 +40,7 @@ public class TransferPanel extends JPanel {
         amountTF = new JTextField();
         saveBtn = new JButton();
         backBtn = new JButton();
-        currencyBox = new JComboBox<>();
+        currencyTF = new JTextField();
         
         setPreferredSize(new Dimension(565, 401));
 
@@ -62,7 +62,7 @@ public class TransferPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO get info from fromAccountTF - JTextField,  toAccTF - JTextField, amountTF - JTextField, currencyBox - JComboBox
+				// TODO get info from fromAccountTF - JTextField,  toAccTF - JTextField, amountTF - JTextField, currencyTF - JTextField
 				
 			}
 		});
@@ -79,14 +79,6 @@ public class TransferPanel extends JPanel {
 				}
 		});
         
-      //---- currencyBox ---- THIS IS WHERE IS THE PROBLEM
-        String list[] = new String[user.currencyConverter.getSupportedCurrencies().length];
-        for (int i = 0; i < list.length; i++) {
-			Currency[] c = user.currencyConverter.getSupportedCurrencies();
-			list[i] = c[i].getSymbol();
-		}
-        currencyBox.setModel(new DefaultComboBoxModel<>(list));
-        
         
         // --------------------------------------------- THIS SEGMENT IS ONLY FOR POSITIONING AND ADDING COMPONENTS
         GroupLayout layout = new GroupLayout(this);
@@ -96,14 +88,14 @@ public class TransferPanel extends JPanel {
                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addContainerGap(134, Short.MAX_VALUE)
+                            .addContainerGap(169, Short.MAX_VALUE)
                             .addComponent(saveBtn))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(91, 91, 91)
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(fromAccLabel, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                .addComponent(fromAccLabel, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                                 .addComponent(toAccLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(amountLabel, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))))
+                                .addComponent(amountLabel, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))))
                     .addGap(85, 85, 85)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(backBtn)
@@ -112,9 +104,9 @@ public class TransferPanel extends JPanel {
                                 .addComponent(fromAccountTF, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                                 .addComponent(toAccTF, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                                 .addComponent(amountTF, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    .addGap(27, 27, 27))
+                            .addGap(18, 18, 18)
+                            .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -127,11 +119,12 @@ public class TransferPanel extends JPanel {
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(toAccLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                         .addComponent(toAccTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(47, 47, 47)
+                    .addGap(48, 48, 48)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(amountLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(amountTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(amountTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                     .addGap(44, 44, 44)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(saveBtn)

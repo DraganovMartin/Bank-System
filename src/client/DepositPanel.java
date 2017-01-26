@@ -21,7 +21,7 @@ public class DepositPanel extends JPanel {
     private JButton saveBtn;
     private JButton backBtn;
     private ClientDataUIHelper user;
-    private JComboBox currencyBox;
+    private JTextField currencyTF;
     
     
     public DepositPanel(ClientDataUIHelper user) {
@@ -37,7 +37,7 @@ public class DepositPanel extends JPanel {
         moneyTF = new JTextField();
         saveBtn = new JButton();
         backBtn = new JButton();
-        currencyBox = new JComboBox<>();
+        currencyTF = new JTextField();
 
         //======== this ========
         setMinimumSize(new Dimension(565, 401));
@@ -57,7 +57,7 @@ public class DepositPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO get info from accountTF - JTextField,  moneyTF - JTextField, amountTF - JTextField, currencyBox - JComboBox
+				// TODO get info from accountTF - JTextField,  moneyTF - JTextField, amountTF - JTextField, currencyTF - JTextField
 				
 			}
 		});
@@ -74,13 +74,7 @@ public class DepositPanel extends JPanel {
 			}
         });
         
-      //---- currencyBox ---- THIS IS WHERE IS THE PROBLEM
-        String list[] = new String[user.currencyConverter.getSupportedCurrencies().length];
-        for (int i = 0; i < list.length; i++) {
-			Currency[] c = user.currencyConverter.getSupportedCurrencies();
-			list[i] = c[i].getSymbol();
-		}
-        currencyBox.setModel(new DefaultComboBoxModel<>(list));
+      
         
         
         // --------------------------------------------- THIS SEGMENT IS ONLY FOR POSITIONING AND ADDING COMPONENTS
@@ -94,7 +88,7 @@ public class DepositPanel extends JPanel {
                             .addGap(112, 112, 112)
                             .addGroup(layout.createParallelGroup()
                                 .addComponent(accLabel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(moneyLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(moneyLabel, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
@@ -105,9 +99,9 @@ public class DepositPanel extends JPanel {
                                 .addComponent(accountTF, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                                 .addComponent(moneyTF, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
                         .addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(11, Short.MAX_VALUE))
+                    .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -119,9 +113,11 @@ public class DepositPanel extends JPanel {
                     .addGap(69, 69, 69)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(moneyLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup()
-                            .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(moneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(moneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(2, 2, 2)))
                     .addGap(63, 63, 63)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(saveBtn)

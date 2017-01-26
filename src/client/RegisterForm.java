@@ -27,9 +27,13 @@ public class RegisterForm extends JPanel {
 	    private JButton saveBtn;
 	    private JButton backBtn;
 	    private Client connection;
+	    private BankSystemUI parent;
+	    private ClientDataUIHelper user;
 	    
-    public RegisterForm(Client connection) {
+    public RegisterForm(Client connection, BankSystemUI parent,ClientDataUIHelper user) {
+    	this.parent = parent;
     	this.connection = connection;
+    	this.user = user;
         initComponents();
     }
 
@@ -76,11 +80,10 @@ public class RegisterForm extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-//					JFrame parent = (JFrame) getParent();
-//					add(new BalancePanel(user, parent), "BalancePanel");
-//                    CardLayout cl = (CardLayout) (getLayout());
-//                    cl.show(thisPanel, "BalancePanel");
-//					setVisible(false);
+					parent.BankSystemUIContentPane.add(new MainPanel(user, connection, parent),"backToUI");
+					  CardLayout cl = (CardLayout) (parent.BankSystemUIContentPane.getLayout());
+                      cl.show(parent.BankSystemUIContentPane, "backToUI");
+                      setVisible(false);
 				}
 			});
 

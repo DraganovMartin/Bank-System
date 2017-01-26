@@ -22,7 +22,7 @@ public class CreateAccPanel extends JPanel {
     private JButton backBtn;
     private JButton createBtn;
     private ClientDataUIHelper user;
-    private JComboBox<String> currencyBox;
+    private JTextField currencyTF;
 	
     public CreateAccPanel(ClientDataUIHelper user) {
     	this.user = user;
@@ -37,7 +37,7 @@ public class CreateAccPanel extends JPanel {
         initMoneyTF = new JTextField();
         backBtn = new JButton();
         createBtn = new JButton();
-        currencyBox = new JComboBox<>();
+        currencyTF = new JTextField();
 
 
         //---- accTypeLabel ----
@@ -67,13 +67,15 @@ public class CreateAccPanel extends JPanel {
         //---- createBtn ----
         createBtn.setText("Create");
         
-        //---- currencyBox ----
-        String list[] = new String[user.currencyConverter.getSupportedCurrencies().length];
-        for (int i = 0; i < list.length; i++) {
-			Currency[] c = user.currencyConverter.getSupportedCurrencies();
-			list[i] = c[i].getSymbol();
-		}
-        currencyBox.setModel(new DefaultComboBoxModel<>(list));
+        createBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// accTypeCombobox, initMoneyTF - JTextField, currencyTF - JTextField
+				
+			}
+		});
+        
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -84,7 +86,7 @@ public class CreateAccPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(accTypeLabel, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))
+                            .addGap(0, 26, Short.MAX_VALUE))
                         .addComponent(initMoneyLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(createBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGap(65, 65, 65)
@@ -93,8 +95,8 @@ public class CreateAccPanel extends JPanel {
                         .addComponent(initMoneyTF, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addComponent(backBtn, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(41, 41, 41))
+                    .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -103,11 +105,12 @@ public class CreateAccPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addComponent(accTypeLabel)
                         .addComponent(accTypeComBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(26, 26, 26)
+                    .addGap(27, 27, 27)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(initMoneyLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(initMoneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(initMoneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(currencyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                     .addGap(75, 75, 75)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(createBtn)
