@@ -52,6 +52,8 @@ import testClasses.communication_client_server.Communication_Example_CLIENT_SSL;
  */
 public class ClientGUI {
 
+    boolean isLoggedIn; // дали потребителят е влязъл успешно в системата
+
     // мрежови елементи - не се пипат:
     public SSLContext sslContext;
     public SocketFactory socketFactory;
@@ -214,6 +216,8 @@ public class ClientGUI {
      * @param hostport порт на сървъра.
      */
     public ClientGUI(String client_keystore_location, String client_keystore_password, String hostname, int hostport) {
+        this.isLoggedIn = false;
+
         JOptionPane.showMessageDialog(this.mainFrame, "Initializing SSL Encription engine and networking, please wait...");
         // създаване на SSL контекст за криптиране на връзката:
         this.sslContext = SSLContextFactory.getSSLContext(new File(client_keystore_location), client_keystore_password);
@@ -676,6 +680,8 @@ public class ClientGUI {
      * получените данни.
      */
     public synchronized Message handleUpdate(Update update) {
+        this.isLoggedIn = true;
+
         if (update.getProflieData() != null) {
             if (this.defaultCurrency == null) {
                 this.defaultCurrency = update.getProflieData().getCurrencyConverter().getSupportedCurrencies()[0];
@@ -732,6 +738,8 @@ public class ClientGUI {
      * получените данни.
      */
     public synchronized Message handleDisconnectNotice(DisconnectNotice disconnectNotice) {
+        this.isLoggedIn = false;
+
         // HANDLE DISCONNECTNOTICE
         this.display_currencyRates_scrollpane.setViewportView(null);
         this.display_balance_scrollpane.setViewportView(null);
@@ -802,219 +810,274 @@ public class ClientGUI {
 
     // активира режим за пращане на "LoginRequest"
     final synchronized void on_Account_LoginRequest() {
-        {
-            Component[] all = this.controls.getComponents();
-            for (Component entry : all) {
-                this.controls.remove(entry);
+        if (this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Already logged in!");
+        } else {
+            {
+                Component[] all = this.controls.getComponents();
+                for (Component entry : all) {
+                    this.controls.remove(entry);
+                }
+                this.controls.add(this.loginUsername_label);
+                this.controls.add(this.loginUsername);
+                this.controls.add(this.loginPassword_label);
+                this.controls.add(this.loginPassword);
+                this.controls.revalidate();
             }
-            this.controls.add(this.loginUsername_label);
-            this.controls.add(this.loginUsername);
-            this.controls.add(this.loginPassword_label);
-            this.controls.add(this.loginPassword);
-            this.controls.revalidate();
-        }
-        {
-            Component[] all = this.buttons.getComponents();
-            for (Component entry : all) {
-                this.buttons.remove(entry);
+            {
+                Component[] all = this.buttons.getComponents();
+                for (Component entry : all) {
+                    this.buttons.remove(entry);
+                }
+                this.buttons.add(this.sendButton_LoginRequest);
+                this.buttons.add(this.exitButton);
+                this.buttons.revalidate();
             }
-            this.buttons.add(this.sendButton_LoginRequest);
-            this.buttons.add(this.exitButton);
-            this.buttons.revalidate();
+            this.mainFrame.revalidate();
+            this.mainFrame.pack();
         }
-        this.mainFrame.revalidate();
-        this.mainFrame.pack();
     }
 
     // активира режим за пращане на "RegisterRequest"
     final synchronized void on_Account_RegisterRequest() {
-        {
-            Component[] all = this.controls.getComponents();
-            for (Component entry : all) {
-                this.controls.remove(entry);
+        if (this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Already logged in!");
+        } else {
+            {
+                Component[] all = this.controls.getComponents();
+                for (Component entry : all) {
+                    this.controls.remove(entry);
+                }
+                this.controls.add(this.registerUsername_label);
+                this.controls.add(this.registerUsername);
+                this.controls.add(this.registerPassword_label);
+                this.controls.add(this.registerPassword);
+                this.controls.add(this.firstName_label);
+                this.controls.add(this.firstName);
+                this.controls.add(this.lastName_label);
+                this.controls.add(this.lastName);
+                this.controls.revalidate();
             }
-            this.controls.add(this.registerUsername_label);
-            this.controls.add(this.registerUsername);
-            this.controls.add(this.registerPassword_label);
-            this.controls.add(this.registerPassword);
-            this.controls.add(this.firstName_label);
-            this.controls.add(this.firstName);
-            this.controls.add(this.lastName_label);
-            this.controls.add(this.lastName);
-            this.controls.revalidate();
-        }
-        {
-            Component[] all = this.buttons.getComponents();
-            for (Component entry : all) {
-                this.buttons.remove(entry);
+            {
+                Component[] all = this.buttons.getComponents();
+                for (Component entry : all) {
+                    this.buttons.remove(entry);
+                }
+                this.buttons.add(this.sendButton_RegisterRequest);
+                this.buttons.add(this.exitButton);
+                this.buttons.revalidate();
             }
-            this.buttons.add(this.sendButton_RegisterRequest);
-            this.buttons.add(this.exitButton);
-            this.buttons.revalidate();
+            this.mainFrame.revalidate();
+            this.mainFrame.pack();
         }
-        this.mainFrame.revalidate();
-        this.mainFrame.pack();
     }
 
     // активира режим за пращане на "ChangePasswordRequest"
     final synchronized void on_Account_ChangePasswordRequest() {
-        {
-            Component[] all = this.controls.getComponents();
-            for (Component entry : all) {
-                this.controls.remove(entry);
+        if (!this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
+        } else {
+            {
+                Component[] all = this.controls.getComponents();
+                for (Component entry : all) {
+                    this.controls.remove(entry);
+                }
+                this.controls.add(this.oldPassword_label);
+                this.controls.add(this.oldPassword);
+                this.controls.add(this.newPassword_label);
+                this.controls.add(this.newPassword);
+                this.controls.revalidate();
             }
-            this.controls.add(this.oldPassword_label);
-            this.controls.add(this.oldPassword);
-            this.controls.add(this.newPassword_label);
-            this.controls.add(this.newPassword);
-            this.controls.revalidate();
-        }
-        {
-            Component[] all = this.buttons.getComponents();
-            for (Component entry : all) {
-                this.buttons.remove(entry);
+            {
+                Component[] all = this.buttons.getComponents();
+                for (Component entry : all) {
+                    this.buttons.remove(entry);
+                }
+                this.buttons.add(this.sendButton_ChangePasswordRequest);
+                this.buttons.add(this.exitButton);
+                this.buttons.revalidate();
             }
-            this.buttons.add(this.sendButton_ChangePasswordRequest);
-            this.buttons.add(this.exitButton);
-            this.buttons.revalidate();
+            this.mainFrame.revalidate();
+            this.mainFrame.pack();
         }
-        this.mainFrame.revalidate();
-        this.mainFrame.pack();
     }
 
     // активира режим за пращане на "LogoutRequest"
     final synchronized void on_Account_LogoutRequest() {
-        this.on_all_hide();
+        if (!this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
+        } else {
+            this.on_all_hide();
+        }
     }
 
     // активира режим за пращане на "BalanceRequest"
     final synchronized void on_Update_BalanceRequest() {
-        this.on_all_hide();
+        if (!this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
+        } else {
+            this.on_all_hide();
+        }
     }
 
     // активира режим за пращане на "TransactionHistoryRequest"
     final synchronized void on_Update_TransactionHistoryRequest() {
-        this.on_all_hide();
+        if (!this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
+        } else {
+            this.on_all_hide();
+        }
     }
 
     // активира режим за пращане на "CurrencyRatesRequest"
     final synchronized void on_Update_CurrencyRatesRequest() {
-        this.on_all_hide();
+        if (!this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
+        } else {
+            this.on_all_hide();
+        }
     }
 
     // активира режим за пращане на "CreateBankAccountRequest"
     final synchronized void on_Order_CreateBankAccountRequest() {
-        {
-            Component[] all = this.controls.getComponents();
-            for (Component entry : all) {
-                this.controls.remove(entry);
+        if (!this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
+        } else {
+            {
+                Component[] all = this.controls.getComponents();
+                for (Component entry : all) {
+                    this.controls.remove(entry);
+                }
+                this.controls.add(this.bankAccountType_label);
+                this.controls.add(this.bankAccountType);
+                this.controls.add(this.moneyAmount_label);
+                this.controls.add(this.moneyAmount);
+                this.controls.add(this.moneyCurrency_label);
+                this.controls.add(this.moneyCurrency);
+                this.controls.revalidate();
             }
-            this.controls.add(this.bankAccountType_label);
-            this.controls.add(this.bankAccountType);
-            this.controls.add(this.moneyAmount_label);
-            this.controls.add(this.moneyAmount);
-            this.controls.add(this.moneyCurrency_label);
-            this.controls.add(this.moneyCurrency);
-            this.controls.revalidate();
-        }
-        {
-            Component[] all = this.buttons.getComponents();
-            for (Component entry : all) {
-                this.buttons.remove(entry);
+            {
+                Component[] all = this.buttons.getComponents();
+                for (Component entry : all) {
+                    this.buttons.remove(entry);
+                }
+                this.buttons.add(this.sendButton_CreateBankAccountRequest);
+                this.buttons.add(this.exitButton);
+                this.buttons.revalidate();
             }
-            this.buttons.add(this.sendButton_CreateBankAccountRequest);
-            this.buttons.add(this.exitButton);
-            this.buttons.revalidate();
+            this.mainFrame.revalidate();
+            this.mainFrame.pack();
         }
-        this.mainFrame.revalidate();
-        this.mainFrame.pack();
     }
 
     // активира режим за пращане на "DepositRequest"
     final synchronized void on_Order_DepositRequest() {
-        {
-            Component[] all = this.controls.getComponents();
-            for (Component entry : all) {
-                this.controls.remove(entry);
+        if (!this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
+        } else {
+            {
+                Component[] all = this.controls.getComponents();
+                for (Component entry : all) {
+                    this.controls.remove(entry);
+                }
+                this.controls.add(this.toBankAccount_label);
+                this.controls.add(this.toBankAccount);
+                this.controls.add(this.moneyAmount_label);
+                this.controls.add(this.moneyAmount);
+                this.controls.add(this.moneyCurrency_label);
+                this.controls.add(this.moneyCurrency);
+                this.controls.revalidate();
             }
-            this.controls.add(this.toBankAccount_label);
-            this.controls.add(this.toBankAccount);
-            this.controls.add(this.moneyAmount_label);
-            this.controls.add(this.moneyAmount);
-            this.controls.add(this.moneyCurrency_label);
-            this.controls.add(this.moneyCurrency);
-            this.controls.revalidate();
-        }
-        {
-            Component[] all = this.buttons.getComponents();
-            for (Component entry : all) {
-                this.buttons.remove(entry);
+            {
+                Component[] all = this.buttons.getComponents();
+                for (Component entry : all) {
+                    this.buttons.remove(entry);
+                }
+                this.buttons.add(this.sendButton_DepositRequest);
+                this.buttons.add(this.exitButton);
+                this.buttons.revalidate();
             }
-            this.buttons.add(this.sendButton_DepositRequest);
-            this.buttons.add(this.exitButton);
-            this.buttons.revalidate();
+            this.mainFrame.revalidate();
+            this.mainFrame.pack();
         }
-        this.mainFrame.revalidate();
-        this.mainFrame.pack();
     }
 
     // активира режим за пращане на "WithdrawRequest"
     final synchronized void on_Order_WithdrawRequest() {
-        {
-            Component[] all = this.controls.getComponents();
-            for (Component entry : all) {
-                this.controls.remove(entry);
+        if (!this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
+        } else {
+            {
+                Component[] all = this.controls.getComponents();
+                for (Component entry : all) {
+                    this.controls.remove(entry);
+                }
+                this.controls.add(this.fromBankAccount_label);
+                this.controls.add(this.fromBankAccount);
+                this.controls.add(this.moneyAmount_label);
+                this.controls.add(this.moneyAmount);
+                this.controls.add(this.moneyCurrency_label);
+                this.controls.add(this.moneyCurrency);
+                this.controls.revalidate();
             }
-            this.controls.add(this.fromBankAccount_label);
-            this.controls.add(this.fromBankAccount);
-            this.controls.add(this.moneyAmount_label);
-            this.controls.add(this.moneyAmount);
-            this.controls.add(this.moneyCurrency_label);
-            this.controls.add(this.moneyCurrency);
-            this.controls.revalidate();
-        }
-        {
-            Component[] all = this.buttons.getComponents();
-            for (Component entry : all) {
-                this.buttons.remove(entry);
+            {
+                Component[] all = this.buttons.getComponents();
+                for (Component entry : all) {
+                    this.buttons.remove(entry);
+                }
+                this.buttons.add(this.sendButton_WithdrawRequest);
+                this.buttons.add(this.exitButton);
+                this.buttons.revalidate();
             }
-            this.buttons.add(this.sendButton_WithdrawRequest);
-            this.buttons.add(this.exitButton);
-            this.buttons.revalidate();
+            this.mainFrame.revalidate();
+            this.mainFrame.pack();
         }
-        this.mainFrame.revalidate();
-        this.mainFrame.pack();
     }
 
     // активира режим за пращане на "TransferRequest"
     final synchronized void on_Order_TransferRequest() {
-        {
-            Component[] all = this.controls.getComponents();
-            for (Component entry : all) {
-                this.controls.remove(entry);
+        if (!this.isLoggedIn) {
+            this.on_all_hide();
+            JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
+        } else {
+            {
+                Component[] all = this.controls.getComponents();
+                for (Component entry : all) {
+                    this.controls.remove(entry);
+                }
+                this.controls.add(this.fromBankAccount_label);
+                this.controls.add(this.fromBankAccount);
+                this.controls.add(this.toBankAccount);
+                this.controls.add(this.toBankAccount_label);
+                this.controls.add(this.toBankAccount);
+                this.controls.add(this.moneyAmount_label);
+                this.controls.add(this.moneyAmount);
+                this.controls.add(this.moneyCurrency_label);
+                this.controls.add(this.moneyCurrency);
+                this.controls.revalidate();
             }
-            this.controls.add(this.fromBankAccount_label);
-            this.controls.add(this.fromBankAccount);
-            this.controls.add(this.toBankAccount);
-            this.controls.add(this.toBankAccount_label);
-            this.controls.add(this.toBankAccount);
-            this.controls.add(this.moneyAmount_label);
-            this.controls.add(this.moneyAmount);
-            this.controls.add(this.moneyCurrency_label);
-            this.controls.add(this.moneyCurrency);
-            this.controls.revalidate();
-        }
-        {
-            Component[] all = this.buttons.getComponents();
-            for (Component entry : all) {
-                this.buttons.remove(entry);
+            {
+                Component[] all = this.buttons.getComponents();
+                for (Component entry : all) {
+                    this.buttons.remove(entry);
+                }
+                this.buttons.add(this.sendButton_TransferRequest);
+                this.buttons.add(this.exitButton);
+                this.buttons.revalidate();
             }
-            this.buttons.add(this.sendButton_TransferRequest);
-            this.buttons.add(this.exitButton);
-            this.buttons.revalidate();
+            this.mainFrame.revalidate();
+            this.mainFrame.pack();
         }
-        this.mainFrame.revalidate();
-        this.mainFrame.pack();
     }
 
     /**
