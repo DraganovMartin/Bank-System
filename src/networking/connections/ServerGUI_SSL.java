@@ -165,7 +165,7 @@ public class ServerGUI_SSL extends ServerGUI {
      *
      * @return the file chosen.
      */
-    File chooseFile(String title) {
+    synchronized File chooseFile(String title) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle(title);
         fileChooser.showOpenDialog(this.mainFrame);
@@ -194,7 +194,7 @@ public class ServerGUI_SSL extends ServerGUI {
     /**
      * Executed when the {@link #createSSLContextButton} is pressed.
      */
-    void onCreateSSLContextButton() {
+    synchronized void onCreateSSLContextButton() {
         if (this.keystoreFile == null) {
             JOptionPane.showMessageDialog(this.mainFrame, "Keystore file not selected!");
         } else {
@@ -213,6 +213,15 @@ public class ServerGUI_SSL extends ServerGUI {
                 this.disableSSLcontrols();
                 this.enableServerControls();
             }
+        }
+    }
+
+    public synchronized void setDefaultKeystoreAndPassword(File defaultKeystoreFile, String defaultKeystorePassword) {
+        if (this.keystoreChooseButton.isEnabled()) {
+            this.keystoreFileText.setText(defaultKeystoreFile.getAbsolutePath());
+            this.keystoreFile = defaultKeystoreFile;
+            this.keystorePasswordText.setText(defaultKeystorePassword);
+            this.keystorePassword = defaultKeystorePassword;
         }
     }
 }
