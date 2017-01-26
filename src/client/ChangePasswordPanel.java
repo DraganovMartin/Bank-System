@@ -48,6 +48,15 @@ public class ChangePasswordPanel extends JPanel {
 
         //---- saveBtn ----
         saveBtn.setText("Save");
+        
+        saveBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// get data from oldPassField - PasswordField, newPassField - PasswordField, repPassField - PasswordField
+				
+			}
+		});
 
         //---- backBtn ----
         backBtn.setText("Back");

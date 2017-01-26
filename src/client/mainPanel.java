@@ -17,7 +17,7 @@ import networking.messages.request.TransactionHistoryRequest;
 /**
  * @author Martin Draganov
  */
-public class mainPanel extends JPanel {
+public class MainPanel extends JPanel {
 
     networking.connections.Client connection;
 
@@ -41,7 +41,7 @@ public class mainPanel extends JPanel {
     // референция към най-горното ниво (обекта - родител) с данните от сървъра:
     public final BankSystemUI parent;
 
-    public mainPanel(ClientDataUIHelper user, networking.connections.Client connection, BankSystemUI parent) {
+    public MainPanel(ClientDataUIHelper user, networking.connections.Client connection, BankSystemUI parent) {
 
         // референция към най-горното ниво (обекта - родител) с данните от сървъра:
         this.parent = parent;

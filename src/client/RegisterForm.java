@@ -71,12 +71,16 @@ public class RegisterForm extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					try {
-						connection.send(new RegisterRequest(usernameTF.getText(), passwordLabel.getText(), firstNameTF.getText(), lastNameTF.getText()));
+						connection.send(new RegisterRequest(usernameTF.getText(), passwordField.getText(), firstNameTF.getText(), lastNameTF.getText()));
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					setVisible(false);
+//					JFrame parent = (JFrame) getParent();
+//					add(new BalancePanel(user, parent), "BalancePanel");
+//                    CardLayout cl = (CardLayout) (getLayout());
+//                    cl.show(thisPanel, "BalancePanel");
+//					setVisible(false);
 				}
 			});
 

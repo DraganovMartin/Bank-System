@@ -1,108 +1,100 @@
 
 package client;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
-import javax.swing.GroupLayout;
+
+import dataModel.models.Currency;
 
 /**
  * @author Martin Draganov
  */
 public class WithdrawPanel extends JPanel {
-
-    private JLabel accLabel;
-    private JTextField accountTF;
+	
+	private JLabel accLabel;
     private JLabel moneyLabel;
+    private JTextField accountTF;
     private JTextField moneyTF;
     private JButton saveBtn;
     private JButton backBtn;
+    private JComboBox currencyBox;
     private ClientDataUIHelper user;
-
-
+    
     public WithdrawPanel(ClientDataUIHelper user) {
-        this.user = user;
+    	this.user = user;
         initComponents();
     }
 
     private void initComponents() {
-
+        
         accLabel = new JLabel();
-        accountTF = new JTextField();
         moneyLabel = new JLabel();
+        accountTF = new JTextField();
         moneyTF = new JTextField();
         saveBtn = new JButton();
         backBtn = new JButton();
-
-        //======== this ========
-        setMinimumSize(new Dimension(565, 401));
-        setPreferredSize(new Dimension(565, 401));
+        currencyBox = new JComboBox();
 
         //---- accLabel ----
         accLabel.setText("Account :");
-        accLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         //---- moneyLabel ----
         moneyLabel.setText("Money :");
-        moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         //---- saveBtn ----
         saveBtn.setText("Save");
 
         //---- backBtn ----
         backBtn.setText("Back");
-        backBtn.addActionListener(new ActionListener() {
+        
+      //---- currencyBox ---- THIS IS WHERE IS THE PROBLEM
+        String list[] = new String[user.currencyConverter.getSupportedCurrencies().length];
+        for (int i = 0; i < list.length; i++) {
+			Currency[] c = user.currencyConverter.getSupportedCurrencies();
+			list[i] = c[i].getSymbol();
+		}
+        currencyBox.setModel(new DefaultComboBoxModel<>(list));
+        
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CardLayout cl = (CardLayout)getParent().getParent().getLayout(); 	//first parent is the current panel holding the button, we want the main panel
-                setVisible(false);
-                cl.show(getParent().getParent(), "mainCard");
-            }
-        });
-
+        // --------------------------------------------- THIS SEGMENT IS ONLY FOR POSITIONING AND ADDING COMPONENTS
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup()
+            layout.createParallelGroup()
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(117, 117, 117)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addComponent(saveBtn)
+                        .addGroup(layout.createParallelGroup()
+                            .addComponent(accLabel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(moneyLabel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)))
+                    .addGap(97, 97, 97)
+                    .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup()
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(112, 112, 112)
-                                                .addGroup(layout.createParallelGroup()
-                                                        .addComponent(accLabel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(moneyLabel, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap(180, Short.MAX_VALUE)
-                                                .addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
-                                .addGap(68, 68, 68)
-                                .addGroup(layout.createParallelGroup()
-                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(accountTF, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                                                .addComponent(moneyTF, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
-                                        .addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(81, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(accountTF, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                                .addComponent(moneyTF, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backBtn))
+                    .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup()
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(101, 101, 101)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(accLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(accountTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(69, 69, 69)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(moneyLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(moneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(63, 63, 63)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(saveBtn)
-                                        .addComponent(backBtn))
-                                .addContainerGap(140, Short.MAX_VALUE))
+            layout.createParallelGroup()
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(66, 66, 66)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addComponent(accLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(accountTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGap(67, 67, 67)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addComponent(moneyLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(moneyTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(currencyBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGap(63, 63, 63)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(saveBtn)
+                        .addComponent(backBtn))
+                    .addContainerGap(70, Short.MAX_VALUE))
         );
-
     }
-
 }

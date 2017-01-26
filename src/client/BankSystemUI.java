@@ -34,7 +34,7 @@ public class BankSystemUI extends JFrame implements MessageHandler {
     private Client connection = null;
     private String host;
     private int port;
-    public mainPanel mainWindow;
+    public MainPanel mainWindow;
 
     // контейнери за данните от сървъра - НЕ СЕ ПРЕИНСТАНЦИРАТ !!!
     public final JScrollPane scrollpane_Balance;
@@ -126,7 +126,7 @@ public class BankSystemUI extends JFrame implements MessageHandler {
                         user.setUsetname(usernameTF.getText());
                         user.setPass(passwordTF.getPassword());
                         // референция към най-горното ниво (обекта - родител) с данните от сървъра:
-                        mainWindow = new mainPanel(user, connection, parent);
+                        mainWindow = new MainPanel(user, connection, parent);
                         try {
                             connection.send(new LoginRequest(usernameTF.getText(), passwordTF.getText()));
                         } catch (IOException e1) {
