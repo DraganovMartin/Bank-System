@@ -19,6 +19,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -73,6 +76,40 @@ public class ClientGUI {
     JScrollPane controls_scrollpane;
     JPanel buttons;
     JScrollPane buttons_scrollpane;
+
+    // лента с главно меню:
+    JMenuBar menu_topMenu;
+    JMenu menu_Account; // меню за идентифициране на потребителя
+    JMenu menu_Update;  // меню за обновяване на информацията
+    JMenu menu_Order;   // меню за нареждане на парични операции
+    // разделяне на функционалностите според клас диаграмата - use_case_diagram_BG.pdf
+    // и клас диаграмата на клиентските съобщения - class_diagram_messages.pdf:
+    JMenuItem menu_Account_LoginRequest;           // активира режим за пращане на "LoginRequest"
+    JMenuItem menu_Account_RegisterRequest;        // активира режим за пращане на "RegisterRequest"
+    JMenuItem menu_Account_ChangePasswordRequest;  // активира режим за пращане на "ChangePasswordRequest"
+    JMenuItem menu_Account_LogoutRequest;          // активира режим за пращане на "LogoutRequest"
+    JMenuItem menu_Update_BalanceRequest;               // активира режим за пращане на "BalanceRequest"
+    JMenuItem menu_Update_TransactionHistoryRequest;    // активира режим за пращане на "TransactionHistoryRequest"
+    JMenuItem menu_Update_CurrencyRatesRequest;         // активира режим за пращане на "CurrencyRatesRequest"
+    JMenuItem menu_Order_CreateBankAccountRequest;  // активира режим за пращане на "CreateBankAccountRequest"
+    JMenuItem menu_Order_DepositRequest;            // активира режим за пращане на "DepositRequest"
+    JMenuItem menu_Order_WithdrawRequest;           // активира режим за пращане на "WithdrawRequest"
+    JMenuItem menu_Order_TransferRequest;           // активира режим за пращане на "TransferRequest"
+    // имена на менютата:
+    static final String MENU_ACCOUNT_TEXT = "Account";  // меню за идентифициране на потребителя
+    static final String MENU_UPDATE_TEXT = "Update";    // меню за обновяване на информацията
+    static final String MENU_ORDER_TEXT = "Order";      // меню за нареждане на парични операции
+    static final String MENU_ACCOUNT_LOGINREQUEST_TEXT = "Login";                       // активира режим за пращане на "LoginRequest"
+    static final String MENU_ACCOUNT_REGISTERREQUEST_TEXT = "Register";                 // активира режим за пращане на "RegisterRequest"
+    static final String MENU_ACCOUNT_CHANGEPASSWORDREQUEST_TEXT = "Change Password";    // активира режим за пращане на "ChangePasswordRequest"
+    static final String MENU_ACCOUNT_LOGOUTREQUEST_TEXT = "Logout";                     // активира режим за пращане на "LogoutRequest"
+    static final String MENU_UPDATE_BALANCEREQUEST_TEXT = "Balance";                            // активира режим за пращане на "BalanceRequest"
+    static final String MENU_UPDATE_TRANSACTIONHISTORYREQUEST_TEXT = "Transaction History";     // активира режим за пращане на "TransactionHistoryRequest"
+    static final String MENU_UPDATE_CURRENCYRATESREQUEST_TEXT = "Currency Rates";               // активира режим за пращане на "CurrencyRatesRequest"
+    static final String MENU_ORDER_CREATEBANKACCOUNTREQUEST_TEXT = "CreateBankAccount"; // активира режим за пращане на "CreateBankAccountRequest"
+    static final String MENU_ORDER_DEPOSITREQUEST_TEXT = "Deposit";                     // активира режим за пращане на "DepositRequest"
+    static final String MENU_ORDER_WITHDRAWREQUEST_TEXT = "Withdraw";                   // активира режим за пращане на "WithdrawRequest"
+    static final String MENU_ORDER_TRANSFERREQUEST_TEXT = "Transfer";                   // активира режим за пращане на "TransferRequest"
 
     // класифициране на полетата спрямо това за кои заявки се използват:
     // RegisterRequest:
@@ -475,6 +512,47 @@ public class ClientGUI {
                 this.mainPanel_scrollpane = new JScrollPane(this.mainPanel);
                 this.mainFrame.add(this.mainPanel_scrollpane);
                 this.mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // STOP CONNECTION FIRST !!! USE EXIT BUTTON !!!
+
+                // добавяне на лентата с главното меню:
+                {
+                    this.menu_topMenu = new JMenuBar();
+                    this.menu_Account = new JMenu(ClientGUI.MENU_ACCOUNT_TEXT);
+                    {
+                        this.menu_Account_LoginRequest = new JMenuItem(ClientGUI.MENU_ACCOUNT_LOGINREQUEST_TEXT);
+                        this.menu_Account_RegisterRequest = new JMenuItem(ClientGUI.MENU_ACCOUNT_REGISTERREQUEST_TEXT);
+                        this.menu_Account_ChangePasswordRequest = new JMenuItem(ClientGUI.MENU_ACCOUNT_CHANGEPASSWORDREQUEST_TEXT);
+                        this.menu_Account_LogoutRequest = new JMenuItem(ClientGUI.MENU_ACCOUNT_LOGOUTREQUEST_TEXT);
+                        this.menu_Account.add(this.menu_Account_LoginRequest);
+                        this.menu_Account.add(this.menu_Account_RegisterRequest);
+                        this.menu_Account.add(this.menu_Account_ChangePasswordRequest);
+                        this.menu_Account.add(this.menu_Account_LogoutRequest);
+                    }
+                    this.menu_Update = new JMenu(ClientGUI.MENU_UPDATE_TEXT);
+                    {
+                        this.menu_Update_BalanceRequest = new JMenuItem(ClientGUI.MENU_UPDATE_BALANCEREQUEST_TEXT);
+                        this.menu_Update_TransactionHistoryRequest = new JMenuItem(ClientGUI.MENU_UPDATE_TRANSACTIONHISTORYREQUEST_TEXT);
+                        this.menu_Update_CurrencyRatesRequest = new JMenuItem(ClientGUI.MENU_UPDATE_CURRENCYRATESREQUEST_TEXT);
+                        this.menu_Update.add(this.menu_Update_BalanceRequest);
+                        this.menu_Update.add(this.menu_Update_TransactionHistoryRequest);
+                        this.menu_Update.add(this.menu_Update_CurrencyRatesRequest);
+                    }
+                    this.menu_Order = new JMenu(ClientGUI.MENU_ORDER_TEXT);
+                    {
+                        this.menu_Order_CreateBankAccountRequest = new JMenuItem(ClientGUI.MENU_ORDER_CREATEBANKACCOUNTREQUEST_TEXT);
+                        this.menu_Order_DepositRequest = new JMenuItem(ClientGUI.MENU_ORDER_DEPOSITREQUEST_TEXT);
+                        this.menu_Order_WithdrawRequest = new JMenuItem(ClientGUI.MENU_ORDER_WITHDRAWREQUEST_TEXT);
+                        this.menu_Order_TransferRequest = new JMenuItem(ClientGUI.MENU_ORDER_TRANSFERREQUEST_TEXT);
+                        this.menu_Order.add(this.menu_Order_CreateBankAccountRequest);
+                        this.menu_Order.add(this.menu_Order_DepositRequest);
+                        this.menu_Order.add(this.menu_Order_WithdrawRequest);
+                        this.menu_Order.add(this.menu_Order_TransferRequest);
+                    }
+                    this.menu_topMenu.add(this.menu_Account);
+                    this.menu_topMenu.add(this.menu_Update);
+                    this.menu_topMenu.add(this.menu_Order);
+                    this.mainFrame.setJMenuBar(this.menu_topMenu);
+                }
+
                 this.mainFrame.pack();
                 this.mainFrame.setVisible(true);
 
