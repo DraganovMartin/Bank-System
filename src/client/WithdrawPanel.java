@@ -1,6 +1,7 @@
 
 package client;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -58,6 +59,15 @@ public class WithdrawPanel extends JPanel {
 
         //---- backBtn ----
         backBtn.setText("Back");
+        backBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cl = (CardLayout)getParent().getParent().getLayout(); 	//first parent is the current panel holding the button, we want the main panel
+				setVisible(false);
+				cl.show(getParent().getParent(), "mainCard");
+			}
+        });
        
         
 
