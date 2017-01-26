@@ -3,6 +3,7 @@ package client;
 import dataModel.Money;
 import dataModel.models.Currency;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -526,12 +527,41 @@ public class ClientGUI {
                         this.menu_Account.add(this.menu_Account_RegisterRequest);
                         this.menu_Account.add(this.menu_Account_ChangePasswordRequest);
                         this.menu_Account.add(this.menu_Account_LogoutRequest);
+                        // добавяне на action listener-и:
+                        this.menu_Account_LoginRequest.addActionListener((ActionEvent e) -> {
+                            on_Account_LoginRequest();
+                        });
+                        this.menu_Account_RegisterRequest.addActionListener((ActionEvent e) -> {
+                            on_Account_RegisterRequest();
+                        });
+                        this.menu_Account_ChangePasswordRequest.addActionListener((ActionEvent e) -> {
+                            on_Account_ChangePasswordRequest();
+                        });
+                        this.menu_Account_LogoutRequest.addActionListener((ActionEvent e) -> {
+                            on_Account_LogoutRequest();
+                        });
+                        // прикачване на позициите към менюто:
+                        this.menu_Account.add(this.menu_Account_LoginRequest);
+                        this.menu_Account.add(this.menu_Account_RegisterRequest);
+                        this.menu_Account.add(this.menu_Account_ChangePasswordRequest);
+                        this.menu_Account.add(this.menu_Account_LogoutRequest);
                     }
                     this.menu_Update = new JMenu(ClientGUI.MENU_UPDATE_TEXT);
                     {
                         this.menu_Update_BalanceRequest = new JMenuItem(ClientGUI.MENU_UPDATE_BALANCEREQUEST_TEXT);
                         this.menu_Update_TransactionHistoryRequest = new JMenuItem(ClientGUI.MENU_UPDATE_TRANSACTIONHISTORYREQUEST_TEXT);
                         this.menu_Update_CurrencyRatesRequest = new JMenuItem(ClientGUI.MENU_UPDATE_CURRENCYRATESREQUEST_TEXT);
+                        // добавяне на action listener-и:
+                        this.menu_Update_BalanceRequest.addActionListener((ActionEvent e) -> {
+                            on_Update_BalanceRequest();
+                        });
+                        this.menu_Update_TransactionHistoryRequest.addActionListener((ActionEvent e) -> {
+                            on_Update_TransactionHistoryRequest();
+                        });
+                        this.menu_Update_CurrencyRatesRequest.addActionListener((ActionEvent e) -> {
+                            on_Update_CurrencyRatesRequest();
+                        });
+                        // прикачване на позициите към менюто:
                         this.menu_Update.add(this.menu_Update_BalanceRequest);
                         this.menu_Update.add(this.menu_Update_TransactionHistoryRequest);
                         this.menu_Update.add(this.menu_Update_CurrencyRatesRequest);
@@ -542,6 +572,20 @@ public class ClientGUI {
                         this.menu_Order_DepositRequest = new JMenuItem(ClientGUI.MENU_ORDER_DEPOSITREQUEST_TEXT);
                         this.menu_Order_WithdrawRequest = new JMenuItem(ClientGUI.MENU_ORDER_WITHDRAWREQUEST_TEXT);
                         this.menu_Order_TransferRequest = new JMenuItem(ClientGUI.MENU_ORDER_TRANSFERREQUEST_TEXT);
+                        // добавяне на action listener-и:
+                        this.menu_Order_CreateBankAccountRequest.addActionListener((ActionEvent e) -> {
+                            on_Order_CreateBankAccountRequest();
+                        });
+                        this.menu_Order_DepositRequest.addActionListener((ActionEvent e) -> {
+                            on_Order_DepositRequest();
+                        });
+                        this.menu_Order_WithdrawRequest.addActionListener((ActionEvent e) -> {
+                            on_Order_WithdrawRequest();
+                        });
+                        this.menu_Order_TransferRequest.addActionListener((ActionEvent e) -> {
+                            on_Order_TransferRequest();
+                        });
+                        // прикачване на позициите към менюто:
                         this.menu_Order.add(this.menu_Order_CreateBankAccountRequest);
                         this.menu_Order.add(this.menu_Order_DepositRequest);
                         this.menu_Order.add(this.menu_Order_WithdrawRequest);
@@ -552,6 +596,9 @@ public class ClientGUI {
                     this.menu_topMenu.add(this.menu_Order);
                     this.mainFrame.setJMenuBar(this.menu_topMenu);
                 }
+
+                // скриване на контролите за изпращане на съобщения:
+                this.on_all_hide();
 
                 this.mainFrame.pack();
                 this.mainFrame.setVisible(true);
@@ -729,6 +776,245 @@ public class ClientGUI {
      */
     public synchronized void setDefaultCurrency(Currency defaultCurrency) {
         this.defaultCurrency = defaultCurrency;
+    }
+
+    // скрива контролите за изпращане на съобщения
+    final synchronized void on_all_hide() {
+        {
+            Component[] all = this.controls.getComponents();
+            for (Component entry : all) {
+                this.controls.remove(entry);
+            }
+            this.controls.add(new JLabel("Choose an option from the menu..."));
+            this.controls.revalidate();
+        }
+        {
+            Component[] all = this.buttons.getComponents();
+            for (Component entry : all) {
+                this.buttons.remove(entry);
+            }
+            this.buttons.add(this.exitButton);
+            this.buttons.revalidate();
+        }
+        this.mainFrame.revalidate();
+        this.mainFrame.pack();
+    }
+
+    // активира режим за пращане на "LoginRequest"
+    final synchronized void on_Account_LoginRequest() {
+        {
+            Component[] all = this.controls.getComponents();
+            for (Component entry : all) {
+                this.controls.remove(entry);
+            }
+            this.controls.add(this.loginUsername_label);
+            this.controls.add(this.loginUsername);
+            this.controls.add(this.loginPassword_label);
+            this.controls.add(this.loginPassword);
+            this.controls.revalidate();
+        }
+        {
+            Component[] all = this.buttons.getComponents();
+            for (Component entry : all) {
+                this.buttons.remove(entry);
+            }
+            this.buttons.add(this.sendButton_LoginRequest);
+            this.buttons.add(this.exitButton);
+            this.buttons.revalidate();
+        }
+        this.mainFrame.revalidate();
+        this.mainFrame.pack();
+    }
+
+    // активира режим за пращане на "RegisterRequest"
+    final synchronized void on_Account_RegisterRequest() {
+        {
+            Component[] all = this.controls.getComponents();
+            for (Component entry : all) {
+                this.controls.remove(entry);
+            }
+            this.controls.add(this.registerUsername_label);
+            this.controls.add(this.registerUsername);
+            this.controls.add(this.registerPassword_label);
+            this.controls.add(this.registerPassword);
+            this.controls.add(this.firstName_label);
+            this.controls.add(this.firstName);
+            this.controls.add(this.lastName_label);
+            this.controls.add(this.lastName);
+            this.controls.revalidate();
+        }
+        {
+            Component[] all = this.buttons.getComponents();
+            for (Component entry : all) {
+                this.buttons.remove(entry);
+            }
+            this.buttons.add(this.sendButton_RegisterRequest);
+            this.buttons.add(this.exitButton);
+            this.buttons.revalidate();
+        }
+        this.mainFrame.revalidate();
+        this.mainFrame.pack();
+    }
+
+    // активира режим за пращане на "ChangePasswordRequest"
+    final synchronized void on_Account_ChangePasswordRequest() {
+        {
+            Component[] all = this.controls.getComponents();
+            for (Component entry : all) {
+                this.controls.remove(entry);
+            }
+            this.controls.add(this.oldPassword_label);
+            this.controls.add(this.oldPassword);
+            this.controls.add(this.newPassword_label);
+            this.controls.add(this.newPassword);
+            this.controls.revalidate();
+        }
+        {
+            Component[] all = this.buttons.getComponents();
+            for (Component entry : all) {
+                this.buttons.remove(entry);
+            }
+            this.buttons.add(this.sendButton_ChangePasswordRequest);
+            this.buttons.add(this.exitButton);
+            this.buttons.revalidate();
+        }
+        this.mainFrame.revalidate();
+        this.mainFrame.pack();
+    }
+
+    // активира режим за пращане на "LogoutRequest"
+    final synchronized void on_Account_LogoutRequest() {
+        this.on_all_hide();
+    }
+
+    // активира режим за пращане на "BalanceRequest"
+    final synchronized void on_Update_BalanceRequest() {
+        this.on_all_hide();
+    }
+
+    // активира режим за пращане на "TransactionHistoryRequest"
+    final synchronized void on_Update_TransactionHistoryRequest() {
+        this.on_all_hide();
+    }
+
+    // активира режим за пращане на "CurrencyRatesRequest"
+    final synchronized void on_Update_CurrencyRatesRequest() {
+        this.on_all_hide();
+    }
+
+    // активира режим за пращане на "CreateBankAccountRequest"
+    final synchronized void on_Order_CreateBankAccountRequest() {
+        {
+            Component[] all = this.controls.getComponents();
+            for (Component entry : all) {
+                this.controls.remove(entry);
+            }
+            this.controls.add(this.bankAccountType_label);
+            this.controls.add(this.bankAccountType);
+            this.controls.add(this.moneyAmount_label);
+            this.controls.add(this.moneyAmount);
+            this.controls.add(this.moneyCurrency_label);
+            this.controls.add(this.moneyCurrency);
+            this.controls.revalidate();
+        }
+        {
+            Component[] all = this.buttons.getComponents();
+            for (Component entry : all) {
+                this.buttons.remove(entry);
+            }
+            this.buttons.add(this.sendButton_CreateBankAccountRequest);
+            this.buttons.add(this.exitButton);
+            this.buttons.revalidate();
+        }
+        this.mainFrame.revalidate();
+        this.mainFrame.pack();
+    }
+
+    // активира режим за пращане на "DepositRequest"
+    final synchronized void on_Order_DepositRequest() {
+        {
+            Component[] all = this.controls.getComponents();
+            for (Component entry : all) {
+                this.controls.remove(entry);
+            }
+            this.controls.add(this.toBankAccount_label);
+            this.controls.add(this.toBankAccount);
+            this.controls.add(this.moneyAmount_label);
+            this.controls.add(this.moneyAmount);
+            this.controls.add(this.moneyCurrency_label);
+            this.controls.add(this.moneyCurrency);
+            this.controls.revalidate();
+        }
+        {
+            Component[] all = this.buttons.getComponents();
+            for (Component entry : all) {
+                this.buttons.remove(entry);
+            }
+            this.buttons.add(this.sendButton_DepositRequest);
+            this.buttons.add(this.exitButton);
+            this.buttons.revalidate();
+        }
+        this.mainFrame.revalidate();
+        this.mainFrame.pack();
+    }
+
+    // активира режим за пращане на "WithdrawRequest"
+    final synchronized void on_Order_WithdrawRequest() {
+        {
+            Component[] all = this.controls.getComponents();
+            for (Component entry : all) {
+                this.controls.remove(entry);
+            }
+            this.controls.add(this.fromBankAccount_label);
+            this.controls.add(this.fromBankAccount);
+            this.controls.add(this.moneyAmount_label);
+            this.controls.add(this.moneyAmount);
+            this.controls.add(this.moneyCurrency_label);
+            this.controls.add(this.moneyCurrency);
+            this.controls.revalidate();
+        }
+        {
+            Component[] all = this.buttons.getComponents();
+            for (Component entry : all) {
+                this.buttons.remove(entry);
+            }
+            this.buttons.add(this.sendButton_WithdrawRequest);
+            this.buttons.add(this.exitButton);
+            this.buttons.revalidate();
+        }
+        this.mainFrame.revalidate();
+        this.mainFrame.pack();
+    }
+
+    // активира режим за пращане на "TransferRequest"
+    final synchronized void on_Order_TransferRequest() {
+        {
+            Component[] all = this.controls.getComponents();
+            for (Component entry : all) {
+                this.controls.remove(entry);
+            }
+            this.controls.add(this.fromBankAccount_label);
+            this.controls.add(this.fromBankAccount);
+            this.controls.add(this.toBankAccount);
+            this.controls.add(this.toBankAccount_label);
+            this.controls.add(this.toBankAccount);
+            this.controls.add(this.moneyAmount_label);
+            this.controls.add(this.moneyAmount);
+            this.controls.add(this.moneyCurrency_label);
+            this.controls.add(this.moneyCurrency);
+            this.controls.revalidate();
+        }
+        {
+            Component[] all = this.buttons.getComponents();
+            for (Component entry : all) {
+                this.buttons.remove(entry);
+            }
+            this.buttons.add(this.sendButton_TransferRequest);
+            this.buttons.add(this.exitButton);
+            this.buttons.revalidate();
+        }
+        this.mainFrame.revalidate();
+        this.mainFrame.pack();
     }
 
     /**
