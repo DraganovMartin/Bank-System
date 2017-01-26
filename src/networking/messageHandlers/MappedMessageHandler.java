@@ -1,6 +1,5 @@
 package networking.messageHandlers;
 
-import networking.messageHandlers.MessageHandler;
 import networking.messages.Message;
 import java.util.TreeMap;
 
@@ -36,7 +35,7 @@ public class MappedMessageHandler implements MessageHandler {
      *
      * @param messageHandler the {@link MessageHandler} to set for that type.
      */
-    public final void set(String type, MessageHandler messageHandler) {
+    public void set(String type, MessageHandler messageHandler) {
         if ((type != null) && (messageHandler != null)) {
             synchronized (this.handlerMap) {
                 this.handlerMap.put(type, messageHandler);
@@ -53,7 +52,7 @@ public class MappedMessageHandler implements MessageHandler {
      * @return {@link MessageHandler} specified for the provided type of
      * {@link Message}, or NULL if not specified.
      */
-    protected final MessageHandler get(String type) {
+    protected MessageHandler get(String type) {
         if (type != null) {
             synchronized (this.handlerMap) {
                 return this.handlerMap.get(type);

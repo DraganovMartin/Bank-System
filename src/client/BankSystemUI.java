@@ -8,12 +8,16 @@ import javax.swing.*;
 import javax.swing.GroupLayout;
 
 import networking.connections.Client;
+import networking.messageHandlers.MessageHandler;
+import networking.messages.DisconnectNotice;
+import networking.messages.Message;
+import networking.messages.Update;
 import networking.messages.request.LoginRequest;
 
 /**
  * @author Martin Draganov
  */
-public class BankSystemUI extends JFrame {
+public class BankSystemUI extends JFrame implements MessageHandler {
 
     private JPanel LoginPanel;
     private JLabel usernameLabel;
@@ -42,6 +46,8 @@ public class BankSystemUI extends JFrame {
         // контейнери за данните от сървъра - НЕ СЕ ПРЕИНСТАНЦИРАТ !!!
         this.scrollpane_Balance = new JScrollPane();
         this.scrollpane_History = new JScrollPane();
+        this.scrollpane_Balance.setViewportView(new JLabel("Balance: none"));
+        this.scrollpane_History.setViewportView(new JLabel("Transfer history: none"));
 
         // интерфейс:
         initComponents();
@@ -210,4 +216,45 @@ public class BankSystemUI extends JFrame {
 
     }
 
+    /**
+     * Handling responses from server
+     */
+    @Override
+    public Message handle(Message message) {
+        switch (message.getType()) {
+            case DisconnectNotice.TYPE:
+                handleDisconnect();
+                break;
+            case Update.TYPE:
+                handleUpdate((Update) message);
+                break;
+        }
+        return null;
+    }
+
+    public synchronized void handleDisconnect() {
+        JOptionPane.showMessageDialog(null, "Disconnected from server !");
+        this.connection.stop();
+        System.exit(1);
+    }
+
+    public synchronized void handleUpdate(Update message) {
+        if (message.getProflieData() != null) {
+            this.user = new ClientDataUIHelper(message.getProflieData().getBalance(), message.getProflieData().getTransferHistory(), message.getProflieData().getCurrencyConverter(), message.getUsername());
+            //JOptionPane.showMessageDialog(null, "Received data from server");
+
+            // контейнери за данните от сървъра - НЕ СЕ ПРЕИНСТАНЦИРАТ !!!
+            if (user.getBalanceTable() == null || user.getBalanceTable().getRowCount() == 0) {
+                this.scrollpane_Balance.setViewportView(new JLabel("Balance: none"));
+            } else {
+                this.scrollpane_Balance.setViewportView(user.getBalanceTable());
+            }
+            if (user.getTransferHistoryTable() == null || user.getTransferHistoryTable().getRowCount() == 0) {
+                this.scrollpane_History.setViewportView(new JLabel("Transfer history: none"));
+            } else {
+                this.scrollpane_History.setViewportView(user.getTransferHistoryTable());
+            }
+
+        }
+    }
 }

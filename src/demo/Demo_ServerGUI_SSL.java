@@ -5,7 +5,7 @@ import java.net.ConnectException;
 import database.DatabaseHandler;
 import java.io.File;
 import networking.connections.ServerGUI_SSL;
-import networking.messageHandlers.MappedMessageHandler;
+import networking.messageHandlers.SynchronizedMappedMessageHandler;
 import networking.messageHandlers.databaseside.*;
 import networking.messages.request.*;
 
@@ -33,7 +33,7 @@ public class Demo_ServerGUI_SSL {
             dbHandler = new DatabaseHandler();
             {
                 // създаване на Mapped Message Handler - за обработка на входящи съобщения от клиенти:
-                MappedMessageHandler serversideHandler = new MappedMessageHandler();
+                SynchronizedMappedMessageHandler serversideHandler = new SynchronizedMappedMessageHandler();
                 {
                     serversideHandler.set(BalanceRequest.TYPE, new BalanceRequestHandler(dbHandler));
                     serversideHandler.set(ChangePasswordRequest.TYPE, new ChangePasswordRequestHandler(dbHandler));

@@ -1,4 +1,4 @@
-package demo_anything;
+package demo_simulator;
 
 import java.io.File;
 
@@ -10,7 +10,7 @@ import networking.messageHandlers.SynchronizedMappedMessageHandler;
  *
  * @author iliyan
  */
-public class AcceptAnythingServer {
+public class DatabaseSimulatorServer {
 
     public static void main(String[] args) {
 
@@ -24,7 +24,7 @@ public class AcceptAnythingServer {
         System.out.println("Starting server...");
 
         // инстанциране на псевдо-база данни:
-        SynchronizedMappedMessageHandler serversideHandler = new AcceptAnythingHandler();
+        SynchronizedMappedMessageHandler serversideHandler = new DatabaseHandlerSimulator();
 
         // създаване на графичния интерфейс на сървъра:
         ServerGUI_SSL server = new ServerGUI_SSL(serversideHandler, SERVER_FRAME_TITLE);
