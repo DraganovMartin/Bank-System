@@ -912,6 +912,7 @@ public class ClientGUI {
             JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
         } else {
             this.on_all_hide();
+            this.disconnect();
         }
     }
 
@@ -922,6 +923,11 @@ public class ClientGUI {
             JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
         } else {
             this.on_all_hide();
+            try {
+                this.send(new BalanceRequest());
+            } catch (IOException ex) {
+                Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -932,6 +938,11 @@ public class ClientGUI {
             JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
         } else {
             this.on_all_hide();
+            try {
+                this.send(new TransactionHistoryRequest());
+            } catch (IOException ex) {
+                Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -942,6 +953,11 @@ public class ClientGUI {
             JOptionPane.showMessageDialog(this.mainFrame, "Not logged in!");
         } else {
             this.on_all_hide();
+            try {
+                this.send(new CurrencyRatesRequest());
+            } catch (IOException ex) {
+                Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
