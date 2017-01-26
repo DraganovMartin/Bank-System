@@ -17,7 +17,7 @@ import networking.messages.request.TransactionHistoryRequest;
 /**
  * @author Martin Draganov
  */
-public class mainPanel extends JPanel implements MessageHandler {
+public class mainPanel extends JPanel {
 
     networking.connections.Client connection;
 
@@ -276,37 +276,6 @@ public class mainPanel extends JPanel implements MessageHandler {
                 );
             }
             this.add(panelMain, "card1");
-        }
-    }
-
-    /**
-     * Handling responses from server
-     */
-    @Override
-    public Message handle(Message message) {
-        switch (message.getType()) {
-            case DisconnectNotice.TYPE:
-                handleDisconnect();
-                break;
-            case Update.TYPE:
-                handleUpdate((Update) message);
-        }
-        return null;
-    }
-
-    public synchronized void handleDisconnect() {
-        JOptionPane.showMessageDialog(getParent(), "Disconnected from server !");
-        System.exit(1);
-    }
-
-    public synchronized void handleUpdate(Update message) {
-        if (message.getProflieData() != null) {
-            this.user = new ClientDataUIHelper(message.getProflieData().getBalance(), message.getProflieData().getTransferHistory(), message.getProflieData().getCurrencyConverter(), message.getUsername());
-            //JOptionPane.showMessageDialog(null, "Received data from server");
-
-            // контейнери за данните от сървъра - НЕ СЕ ПРЕИНСТАНЦИРАТ !!!
-            parent.scrollpane_Balance.setViewportView(user.getBalanceTable());
-            parent.scrollpane_History.setViewportView(user.getTransferHistoryTable());
         }
     }
 }

@@ -1,6 +1,7 @@
 package dataModel;
 
 import dataModel.models.Currency;
+import java.io.Serializable;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,7 +18,7 @@ import java.math.RoundingMode;
  *
  * @author iliyan-kostov <https://github.com/iliyan-kostov/>
  */
-public class Money {
+public class Money implements Serializable {
 
     /**
      * The {@link RoundingMode} to use for all {@link Money} objects.

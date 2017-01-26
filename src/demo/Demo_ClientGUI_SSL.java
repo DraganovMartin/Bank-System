@@ -39,11 +39,12 @@ public class Demo_ClientGUI_SSL {
                 + "съдържащ частния ключ на клиента и публичния ключ на банката!\n"
                 + "Подобен файл е приложен в директорията \"documentation\\example_certificates\" !\n"
                 + "Името му е: \"client.keystore\", а паролата: \"client\"");
-        JFileChooser chooser = new JFileChooser();
-        chooser.setDialogTitle("Изберете файла с SSL ключовете за клиента:");
-        chooser.showOpenDialog(null);
+        //JFileChooser chooser = new JFileChooser();
+        //chooser.setDialogTitle("Изберете файла с SSL ключовете за клиента:");
+        //chooser.showOpenDialog(null);
         //File clientKeystore = chooser.getSelectedFile();
         File clientKeystore = new File(CLIENT_KEYSTORE_DEFAULT_PATH);
+        /*
         JOptionPane.showMessageDialog(null,
                 "Избраният файл е променен чрез кода на програмата:\n"
                 + clientKeystore.getAbsolutePath() + "\n"
@@ -52,6 +53,7 @@ public class Demo_ClientGUI_SSL {
                 "Зададена е парола за клиентския SSL ключ:\n"
                 + CLIENT_KEYSTORE_DEFAULT_PASSWORD + "\n"
                 + "За настройки - в кода !!!");
+         */
 
         // генериране на SSL контекст и създаване на обект за мрежова връзка:
         SSLContext clientSSLContext = networking.security.SSLContextFactory.getSSLContext(clientKeystore, CLIENT_KEYSTORE_DEFAULT_PASSWORD);
@@ -63,13 +65,14 @@ public class Demo_ClientGUI_SSL {
             networking.connections.Client clientConnection = new networking.connections.Client(sslSocketFactory, handler);
 
             // свързване към сървъра:
+            /*
             JOptionPane.showMessageDialog(null,
                     "Зададен е адрес на сървъра:\n"
                     + HOSTNAME + "\n"
                     + "и порт за свързване:\n"
                     + HOSTPORT + "\n"
                     + "За настройки - в кода !!!");
-
+             */
             // свързване със сървъра:
             try {
                 clientConnection.connect(HOSTNAME, HOSTPORT);
@@ -85,7 +88,7 @@ public class Demo_ClientGUI_SSL {
                     public Message handle(Message message) {
                         // TODO Auto-generated method stub
                         if (message != null) {
-                            ui.mainWindow.handle(message);
+                            ui.handle(message);
                         }
                         return null;
                     }

@@ -478,7 +478,7 @@ public class ClientGUI implements MessageHandler {
             }
             JTable currencyRates = update.getProflieData().getCurrencyConverter().getSupportedExchangeRatesAsJTable(this.defaultCurrency, "0.01");
             this.display_currencyRates_scrollpane.setViewportView(currencyRates);
-            {
+            if (currencyRates != null) {
                 Dimension p = currencyRates.getPreferredSize();
                 this.display_currencyRates_scrollpane.setPreferredSize(new Dimension((int) p.getWidth(), (int) p.getHeight() + 25));
                 Container current = this.display_currencyRates_scrollpane;
@@ -490,7 +490,7 @@ public class ClientGUI implements MessageHandler {
 
             JTable balance = update.getProflieData().getBalanceTable();
             this.display_balance_scrollpane.setViewportView(balance);
-            {
+            if (balance != null) {
                 Dimension p = balance.getPreferredSize();
                 this.display_balance_scrollpane.setPreferredSize(new Dimension((int) p.getWidth(), (int) p.getHeight() + 25));
                 Container current = this.display_balance_scrollpane;
@@ -502,7 +502,7 @@ public class ClientGUI implements MessageHandler {
 
             JTable transferHistory = update.getProflieData().getTransferHistoryTable();
             this.display_transferHistory_scrollpane.setViewportView(transferHistory);
-            {
+            if (transferHistory != null) {
                 Dimension p = transferHistory.getPreferredSize();
                 this.display_transferHistory_scrollpane.setPreferredSize(new Dimension((int) p.getWidth(), (int) p.getHeight() + 25));
                 Container current = this.display_transferHistory_scrollpane;
@@ -552,6 +552,7 @@ public class ClientGUI implements MessageHandler {
 
         this.mainFrame.revalidate();
         this.mainFrame.pack();
+        JOptionPane.showMessageDialog(null, "Disconnected from server!");
         return null;
     }
 
