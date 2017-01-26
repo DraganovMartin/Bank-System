@@ -3,7 +3,7 @@ package demo_anything;
 import java.io.File;
 
 import networking.connections.ServerGUI_SSL;
-import networking.messageHandlers.MessageHandler;
+import networking.messageHandlers.SynchronizedMappedMessageHandler;
 
 /**
  * A class to start the server using {@link ServerGUI_SSL}.
@@ -24,7 +24,7 @@ public class AcceptAnythingServer {
         System.out.println("Starting server...");
 
         // инстанциране на псевдо-база данни:
-        MessageHandler serversideHandler = new AcceptAnythingHandler();
+        SynchronizedMappedMessageHandler serversideHandler = new AcceptAnythingHandler();
 
         // създаване на графичния интерфейс на сървъра:
         ServerGUI_SSL server = new ServerGUI_SSL(serversideHandler, SERVER_FRAME_TITLE);
