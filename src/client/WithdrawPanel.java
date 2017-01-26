@@ -4,10 +4,14 @@ package client;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
 
+import dataModel.Money;
 import dataModel.models.Currency;
+import networking.connections.Client;
+import networking.messages.request.WithdrawRequest;
 
 /**
  * @author Martin Draganov
@@ -22,8 +26,10 @@ public class WithdrawPanel extends JPanel {
     private JButton backBtn;
     private JTextField currencyTF;
     private ClientDataUIHelper user;
+    private Client connection;
     
-    public WithdrawPanel(ClientDataUIHelper user) {
+    public WithdrawPanel(ClientDataUIHelper user,Client connection) {
+    	this.connection = connection;
     	this.user = user;
         initComponents();
     }
@@ -52,7 +58,14 @@ public class WithdrawPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO get info from accountTF - JTextField,  moneyTF - JTextField, amountTF - JTextField, currencyTF - JTextField
-				
+				Money money = Money.createMoney(new Currency(currencyTF.getText()), moneyTF.getText());
+				try {
+					connection.send(new WithdrawRequest(accountTF.getText(), money));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(false);
 			}
 		});
 

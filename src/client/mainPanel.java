@@ -93,7 +93,7 @@ public class MainPanel extends JPanel {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        add(new CreateAccPanel(user), "CreateAccPanel");
+                        add(new CreateAccPanel(user,connection), "CreateAccPanel");
                         CardLayout cl = (CardLayout) (getLayout());
                         cl.show(thisPanel, "CreateAccPanel");
 
@@ -125,7 +125,7 @@ public class MainPanel extends JPanel {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        add(new ChangePasswordPanel(user), "ChangePassPanel");
+                        add(new ChangePasswordPanel(user,connection), "ChangePassPanel");
                         CardLayout cl = (CardLayout) (getLayout());
                         cl.show(thisPanel, "ChangePassPanel");
 
@@ -138,7 +138,7 @@ public class MainPanel extends JPanel {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        add(new DepositPanel(user), "DepositPanel");
+                        add(new DepositPanel(user,connection), "DepositPanel");
                         CardLayout cl = (CardLayout) (getLayout());
                         cl.show(thisPanel, "DepositPanel");
                     }
@@ -150,7 +150,7 @@ public class MainPanel extends JPanel {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        add(new TransferPanel(user), "TransferPanel");
+                        add(new TransferPanel(user,connection), "TransferPanel");
                         CardLayout cl = (CardLayout) (getLayout());
                         cl.show(thisPanel, "TransferPanel");
 
@@ -183,7 +183,7 @@ public class MainPanel extends JPanel {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        add(new WithdrawPanel(user), "WithdrawPanel");
+                        add(new WithdrawPanel(user,connection), "WithdrawPanel");
                         CardLayout cl = (CardLayout) (getLayout());
                         cl.show(thisPanel, "WithdrawPanel");
                     }
@@ -200,7 +200,7 @@ public class MainPanel extends JPanel {
                             case JOptionPane.NO_OPTION:
                                 break;
                             case JOptionPane.YES_OPTION:
-                                setVisible(false);
+                                System.exit(0);
                         }
 
                     }

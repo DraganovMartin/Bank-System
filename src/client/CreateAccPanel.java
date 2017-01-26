@@ -4,11 +4,15 @@ package client;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
 
 import dataModel.CurrencyConverter;
+import dataModel.Money;
 import dataModel.models.Currency;
+import networking.connections.Client;
+import networking.messages.request.CreateBankAccountRequest;
 
 /**
  * @author Martin Draganov
@@ -23,8 +27,11 @@ public class CreateAccPanel extends JPanel {
     private JButton createBtn;
     private ClientDataUIHelper user;
     private JTextField currencyTF;
+    private Client connection;
+    private String accChoice;
 	
-    public CreateAccPanel(ClientDataUIHelper user) {
+    public CreateAccPanel(ClientDataUIHelper user, Client connection) {
+    	this.connection = connection;
     	this.user = user;
     	thisPanel = this;
         initComponents();
@@ -48,6 +55,7 @@ public class CreateAccPanel extends JPanel {
             "Full access",
             "Ordinary"
         }));
+        
 
         //---- initMoneyLabel ----
         initMoneyLabel.setText("Initial money :");
@@ -72,7 +80,14 @@ public class CreateAccPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// accTypeCombobox, initMoneyTF - JTextField, currencyTF - JTextField
-				
+				Money money = Money.createMoney(new Currency(currencyTF.getText()), initMoneyTF.getText());
+				try {
+					connection.send(new CreateBankAccountRequest(accTypeComBox.getSelectedItem().toString(),money));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(false);
 			}
 		});
         

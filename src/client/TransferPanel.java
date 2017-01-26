@@ -5,10 +5,14 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
 
+import dataModel.Money;
 import dataModel.models.Currency;
+import networking.connections.Client;
+import networking.messages.request.TransferRequest;
 
 /**
  * @author Martin Draganov
@@ -25,8 +29,10 @@ public class TransferPanel extends JPanel {
     private JButton backBtn;
     private ClientDataUIHelper user;
     private JTextField currencyTF;
+    private Client connection;
     
-    public TransferPanel(ClientDataUIHelper user) {
+    public TransferPanel(ClientDataUIHelper user,Client connection) {
+    	this.connection = connection;
     	this.user = user;
         initComponents();
     }
@@ -63,7 +69,14 @@ public class TransferPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO get info from fromAccountTF - JTextField,  toAccTF - JTextField, amountTF - JTextField, currencyTF - JTextField
-				
+				Money money = Money.createMoney(new Currency(currencyTF.getText()), amountTF.getText());
+				try {
+					connection.send(new TransferRequest(fromAccountTF.getText(), toAccTF.getText(), money));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(false);
 			}
 		});
 
